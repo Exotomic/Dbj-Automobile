@@ -31,7 +31,7 @@ fetch("cars.json")
     <p class="price">${car.prix} €</p>
     <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
     <h3>Description</h3>
-    <p>${car.description}</p>
+    <p style="white-space: pre-line">${car.description}</p>
     <button onclick="window.location='mailto:contact@garage.com'">Contacter</button>
   `;
 });
