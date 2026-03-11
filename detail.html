@@ -3,38 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <title>Détail voiture</title>
+
 <style>
-body{font-family:Arial;padding:20px;background:#f4f4f4;}
-.container{max-width:800px;margin:auto;background:white;padding:20px;border-radius:10px;}
-img{width:100%;margin-bottom:15px;border-radius:10px;}
-.price{color:green;font-size:24px;font-weight:bold;}
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+padding:30px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.top{
+display:flex;
+gap:25px;
+align-items:flex-start;
+}
+
+.left{
+width:420px;
+flex-shrink:0;
+}
+
+.main-image{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:10px;
+display:block;
+margin-bottom:15px;
+}
+
+.thumbs{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.thumbs img{
+width:95px;
+height:95px;
+object-fit:cover;
+border-radius:8px;
+cursor:pointer;
+border:2px solid transparent;
+}
+
+.thumbs img:hover{
+border-color:#27ae60;
+}
+
+.right{
+flex:1;
+}
+
+h1{
+margin-top:0;
+margin-bottom:15px;
+}
+
+.price{
+font-size:30px;
+color:#27ae60;
+font-weight:bold;
+margin:15px 0;
+}
+
+.infos{
+font-size:18px;
+margin-bottom:20px;
+}
+
+.description{
+white-space:pre-line;
+line-height:1.6;
+background:#fafafa;
+padding:15px;
+border-radius:10px;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#111;
+font-weight:bold;
+}
+
+@media(max-width:900px){
+.top{
+flex-direction:column;
+}
+
+.left{
+width:100%;
+}
+
+.main-image{
+height:300px;
+}
+
+.thumbs img{
+width:80px;
+height:80px;
+}
+}
 </style>
 </head>
 <body>
 
-<div class="container" id="car-detail"></div>
+<div class="container">
+<a href="index.html" class="back">← Retour aux véhicules</a>
+<div id="car-detail"></div>
+</div>
 
 <script>
 const urlParams = new URLSearchParams(window.location.search);
-const carId = urlParams.get('id');
+const carId = urlParams.get("id");
 
 fetch("cars.json")
 .then(res => res.json())
 .then(data => {
   const car = data.find(c => c.id === carId);
-  if(!car){ document.getElementById("car-detail").innerHTML="Voiture introuvable"; return; }
 
-  let imagesHtml = car.images.map(img => `<img src="${img}">`).join('');
+  if(!car){
+    document.getElementById("car-detail").innerHTML = "<p>Voiture introuvable</p>";
+    return;
+  }
+
+  const thumbs = car.images.map(img => `
+    <img src="${img}" alt="${car.marque}" onclick="changeImage('${img}')">
+  `).join("");
+
   document.getElementById("car-detail").innerHTML = `
-    <h1>${car.marque}</h1>
-    ${imagesHtml}
-    <p class="price">${car.prix} €</p>
-    <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
-    <h3>Description</h3>
-    <p style="white-space: pre-line">${car.description}</p>
-    <button onclick="window.location='mailto:contact@garage.com'">Contacter</button>
+    <div class="top">
+      <div class="left">
+        <img src="${car.images[0]}" alt="${car.marque}" class="main-image" id="mainImage">
+        <div class="thumbs">
+          ${thumbs}
+        </div>
+      </div>
+
+      <div class="right">
+        <h1>${car.marque}</h1>
+        <div class="price">${car.prix}</div>
+        <div class="infos">${car.annee} • ${car.km} km • ${car.carburant}</div>
+
+        <h3>Description</h3>
+        <div class="description">${car.description}</div>
+      </div>
+    </div>
   `;
 });
+
+function changeImage(src){
+  document.getElementById("mainImage").src = src;
+}
 </script>
 
 </body>
