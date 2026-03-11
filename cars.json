@@ -1,0 +1,22 @@
+[
+  {
+    "id": "bmw-3",
+    "marque": "BMW Série 3",
+    "annee": "2018",
+    "km": "120000",
+    "carburant": "Diesel",
+    "prix": "18500",
+    "images": ["images/bmw1.jpg","images/bmw2.jpg"],
+    "description": "Très bon état, entretien à jour, contrôle technique ok."
+  },
+  {
+    "id": "audi-a4",
+    "marque": "Audi A4",
+    "annee": "2019",
+    "km": "95000",
+    "carburant": "Essence",
+    "prix": "22900",
+    "images": ["images/audi1.jpg","images/audi2.jpg"],
+    "description": "Première main, révision récente."
+  }
+]
