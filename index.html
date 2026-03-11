@@ -125,7 +125,6 @@
 const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
 const supabaseKey = "nkwxuxzgyhwzdqtdazrd;
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
 async function loadCars(){
   const { data, error } = await supabase
     .from("cars")
@@ -141,10 +140,13 @@ async function loadCars(){
   }
 
   data.forEach(car => {
+    const imagesArray = car.images ? car.images.split(",") : [];
+    const firstImage = imagesArray[0] || "";
+
     container.innerHTML += `
       <div class="car">
         <a href="detail.html?id=${car.id}">
-          <img src="${car.images}" alt="${car.marque}">
+          <img src="${firstImage}" alt="${car.marque}">
         </a>
 
         <div class="car-info">
