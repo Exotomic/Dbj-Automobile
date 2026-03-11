@@ -319,6 +319,9 @@
   const urlParams = new URLSearchParams(window.location.search);
   const carId = urlParams.get("id");
 
+  let currentCar = null;
+  let currentImageIndex = 0;
+
   async function loadCar(){
     const { data, error } = await supabase
       .from("cars")
@@ -331,10 +334,21 @@
       return;
     }
 
+    currentCar = data;
+    const imagesArray = data.images ? data.images.split(",") : [];
+
+    const thumbs = imagesArray.map((img, index) => `
+      <img src="${img}" alt="${data.marque}" onclick="changeImage(${index})">
+    `).join("");
+
     document.getElementById("car-detail").innerHTML = `
       <div class="top">
         <div class="left">
-          <img src="${data.images}" alt="${data.marque}" class="main-image" id="mainImage" onclick="openZoom()">
+          <img src="${imagesArray[0] || ''}" alt="${data.marque}" class="main-image" id="mainImage" onclick="openZoom()">
+
+          <div class="thumbs">
+            ${thumbs}
+          </div>
         </div>
 
         <div class="right">
@@ -349,8 +363,19 @@
     `;
   }
 
+  function getImagesArray(){
+    return currentCar && currentCar.images ? currentCar.images.split(",") : [];
+  }
+
+  function changeImage(index){
+    const images = getImagesArray();
+    currentImageIndex = index;
+    document.getElementById("mainImage").src = images[index];
+  }
+
   function openZoom(){
-    const img = document.getElementById("mainImage").src;
+    const images = getImagesArray();
+    const img = images[currentImageIndex];
     document.getElementById("zoomImage").src = img;
     document.getElementById("zoomBox").style.display = "flex";
     document.body.style.overflow = "hidden";
@@ -360,6 +385,46 @@
     document.getElementById("zoomBox").style.display = "none";
     document.body.style.overflow = "auto";
   }
+
+  function prevZoomImage(event){
+    if(event) event.stopPropagation();
+    const images = getImagesArray();
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateZoomImage();
+  }
+
+  function nextZoomImage(event){
+    if(event) event.stopPropagation();
+    const images = getImagesArray();
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateZoomImage();
+  }
+
+  function updateZoomImage(){
+    const images = getImagesArray();
+    const newSrc = images[currentImageIndex];
+    document.getElementById("zoomImage").src = newSrc;
+    document.getElementById("mainImage").src = newSrc;
+  }
+
+  document.addEventListener("keydown", function(e){
+    const zoomBox = document.getElementById("zoomBox");
+    const isOpen = zoomBox.style.display === "flex";
+
+    if(!isOpen) return;
+
+    if(e.key === "Escape"){
+      closeZoom();
+    }
+
+    if(e.key === "ArrowLeft"){
+      prevZoomImage();
+    }
+
+    if(e.key === "ArrowRight"){
+      nextZoomImage();
+    }
+  });
 
   loadCar();
 </script>
