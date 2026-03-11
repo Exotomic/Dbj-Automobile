@@ -11,22 +11,34 @@ input{padding:10px;width:250px;border-radius:5px;border:1px solid #ccc;}
 .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:30px;}
 .car{
 display:flex;
+align-items:stretch;
 background:white;
-border-radius:10px;
+border-radius:12px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,0.15);
 margin-bottom:20px;
 }
 
+.car a{
+display:block;
+width:220px;
+height:220px;
+flex-shrink:0;
+}
+
 .car img{
-width:200px;
-height:200px;
+width:220px;
+height:220px;
 object-fit:cover;
+display:block;
 }
 
 .car-info{
 padding:20px;
 flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
 .price{
