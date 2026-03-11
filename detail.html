@@ -309,6 +309,60 @@
       }
     });
   </script>
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
+  const supabaseKey = "nkwxuxzgyhwzdqtdazrd";
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const carId = urlParams.get("id");
+
+  async function loadCar(){
+    const { data, error } = await supabase
+      .from("cars")
+      .select("*")
+      .eq("id", carId)
+      .single();
+
+    if(error || !data){
+      document.getElementById("car-detail").innerHTML = "<p>Voiture introuvable</p>";
+      return;
+    }
+
+    document.getElementById("car-detail").innerHTML = `
+      <div class="top">
+        <div class="left">
+          <img src="${data.images}" alt="${data.marque}" class="main-image" id="mainImage" onclick="openZoom()">
+        </div>
+
+        <div class="right">
+          <h1>${data.marque}</h1>
+          <div class="price">${data.prix}</div>
+          <div class="infos">${data.annee} • ${data.km} km • ${data.carburant}</div>
+
+          <h3>Description</h3>
+          <div class="description">${data.description || ""}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function openZoom(){
+    const img = document.getElementById("mainImage").src;
+    document.getElementById("zoomImage").src = img;
+    document.getElementById("zoomBox").style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeZoom(){
+    document.getElementById("zoomBox").style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  loadCar();
+</script>
+  
 </body>
 </html>
