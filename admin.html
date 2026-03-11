@@ -55,6 +55,21 @@
       margin-top:10px;
       font-weight:bold;
     }
+
+    .preview{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:15px;
+    }
+
+    .preview img{
+      width:100px;
+      height:100px;
+      object-fit:cover;
+      border-radius:8px;
+      border:1px solid #ddd;
+    }
   </style>
 </head>
 <body>
@@ -67,8 +82,11 @@
     <input type="text" id="km" placeholder="Kilométrage">
     <input type="text" id="carburant" placeholder="Carburant">
     <input type="text" id="prix" placeholder="Prix">
-    <input type="text" id="image" placeholder="URL de l'image">
     <textarea id="description" placeholder="Description"></textarea>
+
+    <input type="file" id="images" multiple accept="image/*">
+
+    <div class="preview" id="preview"></div>
 
     <button onclick="addCar()">Ajouter la voiture</button>
 
@@ -81,38 +99,96 @@
     const supabaseKey = "TA_CLE_ANON";
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
+    const imageInput = document.getElementById("images");
+    const preview = document.getElementById("preview");
+
+    imageInput.addEventListener("change", function(){
+      preview.innerHTML = "";
+      const files = imageInput.files;
+
+      for(const file of files){
+        const reader = new FileReader();
+        reader.onload = function(e){
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    async function uploadImages(files){
+      const urls = [];
+
+      for(const file of files){
+        const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${file.name}`;
+
+        const { error: uploadError } = await supabase
+          .storage
+          .from("cars")
+          .upload(fileName, file);
+
+        if(uploadError){
+          throw uploadError;
+        }
+
+        const { data } = supabase
+          .storage
+          .from("cars")
+          .getPublicUrl(fileName);
+
+        urls.push(data.publicUrl);
+      }
+
+      return urls;
+    }
+
     async function addCar(){
       const marque = document.getElementById("marque").value.trim();
       const annee = document.getElementById("annee").value.trim();
       const km = document.getElementById("km").value.trim();
       const carburant = document.getElementById("carburant").value.trim();
       const prix = document.getElementById("prix").value.trim();
-      const image = document.getElementById("image").value.trim();
       const description = document.getElementById("description").value.trim();
+      const files = document.getElementById("images").files;
       const message = document.getElementById("message");
 
-      if(!marque || !annee || !km || !carburant || !prix || !image){
+      message.textContent = "";
+
+      if(!marque || !annee || !km || !carburant || !prix){
         message.textContent = "Remplis tous les champs obligatoires.";
         return;
       }
 
-      const { error } = await supabase
-        .from("cars")
-        .insert([
-          {
-            marque: marque,
-            annee: annee,
-            km: km,
-            carburant: carburant,
-            prix: prix,
-            description: description,
-            images: image
-          }
-        ]);
+      if(files.length === 0){
+        message.textContent = "Ajoute au moins une image.";
+        return;
+      }
 
-      if(error){
-        message.textContent = "Erreur : " + error.message;
-      } else {
+      try {
+        message.textContent = "Upload des images en cours...";
+
+        const imageUrls = await uploadImages(files);
+
+        const { error } = await supabase
+          .from("cars")
+          .insert([
+            {
+              marque: marque,
+              annee: annee,
+              km: km,
+              carburant: carburant,
+              prix: prix,
+              description: description,
+              images: imageUrls.join(",")
+            }
+          ]);
+
+        if(error){
+          message.textContent = "Erreur : " + error.message;
+          return;
+        }
+
         message.textContent = "Voiture ajoutée avec succès.";
 
         document.getElementById("marque").value = "";
@@ -120,8 +196,12 @@
         document.getElementById("km").value = "";
         document.getElementById("carburant").value = "";
         document.getElementById("prix").value = "";
-        document.getElementById("image").value = "";
         document.getElementById("description").value = "";
+        document.getElementById("images").value = "";
+        preview.innerHTML = "";
+
+      } catch(err){
+        message.textContent = "Erreur upload : " + err.message;
       }
     }
   </script>
