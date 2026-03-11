@@ -1,72 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<title>DBJ Automobile</title>
 <meta charset="UTF-8">
+<title>Garage Auto</title>
 <style>
-body{
-font-family: Arial;
-background:#111;
-color:white;
-text-align:center;
-}
-
-header{
-background:#000;
-padding:20px;
-font-size:30px;
-}
-
-.car{
-background:#222;
-margin:20px;
-padding:20px;
-border-radius:10px;
-}
-
-img{
-width:300px;
-border-radius:10px;
-}
-
-button{
-background:red;
-color:white;
-border:none;
-padding:10px 20px;
-margin-top:10px;
-cursor:pointer;
-}
+body{font-family:Arial;margin:0;background:#f4f4f4;}
+header{background:#111;color:white;padding:20px;text-align:center;}
+.search{padding:20px;text-align:center;}
+input{padding:10px;width:250px;border-radius:5px;border:1px solid #ccc;}
+.container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:30px;}
+.car{background:white;border-radius:10px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.car img{width:100%;height:200px;object-fit:cover;}
+.car-info{padding:15px;}
+.price{color:#27ae60;font-size:22px;font-weight:bold;}
+button{background:#007bff;color:white;border:none;padding:10px;width:100%;border-radius:5px;cursor:pointer;}
 </style>
 </head>
-
 <body>
 
 <header>
-🚗 DBJ Automobile
+<h1>Garage Auto</h1>
+<p>Nos véhicules disponibles</p>
 </header>
 
-<h2>Nos véhicules en vente</h2>
-
-<div class="car">
-<img src="<img src="https://imgur.com/a/WjKuQof" alt="PUB 1">
-<h3>BMW Série 1</h3>
-<p>2016 - 120 000 km</p>
-<p>Prix : 13 500€</p>
-<button>Contact</button>
+<div class="search">
+<input type="text" id="search" placeholder="Rechercher une marque...">
 </div>
 
-<div class="car">
-<img src="https://via.placeholder.com/300">
-<h3>Peugeot 308</h3>
-<p>2018 - 95 000 km</p>
-<p>Prix : 12 900€</p>
-<button>Contact</button>
-</div>
+<div class="container" id="cars"></div>
 
-<h2>Contact</h2>
-<p>Email : contact@dbjautomobile.fr</p>
-<p>Téléphone : 06 00 00 00 00</p>
+<script>
+fetch("cars.json")
+.then(res => res.json())
+.then(data => {
+  const container = document.getElementById("cars");
+  data.forEach(car => {
+    container.innerHTML += `
+      <div class="car">
+        <a href="detail.html?id=${car.id}">
+          <img src="${car.images[0]}">
+        </a>
+        <div class="car-info">
+          <h3>${car.marque}</h3>
+          <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
+          <p class="price">${car.prix} €</p>
+        </div>
+      </div>
+    `;
+  });
+
+  const search = document.getElementById("search");
+  search.addEventListener("keyup", function() {
+    let filter = search.value.toLowerCase();
+    document.querySelectorAll(".car").forEach(carDiv => {
+      let text = carDiv.innerText.toLowerCase();
+      carDiv.style.display = text.includes(filter) ? "block" : "none";
+    });
+  });
+});
+</script>
 
 </body>
 </html>
