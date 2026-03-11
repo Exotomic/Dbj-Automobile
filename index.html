@@ -119,6 +119,47 @@
       });
   </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const supabaseUrl = "TON_URL_SUPABASE";
+const supabaseKey = "TA_CLE_ANON";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+async function loadCars(){
+
+const { data, error } = await supabase
+.from("cars")
+.select("*");
+
+let container = document.getElementById("cars");
+
+data.forEach(car => {
+
+container.innerHTML += `
+<div class="car">
+
+<a href="detail.html?id=${car.id}">
+<img src="${car.images}">
+</a>
+
+<div class="car-info">
+<h3>${car.marque}</h3>
+<p>${car.annee} • ${car.km} km • ${car.carburant}</p>
+<p class="price">${car.prix}</p>
+</div>
+
+</div>
+`;
+
+});
+
+}
+
+loadCars();
+
+</script>
   
 </body>
 </html>
