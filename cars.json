@@ -5,11 +5,15 @@
     "annee": "1983",
     "km": "240000",
     "carburant": "Essence",
-    "prix": "15990",
+    "prix": "15 990 €",
     "images": [
       "images/bmw1.jpg",
-      "images/bmw2.jpg"
+      "images/bmw2.jpg",
+      "images/bmw3.jpg",
+      "images/bmw4.jpg",
+      "images/bmw5.jpg",
+      "images/bmw6.jpg"
     ],
-    "description": "Modèle : BMW 320i (E30)\nPuissance fiscale : 8\nKilométrage : 240000 km\nCarburant : Essence\nBoîte : Manuelle\n\nMoteur 6 cylindres en ligne BMW\nPropulsion offrant un vrai plaisir de conduite\nIntérieur classique BMW\n\nTrès bon état général."
+    "description": "Modèle : BMW 320i (E30)\nPuissance fiscale : 8\nKilométrage : 240000 km\nCarburant : Essence\nBoîte : Manuelle\nConfiguration : Berline\n\nÉquipements et caractéristiques\nMoteur 6 cylindres en ligne BMW\nPropulsion offrant un vrai plaisir de conduite\nIntérieur classique BMW\nDirection précise et châssis équilibré\nVéhicule simple et robuste\n\nÉtat du véhicule\nCette BMW E30 320i représente parfaitement l’esprit des youngtimers BMW.\nIdéale pour les amateurs de voitures anciennes ou de collection."
   }
 ]
