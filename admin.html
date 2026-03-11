@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Ajouter une voiture</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      margin:0;
+      padding:30px;
+    }
 
+    .box{
+      max-width:700px;
+      margin:auto;
+      background:white;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    h1{
+      margin-top:0;
+    }
+
+    input, textarea, button{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      box-sizing:border-box;
+      font-size:16px;
+    }
+
+    textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    button{
+      background:#111;
+      color:white;
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover{
+      background:#333;
+    }
+
+    .msg{
+      margin-top:10px;
+      font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>Ajouter une voiture</h1>
+
+    <input type="text" id="marque" placeholder="Marque / Modèle">
+    <input type="text" id="annee" placeholder="Année">
+    <input type="text" id="km" placeholder="Kilométrage">
+    <input type="text" id="carburant" placeholder="Carburant">
+    <input type="text" id="prix" placeholder="Prix">
+    <input type="text" id="image" placeholder="URL de l'image">
+    <textarea id="description" placeholder="Description"></textarea>
+
+    <button onclick="addCar()">Ajouter la voiture</button>
+
+    <div class="msg" id="message"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = "TON_URL_SUPABASE";
+    const supabaseKey = "TA_CLE_ANON";
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function addCar(){
+      const marque = document.getElementById("marque").value.trim();
+      const annee = document.getElementById("annee").value.trim();
+      const km = document.getElementById("km").value.trim();
+      const carburant = document.getElementById("carburant").value.trim();
+      const prix = document.getElementById("prix").value.trim();
+      const image = document.getElementById("image").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const message = document.getElementById("message");
+
+      if(!marque || !annee || !km || !carburant || !prix || !image){
+        message.textContent = "Remplis tous les champs obligatoires.";
+        return;
+      }
+
+      const { error } = await supabase
+        .from("cars")
+        .insert([
+          {
+            marque: marque,
+            annee: annee,
+            km: km,
+            carburant: carburant,
+            prix: prix,
+            description: description,
+            images: image
+          }
+        ]);
+
+      if(error){
+        message.textContent = "Erreur : " + error.message;
+      } else {
+        message.textContent = "Voiture ajoutée avec succès.";
+
+        document.getElementById("marque").value = "";
+        document.getElementById("annee").value = "";
+        document.getElementById("km").value = "";
+        document.getElementById("carburant").value = "";
+        document.getElementById("prix").value = "";
+        document.getElementById("image").value = "";
+        document.getElementById("description").value = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
