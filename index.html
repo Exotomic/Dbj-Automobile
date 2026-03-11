@@ -124,41 +124,40 @@
 
 const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
 const supabaseKey = "nkwxuxzgyhwzdqtdazrd;
-
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 async function loadCars(){
+  const { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .order("id", { ascending: false });
 
-const { data, error } = await supabase
-.from("cars")
-.select("*");
+  let container = document.getElementById("cars");
+  container.innerHTML = "";
 
-let container = document.getElementById("cars");
+  if(error){
+    container.innerHTML = "<p>Erreur de chargement.</p>";
+    return;
+  }
 
-data.forEach(car => {
+  data.forEach(car => {
+    container.innerHTML += `
+      <div class="car">
+        <a href="detail.html?id=${car.id}">
+          <img src="${car.images}" alt="${car.marque}">
+        </a>
 
-container.innerHTML += `
-<div class="car">
-
-<a href="detail.html?id=${car.id}">
-<img src="${car.images}">
-</a>
-
-<div class="car-info">
-<h3>${car.marque}</h3>
-<p>${car.annee} • ${car.km} km • ${car.carburant}</p>
-<p class="price">${car.prix}</p>
-</div>
-
-</div>
-`;
-
-});
-
+        <div class="car-info">
+          <h3>${car.marque}</h3>
+          <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
+          <p class="price">${car.prix}</p>
+        </div>
+      </div>
+    `;
+  });
 }
 
 loadCars();
-
 </script>
   
 </body>
