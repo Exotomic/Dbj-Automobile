@@ -1,0 +1,33 @@
+<input id="email" placeholder="email">
+<input id="password" type="password" placeholder="mot de passe">
+
+<button onclick="login()">Connexion</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const supabase = window.supabase.createClient(
+"https://nkwxuxzgyhwzdqtdazrd.supabase.co",
+"nkwxuxzgyhwzdqtdazrd"
+);
+
+async function login(){
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+const { error } = await supabase.auth.signInWithPassword({
+email: email,
+password: password
+});
+
+if(error){
+alert("Erreur connexion");
+}else{
+window.location = "admin.html";
+}
+
+}
+
+</script>
