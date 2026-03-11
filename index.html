@@ -1,146 +1,123 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-<meta charset="UTF-8">
-<title>Garage Automobile</title>
+  <meta charset="UTF-8">
+  <title>Garage Automobile</title>
 
-<style>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
 
-body{
-font-family:Arial;
-margin:0;
-background:#f4f4f4;
-}
+    header{
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-header{
-background:#111;
-color:white;
-padding:20px;
-text-align:center;
-}
+    .container{
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
+    .car{
+      display: flex;
+      align-items: stretch;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
+    }
 
-/* carte voiture */
+    .car a{
+      display: block;
+      width: 220px;
+      height: 220px;
+      flex-shrink: 0;
+    }
 
-.car{
-display:flex;
-align-items:stretch;
-background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,0.15);
-margin-bottom:20px;
-}
+    .car img{
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
 
-/* zone image */
+    .car-info{
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-.car a{
-display:block;
-width:220px;
-height:220px;
-flex-shrink:0;
-.lightbox{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-justify-content:center;
-align-items:center;
-z-index:1000;
-}
+    .car-info h3{
+      margin: 0 0 10px 0;
+      font-size: 24px;
+    }
 
-.lightbox img{
-max-width:90%;
-max-height:90%;
-border-radius:10px;
-}
+    .car-info p{
+      margin: 6px 0;
+      font-size: 17px;
+    }
 
-.lightbox:active{
-display:none;
-}
+    .price{
+      color: #27ae60;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
 
-.car img{
-width:220px;
-height:220px;
-object-fit:cover;
-display:block;
-}
+    @media(max-width: 768px){
+      .car{
+        flex-direction: column;
+      }
 
-/* infos voiture */
-
-.car-info{
-padding:20px;
-flex:1;
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-
-.car-info h3{
-margin:0 0 10px 0;
-}
-
-.price{
-color:#27ae60;
-font-size:22px;
-font-weight:bold;
-margin-top:10px;
-}
-
-</style>
-
+      .car a,
+      .car img{
+        width: 100%;
+        height: 250px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<h1>Garage Automobile</h1>
-<p>Nos véhicules disponibles</p>
-</header>
+  <header>
+    <h1>Garage Automobile</h1>
+    <p>Nos véhicules disponibles</p>
+  </header>
 
-<div class="container" id="cars"></div>
+  <div class="container" id="cars"></div>
 
-<script>
+  <script>
+    fetch("cars.json")
+      .then(res => res.json())
+      .then(data => {
+        let container = document.getElementById("cars");
 
-fetch("cars.json")
-.then(res => res.json())
-.then(data => {
+        data.forEach(car => {
+          container.innerHTML += `
+            <div class="car">
+              <a href="detail.html?id=${car.id}">
+                <img src="${car.images[0]}" alt="${car.marque}">
+              </a>
 
-let container = document.getElementById("cars");
-
-data.forEach(car => {
-
-container.innerHTML += `
-<div class="car">
-
-<a href="detail.html?id=${car.id}">
-<img src="${car.images[0]}" alt="${car.marque}">
-</a>
-
-<div class="car-info">
-<h3>${car.marque}</h3>
-<p>${car.annee} • ${car.km} km • ${car.carburant}</p>
-<p class="price">${car.prix}</p>
-</div>
-
-</div>
-`;
-
-});
-
-});
-
-</script>
+              <div class="car-info">
+                <h3>${car.marque}</h3>
+                <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
+                <p class="price">${car.prix}</p>
+              </div>
+            </div>
+          `;
+        });
+      });
+  </script>
 
 </body>
-
 </html>
