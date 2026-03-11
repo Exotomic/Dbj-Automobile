@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Détail voiture</title>
+<style>
+body{font-family:Arial;padding:20px;background:#f4f4f4;}
+.container{max-width:800px;margin:auto;background:white;padding:20px;border-radius:10px;}
+img{width:100%;margin-bottom:15px;border-radius:10px;}
+.price{color:green;font-size:24px;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="container" id="car-detail"></div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const carId = urlParams.get('id');
+
+fetch("cars.json")
+.then(res => res.json())
+.then(data => {
+  const car = data.find(c => c.id === carId);
+  if(!car){ document.getElementById("car-detail").innerHTML="Voiture introuvable"; return; }
+
+  let imagesHtml = car.images.map(img => `<img src="${img}">`).join('');
+  document.getElementById("car-detail").innerHTML = `
+    <h1>${car.marque}</h1>
+    ${imagesHtml}
+    <p class="price">${car.prix} €</p>
+    <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
+    <h3>Description</h3>
+    <p>${car.description}</p>
+    <button onclick="window.location='mailto:contact@garage.com'">Contacter</button>
+  `;
+});
+</script>
+
+</body>
+</html>
