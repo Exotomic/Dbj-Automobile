@@ -146,7 +146,7 @@ fetch("cars.json")
   document.getElementById("car-detail").innerHTML = `
     <div class="top">
       <div class="left">
-        <img src="${car.images[0]}" alt="${car.marque}" class="main-image" id="mainImage">
+        <img src="${car.images[0]}" alt="${car.marque}" class="main-image" id="mainImage" onclick="openZoom()">
         <div class="thumbs">
           ${thumbs}
         </div>
