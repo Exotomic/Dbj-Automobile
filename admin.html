@@ -102,6 +102,13 @@
       text-align:center;
     }
 
+    .preview-card .photo-size{
+      font-size:12px;
+      color:#666;
+      text-align:center;
+      margin-bottom:8px;
+    }
+
     .preview-actions{
       display:flex;
       gap:6px;
@@ -248,7 +255,7 @@
       <textarea id="description" placeholder="Description"></textarea>
 
       <input type="file" id="images" multiple accept="image/*">
-      <p class="hint">Tu peux réorganiser les photos. La photo n°1 sera l’image principale du véhicule.</p>
+      <p class="hint">Tu peux réorganiser les photos. La photo n°1 sera l’image principale du véhicule. Les images seront compressées automatiquement avant l’upload.</p>
 
       <div class="preview" id="preview"></div>
 
@@ -270,13 +277,13 @@
     import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
     const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
-    const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
+    const supabaseKey = "TA_CLE_SB_PUBLISHABLE";
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const imageInput = document.getElementById("images");
     const preview = document.getElementById("preview");
     const message = document.getElementById("message");
     const carsList = document.getElementById("carsList");
+    const imageInput = document.getElementById("images");
 
     let selectedFiles = [];
 
@@ -290,6 +297,12 @@
 
       imageInput.value = "";
     });
+
+    function formatFileSize(bytes){
+      if(bytes < 1024) return bytes + " o";
+      if(bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + " Ko";
+      return (bytes / (1024 * 1024)).toFixed(2) + " Mo";
+    }
 
     function renderPreview(){
       preview.innerHTML = "";
@@ -308,6 +321,10 @@
         const badge = document.createElement("div");
         badge.className = "photo-badge";
         badge.textContent = `Photo ${index + 1}`;
+
+        const sizeInfo = document.createElement("div");
+        sizeInfo.className = "photo-size";
+        sizeInfo.textContent = formatFileSize(file.size);
 
         const actions = document.createElement("div");
         actions.className = "preview-actions";
@@ -342,6 +359,7 @@
 
         card.appendChild(img);
         card.appendChild(badge);
+        card.appendChild(sizeInfo);
         card.appendChild(actions);
 
         preview.appendChild(card);
@@ -381,17 +399,78 @@
       message.className = "msg " + (type || "");
     }
 
+    async function compressImage(file){
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+          img.src = e.target.result;
+        };
+
+        reader.onerror = function(){
+          reject(new Error("Impossible de lire l'image."));
+        };
+
+        img.onload = function(){
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          const maxWidth = 1200;
+          let width = img.width;
+          let height = img.height;
+
+          if(width > maxWidth){
+            height = height * (maxWidth / width);
+            width = maxWidth;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          ctx.drawImage(img, 0, 0, width, height);
+
+          canvas.toBlob(
+            (blob) => {
+              if(!blob){
+                reject(new Error("Compression impossible."));
+                return;
+              }
+
+              const compressedFile = new File(
+                [blob],
+                file.name.replace(/\.[^/.]+$/, "") + ".jpg",
+                { type: "image/jpeg" }
+              );
+
+              resolve(compressedFile);
+            },
+            "image/jpeg",
+            0.75
+          );
+        };
+
+        img.onerror = function(){
+          reject(new Error("Image invalide."));
+        };
+
+        reader.readAsDataURL(file);
+      });
+    }
+
     async function uploadImages(files){
       const urls = [];
 
       for(const file of files){
-        const cleanName = file.name.replace(/\s+/g, "-").toLowerCase();
+        const compressed = await compressImage(file);
+
+        const cleanName = compressed.name.replace(/\s+/g, "-").toLowerCase();
         const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${cleanName}`;
 
         const { error: uploadError } = await supabase
           .storage
           .from("cars")
-          .upload(fileName, file);
+          .upload(fileName, compressed);
 
         if(uploadError){
           throw uploadError;
@@ -465,7 +544,7 @@
       }
 
       try{
-        setMessage("Upload des images en cours...", "info");
+        setMessage("Compression et upload des images en cours...", "info");
 
         const imageUrls = await uploadImages(selectedFiles);
 
