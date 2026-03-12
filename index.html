@@ -6,6 +6,163 @@
 <title>DBJ Automobile</title>
 
 <style>
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+margin:0;
+background:linear-gradient(180deg,#ececec,#e2e2e2);
+background-image:radial-gradient(#d6d6d6 1px,transparent 1px);
+background-size:20px 20px;
+color:#111;
+}
+
+.site-header{
+background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
+padding:10px 20px 20px 20px;
+color:white;
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+}
+
+.top-bar{
+display:flex;
+justify-content:center;
+max-width:1100px;
+margin:auto;
+}
+
+.menu{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:0.2s;
+}
+
+.menu a:hover{
+color:#d4af37;
+}
+
+.logo-center{
+text-align:center;
+margin-top:10px;
+}
+
+.logo{
+height:150px;
+width:auto;
+max-width:100%;
+object-fit:contain;
+}
+
+.slogan{
+text-align:center;
+margin-top:10px;
+color:#ddd;
+font-size:22px;
+}
+
+.hero{
+max-width:1000px;
+margin:60px auto 30px auto;
+text-align:center;
+padding:45px 30px;
+background:white;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.hero h1{
+font-size:38px;
+margin:0 0 20px 0;
+color:#111;
+}
+
+.hero p{
+font-size:18px;
+color:#555;
+max-width:760px;
+margin:0 auto;
+line-height:1.6;
+}
+
+.buttons{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 25px;
+border-radius:10px;
+font-weight:bold;
+text-decoration:none;
+transition:0.2s;
+display:inline-block;
+}
+
+.btn-catalogue{
+background:#111;
+color:white;
+}
+
+.btn-catalogue:hover{
+background:#d4af37;
+color:#111;
+}
+
+.btn-rachat{
+background:#d4af37;
+color:#111;
+}
+
+.btn-rachat:hover{
+background:#c7a02d;
+}
+
+.features{
+max-width:1000px;
+margin:0 auto 60px auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+padding:20px;
+}
+
+.feature{
+background:white;
+padding:25px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+transition:0.2s;
+}
+
+.feature:hover{
+transform:translateY(-4px);
+box-shadow:0 14px 30px rgba(0,0,0,0.10);
+}
+
+.feature h3{
+margin:0 0 10px 0;
+font-size:22px;
+}
+
+.feature p{
+margin:0;
+color:#555;
+line-height:1.6;
+}
 
 .contact-popup{
 display:none;
@@ -50,147 +207,33 @@ right:15px;
 font-size:24px;
 cursor:pointer;
 }
-  
-body{
-font-family:Arial,sans-serif;
-margin:0;
-background:linear-gradient(180deg,#ececec,#e2e2e2);
-background-image:radial-gradient(#d6d6d6 1px,transparent 1px);
-background-size:20px 20px;
-}
 
-.site-header{
-background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
-padding:10px 20px 20px 20px;
-color:white;
-box-shadow:0 5px 15px rgba(0,0,0,0.25);
-}
-
-.top-bar{
-display:flex;
-justify-content:center;
-max-width:1100px;
-margin:auto;
-}
-
-.menu{
-display:flex;
-gap:25px;
-}
-
-.menu a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-.menu a:hover{
-color:#d4af37;
-}
-
-.logo-center{
-text-align:center;
-margin-top:10px;
-}
-
-.logo{
-height:150px;
-}
-
-.slogan{
-text-align:center;
-margin-top:10px;
-color:#ddd;
-font-size:22px;
+@media(max-width:768px){
+.features{
+grid-template-columns:1fr;
 }
 
 .hero{
-max-width:1000px;
-margin:60px auto;
-text-align:center;
-padding:40px;
-background:white;
-border-radius:18px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.hero h1{
-font-size:36px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:18px;
-color:#555;
-}
-
-.buttons{
-margin-top:30px;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:15px 25px;
-border-radius:10px;
-font-weight:bold;
-text-decoration:none;
-}
-
-.btn-catalogue{
-background:#111;
-color:white;
-}
-
-.btn-catalogue:hover{
-background:#d4af37;
-color:black;
-}
-
-.btn-rachat{
-background:#d4af37;
-color:black;
-}
-
-.btn-rachat:hover{
-background:#c19c2f;
-}
-
-.features{
-max-width:1000px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-padding:20px;
-}
-
-.feature{
-background:white;
-padding:25px;
-border-radius:16px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-
-.feature h3{
-margin-bottom:10px;
-}
-
-@media(max-width:768px){
-
-.features{
-grid-template-columns:1fr;
+margin:35px 15px 20px 15px;
+padding:30px 20px;
 }
 
 .hero h1{
 font-size:28px;
 }
 
+.hero p{
+font-size:16px;
 }
 
+.logo{
+height:120px;
+}
+
+.slogan{
+font-size:18px;
+}
+}
 </style>
 </head>
 
@@ -200,68 +243,54 @@ font-size:28px;
 
 <div class="top-bar">
 <div class="menu">
-
 <a href="index.html">Accueil</a>
 <a href="catalogue.html">Catalogue</a>
 <a href="rachat.html">Estimer mon véhicule</a>
-<a href="#" onclick="openContact();return false;">Contact</a>
-
+<a href="#" onclick="openContact(); return false;">Contact</a>
 </div>
 </div>
 
 <div class="logo-center">
-<img src="images/logo1.png" class="logo">
+<img src="images/logo1.png" class="logo" alt="DBJ Automobile">
 </div>
 
-<p class="slogan">Achat • Vente • Réparation automobile</p>
+<p class="slogan">Votre spécialiste auto : achat, vente et réparation</p>
 
 </header>
 
-
 <section class="hero">
-
 <h1>Bienvenue chez DBJ Automobile</h1>
 
 <p>
-Spécialiste de la vente et du rachat de véhicules d'occasion.
-Tous nos véhicules sont sélectionnés avec soin.
+Spécialiste de l’achat, de la vente et de la réparation automobile,
+DBJ Automobile vous propose des véhicules sélectionnés avec soin
+et un accompagnement sérieux pour votre projet.
 </p>
 
 <div class="buttons">
-
-<a href="catalogue.html" class="btn btn-catalogue">
-Voir le catalogue
-</a>
-
-<a href="rachat.html" class="btn btn-rachat">
-Estimer mon véhicule
-</a>
-
+<a href="catalogue.html" class="btn btn-catalogue">Voir le catalogue</a>
+<a href="rachat.html" class="btn btn-rachat">Estimer mon véhicule</a>
 </div>
-
 </section>
-
 
 <section class="features">
-
 <div class="feature">
-<h3>Véhicules sélectionnés</h3>
-<p>Chaque voiture est contrôlée avant mise en vente.</p>
+<h3>Achat / Vente</h3>
+<p>Découvrez nos véhicules disponibles et profitez d’un accompagnement professionnel.</p>
 </div>
 
 <div class="feature">
-<h3>Reprise de votre véhicule</h3>
-<p>Estimation rapide et gratuite de votre voiture.</p>
+<h3>Reprise de véhicule</h3>
+<p>Faites estimer votre voiture rapidement grâce à notre formulaire de rachat.</p>
 </div>
 
 <div class="feature">
-<h3>Conseils professionnels</h3>
-<p>Nous vous accompagnons dans votre achat.</p>
+<h3>Réparation</h3>
+<p>DBJ Automobile vous accompagne aussi pour l’entretien et la réparation de votre véhicule.</p>
 </div>
-
 </section>
 
-  <div id="contactPopup" class="contact-popup">
+<div id="contactPopup" class="contact-popup">
   <div class="contact-box">
     <span class="close" onclick="closeContact()">✕</span>
 
@@ -282,22 +311,22 @@ Estimer mon véhicule
   </div>
 </div>
 
-  <script>
-  function openContact(){
-    document.getElementById("contactPopup").style.display = "flex";
-  }
+<script>
+function openContact(){
+  document.getElementById("contactPopup").style.display = "flex";
+}
 
-  function closeContact(){
-    document.getElementById("contactPopup").style.display = "none";
-  }
+function closeContact(){
+  document.getElementById("contactPopup").style.display = "none";
+}
 
-  window.addEventListener("click", function(e){
-    const popup = document.getElementById("contactPopup");
-    if(e.target === popup){
-      closeContact();
-    }
-  });
+window.addEventListener("click", function(e){
+  const popup = document.getElementById("contactPopup");
+  if(e.target === popup){
+    closeContact();
+  }
+});
 </script>
-  
+
 </body>
 </html>
