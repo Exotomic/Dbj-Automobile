@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DBJ Automobile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBJ Automobile</title>
 
-  <style>
-    body{
-font-family: Arial, sans-serif;
+<style>
+
+body{
+font-family:Arial,sans-serif;
 margin:0;
-
-background-color:#f5f5f5;
-background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
-background-size: 18px 18px;
+background:linear-gradient(180deg,#ececec,#e2e2e2);
+background-image:radial-gradient(#d6d6d6 1px,transparent 1px);
+background-size:20px 20px;
 }
 
-    .site-header{
-background:#111;
-padding:5px 20px;
+.site-header{
+background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
+padding:10px 20px 20px 20px;
 color:white;
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
 }
 
 .top-bar{
 display:flex;
-justify-content:flex-start;
+justify-content:center;
 max-width:1100px;
 margin:auto;
+}
+
+.menu{
+display:flex;
+gap:25px;
 }
 
 .menu a{
 color:white;
 text-decoration:none;
-margin-left:25px;
 font-weight:bold;
 }
 
@@ -46,179 +51,117 @@ margin-top:10px;
 
 .logo{
 height:150px;
-width:auto;
 }
 
 .slogan{
 text-align:center;
-margin-top:15px;
+margin-top:10px;
 color:#ddd;
 font-size:22px;
 }
 
+.hero{
+max-width:1000px;
+margin:60px auto;
+text-align:center;
+padding:40px;
+background:white;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
 
-    .container{
-      max-width:1100px;
-      margin:auto;
-      padding:30px 20px;
-    }
+.hero h1{
+font-size:36px;
+margin-bottom:20px;
+}
 
-    .car{
-      display:flex;
-      align-items:stretch;
-      background:white;
-      border-radius:16px;
-      overflow:hidden;
-      box-shadow:0 8px 20px rgba(0,0,0,0.10);
-      margin-bottom:24px;
-      transition:transform 0.2s ease, box-shadow 0.2s ease;
-    }
+.hero p{
+font-size:18px;
+color:#555;
+}
 
-    .car:hover{
-      transform:translateY(-3px);
-      box-shadow:0 12px 28px rgba(0,0,0,0.14);
-    }
+.buttons{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
 
-    .car a{
-      display:block;
-      width:240px;
-      height:220px;
-      flex-shrink:0;
-      background:#ddd;
-    }
+.btn{
+padding:15px 25px;
+border-radius:10px;
+font-weight:bold;
+text-decoration:none;
+}
 
-    .car img{
-      width:240px;
-      height:220px;
-      object-fit:cover;
-      display:block;
-    }
+.btn-catalogue{
+background:#111;
+color:white;
+}
 
-    .car-info{
-      padding:22px;
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
+.btn-catalogue:hover{
+background:#d4af37;
+color:black;
+}
 
-    .car-info h3{
-      margin:0 0 12px 0;
-      font-size:28px;
-      color:#111;
-    }
+.btn-rachat{
+background:#d4af37;
+color:black;
+}
 
-    .car-info p{
-      margin:6px 0;
-      font-size:17px;
-      color:#444;
-    }
+.btn-rachat:hover{
+background:#c19c2f;
+}
 
-    .price{
-      color:#1f9d55;
-      font-size:28px;
-      font-weight:bold;
-      margin-top:14px;
-    }
+.features{
+max-width:1000px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+padding:20px;
+}
 
-    .empty{
-      text-align:center;
-      color:#666;
-      background:white;
-      padding:30px;
-      border-radius:16px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.08);
-    }
+.feature{
+background:white;
+padding:25px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
 
-    .contact-popup{
-      display:none;
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.6);
-      justify-content:center;
-      align-items:center;
-      z-index:9999;
-    }
+.feature h3{
+margin-bottom:10px;
+}
 
-    .contact-box{
-      background:white;
-      color:#111;
-      padding:30px;
-      border-radius:12px;
-      width:90%;
-      max-width:420px;
-      text-align:center;
-      position:relative;
-      box-shadow:0 8px 25px rgba(0,0,0,0.25);
-    }
+@media(max-width:768px){
 
-    .contact-box h2,
-    .contact-box h3{
-      margin-top:0;
-    }
+.features{
+grid-template-columns:1fr;
+}
 
-    .contact-box a{
-      color:#111;
-      text-decoration:none;
-      font-weight:bold;
-    }
+.hero h1{
+font-size:28px;
+}
 
-    .close{
-      position:absolute;
-      top:10px;
-      right:15px;
-      font-size:24px;
-      cursor:pointer;
-    }
+}
 
-    @media(max-width:768px){
-      .top-bar{
-        flex-direction:column;
-        gap:15px;
-      }
-
-      .menu a{
-        margin:0 10px;
-      }
-
-      .slogan{
-        font-size:18px;
-      }
-
-      .car{
-        flex-direction:column;
-      }
-
-      .car a,
-      .car img{
-        width:100%;
-        height:240px;
-      }
-
-      .car-info h3{
-        font-size:24px;
-      }
-
-      .price{
-        font-size:24px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <header class="site-header">
+<header class="site-header">
 
 <div class="top-bar">
 <div class="menu">
+
 <a href="index.html">Accueil</a>
 <a href="catalogue.html">Catalogue</a>
-<a href="rachat.html"
-class="cta-rachat">Estimer mon véhicule</a>
-<a href="#" onclick="openContact(); return false;">Contact</a>
+<a href="rachat.html">Estimer mon véhicule</a>
+<a href="#" onclick="openContact();return false;">Contact</a>
+
 </div>
 </div>
 
@@ -230,97 +173,49 @@ class="cta-rachat">Estimer mon véhicule</a>
 
 </header>
 
-  <div class="container" id="cars">
-    <div class="empty">Chargement des véhicules...</div>
-  </div>
 
-  <div id="contactPopup" class="contact-popup">
-    <div class="contact-box">
-      <span class="close" onclick="closeContact()">✕</span>
+<section class="hero">
 
-      <h2>Contact</h2>
+<h1>Bienvenue chez DBJ Automobile</h1>
 
-      <p>📍 600 rue de Lillers, 62920 Chocques</p>
-      <p>📞 <a href="tel:+33600000000">06 00 00 00 00</a></p>
-      <p>✉️ <a href="mailto:contact@dbjautomobile.fr">contact@dbjautomobile.fr</a></p>
+<p>
+Spécialiste de la vente et du rachat de véhicules d'occasion.
+Tous nos véhicules sont sélectionnés avec soin.
+</p>
 
-      <h3>Horaires</h3>
-      <p>Lundi : 9h - 18h</p>
-      <p>Mardi : 9h - 18h</p>
-      <p>Mercredi : 9h - 18h</p>
-      <p>Jeudi : 9h - 18h</p>
-      <p>Vendredi : 9h - 18h</p>
-      <p>Samedi : 10h - 17h</p>
-      <p>Dimanche : Fermé</p>
-    </div>
-  </div>
+<div class="buttons">
 
-  <script type="module">
-    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+<a href="catalogue.html" class="btn btn-catalogue">
+Voir le catalogue
+</a>
 
-    const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
-    const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+<a href="rachat.html" class="btn btn-rachat">
+Estimer mon véhicule
+</a>
 
-    async function loadCars(){
-      const container = document.getElementById("cars");
+</div>
 
-      const { data, error } = await supabase
-        .from("cars")
-        .select("*")
-        .order("created_at", { ascending: false });
+</section>
 
-      if(error){
-        container.innerHTML = `<div class="empty">Erreur de chargement des véhicules.</div>`;
-        return;
-      }
 
-      if(!data || data.length === 0){
-        container.innerHTML = `<div class="empty">Aucun véhicule disponible pour le moment.</div>`;
-        return;
-      }
+<section class="features">
 
-      container.innerHTML = "";
+<div class="feature">
+<h3>Véhicules sélectionnés</h3>
+<p>Chaque voiture est contrôlée avant mise en vente.</p>
+</div>
 
-      data.forEach(car => {
-        const imagesArray = car.images ? car.images.split(",") : [];
-        const firstImage = imagesArray[0] || "";
+<div class="feature">
+<h3>Reprise de votre véhicule</h3>
+<p>Estimation rapide et gratuite de votre voiture.</p>
+</div>
 
-        container.innerHTML += `
-          <div class="car">
-            <a href="detail.html?id=${car.id}">
-              <img src="${firstImage}" alt="${car.marque}">
-            </a>
+<div class="feature">
+<h3>Conseils professionnels</h3>
+<p>Nous vous accompagnons dans votre achat.</p>
+</div>
 
-            <div class="car-info">
-              <h3>${car.marque}</h3>
-              <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
-              <p class="price">${car.prix}</p>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    loadCars();
-  </script>
-
-  <script>
-    function openContact(){
-      document.getElementById("contactPopup").style.display = "flex";
-    }
-
-    function closeContact(){
-      document.getElementById("contactPopup").style.display = "none";
-    }
-
-    window.addEventListener("click", function(e){
-      const popup = document.getElementById("contactPopup");
-      if(e.target === popup){
-        closeContact();
-      }
-    });
-  </script>
+</section>
 
 </body>
 </html>
