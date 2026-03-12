@@ -144,6 +144,8 @@ padding:8px 14px;
 border-radius:8px;
 text-decoration:none;
 font-size:14px;
+border:none;
+cursor:pointer;
 }
 
 .btn:hover{
@@ -346,33 +348,34 @@ function displayCars(){
   carsContainer.innerHTML = "";
 
   cars.forEach(car => {
-    const images = car.images ? car.images.split(",") : [];
-    const image = images[0] || "images/hero.jpg";
-    const titre = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
+  const images = car.images ? car.images.split(",") : [];
+  const image = images[0] || "images/hero.jpg";
+  const titre = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
 
-    carsContainer.innerHTML += `
-      <div class="car-card">
-        <img src="${image}" alt="${titre}">
-        <div class="car-content">
-          <div class="car-title">${titre}</div>
+  carsContainer.innerHTML += `
+    <div class="car-card">
+      <img src="${image}" alt="${titre}">
 
-          <div class="car-info">
-            ${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""}
-          </div>
+      <div class="car-content">
+        <div class="car-title">${titre}</div>
 
-          <div class="price">
-            ${car.prix || "Prix sur demande"}
-          </div>
-
-          <br>
-
-          <a class="btn" href="detail.html?id=${encodeURIComponent(car.id)}">
-            Voir le véhicule
-          </a>
+        <div class="car-info">
+          ${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""}
         </div>
+
+        <div class="price">
+          ${car.prix || "Prix sur demande"}
+        </div>
+
+        <br>
+
+        <button class="btn" onclick="goToDetail('${car.id}')">
+          Voir le véhicule
+        </button>
       </div>
-    `;
-  });
+    </div>
+  `;
+});
 }
 
 searchInput.addEventListener("input", displayCars);
@@ -399,5 +402,26 @@ window.addEventListener("click", function(e){
 });
 </script>
 
+<script>
+function goToDetail(id){
+  window.location.href = `detail.html?id=${encodeURIComponent(id)}`;
+}
+
+function openContact(){
+  document.getElementById("contactPopup").style.display = "flex";
+}
+
+function closeContact(){
+  document.getElementById("contactPopup").style.display = "none";
+}
+
+window.addEventListener("click", function(e){
+  const popup = document.getElementById("contactPopup");
+  if(popup && e.target === popup){
+    closeContact();
+  }
+});
+</script>
+  
 </body>
 </html>
