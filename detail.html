@@ -2,194 +2,189 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Détail voiture</title>
 
   <style>
     body{
       font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 30px;
+      background:#f4f4f4;
+      margin:0;
+      padding:30px;
     }
 
     .container{
-      max-width: 1100px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      max-width:1100px;
+      margin:auto;
+      background:white;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
     }
 
     .back{
-      display: inline-block;
-      margin-bottom: 20px;
-      text-decoration: none;
-      color: #111;
-      font-weight: bold;
+      display:inline-block;
+      margin-bottom:20px;
+      text-decoration:none;
+      color:#111;
+      font-weight:bold;
     }
 
     .top{
-      display: flex;
-      gap: 25px;
-      align-items: flex-start;
+      display:flex;
+      gap:25px;
+      align-items:flex-start;
     }
 
     .left{
-      width: 420px;
-      flex-shrink: 0;
+      width:420px;
+      flex-shrink:0;
     }
 
     .main-image{
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-      margin-bottom: 15px;
-      cursor: zoom-in;
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+      margin-bottom:15px;
+      cursor:zoom-in;
     }
 
     .thumbs{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
     }
 
     .thumbs img{
-      width: 95px;
-      height: 95px;
-      object-fit: cover;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      display: block;
+      width:95px;
+      height:95px;
+      object-fit:cover;
+      border-radius:8px;
+      cursor:pointer;
+      border:2px solid transparent;
+      display:block;
     }
 
     .thumbs img:hover{
-      border-color: #27ae60;
+      border-color:#27ae60;
     }
 
     .right{
-      flex: 1;
+      flex:1;
     }
 
     h1{
-      margin-top: 0;
-      margin-bottom: 15px;
+      margin-top:0;
+      margin-bottom:15px;
     }
 
     .price{
-      font-size: 30px;
-      color: #27ae60;
-      font-weight: bold;
-      margin: 15px 0;
+      font-size:30px;
+      color:#27ae60;
+      font-weight:bold;
+      margin:15px 0;
     }
 
     .infos{
-      font-size: 18px;
-      margin-bottom: 20px;
+      font-size:18px;
+      margin-bottom:20px;
     }
 
     .description{
-      white-space: pre-line;
-      line-height: 1.6;
-      background: #fafafa;
-      padding: 15px;
-      border-radius: 10px;
+      white-space:pre-line;
+      line-height:1.6;
+      background:#fafafa;
+      padding:15px;
+      border-radius:10px;
     }
 
     .lightbox{
-      display: none;
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
+      display:none;
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100vh;
+      background:rgba(0,0,0,0.95);
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
     }
 
     .lightbox-content{
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position:relative;
+      width:100%;
+      height:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
     .lightbox img{
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 10px;
-      display: block;
+      max-width:90vw;
+      max-height:90vh;
+      object-fit:contain;
+      border-radius:10px;
+      display:block;
     }
 
     .close-btn{
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 40px;
-      color: white;
-      cursor: pointer;
-      line-height: 1;
-      user-select: none;
+      position:absolute;
+      top:20px;
+      right:25px;
+      font-size:40px;
+      color:white;
+      cursor:pointer;
+      line-height:1;
+      user-select:none;
     }
 
     .nav-btn{
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.15);
-      color: white;
-      border: none;
-      font-size: 34px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(255,255,255,0.15);
+      color:white;
+      border:none;
+      font-size:34px;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
     .nav-btn:hover{
-      background: rgba(255,255,255,0.28);
+      background:rgba(255,255,255,0.28);
     }
 
     .prev-btn{
-      left: 20px;
+      left:20px;
     }
 
     .next-btn{
-      right: 20px;
+      right:20px;
     }
 
-    @media(max-width: 900px){
+    @media(max-width:900px){
       .top{
-        flex-direction: column;
+        flex-direction:column;
       }
 
       .left{
-        width: 100%;
+        width:100%;
       }
 
       .main-image{
-        height: 300px;
+        height:300px;
       }
 
       .thumbs img{
-        width: 80px;
-        height: 80px;
-      }
-
-      .nav-btn{
-        width: 48px;
-        height: 48px;
-        font-size: 28px;
+        width:80px;
+        height:80px;
       }
     }
   </style>
@@ -201,91 +196,109 @@
     <div id="car-detail"></div>
   </div>
 
-  <div class="lightbox" id="zoomBox" onclick="closeZoom(event)">
+  <div class="lightbox" id="zoomBox" onclick="closeZoom()">
     <div class="lightbox-content" onclick="event.stopPropagation()">
-      <div class="close-btn" onclick="closeZoom(event)">×</div>
+      <div class="close-btn" onclick="closeZoom()">×</div>
       <button class="nav-btn prev-btn" onclick="prevZoomImage(event)">‹</button>
       <img id="zoomImage" alt="Image agrandie">
       <button class="nav-btn next-btn" onclick="nextZoomImage(event)">›</button>
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
+    const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
     const urlParams = new URLSearchParams(window.location.search);
     const carId = urlParams.get("id");
 
     let currentCar = null;
     let currentImageIndex = 0;
 
-    fetch("cars.json?v=3")
-      .then(res => res.json())
-      .then(data => {
-        const car = data.find(c => c.id === carId);
-        currentCar = car;
+    async function loadCar(){
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*")
+        .eq("id", carId)
+        .single();
 
-        if(!car){
-          document.getElementById("car-detail").innerHTML = "<p>Voiture introuvable</p>";
-          return;
-        }
+      if(error || !data){
+        document.getElementById("car-detail").innerHTML = "<p>Voiture introuvable</p>";
+        return;
+      }
 
-        const thumbs = car.images.map((img, index) => `
-          <img src="${img}" alt="${car.marque}" onclick="changeImage(${index})">
-        `).join("");
+      currentCar = data;
+      const imagesArray = data.images ? data.images.split(",") : [];
 
-        document.getElementById("car-detail").innerHTML = `
-          <div class="top">
-            <div class="left">
-              <img src="${car.images[0]}" alt="${car.marque}" class="main-image" id="mainImage" onclick="openZoom()">
+      const thumbs = imagesArray.map((img, index) => `
+        <img src="${img}" alt="${data.marque}" onclick="changeImage(${index})">
+      `).join("");
 
-              <div class="thumbs">
-                ${thumbs}
-              </div>
-            </div>
+      document.getElementById("car-detail").innerHTML = `
+        <div class="top">
+          <div class="left">
+            <img src="${imagesArray[0] || ''}" alt="${data.marque}" class="main-image" id="mainImage" onclick="openZoom()">
 
-            <div class="right">
-              <h1>${car.marque}</h1>
-              <div class="price">${car.prix}</div>
-              <div class="infos">${car.annee} • ${car.km} km • ${car.carburant}</div>
-
-              <h3>Description</h3>
-              <div class="description">${car.description}</div>
+            <div class="thumbs">
+              ${thumbs}
             </div>
           </div>
-        `;
-      });
 
-    function changeImage(index){
-      currentImageIndex = index;
-      document.getElementById("mainImage").src = currentCar.images[index];
+          <div class="right">
+            <h1>${data.marque}</h1>
+            <div class="price">${data.prix}</div>
+            <div class="infos">${data.annee} • ${data.km} km • ${data.carburant}</div>
+
+            <h3>Description</h3>
+            <div class="description">${data.description || ""}</div>
+          </div>
+        </div>
+      `;
     }
 
-    function openZoom(){
-      const img = currentCar.images[currentImageIndex];
+    function getImagesArray(){
+      return currentCar && currentCar.images ? currentCar.images.split(",") : [];
+    }
+
+    window.changeImage = function(index){
+      const images = getImagesArray();
+      currentImageIndex = index;
+      document.getElementById("mainImage").src = images[index];
+    }
+
+    window.openZoom = function(){
+      const images = getImagesArray();
+      const img = images[currentImageIndex];
       document.getElementById("zoomImage").src = img;
       document.getElementById("zoomBox").style.display = "flex";
       document.body.style.overflow = "hidden";
     }
 
-    function closeZoom(event){
-      if(event){ event.stopPropagation(); }
+    window.closeZoom = function(){
       document.getElementById("zoomBox").style.display = "none";
       document.body.style.overflow = "auto";
     }
 
-    function prevZoomImage(event){
-      if(event){ event.stopPropagation(); }
-      currentImageIndex = (currentImageIndex - 1 + currentCar.images.length) % currentCar.images.length;
+    window.prevZoomImage = function(event){
+      if(event) event.stopPropagation();
+      const images = getImagesArray();
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
       updateZoomImage();
     }
 
-    function nextZoomImage(event){
-      if(event){ event.stopPropagation(); }
-      currentImageIndex = (currentImageIndex + 1) % currentCar.images.length;
+    window.nextZoomImage = function(event){
+      if(event) event.stopPropagation();
+      const images = getImagesArray();
+      currentImageIndex = (currentImageIndex + 1) % images.length;
       updateZoomImage();
     }
 
     function updateZoomImage(){
-      const newSrc = currentCar.images[currentImageIndex];
+      const images = getImagesArray();
+      const newSrc = images[currentImageIndex];
       document.getElementById("zoomImage").src = newSrc;
       document.getElementById("mainImage").src = newSrc;
     }
@@ -296,138 +309,13 @@
 
       if(!isOpen) return;
 
-      if(e.key === "Escape"){
-        closeZoom();
-      }
-
-      if(e.key === "ArrowLeft"){
-        prevZoomImage();
-      }
-
-      if(e.key === "ArrowRight"){
-        nextZoomImage();
-      }
+      if(e.key === "Escape") closeZoom();
+      if(e.key === "ArrowLeft") prevZoomImage();
+      if(e.key === "ArrowRight") nextZoomImage();
     });
+
+    loadCar();
   </script>
-  
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
-  const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const carId = urlParams.get("id");
-
-  let currentCar = null;
-  let currentImageIndex = 0;
-
-  async function loadCar(){
-    const { data, error } = await supabase
-      .from("cars")
-      .select("*")
-      .eq("id", carId)
-      .single();
-
-    if(error || !data){
-      document.getElementById("car-detail").innerHTML = "<p>Voiture introuvable</p>";
-      return;
-    }
-
-    currentCar = data;
-    const imagesArray = data.images ? data.images.split(",") : [];
-
-    const thumbs = imagesArray.map((img, index) => `
-      <img src="${img}" alt="${data.marque}" onclick="changeImage(${index})">
-    `).join("");
-
-    document.getElementById("car-detail").innerHTML = `
-      <div class="top">
-        <div class="left">
-          <img src="${imagesArray[0] || ''}" alt="${data.marque}" class="main-image" id="mainImage" onclick="openZoom()">
-
-          <div class="thumbs">
-            ${thumbs}
-          </div>
-        </div>
-
-        <div class="right">
-          <h1>${data.marque}</h1>
-          <div class="price">${data.prix}</div>
-          <div class="infos">${data.annee} • ${data.km} km • ${data.carburant}</div>
-
-          <h3>Description</h3>
-          <div class="description">${data.description || ""}</div>
-        </div>
-      </div>
-    `;
-  }
-
-  function getImagesArray(){
-    return currentCar && currentCar.images ? currentCar.images.split(",") : [];
-  }
-
-  function changeImage(index){
-    const images = getImagesArray();
-    currentImageIndex = index;
-    document.getElementById("mainImage").src = images[index];
-  }
-
-  function openZoom(){
-    const images = getImagesArray();
-    const img = images[currentImageIndex];
-    document.getElementById("zoomImage").src = img;
-    document.getElementById("zoomBox").style.display = "flex";
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeZoom(){
-    document.getElementById("zoomBox").style.display = "none";
-    document.body.style.overflow = "auto";
-  }
-
-  function prevZoomImage(event){
-    if(event) event.stopPropagation();
-    const images = getImagesArray();
-    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-    updateZoomImage();
-  }
-
-  function nextZoomImage(event){
-    if(event) event.stopPropagation();
-    const images = getImagesArray();
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    updateZoomImage();
-  }
-
-  function updateZoomImage(){
-    const images = getImagesArray();
-    const newSrc = images[currentImageIndex];
-    document.getElementById("zoomImage").src = newSrc;
-    document.getElementById("mainImage").src = newSrc;
-  }
-
-  document.addEventListener("keydown", function(e){
-    const zoomBox = document.getElementById("zoomBox");
-    const isOpen = zoomBox.style.display === "flex";
-
-    if(!isOpen) return;
-
-    if(e.key === "Escape"){
-      closeZoom();
-    }
-
-    if(e.key === "ArrowLeft"){
-      prevZoomImage();
-    }
-
-    if(e.key === "ArrowRight"){
-      nextZoomImage();
-    }
-  });
-
-  loadCar();
-</script>
-  
 </body>
 </html>
