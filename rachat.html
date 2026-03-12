@@ -391,7 +391,6 @@
     message.textContent = "Étape 1 : upload des photos...";
 
     const photoUrls = await uploadPhotos(selectedFiles);
-    console.log("Photos uploadées :", photoUrls);
 
     message.textContent = "Étape 2 : enregistrement de la demande...";
 
@@ -417,24 +416,26 @@
       .insert([payload]);
 
     if (insertError) {
-      console.error("Erreur insertion :", insertError);
       throw new Error("Erreur insertion : " + insertError.message);
     }
 
     message.textContent = "Étape 3 : envoi de l'email...";
 
-    const fnRes = await fetch("https://nkwxuxzgyhwzdqtdazrd.supabase.co/functions/v1/send-rachat-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ...payload,
-        photo_urls: photoUrls
-      })
-    });
-
-    console.log("Statut fonction :", fnRes.status);
+    const fnRes = await fetch(
+      "https://nkwxuxzgyhwzdqtdazrd.supabase.co/functions/v1/send-rachat-email",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "apikey": SUPABASE_ANON_KEY
+        },
+        body: JSON.stringify({
+          ...payload,
+          photo_urls: photoUrls
+        })
+      }
+    );
 
     const fnText = await fnRes.text();
     console.log("Réponse fonction :", fnText);
@@ -450,7 +451,7 @@
     selectedFiles = [];
     preview.innerHTML = "";
   } catch (err) {
-    console.error("Erreur complète :", err);
+    console.error(err);
     message.textContent = "Erreur : " + err.message;
     message.classList.add("error");
   }
