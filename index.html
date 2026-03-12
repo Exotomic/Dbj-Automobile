@@ -6,101 +6,141 @@
   <title>Dbj Automobile</title>
 
   <style>
-    body{
+   body{
   font-family: Arial, sans-serif;
-  background:linear-gradient(180deg,#f4f4f4,#e8e8e8);
   margin:0;
+  background:linear-gradient(180deg,#f5f5f5 0%, #ececec 100%);
+  color:#111;
 }
 
-    header{
-  background:#111;
+header{
+  background:linear-gradient(135deg,#111 0%, #1b1b1b 100%);
   color:white;
-  padding:20px;
+  padding:30px 20px;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
-    .container{
-      max-width:1100px;
-      margin:auto;
-      padding:20px;
-    }
+header h1{
+  margin:0;
+  font-size:36px;
+  letter-spacing:1px;
+}
 
-    .car{
-      display:flex;
-      align-items:stretch;
-      background:white;
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 5px 15px rgba(0,0,0,0.15);
-      margin-bottom:20px;
-    }
+header p{
+  margin-top:10px;
+  color:#d0d0d0;
+  font-size:18px;
+}
 
-    .car a{
-      display:block;
-      width:220px;
-      height:220px;
-      flex-shrink:0;
-    }
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px;
+}
 
-    .car img{
-      width:220px;
-      height:220px;
-      object-fit:cover;
-      display:block;
-    }
+.car{
+  display:flex;
+  align-items:stretch;
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,0.10);
+  margin-bottom:24px;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    .car-info{
-      padding:20px;
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
+.car:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.14);
+}
 
-    .car-info h3{
-      margin:0 0 10px 0;
-      font-size:24px;
-    }
+.car a{
+  display:block;
+  width:240px;
+  height:220px;
+  flex-shrink:0;
+  background:#ddd;
+}
 
-    .car-info p{
-      margin:6px 0;
-      font-size:17px;
-    }
+.car img{
+  width:240px;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
 
-    .price{
-      color:#27ae60;
-      font-size:24px;
-      font-weight:bold;
-      margin-top:10px;
-    }
+.car-info{
+  padding:22px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
 
-    .empty{
-      text-align:center;
-      color:#666;
-      background:white;
-      padding:30px;
-      border-radius:12px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.08);
-    }
+.car-info h3{
+  margin:0 0 12px 0;
+  font-size:28px;
+  color:#111;
+}
 
-    @media(max-width:768px){
-      .car{
-        flex-direction:column;
-      }
+.car-info p{
+  margin:6px 0;
+  font-size:17px;
+  color:#444;
+}
 
-      .car a,
-      .car img{
-        width:100%;
-        height:250px;
-      }
-    }
+.price{
+  color:#1f9d55;
+  font-size:28px;
+  font-weight:bold;
+  margin-top:14px;
+}
+
+.empty{
+  text-align:center;
+  color:#666;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+@media(max-width:768px){
+  header h1{
+    font-size:28px;
+  }
+
+  header p{
+    font-size:16px;
+  }
+
+  .car{
+    flex-direction:column;
+  }
+
+  .car a,
+  .car img{
+    width:100%;
+    height:240px;
+  }
+
+  .car-info h3{
+    font-size:24px;
+  }
+
+  .price{
+    font-size:24px;
+  }
+}
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Garage Automobile</h1>
-    <p>Nos véhicules disponibles</p>
-  </header>
+  <h1>DBJ Automobile</h1>
+  <p>Véhicules sélectionnés avec soin</p>
+</header>
 
   <div class="container" id="cars">
     <div class="empty">Chargement des véhicules...</div>
