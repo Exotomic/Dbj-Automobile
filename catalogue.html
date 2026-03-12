@@ -59,7 +59,7 @@
     }
 
     .logo{
-      height:150px;
+      height:140px;
       width:auto;
       max-width:100%;
       object-fit:contain;
@@ -74,7 +74,7 @@
 
     .page-intro{
       max-width:1000px;
-      margin:35px auto 10px auto;
+      margin:35px auto 20px auto;
       padding:0 20px;
       text-align:center;
     }
@@ -91,23 +91,50 @@
       font-size:17px;
     }
 
+    .filters{
+      max-width:1000px;
+      margin:0 auto 25px auto;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:14px;
+    }
+
+    .filters input,
+    .filters select{
+      width:100%;
+      padding:14px;
+      border:1px solid #d8d8d8;
+      border-radius:12px;
+      font-size:15px;
+      background:white;
+      box-shadow:0 4px 12px rgba(0,0,0,0.04);
+      outline:none;
+    }
+
+    .filters input:focus,
+    .filters select:focus{
+      border-color:#d4af37;
+    }
+
     .container{
       max-width:1000px;
       margin:auto;
-      padding:30px 20px 50px 20px;
+      padding:0 20px 50px 20px;
     }
 
     .catalogue-grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:24px;
+      gap:18px;
+      align-items:start;
     }
 
     .car{
       background:white;
-      border-radius:18px;
+      border-radius:16px;
       overflow:hidden;
-      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
       border:1px solid #ececec;
       transition:all 0.25s ease;
       display:flex;
@@ -116,8 +143,8 @@
     }
 
     .car:hover{
-      transform:translateY(-6px);
-      box-shadow:0 18px 40px rgba(0,0,0,0.12);
+      transform:translateY(-5px);
+      box-shadow:0 16px 34px rgba(0,0,0,0.12);
     }
 
     .car-image{
@@ -125,7 +152,7 @@
       position:relative;
       background:#ddd;
       overflow:hidden;
-      height:240px;
+      height:190px;
     }
 
     .car-image img{
@@ -141,23 +168,23 @@
     }
 
     .car-body{
-      padding:20px;
+      padding:16px;
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:10px;
       flex:1;
     }
 
     .car-body h3{
       margin:0;
-      font-size:24px;
-      line-height:1.25;
+      font-size:20px;
+      line-height:1.3;
       color:#111;
     }
 
     .car-meta{
       color:#555;
-      font-size:16px;
+      font-size:15px;
       line-height:1.5;
     }
 
@@ -165,16 +192,16 @@
       background:#d4af37;
       color:white;
       display:inline-block;
-      padding:7px 14px;
+      padding:6px 12px;
       border-radius:8px;
-      font-size:22px;
+      font-size:19px;
       font-weight:bold;
       width:fit-content;
     }
 
     .car-actions{
       margin-top:auto;
-      padding-top:8px;
+      padding-top:4px;
     }
 
     .car-btn{
@@ -182,10 +209,11 @@
       background:#111;
       color:white;
       text-decoration:none;
-      padding:12px 18px;
+      padding:10px 14px;
       border-radius:10px;
       font-weight:bold;
       transition:0.2s;
+      font-size:14px;
     }
 
     .car-btn:hover{
@@ -200,6 +228,7 @@
       padding:30px;
       border-radius:16px;
       box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      grid-column:1 / -1;
     }
 
     .contact-popup{
@@ -253,8 +282,12 @@
     }
 
     @media(max-width:768px){
+      .filters{
+        grid-template-columns:1fr;
+      }
+
       .logo{
-        height:120px;
+        height:115px;
       }
 
       .slogan{
@@ -274,11 +307,11 @@
       }
 
       .car-body h3{
-        font-size:22px;
+        font-size:19px;
       }
 
       .price{
-        font-size:20px;
+        font-size:18px;
       }
     }
   </style>
@@ -299,39 +332,39 @@
       <img src="images/logo1.png" class="logo" alt="DBJ Automobile" />
     </div>
 
-    <p class="slogan">Découvrez notre sélection de véhicules disponibles</p>
+    <p class="slogan">Votre spécialiste auto : achat, vente et réparation</p>
   </header>
 
   <section class="page-intro">
     <h1>Notre catalogue</h1>
-    <p>
-      Retrouvez ici tous les véhicules actuellement disponibles chez DBJ Automobile.
-    </p>
+    <p>Retrouvez ici tous les véhicules actuellement disponibles chez DBJ Automobile.</p>
   </section>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Rechercher une marque ou un modèle">
+
+    <select id="fuelFilter">
+      <option value="">Tous les carburants</option>
+      <option value="Essence">Essence</option>
+      <option value="Diesel">Diesel</option>
+      <option value="Hybride">Hybride</option>
+      <option value="Électrique">Électrique</option>
+    </select>
+
+    <select id="sortSelect">
+      <option value="recent">Plus récents</option>
+      <option value="price-asc">Prix croissant</option>
+      <option value="price-desc">Prix décroissant</option>
+      <option value="km-asc">Kilométrage croissant</option>
+      <option value="year-desc">Année récente</option>
+    </select>
+  </div>
 
   <div class="container">
     <div class="catalogue-grid" id="cars">
-      <div class="filters">
-  <input type="text" id="searchInput" placeholder="Rechercher une marque ou un modèle">
-
-  <select id="fuelFilter">
-    <option value="">Tous les carburants</option>
-    <option value="Essence">Essence</option>
-    <option value="Diesel">Diesel</option>
-    <option value="Hybride">Hybride</option>
-    <option value="Électrique">Électrique</option>
-  </select>
-
-  <select id="sortSelect">
-    <option value="recent">Plus récents</option>
-    <option value="price-asc">Prix croissant</option>
-    <option value="price-desc">Prix décroissant</option>
-    <option value="km-asc">Kilométrage croissant</option>
-    <option value="year-desc">Année récente</option>
-  </select>
-</div>
-
-<div class="catalogue-grid" id="cars"></div>
+      <div class="empty">Chargement des véhicules...</div>
+    </div>
+  </div>
 
   <div id="contactPopup" class="contact-popup">
     <div class="contact-box">
@@ -361,6 +394,13 @@
     const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    const container = document.getElementById("cars");
+    const searchInput = document.getElementById("searchInput");
+    const fuelFilter = document.getElementById("fuelFilter");
+    const sortSelect = document.getElementById("sortSelect");
+
+    let allCars = [];
+
     function formatPrice(price) {
       if (price === null || price === undefined || price === "") return "Prix sur demande";
 
@@ -370,28 +410,21 @@
       return new Intl.NumberFormat("fr-FR").format(numeric) + " €";
     }
 
-    async function loadCars() {
-      const container = document.getElementById("cars");
+    function getNumericValue(value) {
+      const numeric = Number(String(value ?? "").replace(/[^\d.-]/g, ""));
+      return Number.isNaN(numeric) ? 0 : numeric;
+    }
 
-      const { data, error } = await supabase
-        .from("cars")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        container.innerHTML = `<div class="empty">Erreur de chargement des véhicules.</div>`;
-        return;
-      }
-
-      if (!data || data.length === 0) {
-        container.innerHTML = `<div class="empty">Aucun véhicule disponible pour le moment.</div>`;
+    function renderCars(cars) {
+      if (!cars || cars.length === 0) {
+        container.innerHTML = `<div class="empty">Aucun véhicule ne correspond à votre recherche.</div>`;
         return;
       }
 
       container.innerHTML = "";
 
-      data.forEach((car) => {
-        const imagesArray = car.images ? car.images.split(",") : [];
+      cars.forEach((car) => {
+        const imagesArray = car.images ? car.images.split(",").map(img => img.trim()).filter(Boolean) : [];
         const firstImage = imagesArray[0] || "https://via.placeholder.com/800x600?text=DBJ+Automobile";
         const title = [car.marque, car.modele].filter(Boolean).join(" ");
         const details = [
@@ -419,6 +452,57 @@
         `;
       });
     }
+
+    function applyFilters() {
+      const search = searchInput.value.trim().toLowerCase();
+      const fuel = fuelFilter.value;
+      const sort = sortSelect.value;
+
+      let filtered = [...allCars];
+
+      if (search) {
+        filtered = filtered.filter((car) => {
+          const title = `${car.marque || ""} ${car.modele || ""}`.toLowerCase();
+          return title.includes(search);
+        });
+      }
+
+      if (fuel) {
+        filtered = filtered.filter((car) => (car.carburant || "") === fuel);
+      }
+
+      if (sort === "price-asc") {
+        filtered.sort((a, b) => getNumericValue(a.prix) - getNumericValue(b.prix));
+      } else if (sort === "price-desc") {
+        filtered.sort((a, b) => getNumericValue(b.prix) - getNumericValue(a.prix));
+      } else if (sort === "km-asc") {
+        filtered.sort((a, b) => getNumericValue(a.km) - getNumericValue(b.km));
+      } else if (sort === "year-desc") {
+        filtered.sort((a, b) => getNumericValue(b.annee) - getNumericValue(a.annee));
+      } else {
+        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      }
+
+      renderCars(filtered);
+    }
+
+    async function loadCars() {
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*");
+
+      if (error) {
+        container.innerHTML = `<div class="empty">Erreur de chargement des véhicules.</div>`;
+        return;
+      }
+
+      allCars = data || [];
+      applyFilters();
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    fuelFilter.addEventListener("change", applyFilters);
+    sortSelect.addEventListener("change", applyFilters);
 
     loadCars();
   </script>
