@@ -177,12 +177,14 @@ header p{
 <header class="site-header">
 
 <div class="top-bar">
-<div class="logo-title">DBJ Automobile</div>
+
+<img src="images/logo1.png" class="logo">
 
 <div class="menu">
 <a href="index.html">Accueil</a>
 <a href="#" onclick="openContact()">Contact</a>
 </div>
+
 </div>
 
 <p class="slogan">Véhicules sélectionnés avec soin</p>
@@ -243,5 +245,17 @@ header p{
     loadCars();
   </script>
 
+  <script>
+
+function openContact(){
+document.getElementById("contactPopup").style.display="flex";
+}
+
+function closeContact(){
+document.getElementById("contactPopup").style.display="none";
+}
+
+ </script>
+  
 </body>
 </html>
