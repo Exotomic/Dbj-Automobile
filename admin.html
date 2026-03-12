@@ -2,7 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin - Ajouter une voiture</title>
+
   <style>
     body{
       font-family: Arial, sans-serif;
@@ -12,7 +14,7 @@
     }
 
     .box{
-      max-width:700px;
+      max-width:800px;
       margin:auto;
       background:white;
       padding:25px;
@@ -22,6 +24,7 @@
 
     h1{
       margin-top:0;
+      margin-bottom:20px;
     }
 
     input, textarea, button{
@@ -35,7 +38,7 @@
     }
 
     textarea{
-      min-height:140px;
+      min-height:180px;
       resize:vertical;
     }
 
@@ -51,9 +54,17 @@
       background:#333;
     }
 
-    .msg{
-      margin-top:10px;
-      font-weight:bold;
+    .top-actions{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .top-actions button{
+      width:auto;
+      padding:12px 18px;
+      margin:0;
     }
 
     .preview{
@@ -69,12 +80,49 @@
       object-fit:cover;
       border-radius:8px;
       border:1px solid #ddd;
+      display:block;
+    }
+
+    .msg{
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    .success{
+      color:green;
+    }
+
+    .error{
+      color:red;
+    }
+
+    .info{
+      color:#111;
+    }
+
+    @media(max-width:700px){
+      body{
+        padding:15px;
+      }
+
+      .top-actions{
+        flex-direction:column;
+      }
+
+      .top-actions button{
+        width:100%;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="box">
+    <div class="top-actions">
+      <button type="button" onclick="goToSite()">← Retour au site</button>
+      <button type="button" onclick="logout()">Se déconnecter</button>
+    </div>
+
     <h1>Ajouter une voiture</h1>
 
     <input type="text" id="marque" placeholder="Marque / Modèle">
@@ -82,13 +130,14 @@
     <input type="text" id="km" placeholder="Kilométrage">
     <input type="text" id="carburant" placeholder="Carburant">
     <input type="text" id="prix" placeholder="Prix">
+
     <textarea id="description" placeholder="Description"></textarea>
 
     <input type="file" id="images" multiple accept="image/*">
 
     <div class="preview" id="preview"></div>
 
-    <button onclick="addCar()">Ajouter la voiture</button>
+    <button type="button" onclick="addCar()">Ajouter la voiture</button>
 
     <div class="msg" id="message"></div>
   </div>
@@ -101,6 +150,9 @@
 
     const imageInput = document.getElementById("images");
     const preview = document.getElementById("preview");
+    const message = document.getElementById("message");
+
+    checkAuth();
 
     imageInput.addEventListener("change", function(){
       preview.innerHTML = "";
@@ -108,20 +160,36 @@
 
       for(const file of files){
         const reader = new FileReader();
+
         reader.onload = function(e){
           const img = document.createElement("img");
           img.src = e.target.result;
           preview.appendChild(img);
         };
+
         reader.readAsDataURL(file);
       }
     });
+
+    async function checkAuth(){
+      const { data, error } = await supabase.auth.getSession();
+
+      if(error || !data.session){
+        window.location.href = "login.html";
+      }
+    }
+
+    function setMessage(text, type){
+      message.textContent = text;
+      message.className = "msg " + (type || "");
+    }
 
     async function uploadImages(files){
       const urls = [];
 
       for(const file of files){
-        const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${file.name}`;
+        const cleanName = file.name.replace(/\s+/g, "-").toLowerCase();
+        const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${cleanName}`;
 
         const { error: uploadError } = await supabase
           .storage
@@ -150,23 +218,20 @@
       const carburant = document.getElementById("carburant").value.trim();
       const prix = document.getElementById("prix").value.trim();
       const description = document.getElementById("description").value.trim();
-      const files = document.getElementById("images").files;
-      const message = document.getElementById("message");
-
-      message.textContent = "";
+      const files = imageInput.files;
 
       if(!marque || !annee || !km || !carburant || !prix){
-        message.textContent = "Remplis tous les champs obligatoires.";
+        setMessage("Remplis tous les champs obligatoires.", "error");
         return;
       }
 
       if(files.length === 0){
-        message.textContent = "Ajoute au moins une image.";
+        setMessage("Ajoute au moins une image.", "error");
         return;
       }
 
-      try {
-        message.textContent = "Upload des images en cours...";
+      try{
+        setMessage("Upload des images en cours...", "info");
 
         const imageUrls = await uploadImages(files);
 
@@ -185,11 +250,11 @@
           ]);
 
         if(error){
-          message.textContent = "Erreur : " + error.message;
+          setMessage("Erreur : " + error.message, "error");
           return;
         }
 
-        message.textContent = "Voiture ajoutée avec succès.";
+        setMessage("Voiture ajoutée avec succès.", "success");
 
         document.getElementById("marque").value = "";
         document.getElementById("annee").value = "";
@@ -197,12 +262,20 @@
         document.getElementById("carburant").value = "";
         document.getElementById("prix").value = "";
         document.getElementById("description").value = "";
-        document.getElementById("images").value = "";
+        imageInput.value = "";
         preview.innerHTML = "";
-
-      } catch(err){
-        message.textContent = "Erreur upload : " + err.message;
+      }catch(err){
+        setMessage("Erreur upload : " + err.message, "error");
       }
+    }
+
+    async function logout(){
+      await supabase.auth.signOut();
+      window.location.href = "login.html";
+    }
+
+    function goToSite(){
+      window.location.href = "index.html";
     }
   </script>
 
