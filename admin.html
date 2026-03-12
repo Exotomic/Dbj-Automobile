@@ -1,216 +1,559 @@
-<script type="module">
-  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Garage</title>
 
-  const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
-  const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
-  const supabase = createClient(supabaseUrl, supabaseKey);
-
-  const imageInput = document.getElementById("images");
-  const preview = document.getElementById("preview");
-  const message = document.getElementById("message");
-  const carsList = document.getElementById("carsList");
-
-  imageInput.addEventListener("change", function(){
-    preview.innerHTML = "";
-    const files = imageInput.files;
-
-    for (const file of files) {
-      const reader = new FileReader();
-      reader.onload = function(e){
-        const img = document.createElement("img");
-        img.src = e.target.result;
-        preview.appendChild(img);
-      };
-      reader.readAsDataURL(file);
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      margin:0;
+      padding:30px;
+      box-sizing:border-box;
     }
-  });
 
-  async function checkAuth(){
-    const { data, error } = await supabase.auth.getSession();
-
-    if (error || !data.session) {
-      window.location.href = "login.html";
-      return false;
+    .wrapper{
+      max-width:1100px;
+      margin:auto;
     }
-    return true;
-  }
 
-  function setMessage(text, type){
-    message.textContent = text;
-    message.className = "msg " + (type || "");
-  }
+    .box{
+      background:white;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+      margin-bottom:25px;
+    }
 
-  async function uploadImages(files){
-    const urls = [];
+    h1,h2,h3{
+      margin-top:0;
+    }
 
-    for (const file of files) {
-      const cleanName = file.name.replace(/\s+/g, "-").toLowerCase();
-      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${cleanName}`;
+    .top-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
 
-      const { error: uploadError } = await supabase
-        .storage
-        .from("cars")
-        .upload(fileName, file);
+    input, textarea, button{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      box-sizing:border-box;
+      font-size:16px;
+    }
 
-      if (uploadError) {
-        throw uploadError;
+    textarea{
+      min-height:160px;
+      resize:vertical;
+    }
+
+    button{
+      background:#111;
+      color:white;
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover{
+      background:#333;
+    }
+
+    .small-btn{
+      width:auto;
+      margin:0;
+      padding:10px 14px;
+    }
+
+    .preview{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .preview-card{
+      width:150px;
+      background:#fafafa;
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:8px;
+    }
+
+    .preview-card img{
+      width:100%;
+      height:110px;
+      object-fit:cover;
+      border-radius:8px;
+      display:block;
+      margin-bottom:8px;
+    }
+
+    .preview-card .photo-badge{
+      font-size:13px;
+      font-weight:bold;
+      margin-bottom:8px;
+      text-align:center;
+    }
+
+    .preview-actions{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+
+    .preview-actions button{
+      flex:1;
+      min-width:44px;
+      padding:8px;
+      margin:0;
+      font-size:14px;
+    }
+
+    .remove-btn{
+      background:#c62828;
+    }
+
+    .remove-btn:hover{
+      background:#a61f1f;
+    }
+
+    .msg{
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    .success{
+      color:green;
+    }
+
+    .error{
+      color:red;
+    }
+
+    .info{
+      color:#111;
+    }
+
+    .cars-list{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+    }
+
+    .car-item{
+      display:flex;
+      gap:15px;
+      align-items:center;
+      background:#fafafa;
+      border:1px solid #eee;
+      border-radius:10px;
+      padding:12px;
+    }
+
+    .car-item img{
+      width:110px;
+      height:110px;
+      object-fit:cover;
+      border-radius:8px;
+      flex-shrink:0;
+    }
+
+    .car-item-content{
+      flex:1;
+    }
+
+    .car-item-content h3{
+      margin:0 0 8px 0;
+    }
+
+    .car-item-content p{
+      margin:4px 0;
+    }
+
+    .car-actions{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width:140px;
+    }
+
+    .delete-btn{
+      background:#c62828;
+    }
+
+    .delete-btn:hover{
+      background:#a61f1f;
+    }
+
+    .empty{
+      color:#666;
+    }
+
+    .hint{
+      font-size:14px;
+      color:#555;
+      margin:-5px 0 15px 0;
+    }
+
+    @media(max-width:800px){
+      body{
+        padding:15px;
       }
 
-      const { data } = supabase
-        .storage
-        .from("cars")
-        .getPublicUrl(fileName);
-
-      urls.push(data.publicUrl);
-    }
-
-    return urls;
-  }
-
-  async function loadCars(){
-    const { data, error } = await supabase
-      .from("cars")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      carsList.innerHTML = `<p class="empty">Erreur de chargement.</p>`;
-      return;
-    }
-
-    if (!data || data.length === 0) {
-      carsList.innerHTML = `<p class="empty">Aucune voiture en ligne.</p>`;
-      return;
-    }
-
-    carsList.innerHTML = "";
-
-    data.forEach(car => {
-      const imagesArray = car.images ? car.images.split(",") : [];
-      const firstImage = imagesArray[0] || "";
-
-      carsList.innerHTML += `
-        <div class="car-item">
-          <img src="${firstImage}" alt="${car.marque}">
-          <div class="car-item-content">
-            <h3>${car.marque}</h3>
-            <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
-            <p><strong>${car.prix}</strong></p>
-          </div>
-          <div class="car-actions">
-            <button class="small-btn delete-btn" onclick="deleteCar('${car.id}', ${JSON.stringify(imagesArray).replace(/"/g, '&quot;')})">Supprimer</button>
-          </div>
-        </div>
-      `;
-    });
-  }
-
-  window.addCar = async function(){
-    const marque = document.getElementById("marque").value.trim();
-    const annee = document.getElementById("annee").value.trim();
-    const km = document.getElementById("km").value.trim();
-    const carburant = document.getElementById("carburant").value.trim();
-    const prix = document.getElementById("prix").value.trim();
-    const description = document.getElementById("description").value.trim();
-    const files = imageInput.files;
-
-    if (!marque || !annee || !km || !carburant || !prix) {
-      setMessage("Remplis tous les champs obligatoires.", "error");
-      return;
-    }
-
-    if (files.length === 0) {
-      setMessage("Ajoute au moins une image.", "error");
-      return;
-    }
-
-    try {
-      setMessage("Upload des images en cours...", "info");
-
-      const imageUrls = await uploadImages(files);
-
-      const { error } = await supabase
-        .from("cars")
-        .insert([
-          {
-            marque,
-            annee,
-            km,
-            carburant,
-            prix,
-            description,
-            images: imageUrls.join(",")
-          }
-        ]);
-
-      if (error) {
-        setMessage("Erreur : " + error.message, "error");
-        return;
+      .car-item{
+        flex-direction:column;
+        align-items:flex-start;
       }
 
-      setMessage("Voiture ajoutée avec succès.", "success");
+      .car-item img{
+        width:100%;
+        height:220px;
+      }
 
-      document.getElementById("marque").value = "";
-      document.getElementById("annee").value = "";
-      document.getElementById("km").value = "";
-      document.getElementById("carburant").value = "";
-      document.getElementById("prix").value = "";
-      document.getElementById("description").value = "";
+      .car-actions{
+        width:100%;
+        min-width:auto;
+      }
+
+      .small-btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="box">
+      <div class="top-actions">
+        <button class="small-btn" type="button" onclick="goToSite()">← Retour au site</button>
+        <button class="small-btn" type="button" onclick="logout()">Se déconnecter</button>
+      </div>
+
+      <h1>Admin garage</h1>
+
+      <input type="text" id="marque" placeholder="Marque / Modèle">
+      <input type="text" id="annee" placeholder="Année">
+      <input type="text" id="km" placeholder="Kilométrage">
+      <input type="text" id="carburant" placeholder="Carburant">
+      <input type="text" id="prix" placeholder="Prix">
+      <textarea id="description" placeholder="Description"></textarea>
+
+      <input type="file" id="images" multiple accept="image/*">
+      <p class="hint">Tu peux réorganiser les photos. La photo n°1 sera l’image principale du véhicule.</p>
+
+      <div class="preview" id="preview"></div>
+
+      <button type="button" onclick="addCar()">Ajouter la voiture</button>
+
+      <div class="msg" id="message"></div>
+    </div>
+
+    <div class="box">
+      <h2>Voitures en ligne</h2>
+      <div class="cars-list" id="carsList">
+        <p class="empty">Chargement...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
+    const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const imageInput = document.getElementById("images");
+    const preview = document.getElementById("preview");
+    const message = document.getElementById("message");
+    const carsList = document.getElementById("carsList");
+
+    let selectedFiles = [];
+
+    imageInput.addEventListener("change", function(){
+      const files = Array.from(imageInput.files);
+
+      if(files.length > 0){
+        selectedFiles = [...selectedFiles, ...files];
+        renderPreview();
+      }
+
       imageInput.value = "";
+    });
+
+    function renderPreview(){
       preview.innerHTML = "";
 
-      await loadCars();
-    } catch (err) {
-      setMessage("Erreur upload : " + err.message, "error");
-    }
-  };
-
-  window.deleteCar = async function(carId, imageUrls){
-    const ok = confirm("Supprimer cette voiture ?");
-    if (!ok) return;
-
-    try {
-      if (Array.isArray(imageUrls) && imageUrls.length > 0) {
-        const paths = imageUrls
-          .map(url => {
-            const marker = "/storage/v1/object/public/cars/";
-            const index = url.indexOf(marker);
-            return index !== -1 ? url.substring(index + marker.length) : null;
-          })
-          .filter(Boolean);
-
-        if (paths.length > 0) {
-          await supabase.storage.from("cars").remove(paths);
-        }
-      }
-
-      const { error } = await supabase
-        .from("cars")
-        .delete()
-        .eq("id", carId);
-
-      if (error) {
-        alert("Erreur : " + error.message);
+      if(selectedFiles.length === 0){
         return;
       }
 
-      await loadCars();
-    } catch (err) {
-      alert("Erreur : " + err.message);
+      selectedFiles.forEach((file, index) => {
+        const card = document.createElement("div");
+        card.className = "preview-card";
+
+        const img = document.createElement("img");
+        img.alt = file.name;
+
+        const badge = document.createElement("div");
+        badge.className = "photo-badge";
+        badge.textContent = `Photo ${index + 1}`;
+
+        const actions = document.createElement("div");
+        actions.className = "preview-actions";
+
+        const leftBtn = document.createElement("button");
+        leftBtn.type = "button";
+        leftBtn.textContent = "←";
+        leftBtn.disabled = index === 0;
+        leftBtn.onclick = () => moveImageLeft(index);
+
+        const rightBtn = document.createElement("button");
+        rightBtn.type = "button";
+        rightBtn.textContent = "→";
+        rightBtn.disabled = index === selectedFiles.length - 1;
+        rightBtn.onclick = () => moveImageRight(index);
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.textContent = "✕";
+        removeBtn.className = "remove-btn";
+        removeBtn.onclick = () => removeImage(index);
+
+        actions.appendChild(leftBtn);
+        actions.appendChild(rightBtn);
+        actions.appendChild(removeBtn);
+
+        const reader = new FileReader();
+        reader.onload = function(e){
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+
+        card.appendChild(img);
+        card.appendChild(badge);
+        card.appendChild(actions);
+
+        preview.appendChild(card);
+      });
     }
-  };
 
-  window.logout = async function(){
-    await supabase.auth.signOut();
-    window.location.href = "login.html";
-  };
+    function moveImageLeft(index){
+      if(index === 0) return;
+      [selectedFiles[index - 1], selectedFiles[index]] = [selectedFiles[index], selectedFiles[index - 1]];
+      renderPreview();
+    }
 
-  window.goToSite = function(){
-    window.location.href = "https://exotomic.github.io/Dbj-Automobile/";
-  };
+    function moveImageRight(index){
+      if(index === selectedFiles.length - 1) return;
+      [selectedFiles[index + 1], selectedFiles[index]] = [selectedFiles[index], selectedFiles[index + 1]];
+      renderPreview();
+    }
 
-  const ok = await checkAuth();
-  if (ok) {
-    await loadCars();
-  }
-</script>
+    function removeImage(index){
+      selectedFiles.splice(index, 1);
+      renderPreview();
+    }
+
+    async function checkAuth(){
+      const { data, error } = await supabase.auth.getSession();
+
+      if(error || !data.session){
+        window.location.href = "login.html";
+        return false;
+      }
+
+      return true;
+    }
+
+    function setMessage(text, type){
+      message.textContent = text;
+      message.className = "msg " + (type || "");
+    }
+
+    async function uploadImages(files){
+      const urls = [];
+
+      for(const file of files){
+        const cleanName = file.name.replace(/\s+/g, "-").toLowerCase();
+        const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${cleanName}`;
+
+        const { error: uploadError } = await supabase
+          .storage
+          .from("cars")
+          .upload(fileName, file);
+
+        if(uploadError){
+          throw uploadError;
+        }
+
+        const { data } = supabase
+          .storage
+          .from("cars")
+          .getPublicUrl(fileName);
+
+        urls.push(data.publicUrl);
+      }
+
+      return urls;
+    }
+
+    async function loadCars(){
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if(error){
+        carsList.innerHTML = `<p class="empty">Erreur de chargement.</p>`;
+        return;
+      }
+
+      if(!data || data.length === 0){
+        carsList.innerHTML = `<p class="empty">Aucune voiture en ligne.</p>`;
+        return;
+      }
+
+      carsList.innerHTML = "";
+
+      data.forEach(car => {
+        const imagesArray = car.images ? car.images.split(",") : [];
+        const firstImage = imagesArray[0] || "";
+
+        carsList.innerHTML += `
+          <div class="car-item">
+            <img src="${firstImage}" alt="${car.marque}">
+            <div class="car-item-content">
+              <h3>${car.marque}</h3>
+              <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
+              <p><strong>${car.prix}</strong></p>
+            </div>
+            <div class="car-actions">
+              <button class="small-btn delete-btn" onclick="deleteCar('${car.id}', ${JSON.stringify(imagesArray).replace(/"/g, '&quot;')})">Supprimer</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    window.addCar = async function(){
+      const marque = document.getElementById("marque").value.trim();
+      const annee = document.getElementById("annee").value.trim();
+      const km = document.getElementById("km").value.trim();
+      const carburant = document.getElementById("carburant").value.trim();
+      const prix = document.getElementById("prix").value.trim();
+      const description = document.getElementById("description").value.trim();
+
+      if(!marque || !annee || !km || !carburant || !prix){
+        setMessage("Remplis tous les champs obligatoires.", "error");
+        return;
+      }
+
+      if(selectedFiles.length === 0){
+        setMessage("Ajoute au moins une image.", "error");
+        return;
+      }
+
+      try{
+        setMessage("Upload des images en cours...", "info");
+
+        const imageUrls = await uploadImages(selectedFiles);
+
+        const { error } = await supabase
+          .from("cars")
+          .insert([
+            {
+              marque,
+              annee,
+              km,
+              carburant,
+              prix,
+              description,
+              images: imageUrls.join(",")
+            }
+          ]);
+
+        if(error){
+          setMessage("Erreur : " + error.message, "error");
+          return;
+        }
+
+        setMessage("Voiture ajoutée avec succès.", "success");
+
+        document.getElementById("marque").value = "";
+        document.getElementById("annee").value = "";
+        document.getElementById("km").value = "";
+        document.getElementById("carburant").value = "";
+        document.getElementById("prix").value = "";
+        document.getElementById("description").value = "";
+        selectedFiles = [];
+        renderPreview();
+
+        await loadCars();
+      }catch(err){
+        setMessage("Erreur upload : " + err.message, "error");
+      }
+    };
+
+    window.deleteCar = async function(carId, imageUrls){
+      const ok = confirm("Supprimer cette voiture ?");
+      if(!ok) return;
+
+      try{
+        if(Array.isArray(imageUrls) && imageUrls.length > 0){
+          const paths = imageUrls
+            .map(url => {
+              const marker = "/storage/v1/object/public/cars/";
+              const index = url.indexOf(marker);
+              return index !== -1 ? url.substring(index + marker.length) : null;
+            })
+            .filter(Boolean);
+
+          if(paths.length > 0){
+            await supabase.storage.from("cars").remove(paths);
+          }
+        }
+
+        const { error } = await supabase
+          .from("cars")
+          .delete()
+          .eq("id", carId);
+
+        if(error){
+          alert("Erreur : " + error.message);
+          return;
+        }
+
+        await loadCars();
+      }catch(err){
+        alert("Erreur : " + err.message);
+      }
+    };
+
+    window.logout = async function(){
+      await supabase.auth.signOut();
+      window.location.href = "login.html";
+    };
+
+    window.goToSite = function(){
+      window.location.href = "https://exotomic.github.io/Dbj-Automobile/";
+    };
+
+    const ok = await checkAuth();
+    if(ok){
+      await loadCars();
+    }
+  </script>
+
+</body>
+</html>
