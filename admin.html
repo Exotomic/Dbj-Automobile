@@ -3,87 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Garage</title>
+  <title>Admin - DBJ Automobile</title>
 
   <style>
-    body{
-      font-family: Arial, sans-serif;
-      background:#f4f4f4;
-      margin:0;
-      padding:30px;
+    *{
       box-sizing:border-box;
     }
 
+    body{
+      font-family:Arial, sans-serif;
+      margin:0;
+      color:#111;
+      background:linear-gradient(180deg,#ececec,#e2e2e2);
+      background-image:radial-gradient(#d6d6d6 1px, transparent 1px);
+      background-size:20px 20px;
+    }
+
+    .site-header{
+      background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
+      color:white;
+      padding:18px 20px 22px 20px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.25);
+    }
+
+    .logo{
+      height:120px;
+      width:auto;
+      max-width:100%;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 12px auto;
+    }
+
+    .header-title{
+      margin:0;
+      font-size:30px;
+    }
+
+    .header-subtitle{
+      margin:10px 0 0 0;
+      color:#ddd;
+      font-size:18px;
+    }
+
     .wrapper{
-      max-width:1100px;
-      margin:auto;
-    }
-
-    .box{
-      background:white;
-      padding:25px;
-      border-radius:12px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.15);
-      margin-bottom:25px;
-    }
-
-    h1,h2,h3{
-      margin-top:0;
+      max-width:1180px;
+      margin:30px auto 60px auto;
+      padding:0 20px;
     }
 
     .top-actions{
       display:flex;
-      gap:10px;
+      gap:12px;
       flex-wrap:wrap;
       margin-bottom:20px;
     }
 
-    input, textarea, button{
-      width:100%;
-      padding:12px;
-      margin-bottom:15px;
-      border:1px solid #ccc;
-      border-radius:8px;
-      box-sizing:border-box;
-      font-size:16px;
-    }
-
-    textarea{
-      min-height:160px;
-      resize:vertical;
-    }
-
-    button{
+    .action-btn{
+      display:inline-block;
       background:#111;
       color:white;
       border:none;
-      cursor:pointer;
+      border-radius:10px;
+      padding:12px 16px;
       font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
     }
 
-    button:hover{
-      background:#333;
+    .action-btn:hover{
+      transform:translateY(-2px);
+      background:#d4af37;
+      color:#111;
     }
 
-    .small-btn{
-      width:auto;
-      margin:0;
-      padding:10px 14px;
+    .dashboard{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+      margin-bottom:22px;
+    }
+
+    .stat-card{
+      background:white;
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      border:1px solid #ececec;
+    }
+
+    .stat-label{
+      font-size:14px;
+      color:#777;
+      margin-bottom:8px;
+      text-transform:uppercase;
+      letter-spacing:0.3px;
+    }
+
+    .stat-value{
+      font-size:30px;
+      font-weight:bold;
+      color:#111;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .box{
+      background:white;
+      padding:26px;
+      border-radius:20px;
+      box-shadow:0 14px 35px rgba(0,0,0,0.08);
+      border:1px solid #ececec;
+    }
+
+    .box h2{
+      margin-top:0;
+      margin-bottom:10px;
+      font-size:30px;
+    }
+
+    .box-intro{
+      margin:0 0 22px 0;
+      color:#555;
+      line-height:1.6;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      display:block;
+      font-weight:bold;
+      margin-bottom:7px;
+      font-size:15px;
+    }
+
+    input, textarea, select{
+      width:100%;
+      padding:13px 14px;
+      border:1px solid #d7d7d7;
+      border-radius:12px;
+      box-sizing:border-box;
+      font-size:15px;
+      background:#fcfcfc;
+      transition:0.2s;
+      outline:none;
+      margin-bottom:0;
+    }
+
+    input:focus, textarea:focus, select:focus{
+      border-color:#d4af37;
+      box-shadow:0 0 0 3px rgba(212,175,55,0.12);
+      background:white;
+    }
+
+    textarea{
+      min-height:150px;
+      resize:vertical;
+    }
+
+    .file-box{
+      background:#fafafa;
+      border:1px dashed #d2d2d2;
+      border-radius:14px;
+      padding:14px;
+    }
+
+    .hint{
+      font-size:14px;
+      color:#555;
+      margin:10px 0 0 0;
+      line-height:1.6;
     }
 
     .preview{
       display:flex;
       flex-wrap:wrap;
       gap:12px;
-      margin-bottom:15px;
+      margin-top:15px;
     }
 
     .preview-card{
       width:150px;
       background:#fafafa;
       border:1px solid #ddd;
-      border-radius:10px;
+      border-radius:12px;
       padding:8px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.04);
     }
 
     .preview-card img{
@@ -95,14 +214,14 @@
       margin-bottom:8px;
     }
 
-    .preview-card .photo-badge{
+    .photo-badge{
       font-size:13px;
       font-weight:bold;
       margin-bottom:8px;
       text-align:center;
     }
 
-    .preview-card .photo-size{
+    .photo-size{
       font-size:12px;
       color:#666;
       text-align:center;
@@ -121,19 +240,81 @@
       padding:8px;
       margin:0;
       font-size:14px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+      background:#111;
+      color:white;
     }
 
-    .remove-btn{
+    .preview-actions button:hover{
+      background:#333;
+    }
+
+    .preview-actions .remove-btn{
       background:#c62828;
     }
 
-    .remove-btn:hover{
+    .preview-actions .remove-btn:hover{
       background:#a61f1f;
     }
 
-    .msg{
-      margin-top:10px;
+    .form-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .danger-outline{
+      border:none;
+      border-radius:12px;
+      padding:14px 18px;
       font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .primary-btn{
+      background:linear-gradient(135deg,#111,#1b1b1b);
+      color:white;
+      box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(135deg,#d4af37,#c49f2d);
+      color:#111;
+    }
+
+    .secondary-btn{
+      background:#f3f3f3;
+      color:#111;
+      border:1px solid #ddd;
+    }
+
+    .secondary-btn:hover{
+      transform:translateY(-2px);
+      background:#e9e9e9;
+    }
+
+    .danger-outline{
+      background:white;
+      color:#c62828;
+      border:1px solid #e3b5b5;
+    }
+
+    .danger-outline:hover{
+      background:#fff5f5;
+    }
+
+    .msg{
+      margin-top:14px;
+      font-weight:bold;
+      min-height:24px;
     }
 
     .success{
@@ -141,7 +322,7 @@
     }
 
     .error{
-      color:red;
+      color:#c62828;
     }
 
     .info{
@@ -160,39 +341,78 @@
       align-items:center;
       background:#fafafa;
       border:1px solid #eee;
-      border-radius:10px;
+      border-radius:14px;
       padding:12px;
+      transition:0.2s;
+    }
+
+    .car-item:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 18px rgba(0,0,0,0.06);
     }
 
     .car-item img{
-      width:110px;
+      width:120px;
       height:110px;
       object-fit:cover;
-      border-radius:8px;
+      border-radius:10px;
       flex-shrink:0;
+      background:#ddd;
     }
 
     .car-item-content{
       flex:1;
+      min-width:0;
     }
 
     .car-item-content h3{
       margin:0 0 8px 0;
+      font-size:22px;
     }
 
     .car-item-content p{
       margin:4px 0;
+      color:#555;
+    }
+
+    .car-price{
+      display:inline-block;
+      margin-top:8px;
+      background:linear-gradient(135deg,#d4af37,#c5a12f);
+      color:#111;
+      padding:6px 12px;
+      border-radius:8px;
+      font-weight:bold;
     }
 
     .car-actions{
       display:flex;
       flex-direction:column;
       gap:10px;
-      min-width:140px;
+      min-width:145px;
+    }
+
+    .car-actions button{
+      border:none;
+      border-radius:10px;
+      padding:10px 12px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .edit-btn{
+      background:#111;
+      color:white;
+    }
+
+    .edit-btn:hover{
+      background:#333;
     }
 
     .delete-btn{
       background:#c62828;
+      color:white;
     }
 
     .delete-btn:hover{
@@ -203,15 +423,27 @@
       color:#666;
     }
 
-    .hint{
-      font-size:14px;
-      color:#555;
-      margin:-5px 0 15px 0;
+    @media(max-width:980px){
+      .dashboard{
+        grid-template-columns:1fr;
+      }
+
+      .layout{
+        grid-template-columns:1fr;
+      }
     }
 
     @media(max-width:800px){
       body{
-        padding:15px;
+        padding:0;
+      }
+
+      .wrapper{
+        padding:0 15px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
       }
 
       .car-item{
@@ -227,9 +459,28 @@
       .car-actions{
         width:100%;
         min-width:auto;
+        flex-direction:row;
       }
 
-      .small-btn{
+      .car-actions button{
+        flex:1;
+      }
+
+      .top-actions{
+        flex-direction:column;
+      }
+
+      .action-btn{
+        width:100%;
+      }
+
+      .form-actions{
+        flex-direction:column;
+      }
+
+      .primary-btn,
+      .secondary-btn,
+      .danger-outline{
         width:100%;
       }
     }
@@ -237,40 +488,131 @@
 </head>
 <body>
 
+  <header class="site-header">
+    <img src="images/logo1.png" class="logo" alt="DBJ Automobile">
+    <h1 class="header-title">Administration DBJ Automobile</h1>
+    <p class="header-subtitle">Gestion des véhicules en ligne</p>
+  </header>
+
   <div class="wrapper">
 
-    <div class="box">
-      <div class="top-actions">
-        <button class="small-btn" type="button" onclick="goToSite()">← Retour au site</button>
-        <button class="small-btn" type="button" onclick="logout()">Se déconnecter</button>
-      </div>
-
-      <h1>Admin garage</h1>
-
-      <input type="text" id="marque" placeholder="Marque / Modèle">
-      <input type="text" id="annee" placeholder="Année">
-      <input type="text" id="km" placeholder="Kilométrage">
-      <input type="text" id="carburant" placeholder="Carburant">
-      <input type="text" id="prix" placeholder="Prix">
-      <textarea id="description" placeholder="Description"></textarea>
-
-      <input type="file" id="images" multiple accept="image/*">
-      <p class="hint">Tu peux réorganiser les photos. La photo n°1 sera l’image principale du véhicule. Les images seront compressées automatiquement avant l’upload.</p>
-
-      <div class="preview" id="preview"></div>
-
-      <button type="button" onclick="addCar()">Ajouter la voiture</button>
-
-      <div class="msg" id="message"></div>
+    <div class="top-actions">
+      <button class="action-btn" type="button" onclick="goToSite()">← Retour au site</button>
+      <button class="action-btn" type="button" onclick="logout()">Se déconnecter</button>
     </div>
 
-    <div class="box">
-      <h2>Voitures en ligne</h2>
-      <div class="cars-list" id="carsList">
-        <p class="empty">Chargement...</p>
+    <div class="dashboard">
+      <div class="stat-card">
+        <div class="stat-label">Voitures en ligne</div>
+        <div class="stat-value" id="carsCount">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Mode</div>
+        <div class="stat-value" id="modeLabel">Ajout</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Photos sélectionnées</div>
+        <div class="stat-value" id="photosCount">0</div>
       </div>
     </div>
 
+    <div class="layout">
+
+      <div class="box">
+        <h2 id="formTitle">Ajouter une voiture</h2>
+        <p class="box-intro">
+          Ajoute un véhicule, organise les photos, puis publie-le directement sur le site.
+        </p>
+
+        <div class="grid">
+          <div>
+            <label for="marque">Marque</label>
+            <input type="text" id="marque" placeholder="Ex : Renault">
+          </div>
+
+          <div>
+            <label for="modele">Modèle</label>
+            <input type="text" id="modele" placeholder="Ex : Clio">
+          </div>
+
+          <div>
+            <label for="annee">Année</label>
+            <input type="text" id="annee" placeholder="Ex : 2018">
+          </div>
+
+          <div>
+            <label for="km">Kilométrage</label>
+            <input type="text" id="km" placeholder="Ex : 82000">
+          </div>
+
+          <div>
+            <label for="carburant">Carburant</label>
+            <select id="carburant">
+              <option value="">Choisir</option>
+              <option>Essence</option>
+              <option>Diesel</option>
+              <option>Hybride</option>
+              <option>Électrique</option>
+              <option>GPL</option>
+              <option>Autre</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="boite">Boîte</label>
+            <select id="boite">
+              <option value="">Choisir</option>
+              <option>Manuelle</option>
+              <option>Automatique</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label for="prix">Prix</label>
+            <input type="text" id="prix" placeholder="Ex : 8990 €">
+          </div>
+
+          <div class="full">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Description du véhicule"></textarea>
+          </div>
+
+          <div class="full">
+            <label for="images">Photos</label>
+            <div class="file-box">
+              <input type="file" id="images" multiple accept="image/*">
+              <p class="hint">
+                Tu peux réorganiser les photos. La photo n°1 sera l’image principale du véhicule.
+                Les images seront compressées automatiquement avant l’upload.
+              </p>
+            </div>
+            <div class="preview" id="preview"></div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="primary-btn" id="saveBtn" onclick="saveCar()">Publier la voiture</button>
+          <button type="button" class="secondary-btn" onclick="resetForm()">Réinitialiser</button>
+          <button type="button" class="danger-outline" id="cancelEditBtn" onclick="cancelEdit()" style="display:none;">Annuler la modification</button>
+        </div>
+
+        <div class="msg" id="message"></div>
+      </div>
+
+      <div class="box">
+        <h2 id="carsTitle">Voitures en ligne</h2>
+        <p class="box-intro">
+          Modifie ou supprime les véhicules déjà publiés sur le site.
+        </p>
+
+        <div class="cars-list" id="carsList">
+          <p class="empty">Chargement...</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <script type="module">
@@ -284,8 +626,16 @@
     const message = document.getElementById("message");
     const carsList = document.getElementById("carsList");
     const imageInput = document.getElementById("images");
+    const carsCount = document.getElementById("carsCount");
+    const photosCount = document.getElementById("photosCount");
+    const modeLabel = document.getElementById("modeLabel");
+    const formTitle = document.getElementById("formTitle");
+    const saveBtn = document.getElementById("saveBtn");
+    const cancelEditBtn = document.getElementById("cancelEditBtn");
 
     let selectedFiles = [];
+    let editingId = null;
+    let existingImages = [];
 
     imageInput.addEventListener("change", function(){
       const files = Array.from(imageInput.files);
@@ -298,18 +648,45 @@
       imageInput.value = "";
     });
 
+    function updateDashboard(){
+      photosCount.textContent = String(selectedFiles.length + existingImages.length);
+      modeLabel.textContent = editingId ? "Modification" : "Ajout";
+      formTitle.textContent = editingId ? "Modifier une voiture" : "Ajouter une voiture";
+      saveBtn.textContent = editingId ? "Enregistrer les modifications" : "Publier la voiture";
+      cancelEditBtn.style.display = editingId ? "inline-block" : "none";
+    }
+
     function formatFileSize(bytes){
       if(bytes < 1024) return bytes + " o";
       if(bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + " Ko";
       return (bytes / (1024 * 1024)).toFixed(2) + " Mo";
     }
 
+    function setMessage(text, type){
+      message.textContent = text;
+      message.className = "msg " + (type || "");
+    }
+
     function renderPreview(){
       preview.innerHTML = "";
 
-      if(selectedFiles.length === 0){
-        return;
-      }
+      existingImages.forEach((url, index) => {
+        const card = document.createElement("div");
+        card.className = "preview-card";
+
+        card.innerHTML = `
+          <img src="${url}" alt="Photo existante">
+          <div class="photo-badge">Photo existante ${index + 1}</div>
+          <div class="photo-size">Déjà en ligne</div>
+          <div class="preview-actions">
+            <button type="button" ${index === 0 ? "disabled" : ""} onclick="moveExistingImageLeft(${index})">←</button>
+            <button type="button" ${index === existingImages.length - 1 ? "disabled" : ""} onclick="moveExistingImageRight(${index})">→</button>
+            <button type="button" class="remove-btn" onclick="removeExistingImage(${index})">✕</button>
+          </div>
+        `;
+
+        preview.appendChild(card);
+      });
 
       selectedFiles.forEach((file, index) => {
         const card = document.createElement("div");
@@ -320,7 +697,7 @@
 
         const badge = document.createElement("div");
         badge.className = "photo-badge";
-        badge.textContent = `Photo ${index + 1}`;
+        badge.textContent = `Nouvelle photo ${index + 1}`;
 
         const sizeInfo = document.createElement("div");
         sizeInfo.className = "photo-size";
@@ -364,6 +741,8 @@
 
         preview.appendChild(card);
       });
+
+      updateDashboard();
     }
 
     function moveImageLeft(index){
@@ -383,6 +762,23 @@
       renderPreview();
     }
 
+    window.moveExistingImageLeft = function(index){
+      if(index === 0) return;
+      [existingImages[index - 1], existingImages[index]] = [existingImages[index], existingImages[index - 1]];
+      renderPreview();
+    };
+
+    window.moveExistingImageRight = function(index){
+      if(index === existingImages.length - 1) return;
+      [existingImages[index + 1], existingImages[index]] = [existingImages[index], existingImages[index + 1]];
+      renderPreview();
+    };
+
+    window.removeExistingImage = function(index){
+      existingImages.splice(index, 1);
+      renderPreview();
+    };
+
     async function checkAuth(){
       const { data, error } = await supabase.auth.getSession();
 
@@ -392,11 +788,6 @@
       }
 
       return true;
-    }
-
-    function setMessage(text, type){
-      message.textContent = text;
-      message.className = "msg " + (type || "");
     }
 
     async function compressImage(file){
@@ -487,6 +878,12 @@
       return urls;
     }
 
+    function getPathFromPublicUrl(url){
+      const marker = "/storage/v1/object/public/cars/";
+      const index = url.indexOf(marker);
+      return index !== -1 ? url.substring(index + marker.length) : null;
+    }
+
     async function loadCars(){
       const { data, error } = await supabase
         .from("cars")
@@ -498,6 +895,10 @@
         return;
       }
 
+      const count = data?.length || 0;
+      carsCount.textContent = String(count);
+      document.getElementById("carsTitle").textContent = `Voitures en ligne (${count})`;
+
       if(!data || data.length === 0){
         carsList.innerHTML = `<p class="empty">Aucune voiture en ligne.</p>`;
         return;
@@ -506,39 +907,103 @@
       carsList.innerHTML = "";
 
       data.forEach(car => {
-        const imagesArray = car.images ? car.images.split(",") : [];
-        const firstImage = imagesArray[0] || "";
+        const imagesArray = car.images ? car.images.split(",").filter(Boolean) : [];
+        const firstImage = imagesArray[0] || "images/hero.jpg";
+        const title = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
 
         carsList.innerHTML += `
           <div class="car-item">
-            <img src="${firstImage}" alt="${car.marque}">
+            <img src="${firstImage}" alt="${title}">
             <div class="car-item-content">
-              <h3>${car.marque}</h3>
-              <p>${car.annee} • ${car.km} km • ${car.carburant}</p>
-              <p><strong>${car.prix}</strong></p>
+              <h3>${title}</h3>
+              <p>${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""} • ${car.boite || ""}</p>
+              <div class="car-price">${car.prix || "Prix non renseigné"}</div>
             </div>
             <div class="car-actions">
-              <button class="small-btn delete-btn" onclick="deleteCar('${car.id}', ${JSON.stringify(imagesArray).replace(/"/g, '&quot;')})">Supprimer</button>
+              <button class="edit-btn" onclick="editCar('${car.id}')">Modifier</button>
+              <button class="delete-btn" onclick="deleteCar('${car.id}', ${JSON.stringify(imagesArray).replace(/"/g, '&quot;')})">Supprimer</button>
             </div>
           </div>
         `;
       });
     }
 
-    window.addCar = async function(){
+    function resetFormFields(){
+      document.getElementById("marque").value = "";
+      document.getElementById("modele").value = "";
+      document.getElementById("annee").value = "";
+      document.getElementById("km").value = "";
+      document.getElementById("carburant").value = "";
+      document.getElementById("boite").value = "";
+      document.getElementById("prix").value = "";
+      document.getElementById("description").value = "";
+      selectedFiles = [];
+      existingImages = [];
+      renderPreview();
+    }
+
+    window.resetForm = function(){
+      editingId = null;
+      setMessage("", "");
+      resetFormFields();
+      updateDashboard();
+    };
+
+    window.cancelEdit = function(){
+      editingId = null;
+      setMessage("Modification annulée.", "info");
+      resetFormFields();
+      updateDashboard();
+    };
+
+    window.editCar = async function(id){
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+      if(error || !data){
+        setMessage("Impossible de charger la voiture à modifier.", "error");
+        return;
+      }
+
+      editingId = id;
+
+      document.getElementById("marque").value = data.marque || "";
+      document.getElementById("modele").value = data.modele || "";
+      document.getElementById("annee").value = data.annee || "";
+      document.getElementById("km").value = data.km || "";
+      document.getElementById("carburant").value = data.carburant || "";
+      document.getElementById("boite").value = data.boite || "";
+      document.getElementById("prix").value = data.prix || "";
+      document.getElementById("description").value = data.description || "";
+
+      existingImages = data.images ? data.images.split(",").filter(Boolean) : [];
+      selectedFiles = [];
+      renderPreview();
+      updateDashboard();
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setMessage("Mode modification activé.", "info");
+    };
+
+    window.saveCar = async function(){
       const marque = document.getElementById("marque").value.trim();
+      const modele = document.getElementById("modele").value.trim();
       const annee = document.getElementById("annee").value.trim();
       const km = document.getElementById("km").value.trim();
       const carburant = document.getElementById("carburant").value.trim();
+      const boite = document.getElementById("boite").value.trim();
       const prix = document.getElementById("prix").value.trim();
       const description = document.getElementById("description").value.trim();
 
-      if(!marque || !annee || !km || !carburant || !prix){
+      if(!marque || !modele || !annee || !km || !carburant || !prix){
         setMessage("Remplis tous les champs obligatoires.", "error");
         return;
       }
 
-      if(selectedFiles.length === 0){
+      if(!editingId && selectedFiles.length === 0){
         setMessage("Ajoute au moins une image.", "error");
         return;
       }
@@ -546,38 +1011,54 @@
       try{
         setMessage("Compression et upload des images en cours...", "info");
 
-        const imageUrls = await uploadImages(selectedFiles);
+        const uploadedUrls = selectedFiles.length > 0 ? await uploadImages(selectedFiles) : [];
+        const finalImages = [...existingImages, ...uploadedUrls];
 
-        const { error } = await supabase
-          .from("cars")
-          .insert([
-            {
-              marque,
-              annee,
-              km,
-              carburant,
-              prix,
-              description,
-              images: imageUrls.join(",")
-            }
-          ]);
-
-        if(error){
-          setMessage("Erreur : " + error.message, "error");
+        if(finalImages.length === 0){
+          setMessage("Ajoute au moins une image.", "error");
           return;
         }
 
-        setMessage("Voiture ajoutée avec succès.", "success");
+        const payload = {
+          marque,
+          modele,
+          annee,
+          km,
+          carburant,
+          boite,
+          prix,
+          description,
+          images: finalImages.join(",")
+        };
 
-        document.getElementById("marque").value = "";
-        document.getElementById("annee").value = "";
-        document.getElementById("km").value = "";
-        document.getElementById("carburant").value = "";
-        document.getElementById("prix").value = "";
-        document.getElementById("description").value = "";
-        selectedFiles = [];
-        renderPreview();
+        if(editingId){
+          const { error } = await supabase
+            .from("cars")
+            .update(payload)
+            .eq("id", editingId);
 
+          if(error){
+            setMessage("Erreur : " + error.message, "error");
+            return;
+          }
+
+          setMessage("Voiture modifiée avec succès.", "success");
+        }else{
+          const { error } = await supabase
+            .from("cars")
+            .insert([payload]);
+
+          if(error){
+            setMessage("Erreur : " + error.message, "error");
+            return;
+          }
+
+          setMessage("Voiture ajoutée avec succès.", "success");
+        }
+
+        editingId = null;
+        resetFormFields();
+        updateDashboard();
         await loadCars();
       }catch(err){
         setMessage("Erreur upload : " + err.message, "error");
@@ -591,11 +1072,7 @@
       try{
         if(Array.isArray(imageUrls) && imageUrls.length > 0){
           const paths = imageUrls
-            .map(url => {
-              const marker = "/storage/v1/object/public/cars/";
-              const index = url.indexOf(marker);
-              return index !== -1 ? url.substring(index + marker.length) : null;
-            })
+            .map(url => getPathFromPublicUrl(url))
             .filter(Boolean);
 
           if(paths.length > 0){
@@ -613,6 +1090,12 @@
           return;
         }
 
+        if(editingId === carId){
+          editingId = null;
+          resetFormFields();
+          updateDashboard();
+        }
+
         await loadCars();
       }catch(err){
         alert("Erreur : " + err.message);
@@ -627,6 +1110,8 @@
     window.goToSite = function(){
       window.location.href = "https://exotomic.github.io/Dbj-Automobile/";
     };
+
+    updateDashboard();
 
     const ok = await checkAuth();
     if(ok){
