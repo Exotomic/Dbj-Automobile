@@ -278,6 +278,90 @@
       color:#666;
     }
 
+    .related-section{
+      max-width:1150px;
+      margin:0 auto 70px auto;
+      padding:0 20px;
+    }
+
+    .related-section h2{
+      margin:0 0 18px 0;
+      font-size:30px;
+      color:#111;
+      text-align:center;
+    }
+
+    .related-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:22px;
+    }
+
+    .related-card{
+      background:white;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      transition:0.25s;
+      border:1px solid #ececec;
+    }
+
+    .related-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 16px 30px rgba(0,0,0,0.12);
+    }
+
+    .related-card img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .related-body{
+      padding:16px;
+    }
+
+    .related-title{
+      font-size:20px;
+      font-weight:bold;
+      margin-bottom:8px;
+      color:#111;
+    }
+
+    .related-meta{
+      color:#555;
+      font-size:14px;
+      line-height:1.5;
+      margin-bottom:12px;
+    }
+
+    .related-price{
+      display:inline-block;
+      background:linear-gradient(135deg,#d4af37,#c5a12f);
+      color:#111;
+      padding:8px 14px;
+      border-radius:8px;
+      font-weight:bold;
+      margin-bottom:12px;
+    }
+
+    .related-btn{
+      display:inline-block;
+      background:#111;
+      color:white;
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:bold;
+      transition:0.2s;
+    }
+
+    .related-btn:hover{
+      background:#d4af37;
+      color:#111;
+    }
+
     .contact-popup{
       display:none;
       position:fixed;
@@ -409,6 +493,10 @@
       .vehicle-title{
         font-size:34px;
       }
+
+      .related-grid{
+        grid-template-columns:1fr;
+      }
     }
 
     @media(max-width:768px){
@@ -507,6 +595,13 @@
       <div class="empty">Chargement du véhicule...</div>
     </div>
   </main>
+
+  <section class="related-section">
+    <h2>Autres véhicules disponibles</h2>
+    <div id="relatedVehicles" class="related-grid">
+      <div class="empty">Chargement des autres véhicules...</div>
+    </div>
+  </section>
 
   <div id="contactPopup" class="contact-popup">
     <div class="contact-box">
@@ -628,7 +723,7 @@
         car.carburant
       ].filter(Boolean).join(" • ");
 
-      const mainImage = currentImages[0] || "https://via.placeholder.com/900x700?text=DBJ+Automobile";
+      const mainImage = currentImages[0] || "images/hero.jpg";
 
       const thumbsHtml = currentImages.map((img, index) => `
         <img
@@ -747,6 +842,51 @@
       `;
     }
 
+    async function loadRelatedVehicles(currentVehicleId) {
+      const relatedContainer = document.getElementById("relatedVehicles");
+
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*")
+        .neq("id", currentVehicleId)
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (error || !data || data.length === 0) {
+        relatedContainer.innerHTML = `<div class="empty">Aucun autre véhicule disponible.</div>`;
+        return;
+      }
+
+      relatedContainer.innerHTML = "";
+
+      data.forEach((car) => {
+        const images = car.images
+          ? car.images.split(",").map(img => img.trim()).filter(Boolean)
+          : [];
+
+        const image = images[0] || "images/hero.jpg";
+        const title = [car.marque, car.modele].filter(Boolean).join(" ") || "Véhicule disponible";
+        const meta = [
+          car.annee,
+          car.km ? `${car.km} km` : null,
+          car.carburant
+        ].filter(Boolean).join(" • ");
+
+        relatedContainer.innerHTML += `
+          <article class="related-card">
+            <img src="${image}" alt="${title}">
+            <div class="related-body">
+              <div class="related-title">${title}</div>
+              <div class="related-meta">${meta || "Informations à venir"}</div>
+              <div class="related-price">${formatPrice(car.prix)}</div>
+              <br>
+              <a class="related-btn" href="detail.html?id=${encodeURIComponent(car.id)}">Voir le véhicule</a>
+            </div>
+          </article>
+        `;
+      });
+    }
+
     async function loadVehicle() {
       const container = document.getElementById("vehicleContainer");
 
@@ -767,6 +907,7 @@
       }
 
       renderVehicle(data);
+      loadRelatedVehicles(data.id);
     }
 
     loadVehicle();
