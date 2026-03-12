@@ -1,38 +1,133 @@
-<input id="email" placeholder="email">
-<input id="password" type="password" placeholder="mot de passe">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion admin</title>
 
-<button onclick="login()">Connexion</button>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      margin:0;
+      padding:30px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-sizing:border-box;
+    }
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    .box{
+      width:100%;
+      max-width:450px;
+      background:white;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    }
 
-<script>
-const { data: { session } } = await supabase.auth.getSession();
+    h1{
+      margin-top:0;
+      margin-bottom:20px;
+      text-align:center;
+    }
 
-if(!session){
-window.location = "login.html";
-}
-  
-const supabase = window.supabase.createClient(
-"https://nkwxuxzgyhwzdqtdazrd.supabase.co",
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rd3h1eHpneWh3emRxdGRhenJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyNjg0MjksImV4cCI6MjA4ODg0NDQyOX0.V74zf5nyrbGI2pKw8ErUdNDWW2XbBHi_NoyxCqDZeWU"
-);
+    input, button{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      box-sizing:border-box;
+      font-size:16px;
+    }
 
-async function login(){
+    button{
+      background:#111;
+      color:white;
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+    }
 
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
+    button:hover{
+      background:#333;
+    }
 
-const { error } = await supabase.auth.signInWithPassword({
-email: email,
-password: password
-});
+    .msg{
+      margin-top:10px;
+      font-weight:bold;
+      text-align:center;
+    }
 
-if(error){
-alert("Erreur connexion");
-}else{
-window.location = "admin.html";
-}
+    .error{
+      color:red;
+    }
 
-}
+    .success{
+      color:green;
+    }
+  </style>
+</head>
+<body>
 
-</script>
+  <div class="box">
+    <h1>Connexion admin</h1>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Mot de passe">
+
+    <button type="button" onclick="login()">Se connecter</button>
+
+    <div class="msg" id="message"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rd3h1eHpneWh3emRxdGRhenJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyNjg0MjksImV4cCI6MjA4ODg0NDQyOX0.V74zf5nyrbGI2pKw8ErUdNDWW2XbBHi_NoyxCqDZeWU";
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    checkIfAlreadyLoggedIn();
+
+    async function checkIfAlreadyLoggedIn(){
+      const { data, error } = await supabase.auth.getSession();
+
+      if(!error && data.session){
+        window.location.href = "admin.html";
+      }
+    }
+
+    async function login(){
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+
+      message.textContent = "";
+      message.className = "msg";
+
+      if(!email || !password){
+        message.textContent = "Remplis l’email et le mot de passe.";
+        message.classList.add("error");
+        return;
+      }
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if(error){
+        message.textContent = "Erreur de connexion : " + error.message;
+        message.classList.add("error");
+      } else {
+        message.textContent = "Connexion réussie...";
+        message.classList.add("success");
+        window.location.href = "admin.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
