@@ -6,18 +6,17 @@
 <title>Catalogue - DBJ Automobile</title>
 
 <style>
-
 body{
-font-family:Arial;
+font-family:Arial, sans-serif;
 margin:0;
 background-color:#f2f2f2;
-background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+background-image:radial-gradient(#e0e0e0 1px, transparent 1px);
 background-size:20px 20px;
 color:#111;
 }
 
 .site-header{
-background:#111;
+background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
 color:white;
 padding:30px 20px;
 text-align:center;
@@ -25,6 +24,8 @@ text-align:center;
 
 .logo{
 height:130px;
+width:auto;
+max-width:100%;
 }
 
 .menu{
@@ -32,6 +33,7 @@ display:flex;
 justify-content:center;
 gap:30px;
 margin-top:15px;
+flex-wrap:wrap;
 }
 
 .menu a{
@@ -91,7 +93,7 @@ gap:25px;
 .car-card{
 background:white;
 border-radius:14px;
-box-shadow:0 6px 16px rgba(0,0,0,0.1);
+box-shadow:0 6px 16px rgba(0,0,0,0.10);
 overflow:hidden;
 transition:0.25s;
 }
@@ -105,6 +107,7 @@ box-shadow:0 12px 28px rgba(0,0,0,0.15);
 width:100%;
 height:190px;
 object-fit:cover;
+display:block;
 }
 
 .car-content{
@@ -147,39 +150,94 @@ font-size:14px;
 background:#333;
 }
 
+.empty{
+text-align:center;
+color:#666;
+padding:20px;
+grid-column:1 / -1;
+}
+
+.contact-popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.contact-box{
+background:white;
+color:#111;
+padding:30px;
+border-radius:14px;
+width:90%;
+max-width:420px;
+text-align:center;
+position:relative;
+box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+
+.contact-box h2,
+.contact-box h3{
+margin-top:0;
+}
+
+.contact-box a{
+color:#111;
+text-decoration:none;
+font-weight:bold;
+}
+
+.close{
+position:absolute;
+top:10px;
+right:15px;
+font-size:24px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.filters{
+flex-direction:column;
+}
+
+.filters input,
+.filters select{
+width:100%;
+}
+}
 </style>
 </head>
 
 <body>
 
 <header class="site-header">
-
-<img src="images/logo1.png" class="logo">
+<img src="images/logo1.png" class="logo" alt="DBJ Automobile">
 
 <div class="menu">
 <a href="index.html">Accueil</a>
 <a href="catalogue.html">Catalogue</a>
 <a href="rachat.html">Estimer mon véhicule</a>
-<a href="#" onclick="openContact()">Contact</a>
+<a href="#" onclick="openContact(); return false;">Contact</a>
 </div>
 
 <p class="slogan">
 Votre spécialiste auto : achat, vente et réparation
 </p>
-
 </header>
 
-
 <div class="container">
-
 <h1>Notre catalogue</h1>
 <p class="subtitle">
 Retrouvez ici tous les véhicules actuellement disponibles chez DBJ Automobile.
 </p>
 
-
 <div class="filters">
-
 <input id="search" placeholder="Rechercher une marque ou un modèle">
 
 <select id="fuel">
@@ -187,6 +245,7 @@ Retrouvez ici tous les véhicules actuellement disponibles chez DBJ Automobile.
 <option value="Essence">Essence</option>
 <option value="Diesel">Diesel</option>
 <option value="Hybride">Hybride</option>
+<option value="Électrique">Électrique</option>
 </select>
 
 <select id="sort">
@@ -194,130 +253,151 @@ Retrouvez ici tous les véhicules actuellement disponibles chez DBJ Automobile.
 <option value="priceLow">Prix croissant</option>
 <option value="priceHigh">Prix décroissant</option>
 </select>
-
 </div>
-
 
 <div class="cars" id="cars"></div>
-
 </div>
 
+<div id="contactPopup" class="contact-popup">
+  <div class="contact-box">
+    <span class="close" onclick="closeContact()">✕</span>
+
+    <h2>Contact</h2>
+
+    <p>📍 600 rue de Lillers, 62920 Chocques</p>
+    <p>📞 <a href="tel:+33600000000">06 00 00 00 00</a></p>
+    <p>✉️ <a href="mailto:contact@dbjautomobile.fr">contact@dbjautomobile.fr</a></p>
+
+    <h3>Horaires</h3>
+    <p>Lundi : 9h - 18h</p>
+    <p>Mardi : 9h - 18h</p>
+    <p>Mercredi : 9h - 18h</p>
+    <p>Jeudi : 9h - 18h</p>
+    <p>Vendredi : 9h - 18h</p>
+    <p>Samedi : 10h - 17h</p>
+    <p>Dimanche : Fermé</p>
+  </div>
+</div>
 
 <script type="module">
-
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
 const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
-
-const supabase = createClient(supabaseUrl,supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const carsContainer = document.getElementById("cars");
-
 const searchInput = document.getElementById("search");
 const fuelFilter = document.getElementById("fuel");
 const sortSelect = document.getElementById("sort");
 
 let carsData = [];
 
-
 async function loadCars(){
+  const { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .order("created_at", { ascending:false });
 
-const {data,error} = await supabase
-.from("cars")
-.select("*")
-.order("created_at",{ascending:false});
+  if (error) {
+    carsContainer.innerHTML = `<div class="empty">Erreur de chargement des véhicules.</div>`;
+    return;
+  }
 
-carsData = data || [];
+  carsData = data || [];
+  displayCars();
+}
 
-displayCars();
-
+function getNumericPrice(value){
+  const numeric = parseInt(String(value || "").replace(/[^\d]/g, ""), 10);
+  return Number.isNaN(numeric) ? 0 : numeric;
 }
 
 function displayCars(){
+  let cars = [...carsData];
 
-let cars = [...carsData];
+  const search = searchInput.value.toLowerCase().trim();
+  const fuel = fuelFilter.value;
 
-const search = searchInput.value.toLowerCase();
-const fuel = fuelFilter.value;
+  if (search) {
+    cars = cars.filter(car => {
+      const text = `${car.marque || ""} ${car.modele || ""}`.toLowerCase();
+      return text.includes(search);
+    });
+  }
 
-if(search){
+  if (fuel) {
+    cars = cars.filter(car => (car.carburant || "") === fuel);
+  }
 
-cars = cars.filter(car =>
-car.marque.toLowerCase().includes(search)
-);
+  if (sortSelect.value === "priceLow") {
+    cars.sort((a,b) => getNumericPrice(a.prix) - getNumericPrice(b.prix));
+  }
 
+  if (sortSelect.value === "priceHigh") {
+    cars.sort((a,b) => getNumericPrice(b.prix) - getNumericPrice(a.prix));
+  }
+
+  if (cars.length === 0) {
+    carsContainer.innerHTML = `<div class="empty">Aucun véhicule trouvé.</div>`;
+    return;
+  }
+
+  carsContainer.innerHTML = "";
+
+  cars.forEach(car => {
+    const images = car.images ? car.images.split(",") : [];
+    const image = images[0] || "images/hero.jpg";
+    const titre = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
+
+    carsContainer.innerHTML += `
+      <div class="car-card">
+        <img src="${image}" alt="${titre}">
+        <div class="car-content">
+          <div class="car-title">${titre}</div>
+
+          <div class="car-info">
+            ${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""}
+          </div>
+
+          <div class="price">
+            ${car.prix || "Prix sur demande"}
+          </div>
+
+          <br>
+
+          <a class="btn" href="detail.html?id=${encodeURIComponent(car.id)}">
+            Voir le véhicule
+          </a>
+        </div>
+      </div>
+    `;
+  });
 }
 
-if(fuel){
-
-cars = cars.filter(car =>
-car.carburant === fuel
-);
-
-}
-
-if(sortSelect.value === "priceLow"){
-
-cars.sort((a,b)=> parseInt(a.prix) - parseInt(b.prix));
-
-}
-
-if(sortSelect.value === "priceHigh"){
-
-cars.sort((a,b)=> parseInt(b.prix) - parseInt(a.prix));
-
-}
-
-carsContainer.innerHTML = "";
-
-cars.forEach(car => {
-
-const images = car.images.split(",");
-const image = images[0];
-
-carsContainer.innerHTML += `
-
-<div class="car-card">
-
-<img src="${image}">
-
-<div class="car-content">
-
-<div class="car-title">${car.marque}</div>
-
-<div class="car-info">
-${car.annee} • ${car.km} km • ${car.carburant}
-</div>
-
-<div class="price">
-${car.prix}
-</div>
-
-<br>
-
-<a class="btn" href="detail.html?id=${car.id}">
-Voir le véhicule
-</a>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-searchInput.addEventListener("input",displayCars);
-fuelFilter.addEventListener("change",displayCars);
-sortSelect.addEventListener("change",displayCars);
+searchInput.addEventListener("input", displayCars);
+fuelFilter.addEventListener("change", displayCars);
+sortSelect.addEventListener("change", displayCars);
 
 loadCars();
-
 </script>
 
+<script>
+function openContact(){
+  document.getElementById("contactPopup").style.display = "flex";
+}
+
+function closeContact(){
+  document.getElementById("contactPopup").style.display = "none";
+}
+
+window.addEventListener("click", function(e){
+  const popup = document.getElementById("contactPopup");
+  if(e.target === popup){
+    closeContact();
+  }
+});
+</script>
 
 </body>
 </html>
