@@ -277,66 +277,90 @@
   </div>
 
   <script type="module">
-    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-    const supabase = createClient(
-      "https://nkwxuxzgyhwzdqtdazrd.supabase.co",
-      "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_"
-    );
+  const SUPABASE_URL = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
+  const FUNCTION_URL = `${SUPABASE_URL}/functions/v1/send-rachat-email`;
 
-    const form = document.getElementById("rachat-form");
-    const photosInput = document.getElementById("photos");
-    const preview = document.getElementById("preview");
-    const message = document.getElementById("message");
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    let selectedFiles = [];
+  const form = document.getElementById("rachat-form");
+  const photosInput = document.getElementById("photos");
+  const preview = document.getElementById("preview");
+  const message = document.getElementById("message");
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-    photosInput.addEventListener("change", () => {
-      selectedFiles = Array.from(photosInput.files || []);
-      preview.innerHTML = "";
+  let selectedFiles = [];
 
-      selectedFiles.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = e => {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          preview.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
+  function setMessage(text, type = "") {
+    message.textContent = text;
+    message.className = "msg";
+    if (type) message.classList.add(type);
+  }
+
+  function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.style.opacity = isLoading ? "0.7" : "1";
+    submitBtn.style.cursor = isLoading ? "not-allowed" : "pointer";
+    submitBtn.textContent = isLoading ? "Envoi en cours..." : "Envoyer ma demande";
+  }
+
+  photosInput.addEventListener("change", () => {
+    selectedFiles = Array.from(photosInput.files || []);
+    preview.innerHTML = "";
+
+    selectedFiles.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        preview.appendChild(img);
+      };
+
+      reader.readAsDataURL(file);
     });
+  });
 
-    async function compressImage(file){
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        const reader = new FileReader();
+  async function compressImage(file) {
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith("image/")) {
+        reject(new Error(`Le fichier "${file.name}" n'est pas une image valide.`));
+        return;
+      }
 
-        reader.onload = e => {
-          img.src = e.target.result;
-        };
+      const img = new Image();
+      const reader = new FileReader();
 
-        reader.onerror = () => reject(new Error("Lecture image impossible"));
+      reader.onload = (e) => {
+        img.src = e.target.result;
+      };
 
-        img.onload = () => {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
+      reader.onerror = () => reject(new Error("Lecture image impossible"));
+      img.onerror = () => reject(new Error("Image invalide"));
 
-          const maxWidth = 1600;
-          let width = img.width;
-          let height = img.height;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
-          if(width > maxWidth){
-            height = height * (maxWidth / width);
-            width = maxWidth;
-          }
+        const maxWidth = 1600;
+        let width = img.width;
+        let height = img.height;
 
-          canvas.width = width;
-          canvas.height = height;
+        if (width > maxWidth) {
+          height = Math.round(height * (maxWidth / width));
+          width = maxWidth;
+        }
 
-          ctx.drawImage(img, 0, 0, width, height);
+        canvas.width = width;
+        canvas.height = height;
 
-          canvas.toBlob((blob) => {
-            if(!blob){
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
               reject(new Error("Compression impossible"));
               return;
             }
@@ -348,53 +372,46 @@
             );
 
             resolve(compressedFile);
-          }, "image/jpeg", 0.78);
-        };
+          },
+          "image/jpeg",
+          0.78
+        );
+      };
 
-        img.onerror = () => reject(new Error("Image invalide"));
-        reader.readAsDataURL(file);
-      });
-    }
+      reader.readAsDataURL(file);
+    });
+  }
 
-    async function uploadPhotos(files){
-      const urls = [];
+  async function uploadPhotos(files) {
+    const urls = [];
 
-      for(const file of files){
-        const compressed = await compressImage(file);
-        const path = `rachat/${Date.now()}-${Math.random().toString(36).slice(2)}-${compressed.name.replace(/\s+/g, "-").toLowerCase()}`;
+    for (const file of files) {
+      const compressed = await compressImage(file);
+      const safeName = compressed.name.replace(/\s+/g, "-").toLowerCase();
+      const path = `rachat/${Date.now()}-${Math.random().toString(36).slice(2)}-${safeName}`;
 
-        const { error } = await supabase
-          .storage
-          .from("rachat")
-          .upload(path, compressed);
+      const { error: uploadError } = await supabase
+        .storage
+        .from("rachat")
+        .upload(path, compressed);
 
-        if(error) throw error;
-
-        const { data } = supabase
-          .storage
-          .from("rachat")
-          .getPublicUrl(path);
-
-        urls.push(data.publicUrl);
+      if (uploadError) {
+        throw new Error("Erreur upload photo : " + uploadError.message);
       }
 
-      return urls;
+      const { data } = supabase
+        .storage
+        .from("rachat")
+        .getPublicUrl(path);
+
+      urls.push(data.publicUrl);
     }
 
-    form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    return urls;
+  }
 
-  message.textContent = "";
-  message.className = "msg";
-
-  try {
-    message.textContent = "Étape 1 : upload des photos...";
-
-    const photoUrls = await uploadPhotos(selectedFiles);
-
-    message.textContent = "Étape 2 : enregistrement de la demande...";
-
-    const payload = {
+  function getFormData(photoUrls) {
+    return {
       nom: document.getElementById("nom").value.trim(),
       telephone: document.getElementById("telephone").value.trim(),
       email: document.getElementById("email").value.trim(),
@@ -410,53 +427,74 @@
       description: document.getElementById("description").value.trim(),
       photos: photoUrls.join(",")
     };
+  }
 
-    const { error: insertError } = await supabase
-      .from("rachat_requests")
-      .insert([payload]);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    if (insertError) {
-      throw new Error("Erreur insertion : " + insertError.message);
-    }
+    setMessage("");
+    setLoading(true);
 
-    message.textContent = "Étape 3 : envoi de l'email...";
+    try {
+      setMessage("Étape 1 : upload des photos...");
+      const photoUrls = await uploadPhotos(selectedFiles);
 
-    const fnRes = await fetch(
-      "https://nkwxuxzgyhwzdqtdazrd.supabase.co/functions/v1/send-rachat-email",
-      {
+      setMessage("Étape 2 : enregistrement de la demande...");
+      const payload = getFormData(photoUrls);
+
+      const { error: insertError } = await supabase
+        .from("rachat_requests")
+        .insert([payload]);
+
+      if (insertError) {
+        throw new Error("Erreur insertion : " + insertError.message);
+      }
+
+      setMessage("Étape 3 : envoi de l'email...");
+
+      const fnRes = await fetch(FUNCTION_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_",
-          "apikey": "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_"
+          "apikey": SUPABASE_ANON_KEY
         },
         body: JSON.stringify({
           ...payload,
           photo_urls: photoUrls
         })
+      });
+
+      const rawText = await fnRes.text();
+      console.log("Réponse fonction :", rawText);
+
+      let fnData = null;
+      try {
+        fnData = rawText ? JSON.parse(rawText) : null;
+      } catch (_) {
+        fnData = rawText;
       }
-    );
 
-    const fnText = await fnRes.text();
-    console.log("Réponse fonction :", fnText);
+      if (!fnRes.ok) {
+        const errorMessage =
+          typeof fnData === "object" && fnData?.message
+            ? fnData.message
+            : rawText || "Erreur inconnue côté fonction";
+        throw new Error("Erreur fonction : " + errorMessage);
+      }
 
-    if (!fnRes.ok) {
-      throw new Error("Erreur fonction : " + fnText);
+      setMessage("Votre demande a bien été envoyée.", "success");
+
+      form.reset();
+      selectedFiles = [];
+      preview.innerHTML = "";
+    } catch (err) {
+      console.error(err);
+      setMessage("Erreur : " + err.message, "error");
+    } finally {
+      setLoading(false);
     }
-
-    message.textContent = "Votre demande a bien été envoyée.";
-    message.classList.add("success");
-
-    form.reset();
-    selectedFiles = [];
-    preview.innerHTML = "";
-  } catch (err) {
-    console.error(err);
-    message.textContent = "Erreur : " + err.message;
-    message.classList.add("error");
-  }
-});
-  </script>
+  });
+</script>
 
 </body>
 </html>
