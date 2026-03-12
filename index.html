@@ -7,16 +7,40 @@
 
   <style>
  
-    .site-header{
+.site-header{
 background:#111;
-padding:30px 20px;
-text-align:center;
 color:white;
+padding:40px 20px;
 }
 
-.logo{
-height:160px;
-margin-bottom:10px;
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+max-width:1100px;
+margin:auto;
+}
+
+.logo-title{
+font-size:22px;
+font-weight:bold;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+.menu a:hover{
+color:#d4af37;
+}
+
+.slogan{
+text-align:center;
+margin-top:20px;
+color:#ddd;
 }
     
     body{
@@ -151,13 +175,19 @@ header p{
 <body>
 
 <header class="site-header">
-  <img src="images/logo1.png" class="logo">
-  <p>Véhicules sélectionnés avec soin</p>
+
+<div class="top-bar">
+<div class="logo-title">DBJ Automobile</div>
+
+<div class="menu">
+<a href="index.html">Accueil</a>
+<a href="#" onclick="openContact()">Contact</a>
+</div>
+</div>
+
+<p class="slogan">Véhicules sélectionnés avec soin</p>
+
 </header>
- 
-  <div class="contact-center">
-    <button onclick="openContact()">Contact</button>
-  </div>
   
   <div class="container" id="cars">
     <div class="empty">Chargement des véhicules...</div>
