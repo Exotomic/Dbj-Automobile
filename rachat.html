@@ -382,65 +382,79 @@
     }
 
     form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  e.preventDefault();
 
-      message.textContent = "";
-      message.className = "msg";
+  message.textContent = "";
+  message.className = "msg";
 
-      try {
-        message.textContent = "Envoi en cours...";
+  try {
+    message.textContent = "Étape 1 : upload des photos...";
 
-        const photoUrls = await uploadPhotos(selectedFiles);
+    const photoUrls = await uploadPhotos(selectedFiles);
+    console.log("Photos uploadées :", photoUrls);
 
-        const payload = {
-          nom: document.getElementById("nom").value.trim(),
-          telephone: document.getElementById("telephone").value.trim(),
-          email: document.getElementById("email").value.trim(),
-          ville: document.getElementById("ville").value.trim(),
-          marque: document.getElementById("marque").value.trim(),
-          modele: document.getElementById("modele").value.trim(),
-          annee: document.getElementById("annee").value.trim(),
-          km: document.getElementById("km").value.trim(),
-          carburant: document.getElementById("carburant").value,
-          boite: document.getElementById("boite").value,
-          prix_souhaite: document.getElementById("prix_souhaite").value.trim(),
-          immat: document.getElementById("immat").value.trim(),
-          description: document.getElementById("description").value.trim(),
-          photos: photoUrls.join(",")
-        };
+    message.textContent = "Étape 2 : enregistrement de la demande...";
 
-        const { error: insertError } = await supabase
-          .from("rachat_requests")
-          .insert([payload]);
+    const payload = {
+      nom: document.getElementById("nom").value.trim(),
+      telephone: document.getElementById("telephone").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      ville: document.getElementById("ville").value.trim(),
+      marque: document.getElementById("marque").value.trim(),
+      modele: document.getElementById("modele").value.trim(),
+      annee: document.getElementById("annee").value.trim(),
+      km: document.getElementById("km").value.trim(),
+      carburant: document.getElementById("carburant").value,
+      boite: document.getElementById("boite").value,
+      prix_souhaite: document.getElementById("prix_souhaite").value.trim(),
+      immat: document.getElementById("immat").value.trim(),
+      description: document.getElementById("description").value.trim(),
+      photos: photoUrls.join(",")
+    };
 
-        if(insertError) throw insertError;
+    const { error: insertError } = await supabase
+      .from("rachat_requests")
+      .insert([payload]);
 
-        const fnRes = await fetch("https://nkwxuxzgyhwzdqtdazrd.supabase.co/functions/v1/send-rachat-email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            ...payload,
-            photo_urls: photoUrls
-          })
-        });
+    if (insertError) {
+      console.error("Erreur insertion :", insertError);
+      throw new Error("Erreur insertion : " + insertError.message);
+    }
 
-        if(!fnRes.ok){
-          throw new Error("Email non envoyé");
-        }
+    message.textContent = "Étape 3 : envoi de l'email...";
 
-        message.textContent = "Votre demande a bien été envoyée.";
-        message.classList.add("success");
-
-        form.reset();
-        selectedFiles = [];
-        preview.innerHTML = "";
-      } catch(err) {
-        message.textContent = "Erreur : " + err.message;
-        message.classList.add("error");
-      }
+    const fnRes = await fetch("https://nkwxuxzgyhwzdqtdazrd.supabase.co/functions/v1/send-rachat-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...payload,
+        photo_urls: photoUrls
+      })
     });
+
+    console.log("Statut fonction :", fnRes.status);
+
+    const fnText = await fnRes.text();
+    console.log("Réponse fonction :", fnText);
+
+    if (!fnRes.ok) {
+      throw new Error("Erreur fonction : " + fnText);
+    }
+
+    message.textContent = "Votre demande a bien été envoyée.";
+    message.classList.add("success");
+
+    form.reset();
+    selectedFiles = [];
+    preview.innerHTML = "";
+  } catch (err) {
+    console.error("Erreur complète :", err);
+    message.textContent = "Erreur : " + err.message;
+    message.classList.add("error");
+  }
+});
   </script>
 
 </body>
