@@ -132,29 +132,34 @@ background:#c7a02d;
 
 .features{
 max-width:1000px;
-margin:0 auto 60px auto;
+margin:20px auto 70px auto;
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:25px;
+gap:30px;
 padding:20px;
 }
 
 .feature{
 background:white;
-padding:25px;
-border-radius:16px;
+padding:35px 25px;
+border-radius:18px;
 text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-transition:0.2s;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:0.3s;
 }
 
 .feature:hover{
-transform:translateY(-4px);
-box-shadow:0 14px 30px rgba(0,0,0,0.10);
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+.feature .icon{
+font-size:40px;
+margin-bottom:12px;
 }
 
 .feature h3{
-margin:0 0 10px 0;
+margin:10px 0;
 font-size:22px;
 }
 
@@ -274,20 +279,34 @@ et un accompagnement sérieux pour votre projet.
 </section>
 
 <section class="features">
+
 <div class="feature">
+<div class="icon">🚗</div>
 <h3>Achat / Vente</h3>
-<p>Découvrez nos véhicules disponibles et profitez d’un accompagnement professionnel.</p>
+<p>
+Découvrez nos véhicules disponibles et profitez
+d’un accompagnement professionnel pour votre achat.
+</p>
 </div>
 
 <div class="feature">
+<div class="icon">💰</div>
 <h3>Reprise de véhicule</h3>
-<p>Faites estimer votre voiture rapidement grâce à notre formulaire de rachat.</p>
+<p>
+Faites estimer votre voiture rapidement grâce à notre
+formulaire de rachat simple et rapide.
+</p>
 </div>
 
 <div class="feature">
+<div class="icon">🔧</div>
 <h3>Réparation</h3>
-<p>DBJ Automobile vous accompagne aussi pour l’entretien et la réparation de votre véhicule.</p>
+<p>
+DBJ Automobile vous accompagne aussi pour
+l’entretien et la réparation de votre véhicule.
+</p>
 </div>
+
 </section>
 
 <div id="contactPopup" class="contact-popup">
