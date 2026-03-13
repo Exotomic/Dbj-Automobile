@@ -10,6 +10,10 @@
       box-sizing:border-box;
     }
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       font-family:Arial, sans-serif;
       margin:0;
@@ -17,39 +21,43 @@
       background:linear-gradient(180deg,#ececec,#e2e2e2);
       background-image:radial-gradient(#d6d6d6 1px, transparent 1px);
       background-size:20px 20px;
+      overflow-x:hidden;
+      overflow-y:auto;
     }
 
     .site-header{
       background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
       color:white;
-      padding:18px 20px 22px 20px;
+      padding:24px 20px 28px 20px;
       text-align:center;
       box-shadow:0 5px 15px rgba(0,0,0,0.25);
     }
 
     .logo{
-      height:120px;
+      height:130px;
       width:auto;
       max-width:100%;
       object-fit:contain;
       display:block;
-      margin:0 auto 12px auto;
+      margin:0 auto 14px auto;
     }
 
     .header-title{
       margin:0;
-      font-size:30px;
+      font-size:32px;
+      line-height:1.2;
     }
 
     .header-subtitle{
       margin:10px 0 0 0;
       color:#ddd;
       font-size:18px;
+      line-height:1.4;
     }
 
     .wrapper{
       max-width:1180px;
-      margin:30px auto 60px auto;
+      margin:36px auto 60px auto;
       padding:0 20px;
     }
 
@@ -57,7 +65,7 @@
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-bottom:20px;
+      margin-bottom:22px;
     }
 
     .action-btn{
@@ -126,6 +134,7 @@
       margin-top:0;
       margin-bottom:10px;
       font-size:30px;
+      line-height:1.2;
     }
 
     .box-intro{
@@ -212,6 +221,7 @@
       border-radius:8px;
       display:block;
       margin-bottom:8px;
+      background:#ddd;
     }
 
     .photo-badge{
@@ -258,6 +268,11 @@
 
     .preview-actions .remove-btn:hover{
       background:#a61f1f;
+    }
+
+    .preview-actions button:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
     }
 
     .form-actions{
@@ -368,11 +383,13 @@
     .car-item-content h3{
       margin:0 0 8px 0;
       font-size:22px;
+      line-height:1.25;
     }
 
     .car-item-content p{
       margin:4px 0;
       color:#555;
+      line-height:1.5;
     }
 
     .car-price{
@@ -434,12 +451,25 @@
     }
 
     @media(max-width:800px){
-      body{
-        padding:0;
+      .site-header{
+        padding:22px 16px 26px 16px;
+      }
+
+      .logo{
+        height:115px;
+      }
+
+      .header-title{
+        font-size:28px;
+      }
+
+      .header-subtitle{
+        font-size:16px;
       }
 
       .wrapper{
         padding:0 15px;
+        margin:30px auto 50px auto;
       }
 
       .grid{
