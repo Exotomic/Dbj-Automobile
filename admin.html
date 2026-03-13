@@ -6,13 +6,8 @@
   <title>Admin - DBJ Automobile</title>
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
 
     body{
       font-family:Arial, sans-serif;
@@ -149,9 +144,7 @@
       gap:14px;
     }
 
-    .full{
-      grid-column:1 / -1;
-    }
+    .full{grid-column:1 / -1;}
 
     label{
       display:block;
@@ -282,22 +275,10 @@
       color:white;
     }
 
-    .preview-actions button:hover{
-      background:#333;
-    }
-
-    .preview-actions .remove-btn{
-      background:#c62828;
-    }
-
-    .preview-actions .remove-btn:hover{
-      background:#a61f1f;
-    }
-
-    .preview-actions button:disabled{
-      opacity:0.45;
-      cursor:not-allowed;
-    }
+    .preview-actions button:hover{background:#333;}
+    .preview-actions .remove-btn{background:#c62828;}
+    .preview-actions .remove-btn:hover{background:#a61f1f;}
+    .preview-actions button:disabled{opacity:0.45;cursor:not-allowed;}
 
     .form-actions{
       display:flex;
@@ -346,9 +327,7 @@
       border:1px solid #e3b5b5;
     }
 
-    .danger-outline:hover{
-      background:#fff5f5;
-    }
+    .danger-outline:hover{background:#fff5f5;}
 
     .msg{
       margin-top:14px;
@@ -356,17 +335,9 @@
       min-height:24px;
     }
 
-    .success{
-      color:green;
-    }
-
-    .error{
-      color:#c62828;
-    }
-
-    .info{
-      color:#111;
-    }
+    .success{color:green;}
+    .error{color:#c62828;}
+    .info{color:#111;}
 
     .cars-list{
       display:flex;
@@ -459,109 +430,34 @@
       transition:0.2s;
     }
 
-    .edit-btn{
-      background:#111;
-      color:white;
-    }
-
-    .edit-btn:hover{
-      background:#333;
-    }
-
-    .delete-btn{
-      background:#c62828;
-      color:white;
-    }
-
-    .delete-btn:hover{
-      background:#a61f1f;
-    }
-
-    .empty{
-      color:#666;
-    }
+    .edit-btn{background:#111;color:white;}
+    .edit-btn:hover{background:#333;}
+    .delete-btn{background:#c62828;color:white;}
+    .delete-btn:hover{background:#a61f1f;}
+    .empty{color:#666;}
 
     @media(max-width:980px){
-      .dashboard{
-        grid-template-columns:1fr;
-      }
-
-      .layout{
-        grid-template-columns:1fr;
-      }
+      .dashboard{grid-template-columns:1fr;}
+      .layout{grid-template-columns:1fr;}
     }
 
     @media(max-width:800px){
-      .site-header{
-        padding:22px 16px 26px 16px;
-      }
-
-      .logo{
-        height:115px;
-      }
-
-      .header-title{
-        font-size:28px;
-      }
-
-      .header-subtitle{
-        font-size:16px;
-      }
-
-      .wrapper{
-        padding:0 15px;
-        margin:30px auto 50px auto;
-      }
-
-      .grid{
-        grid-template-columns:1fr;
-      }
-
-      .car-item{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .car-item img{
-        width:100%;
-        height:220px;
-      }
-
-      .car-actions{
-        width:100%;
-        min-width:auto;
-        flex-direction:row;
-      }
-
-      .car-actions button{
-        flex:1;
-      }
-
-      .top-actions{
-        flex-direction:column;
-      }
-
-      .action-btn{
-        width:100%;
-      }
-
-      .form-actions{
-        flex-direction:column;
-      }
-
-      .primary-btn,
-      .secondary-btn,
-      .danger-outline{
-        width:100%;
-      }
-
-      .helper-row{
-        flex-direction:column;
-      }
-
-      .small-btn{
-        width:100%;
-      }
+      .site-header{padding:22px 16px 26px 16px;}
+      .logo{height:115px;}
+      .header-title{font-size:28px;}
+      .header-subtitle{font-size:16px;}
+      .wrapper{padding:0 15px;margin:30px auto 50px auto;}
+      .grid{grid-template-columns:1fr;}
+      .car-item{flex-direction:column;align-items:flex-start;}
+      .car-item img{width:100%;height:220px;}
+      .car-actions{width:100%;min-width:auto;flex-direction:row;}
+      .car-actions button{flex:1;}
+      .top-actions{flex-direction:column;}
+      .action-btn{width:100%;}
+      .form-actions{flex-direction:column;}
+      .primary-btn,.secondary-btn,.danger-outline{width:100%;}
+      .helper-row{flex-direction:column;}
+      .small-btn{width:100%;}
     }
   </style>
 </head>
@@ -677,6 +573,11 @@
           </div>
 
           <div class="full">
+            <label>Référence automatique</label>
+            <input type="text" id="referencePreview" placeholder="Ex : DBJ-001" readonly>
+          </div>
+
+          <div class="full">
             <label for="prix">Prix</label>
             <input type="text" id="prix" placeholder="Ex : 15990 €">
           </div>
@@ -761,10 +662,12 @@
     const formTitle = document.getElementById("formTitle");
     const saveBtn = document.getElementById("saveBtn");
     const cancelEditBtn = document.getElementById("cancelEditBtn");
+    const referencePreview = document.getElementById("referencePreview");
 
     let selectedFiles = [];
     let editingId = null;
     let existingImages = [];
+    let carsDataCache = [];
 
     imageInput.addEventListener("change", function(){
       const files = Array.from(imageInput.files);
@@ -806,6 +709,33 @@
     function hasBadge(name){
       const [b1, b2] = getBadgeValues();
       return b1 === name || b2 === name;
+    }
+
+    function getNextReference(){
+      const refs = carsDataCache
+        .map(car => car.reference || "")
+        .filter(Boolean);
+
+      let maxNumber = 0;
+
+      refs.forEach(ref => {
+        const match = ref.match(/^DBJ-(\d+)$/i);
+        if(match){
+          const n = parseInt(match[1], 10);
+          if(!Number.isNaN(n) && n > maxNumber){
+            maxNumber = n;
+          }
+        }
+      });
+
+      return `DBJ-${String(maxNumber + 1).padStart(3, "0")}`;
+    }
+
+    function updateReferencePreview(){
+      if(editingId){
+        return;
+      }
+      referencePreview.value = getNextReference();
     }
 
     function renderPreview(){
@@ -1107,41 +1037,19 @@ ${closingSentence()}`;
       const ctx = getVehicleContext();
       const items = [];
 
-      if(ctx.boite){
-        items.push(`Boîte ${ctx.boite}`);
-      }
-
-      if(ctx.carburant){
-        items.push(`Motorisation ${ctx.carburant}`);
-      }
+      if(ctx.boite) items.push(`Boîte ${ctx.boite}`);
+      if(ctx.carburant) items.push(`Motorisation ${ctx.carburant}`);
 
       if(ctx.km && !Number.isNaN(ctx.km) && ctx.km < 70000){
         items.push("Faible kilométrage");
       }
 
-      if(hasBadge("Collection")){
-        items.push("Véhicule de collection");
-      }
-
-      if(hasBadge("Véhicule rare")){
-        items.push("Modèle recherché");
-      }
-
-      if(hasBadge("Très propre")){
-        items.push("Présentation soignée");
-      }
-
-      if(hasBadge("Bonne affaire")){
-        items.push("Bon rapport qualité / prix");
-      }
-
-      if(hasBadge("Petit prix")){
-        items.push("Tarif attractif");
-      }
-
-      if(hasBadge("Révisé")){
-        items.push("Véhicule révisé");
-      }
+      if(hasBadge("Collection")) items.push("Véhicule de collection");
+      if(hasBadge("Véhicule rare")) items.push("Modèle recherché");
+      if(hasBadge("Très propre")) items.push("Présentation soignée");
+      if(hasBadge("Bonne affaire")) items.push("Bon rapport qualité / prix");
+      if(hasBadge("Petit prix")) items.push("Tarif attractif");
+      if(hasBadge("Révisé")) items.push("Véhicule révisé");
 
       if(ctx.age !== null && ctx.age >= 25){
         items.push("Youngtimer / ancienne");
@@ -1319,18 +1227,22 @@ ${closingSentence()}`;
         return;
       }
 
-      const count = data?.length || 0;
+      carsDataCache = data || [];
+
+      const count = carsDataCache.length || 0;
       carsCount.textContent = String(count);
       document.getElementById("carsTitle").textContent = `Voitures en ligne (${count})`;
 
-      if(!data || data.length === 0){
+      updateReferencePreview();
+
+      if(!carsDataCache || carsDataCache.length === 0){
         carsList.innerHTML = `<p class="empty">Aucune voiture en ligne.</p>`;
         return;
       }
 
       carsList.innerHTML = "";
 
-      data.forEach(car => {
+      carsDataCache.forEach(car => {
         const imagesArray = car.images ? car.images.split(",").filter(Boolean) : [];
         const firstImage = imagesArray[0] || "images/hero.jpg";
         const title = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
@@ -1344,6 +1256,7 @@ ${closingSentence()}`;
             <img src="${firstImage}" alt="${title}">
             <div class="car-item-content">
               <h3>${title}</h3>
+              <p>${car.reference || "Référence non définie"}</p>
               <p>${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""} • ${car.boite || ""}</p>
               <div class="car-price">${car.prix || "Prix non renseigné"}</div>
               ${badges ? `<div class="badges-row">${badges}</div>` : ""}
@@ -1369,6 +1282,7 @@ ${closingSentence()}`;
       document.getElementById("prix").value = "";
       document.getElementById("description").value = "";
       document.getElementById("options").value = "";
+      referencePreview.value = getNextReference();
       selectedFiles = [];
       existingImages = [];
       renderPreview();
@@ -1413,6 +1327,7 @@ ${closingSentence()}`;
       document.getElementById("prix").value = data.prix || "";
       document.getElementById("description").value = data.description || "";
       document.getElementById("options").value = data.options || "";
+      referencePreview.value = data.reference || "";
 
       existingImages = data.images ? data.images.split(",").filter(Boolean) : [];
       selectedFiles = [];
@@ -1456,7 +1371,12 @@ ${closingSentence()}`;
           return;
         }
 
+        const reference = editingId
+          ? (referencePreview.value.trim() || "")
+          : getNextReference();
+
         const payload = {
+          reference,
           marque,
           modele,
           annee,
