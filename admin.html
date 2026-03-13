@@ -6,8 +6,13 @@
   <title>Admin - DBJ Automobile</title>
 
   <style>
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
 
     body{
       font-family:Arial, sans-serif;
@@ -144,7 +149,9 @@
       gap:14px;
     }
 
-    .full{grid-column:1 / -1;}
+    .full{
+      grid-column:1 / -1;
+    }
 
     label{
       display:block;
@@ -275,10 +282,22 @@
       color:white;
     }
 
-    .preview-actions button:hover{background:#333;}
-    .preview-actions .remove-btn{background:#c62828;}
-    .preview-actions .remove-btn:hover{background:#a61f1f;}
-    .preview-actions button:disabled{opacity:0.45;cursor:not-allowed;}
+    .preview-actions button:hover{
+      background:#333;
+    }
+
+    .preview-actions .remove-btn{
+      background:#c62828;
+    }
+
+    .preview-actions .remove-btn:hover{
+      background:#a61f1f;
+    }
+
+    .preview-actions button:disabled{
+      opacity:0.45;
+      cursor:not-allowed;
+    }
 
     .form-actions{
       display:flex;
@@ -327,7 +346,9 @@
       border:1px solid #e3b5b5;
     }
 
-    .danger-outline:hover{background:#fff5f5;}
+    .danger-outline:hover{
+      background:#fff5f5;
+    }
 
     .msg{
       margin-top:14px;
@@ -335,9 +356,17 @@
       min-height:24px;
     }
 
-    .success{color:green;}
-    .error{color:#c62828;}
-    .info{color:#111;}
+    .success{
+      color:green;
+    }
+
+    .error{
+      color:#c62828;
+    }
+
+    .info{
+      color:#111;
+    }
 
     .cars-list{
       display:flex;
@@ -430,34 +459,109 @@
       transition:0.2s;
     }
 
-    .edit-btn{background:#111;color:white;}
-    .edit-btn:hover{background:#333;}
-    .delete-btn{background:#c62828;color:white;}
-    .delete-btn:hover{background:#a61f1f;}
-    .empty{color:#666;}
+    .edit-btn{
+      background:#111;
+      color:white;
+    }
+
+    .edit-btn:hover{
+      background:#333;
+    }
+
+    .delete-btn{
+      background:#c62828;
+      color:white;
+    }
+
+    .delete-btn:hover{
+      background:#a61f1f;
+    }
+
+    .empty{
+      color:#666;
+    }
 
     @media(max-width:980px){
-      .dashboard{grid-template-columns:1fr;}
-      .layout{grid-template-columns:1fr;}
+      .dashboard{
+        grid-template-columns:1fr;
+      }
+
+      .layout{
+        grid-template-columns:1fr;
+      }
     }
 
     @media(max-width:800px){
-      .site-header{padding:22px 16px 26px 16px;}
-      .logo{height:115px;}
-      .header-title{font-size:28px;}
-      .header-subtitle{font-size:16px;}
-      .wrapper{padding:0 15px;margin:30px auto 50px auto;}
-      .grid{grid-template-columns:1fr;}
-      .car-item{flex-direction:column;align-items:flex-start;}
-      .car-item img{width:100%;height:220px;}
-      .car-actions{width:100%;min-width:auto;flex-direction:row;}
-      .car-actions button{flex:1;}
-      .top-actions{flex-direction:column;}
-      .action-btn{width:100%;}
-      .form-actions{flex-direction:column;}
-      .primary-btn,.secondary-btn,.danger-outline{width:100%;}
-      .helper-row{flex-direction:column;}
-      .small-btn{width:100%;}
+      .site-header{
+        padding:22px 16px 26px 16px;
+      }
+
+      .logo{
+        height:115px;
+      }
+
+      .header-title{
+        font-size:28px;
+      }
+
+      .header-subtitle{
+        font-size:16px;
+      }
+
+      .wrapper{
+        padding:0 15px;
+        margin:30px auto 50px auto;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .car-item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .car-item img{
+        width:100%;
+        height:220px;
+      }
+
+      .car-actions{
+        width:100%;
+        min-width:auto;
+        flex-direction:row;
+      }
+
+      .car-actions button{
+        flex:1;
+      }
+
+      .top-actions{
+        flex-direction:column;
+      }
+
+      .action-btn{
+        width:100%;
+      }
+
+      .form-actions{
+        flex-direction:column;
+      }
+
+      .primary-btn,
+      .secondary-btn,
+      .danger-outline{
+        width:100%;
+      }
+
+      .helper-row{
+        flex-direction:column;
+      }
+
+      .small-btn{
+        width:100%;
+      }
     }
   </style>
 </head>
@@ -496,28 +600,28 @@
       <div class="box">
         <h2 id="formTitle">Ajouter une voiture</h2>
         <p class="box-intro">
-          Ajoute un véhicule, organise les photos, choisis les badges et génère une description automatiquement.
+          Ajoute un véhicule, organise les photos, choisis les badges et génère une fiche complète automatiquement.
         </p>
 
         <div class="grid">
           <div>
             <label for="marque">Marque</label>
-            <input type="text" id="marque" placeholder="Ex : Renault">
+            <input type="text" id="marque" placeholder="Ex : BMW">
           </div>
 
           <div>
             <label for="modele">Modèle</label>
-            <input type="text" id="modele" placeholder="Ex : Clio">
+            <input type="text" id="modele" placeholder="Ex : Série 3 E30 320i">
           </div>
 
           <div>
             <label for="annee">Année</label>
-            <input type="text" id="annee" placeholder="Ex : 2018">
+            <input type="text" id="annee" placeholder="Ex : 1983">
           </div>
 
           <div>
             <label for="km">Kilométrage</label>
-            <input type="text" id="km" placeholder="Ex : 82000">
+            <input type="text" id="km" placeholder="Ex : 240000">
           </div>
 
           <div>
@@ -574,7 +678,7 @@
 
           <div class="full">
             <label for="prix">Prix</label>
-            <input type="text" id="prix" placeholder="Ex : 8990 €">
+            <input type="text" id="prix" placeholder="Ex : 15990 €">
           </div>
 
           <div class="full">
@@ -584,12 +688,13 @@
             <div class="helper-row">
               <button type="button" class="small-btn" onclick="generateDescription()">✨ Générer description</button>
               <button type="button" class="small-btn" onclick="generateShortDescription()">⚡ Version courte</button>
+              <button type="button" class="small-btn" onclick="generateCompleteSheet()">🚀 Générer fiche complète</button>
             </div>
           </div>
 
           <div class="full">
-            <label for="options">Options / équipements</label>
-            <textarea id="options" placeholder="Une option par ligne&#10;Ex :&#10;Autoradio Bluetooth&#10;Vitres électriques&#10;Direction assistée"></textarea>
+            <label for="options">Options / équipements / points forts</label>
+            <textarea id="options" placeholder="Une ligne = une option ou un point fort&#10;Ex :&#10;Boîte manuelle&#10;Motorisation essence&#10;Visible au garage&#10;Essai possible"></textarea>
 
             <div class="helper-row">
               <button type="button" class="small-btn" onclick="generateOptions()">🛠️ Générer options</button>
@@ -696,6 +801,11 @@
         return [b1, ""];
       }
       return [b1, b2];
+    }
+
+    function hasBadge(name){
+      const [b1, b2] = getBadgeValues();
+      return b1 === name || b2 === name;
     }
 
     function renderPreview(){
@@ -814,64 +924,250 @@
       return String(km || "").replace(/[^\d]/g, "");
     }
 
-    function generateBaseDescription(isShort = false){
+    function getVehicleContext(){
       const marque = document.getElementById("marque").value.trim();
       const modele = document.getElementById("modele").value.trim();
-      const annee = document.getElementById("annee").value.trim();
-      const km = normalizeKm(document.getElementById("km").value.trim());
+      const anneeValue = document.getElementById("annee").value.trim();
+      const kmValue = document.getElementById("km").value.trim();
       const carburant = document.getElementById("carburant").value.trim();
       const boite = document.getElementById("boite").value.trim();
+      const prix = document.getElementById("prix").value.trim();
 
-      if(!marque || !modele){
+      const annee = parseInt(anneeValue, 10);
+      const km = parseInt(normalizeKm(kmValue), 10);
+      const currentYear = new Date().getFullYear();
+      const age = Number.isNaN(annee) ? null : currentYear - annee;
+
+      return {
+        marque,
+        modele,
+        annee,
+        km,
+        carburant,
+        boite,
+        prix,
+        age,
+        badge: document.getElementById("badge").value.trim(),
+        badge2: document.getElementById("badge2").value.trim()
+      };
+    }
+
+    function generateBaseDescription(isShort = false){
+      const ctx = getVehicleContext();
+
+      if(!ctx.marque || !ctx.modele){
         setMessage("Renseigne au moins la marque et le modèle avant de générer.", "error");
         return "";
       }
 
-      const title = `${marque} ${modele}`.trim();
-      const kmText = km ? new Intl.NumberFormat("fr-FR").format(Number(km)) + " km" : "";
-      const yearText = annee ? ` de ${annee}` : "";
-      const carbText = carburant ? ` avec motorisation ${carburant.toLowerCase()}` : "";
-      const boiteText = boite ? ` et boîte ${boite.toLowerCase()}` : "";
+      const fullName = `${ctx.marque} ${ctx.modele}`.trim();
 
-      if(isShort){
-        return `${title}${yearText} en bon état général.
+      function introSentence(){
+        if(hasBadge("Collection") || (ctx.age !== null && ctx.age >= 25)){
+          return `${fullName}${ctx.annee ? ` de ${ctx.annee}` : ""} en bon état général, modèle emblématique apprécié pour son style intemporel et son caractère unique.`;
+        }
 
-Véhicule agréable à conduire${carbText}${boiteText}.
-${kmText ? `Kilométrage : ${kmText}.` : ""}
+        if(hasBadge("Véhicule rare")){
+          return `${fullName}${ctx.annee ? ` de ${ctx.annee}` : ""} en bon état général, modèle recherché qui saura séduire les amateurs de véhicules au caractère affirmé.`;
+        }
 
-Visible au garage DBJ Automobile.`;
+        if(hasBadge("Très propre")){
+          return `${fullName}${ctx.annee ? ` de ${ctx.annee}` : ""} en très bon état général, avec une présentation soignée et un bel agrément au quotidien.`;
+        }
+
+        if(hasBadge("Bonne affaire") || hasBadge("Petit prix")){
+          return `${fullName}${ctx.annee ? ` de ${ctx.annee}` : ""} en bon état général, une belle opportunité pour un conducteur recherchant un véhicule accessible et sérieux.`;
+        }
+
+        if(ctx.age !== null && ctx.age <= 5){
+          return `${fullName}${ctx.annee ? ` de ${ctx.annee}` : ""} en bon état général, véhicule récent apprécié pour sa polyvalence et son confort d’utilisation.`;
+        }
+
+        return `${fullName}${ctx.annee ? ` de ${ctx.annee}` : ""} en bon état général, véhicule sérieux et agréable à conduire.`;
       }
 
-      return `${title}${yearText} en bon état général.
+      function modelValueSentence(){
+        if(hasBadge("Collection") || (ctx.age !== null && ctx.age >= 25)){
+          return `Ce modèle séduit aujourd’hui les passionnés pour son authenticité, son charme d’époque et le plaisir de conduite qu’il procure.`;
+        }
 
-Véhicule sérieux et agréable à conduire, idéal pour un usage quotidien ou plaisir selon la configuration.
+        if(hasBadge("Véhicule rare")){
+          return `Il représente une belle opportunité pour un amateur recherchant un modèle peu courant et valorisant.`;
+        }
 
-${carbText ? `Cette version dispose d'une motorisation ${carburant.toLowerCase()}` : "Ce véhicule dispose d'une mécanique agréable"}${boite ? ` associée à une boîte ${boite.toLowerCase()}` : ""}, offrant un bon compromis entre confort et agrément de conduite.
+        if(ctx.age !== null && ctx.age <= 5){
+          return `Ce véhicule conviendra parfaitement à une utilisation quotidienne grâce à son bon compromis entre confort, praticité et modernité.`;
+        }
 
-${kmText ? `Avec ${kmText}, ce véhicule reste une belle opportunité pour un amateur recherchant un modèle fiable et intéressant.` : "Le véhicule représente une belle opportunité pour un amateur recherchant un modèle fiable et intéressant."}
+        if(hasBadge("Bonne affaire") || hasBadge("Petit prix")){
+          return `Il constitue une solution intéressante pour un conducteur souhaitant un véhicule pratique, fiable et économique à l’usage.`;
+        }
 
-Véhicule visible au garage DBJ Automobile.`;
+        return `Ce véhicule offre un bon compromis entre plaisir de conduite, confort et usage au quotidien.`;
+      }
+
+      function engineSentence(){
+        let fuelText = "";
+        let boxText = "";
+
+        if(ctx.carburant){
+          const c = ctx.carburant.toLowerCase();
+          if(c === "essence") fuelText = "une motorisation essence";
+          else if(c === "diesel") fuelText = "une motorisation diesel";
+          else if(c === "hybride") fuelText = "une motorisation hybride";
+          else if(c === "électrique") fuelText = "une motorisation électrique";
+          else fuelText = `une motorisation ${c}`;
+        } else {
+          fuelText = "une motorisation adaptée à un usage polyvalent";
+        }
+
+        if(ctx.boite){
+          boxText = ` associée à une boîte ${ctx.boite.toLowerCase()}`;
+        }
+
+        const carburantLower = (ctx.carburant || "").toLowerCase();
+
+        if(carburantLower === "essence"){
+          return `Cette version dispose de ${fuelText}${boxText}, offrant une conduite agréable et un bel agrément derrière le volant.`;
+        }
+
+        if(carburantLower === "diesel"){
+          return `Cette version dispose de ${fuelText}${boxText}, idéale pour les trajets réguliers et une consommation maîtrisée.`;
+        }
+
+        if(carburantLower === "hybride"){
+          return `Cette version dispose de ${fuelText}${boxText}, offrant un bon compromis entre sobriété et confort d’utilisation.`;
+        }
+
+        if(carburantLower === "électrique"){
+          return `Cette version dispose de ${fuelText}${boxText}, apportant une conduite souple, moderne et agréable au quotidien.`;
+        }
+
+        return `Cette version dispose de ${fuelText}${boxText}, avec un ensemble cohérent pour une utilisation agréable.`;
+      }
+
+      function kmSentence(){
+        if(Number.isNaN(ctx.km)){
+          return `Visible au garage DBJ Automobile.`;
+        }
+
+        if(ctx.km < 70000){
+          return `Son faible kilométrage constitue un véritable atout et renforce encore son intérêt.`;
+        }
+
+        if(ctx.km < 130000){
+          return `Son kilométrage reste cohérent avec son âge et son utilisation.`;
+        }
+
+        if(ctx.km < 200000){
+          return `Le véhicule présente un kilométrage cohérent avec son année et conserve un bon potentiel d’utilisation.`;
+        }
+
+        if(hasBadge("Collection") || hasBadge("Véhicule rare") || (ctx.age !== null && ctx.age >= 25)){
+          return `Ce véhicule représente une belle opportunité pour un passionné recherchant un modèle emblématique des années passées.`;
+        }
+
+        if(ctx.km < 260000){
+          return `Le véhicule s’adresse à un conducteur recherchant un modèle sérieux, suivi et encore agréable à utiliser.`;
+        }
+
+        return `Le véhicule reste une opportunité intéressante pour un conducteur recherchant un modèle accessible et attachant.`;
+      }
+
+      function closingSentence(){
+        if(hasBadge("Collection") || hasBadge("Véhicule rare")){
+          return `Véhicule visible au garage DBJ Automobile. Essai possible sur rendez-vous.`;
+        }
+
+        return `Véhicule visible au garage DBJ Automobile.`;
+      }
+
+      if(isShort){
+        return `${introSentence()}
+
+${engineSentence()}
+
+${kmSentence()}
+
+${closingSentence()}`;
+      }
+
+      return `${introSentence()}
+
+${modelValueSentence()}
+
+${engineSentence()}
+
+${kmSentence()}
+
+${closingSentence()}`;
+    }
+
+    function generateSmartOptions(){
+      const ctx = getVehicleContext();
+      const items = [];
+
+      if(ctx.boite){
+        items.push(`Boîte ${ctx.boite}`);
+      }
+
+      if(ctx.carburant){
+        items.push(`Motorisation ${ctx.carburant}`);
+      }
+
+      if(ctx.km && !Number.isNaN(ctx.km) && ctx.km < 70000){
+        items.push("Faible kilométrage");
+      }
+
+      if(hasBadge("Collection")){
+        items.push("Véhicule de collection");
+      }
+
+      if(hasBadge("Véhicule rare")){
+        items.push("Modèle recherché");
+      }
+
+      if(hasBadge("Très propre")){
+        items.push("Présentation soignée");
+      }
+
+      if(hasBadge("Bonne affaire")){
+        items.push("Bon rapport qualité / prix");
+      }
+
+      if(hasBadge("Petit prix")){
+        items.push("Tarif attractif");
+      }
+
+      if(hasBadge("Révisé")){
+        items.push("Véhicule révisé");
+      }
+
+      if(ctx.age !== null && ctx.age >= 25){
+        items.push("Youngtimer / ancienne");
+      }
+
+      items.push("Visible au garage");
+      items.push("Essai possible");
+      items.push("Accompagnement personnalisé");
+
+      return [...new Set(items)];
+    }
+
+    function generateCompleteSheet(){
+      const description = generateBaseDescription(false);
+      if(!description) return;
+
+      const options = generateSmartOptions();
+
+      document.getElementById("description").value = description;
+      document.getElementById("options").value = options.join("\n");
+
+      setMessage("Fiche complète générée.", "success");
     }
 
     function generateBaseOptions(){
-      const carburant = document.getElementById("carburant").value.trim();
-      const boite = document.getElementById("boite").value.trim();
-      const badge = document.getElementById("badge").value.trim();
-      const badge2 = document.getElementById("badge2").value.trim();
-
-      const options = [];
-
-      if(boite) options.push(`Boîte ${boite}`);
-      if(carburant) options.push(`Motorisation ${carburant}`);
-      options.push("Visible au garage");
-      options.push("Essai possible");
-      options.push("Accompagnement personnalisé");
-
-      if(badge === "Collection" || badge2 === "Collection") options.push("Véhicule de collection");
-      if(badge === "Véhicule rare" || badge2 === "Véhicule rare") options.push("Modèle recherché");
-      if(badge === "Très propre" || badge2 === "Très propre") options.push("Présentation soignée");
-
-      return [...new Set(options)].join("\n");
+      return generateSmartOptions().join("\n");
     }
 
     window.generateDescription = function(){
@@ -893,8 +1189,10 @@ Véhicule visible au garage DBJ Automobile.`;
     window.generateOptions = function(){
       const text = generateBaseOptions();
       document.getElementById("options").value = text;
-      setMessage("Options générées.", "success");
+      setMessage("Options / points forts générés.", "success");
     };
+
+    window.generateCompleteSheet = generateCompleteSheet;
 
     window.addOption = function(option){
       const textarea = document.getElementById("options");
