@@ -134,6 +134,7 @@
       overflow:hidden;
       background:#ddd;
       box-shadow:0 8px 20px rgba(0,0,0,0.12);
+      position:relative;
     }
 
     .main-image{
@@ -142,6 +143,32 @@
       object-fit:cover;
       display:block;
       cursor:zoom-in;
+    }
+
+    .image-badges{
+      position:absolute;
+      top:12px;
+      left:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      z-index:2;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      background:#111;
+      color:white;
+      box-shadow:0 4px 10px rgba(0,0,0,0.18);
+    }
+
+    .badge-gold{
+      background:#d4af37;
+      color:#111;
     }
 
     .thumbs{
@@ -172,11 +199,26 @@
       min-width:0;
     }
 
+    .title-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
     .vehicle-title{
       font-size:42px;
       line-height:1.12;
       margin:0 0 14px 0;
       color:#111;
+    }
+
+    .title-badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
     }
 
     .price{
@@ -347,6 +389,10 @@
     .related-card:hover{
       transform:translateY(-5px);
       box-shadow:0 16px 30px rgba(0,0,0,0.12);
+    }
+
+    .related-image-wrap{
+      position:relative;
     }
 
     .related-card img{
@@ -756,11 +802,22 @@
       if (car.carburant) items.push(`Motorisation ${car.carburant}`);
       if (car.km) items.push(`${car.km} km affichés`);
       if (car.annee) items.push(`Année ${car.annee}`);
+      if (car.badge) items.push(car.badge);
+      if (car.badge2) items.push(car.badge2);
       items.push("Véhicule visible au garage");
       items.push("Essai possible");
       items.push("Accompagnement personnalisé");
 
-      return items.slice(0, 8);
+      return [...new Set(items)].slice(0, 8);
+    }
+
+    function renderBadges(car, withGoldFirst = true){
+      const badges = [car.badge, car.badge2].filter(Boolean);
+      if(!badges.length) return "";
+
+      return badges.map((badge, index) => `
+        <span class="badge ${withGoldFirst && index === 0 ? 'badge-gold' : ''}">${badge}</span>
+      `).join("");
     }
 
     function updateMainImage(index) {
@@ -844,6 +901,10 @@
         <article class="detail-card">
           <div class="gallery-col">
             <div class="main-image-wrap">
+              <div class="image-badges">
+                ${renderBadges(car)}
+              </div>
+
               <img
                 id="mainVehicleImage"
                 src="${mainImage}"
@@ -857,7 +918,17 @@
           </div>
 
           <div class="info-col">
-            <h1 class="vehicle-title">${title}</h1>
+            <div class="title-row">
+              <div>
+                <h1 class="vehicle-title">${title}</h1>
+              </div>
+            </div>
+
+            ${[car.badge, car.badge2].filter(Boolean).length ? `
+              <div class="title-badges">
+                ${renderBadges(car)}
+              </div>
+            ` : ""}
 
             <div class="price">${price}</div>
 
@@ -961,7 +1032,15 @@
 
         relatedContainer.innerHTML += `
           <article class="related-card">
-            <img src="${image}" alt="${title}">
+            <div class="related-image-wrap">
+              ${[car.badge, car.badge2].filter(Boolean).length ? `
+                <div class="image-badges">
+                  ${renderBadges(car)}
+                </div>
+              ` : ""}
+              <img src="${image}" alt="${title}">
+            </div>
+
             <div class="related-body">
               <div class="related-title">${title}</div>
               <div class="related-meta">${meta || "Informations à venir"}</div>
