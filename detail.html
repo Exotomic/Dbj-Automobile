@@ -6,13 +6,8 @@
   <title>Détail véhicule - DBJ Automobile</title>
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
 
     body{
       font-family:Arial, sans-serif;
@@ -550,49 +545,21 @@
       color:#111;
     }
 
-    .lightbox-prev{
-      left:20px;
-    }
-
-    .lightbox-next{
-      right:20px;
-    }
+    .lightbox-prev{left:20px;}
+    .lightbox-next{right:20px;}
 
     @media(max-width:980px){
-      .detail-card{
-        grid-template-columns:1fr;
-      }
-
-      .main-image-wrap{
-        height:340px;
-      }
-
-      .vehicle-title{
-        font-size:34px;
-      }
-
-      .related-grid{
-        grid-template-columns:1fr;
-      }
-
-      .options-list{
-        grid-template-columns:1fr;
-      }
+      .detail-card{grid-template-columns:1fr;}
+      .main-image-wrap{height:340px;}
+      .vehicle-title{font-size:34px;}
+      .related-grid{grid-template-columns:1fr;}
+      .options-list{grid-template-columns:1fr;}
     }
 
     @media(max-width:768px){
-      .site-header{
-        padding:22px 16px 26px 16px;
-      }
-
-      .logo{
-        height:115px;
-      }
-
-      .logo-center{
-        margin-bottom:14px;
-      }
-
+      .site-header{padding:22px 16px 26px 16px;}
+      .logo{height:115px;}
+      .logo-center{margin-bottom:14px;}
       .menu{
         display:flex;
         flex-direction:column;
@@ -601,7 +568,6 @@
         width:100%;
         margin:0 auto;
       }
-
       .menu a{
         display:flex;
         align-items:center;
@@ -614,7 +580,6 @@
         border-radius:12px;
         padding:10px 14px;
       }
-
       .slogan{
         font-size:16px;
         line-height:1.5;
@@ -622,69 +587,21 @@
         max-width:340px;
         margin:14px auto 0 auto;
       }
-
-      .page-wrap{
-        margin:34px auto 50px auto;
-      }
-
-      .detail-card{
-        padding:18px;
-      }
-
-      .main-image-wrap{
-        height:260px;
-      }
-
-      .thumbs{
-        grid-template-columns:repeat(3, 1fr);
-      }
-
-      .thumb{
-        height:82px;
-      }
-
-      .vehicle-title{
-        font-size:28px;
-      }
-
-      .price{
-        font-size:24px;
-      }
-
-      .short-specs{
-        font-size:16px;
-      }
-
-      .spec-grid{
-        grid-template-columns:1fr;
-      }
-
-      .options-list{
-        grid-template-columns:1fr;
-      }
-
-      .lightbox{
-        padding:15px;
-      }
-
-      .lightbox-close{
-        top:-42px;
-        font-size:30px;
-      }
-
-      .lightbox-nav{
-        width:44px;
-        height:44px;
-        font-size:24px;
-      }
-
-      .lightbox-prev{
-        left:8px;
-      }
-
-      .lightbox-next{
-        right:8px;
-      }
+      .page-wrap{margin:34px auto 50px auto;}
+      .detail-card{padding:18px;}
+      .main-image-wrap{height:260px;}
+      .thumbs{grid-template-columns:repeat(3, 1fr);}
+      .thumb{height:82px;}
+      .vehicle-title{font-size:28px;}
+      .price{font-size:24px;}
+      .short-specs{font-size:16px;}
+      .spec-grid{grid-template-columns:1fr;}
+      .options-list{grid-template-columns:1fr;}
+      .lightbox{padding:15px;}
+      .lightbox-close{top:-42px;font-size:30px;}
+      .lightbox-nav{width:44px;height:44px;font-size:24px;}
+      .lightbox-prev{left:8px;}
+      .lightbox-next{right:8px;}
     }
   </style>
 </head>
@@ -929,6 +846,11 @@
               <h3>Informations véhicule</h3>
               <div class="spec-grid">
                 <div class="spec-item">
+                  <span class="spec-label">Référence</span>
+                  <span class="spec-value">${safeValue(car.reference, "DBJ-NON-RENSEIGNEE")}</span>
+                </div>
+
+                <div class="spec-item">
                   <span class="spec-label">Marque</span>
                   <span class="spec-value">${safeValue(car.marque)}</span>
                 </div>
@@ -961,11 +883,6 @@
                 <div class="spec-item">
                   <span class="spec-label">Prix</span>
                   <span class="spec-value">${price}</span>
-                </div>
-
-                <div class="spec-item">
-                  <span class="spec-label">Référence</span>
-                  <span class="spec-value">${safeValue(car.id)}</span>
                 </div>
               </div>
             </div>
