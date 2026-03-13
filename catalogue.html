@@ -162,11 +162,41 @@
       box-shadow:0 12px 28px rgba(0,0,0,0.15);
     }
 
+    .car-image-wrap{
+      position:relative;
+    }
+
     .car-card img{
       width:100%;
       height:210px;
       object-fit:cover;
       display:block;
+    }
+
+    .card-badges{
+      position:absolute;
+      top:12px;
+      left:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      z-index:2;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      background:#111;
+      color:white;
+      box-shadow:0 4px 10px rgba(0,0,0,0.18);
+    }
+
+    .badge-gold{
+      background:#d4af37;
+      color:#111;
     }
 
     .car-content{
@@ -399,7 +429,6 @@
       <span class="close" onclick="closeContact()">✕</span>
 
       <h2>Contact</h2>
-
       <p>📍 600 rue de Lillers, 62920 Chocques</p>
       <p>📞 <a href="tel:+33666379685">06 66 37 96 85</a></p>
       <p>✉️ <a href="mailto:dbjautomobile@gmail.com">dbjautomobile@gmail.com</a></p>
@@ -450,6 +479,19 @@
       return Number.isNaN(numeric) ? 0 : numeric;
     }
 
+    function renderBadges(car){
+      const badges = [car.badge, car.badge2].filter(Boolean);
+      if(!badges.length) return "";
+
+      return `
+        <div class="card-badges">
+          ${badges.map((badge, index) => `
+            <span class="badge ${index === 0 ? 'badge-gold' : ''}">${badge}</span>
+          `).join("")}
+        </div>
+      `;
+    }
+
     function displayCars(){
       let cars = [...carsData];
 
@@ -488,7 +530,10 @@
 
         carsContainer.innerHTML += `
           <div class="car-card">
-            <img src="${image}" alt="${title}">
+            <div class="car-image-wrap">
+              ${renderBadges(car)}
+              <img src="${image}" alt="${title}">
+            </div>
 
             <div class="car-content">
               <div class="car-title">${title}</div>
