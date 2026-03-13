@@ -7,7 +7,6 @@
 
   <style>
     *{box-sizing:border-box;}
-
     html{scroll-behavior:smooth;}
 
     body{
@@ -589,6 +588,23 @@
           </div>
 
           <div class="full">
+            <label for="options">Options / équipements</label>
+            <textarea id="options" placeholder="Une option par ligne&#10;Ex :&#10;Autoradio Bluetooth&#10;Vitres électriques&#10;Direction assistée"></textarea>
+
+            <div class="helper-row">
+              <button type="button" class="small-btn" onclick="generateOptions()">🛠️ Générer options</button>
+              <button type="button" class="small-btn" onclick="addOption('Autoradio Bluetooth')">Bluetooth</button>
+              <button type="button" class="small-btn" onclick="addOption('Vitres électriques')">Vitres électriques</button>
+              <button type="button" class="small-btn" onclick="addOption('Direction assistée')">Direction assistée</button>
+              <button type="button" class="small-btn" onclick="addOption('Fermeture centralisée')">Fermeture centralisée</button>
+              <button type="button" class="small-btn" onclick="addOption('Climatisation')">Climatisation</button>
+              <button type="button" class="small-btn" onclick="addOption('Régulateur de vitesse')">Régulateur</button>
+              <button type="button" class="small-btn" onclick="addOption('Jantes aluminium')">Jantes alu</button>
+              <button type="button" class="small-btn" onclick="addOption('Radar de recul')">Radar recul</button>
+            </div>
+          </div>
+
+          <div class="full">
             <label for="images">Photos</label>
             <div class="file-box">
               <input type="file" id="images" multiple accept="image/*">
@@ -837,6 +853,27 @@ ${kmText ? `Avec ${kmText}, ce véhicule reste une belle opportunité pour un am
 Véhicule visible au garage DBJ Automobile.`;
     }
 
+    function generateBaseOptions(){
+      const carburant = document.getElementById("carburant").value.trim();
+      const boite = document.getElementById("boite").value.trim();
+      const badge = document.getElementById("badge").value.trim();
+      const badge2 = document.getElementById("badge2").value.trim();
+
+      const options = [];
+
+      if(boite) options.push(`Boîte ${boite}`);
+      if(carburant) options.push(`Motorisation ${carburant}`);
+      options.push("Visible au garage");
+      options.push("Essai possible");
+      options.push("Accompagnement personnalisé");
+
+      if(badge === "Collection" || badge2 === "Collection") options.push("Véhicule de collection");
+      if(badge === "Véhicule rare" || badge2 === "Véhicule rare") options.push("Modèle recherché");
+      if(badge === "Très propre" || badge2 === "Très propre") options.push("Présentation soignée");
+
+      return [...new Set(options)].join("\n");
+    }
+
     window.generateDescription = function(){
       const text = generateBaseDescription(false);
       if(text){
@@ -850,6 +887,24 @@ Véhicule visible au garage DBJ Automobile.`;
       if(text){
         document.getElementById("description").value = text;
         setMessage("Description courte générée.", "success");
+      }
+    };
+
+    window.generateOptions = function(){
+      const text = generateBaseOptions();
+      document.getElementById("options").value = text;
+      setMessage("Options générées.", "success");
+    };
+
+    window.addOption = function(option){
+      const textarea = document.getElementById("options");
+      if(textarea.value.trim() === ""){
+        textarea.value = option;
+      }else{
+        const lines = textarea.value.split("\n").map(l => l.trim());
+        if(!lines.includes(option)){
+          textarea.value += "\n" + option;
+        }
       }
     };
 
@@ -1015,6 +1070,7 @@ Véhicule visible au garage DBJ Automobile.`;
       document.getElementById("badge2").value = "";
       document.getElementById("prix").value = "";
       document.getElementById("description").value = "";
+      document.getElementById("options").value = "";
       selectedFiles = [];
       existingImages = [];
       renderPreview();
@@ -1058,6 +1114,7 @@ Véhicule visible au garage DBJ Automobile.`;
       document.getElementById("badge2").value = data.badge2 || "";
       document.getElementById("prix").value = data.prix || "";
       document.getElementById("description").value = data.description || "";
+      document.getElementById("options").value = data.options || "";
 
       existingImages = data.images ? data.images.split(",").filter(Boolean) : [];
       selectedFiles = [];
@@ -1077,6 +1134,7 @@ Véhicule visible au garage DBJ Automobile.`;
       const boite = document.getElementById("boite").value.trim();
       const prix = document.getElementById("prix").value.trim();
       const description = document.getElementById("description").value.trim();
+      const options = document.getElementById("options").value.trim();
       const [badge, badge2] = getBadgeValues();
 
       if(!marque || !modele || !annee || !km || !carburant || !prix){
@@ -1111,6 +1169,7 @@ Véhicule visible au garage DBJ Automobile.`;
           badge2,
           prix,
           description,
+          options,
           images: finalImages.join(",")
         };
 
