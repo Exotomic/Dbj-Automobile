@@ -6,8 +6,13 @@
   <title>Catalogue - DBJ Automobile</title>
 
   <style>
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
 
     body{
       font-family:Arial, sans-serif;
@@ -139,8 +144,8 @@
 
     .cars{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:25px;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
     }
 
     .car-card{
@@ -163,7 +168,7 @@
 
     .car-card img{
       width:100%;
-      height:210px;
+      height:180px;
       object-fit:cover;
       display:block;
     }
@@ -203,6 +208,13 @@
       font-size:20px;
       margin-bottom:8px;
       line-height:1.3;
+      color:#111;
+    }
+
+    .car-reference{
+      font-size:13px;
+      color:#777;
+      margin-bottom:8px;
     }
 
     .car-info{
@@ -407,6 +419,8 @@
         <option value="Diesel">Diesel</option>
         <option value="Hybride">Hybride</option>
         <option value="Électrique">Électrique</option>
+        <option value="GPL">GPL</option>
+        <option value="Autre">Autre</option>
       </select>
 
       <select id="sort">
@@ -522,6 +536,7 @@
         const images = car.images ? car.images.split(",").map(img => img.trim()).filter(Boolean) : [];
         const image = images[0] || "images/hero.jpg";
         const title = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
+        const reference = car.reference || "Référence non renseignée";
 
         carsContainer.innerHTML += `
           <div class="car-card">
@@ -532,6 +547,8 @@
 
             <div class="car-content">
               <div class="car-title">${title}</div>
+
+              <div class="car-reference">${reference}</div>
 
               <div class="car-info">
                 ${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""}
