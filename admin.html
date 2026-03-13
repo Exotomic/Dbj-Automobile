@@ -6,13 +6,9 @@
   <title>Admin - DBJ Automobile</title>
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box;}
 
-    html{
-      scroll-behavior:smooth;
-    }
+    html{scroll-behavior:smooth;}
 
     body{
       font-family:Arial, sans-serif;
@@ -149,9 +145,7 @@
       gap:14px;
     }
 
-    .full{
-      grid-column:1 / -1;
-    }
+    .full{grid-column:1 / -1;}
 
     label{
       display:block;
@@ -180,8 +174,32 @@
     }
 
     textarea{
-      min-height:150px;
+      min-height:170px;
       resize:vertical;
+    }
+
+    .helper-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .small-btn{
+      border:none;
+      border-radius:10px;
+      padding:11px 14px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+      background:#111;
+      color:white;
+    }
+
+    .small-btn:hover{
+      background:#d4af37;
+      color:#111;
+      transform:translateY(-2px);
     }
 
     .file-box{
@@ -258,22 +276,10 @@
       color:white;
     }
 
-    .preview-actions button:hover{
-      background:#333;
-    }
-
-    .preview-actions .remove-btn{
-      background:#c62828;
-    }
-
-    .preview-actions .remove-btn:hover{
-      background:#a61f1f;
-    }
-
-    .preview-actions button:disabled{
-      opacity:0.45;
-      cursor:not-allowed;
-    }
+    .preview-actions button:hover{background:#333;}
+    .preview-actions .remove-btn{background:#c62828;}
+    .preview-actions .remove-btn:hover{background:#a61f1f;}
+    .preview-actions button:disabled{opacity:0.45;cursor:not-allowed;}
 
     .form-actions{
       display:flex;
@@ -322,9 +328,7 @@
       border:1px solid #e3b5b5;
     }
 
-    .danger-outline:hover{
-      background:#fff5f5;
-    }
+    .danger-outline:hover{background:#fff5f5;}
 
     .msg{
       margin-top:14px;
@@ -332,17 +336,9 @@
       min-height:24px;
     }
 
-    .success{
-      color:green;
-    }
-
-    .error{
-      color:#c62828;
-    }
-
-    .info{
-      color:#111;
-    }
+    .success{color:green;}
+    .error{color:#c62828;}
+    .info{color:#111;}
 
     .cars-list{
       display:flex;
@@ -402,6 +398,23 @@
       font-weight:bold;
     }
 
+    .badges-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .badge-chip{
+      display:inline-block;
+      background:#111;
+      color:white;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+    }
+
     .car-actions{
       display:flex;
       flex-direction:column;
@@ -418,101 +431,34 @@
       transition:0.2s;
     }
 
-    .edit-btn{
-      background:#111;
-      color:white;
-    }
-
-    .edit-btn:hover{
-      background:#333;
-    }
-
-    .delete-btn{
-      background:#c62828;
-      color:white;
-    }
-
-    .delete-btn:hover{
-      background:#a61f1f;
-    }
-
-    .empty{
-      color:#666;
-    }
+    .edit-btn{background:#111;color:white;}
+    .edit-btn:hover{background:#333;}
+    .delete-btn{background:#c62828;color:white;}
+    .delete-btn:hover{background:#a61f1f;}
+    .empty{color:#666;}
 
     @media(max-width:980px){
-      .dashboard{
-        grid-template-columns:1fr;
-      }
-
-      .layout{
-        grid-template-columns:1fr;
-      }
+      .dashboard{grid-template-columns:1fr;}
+      .layout{grid-template-columns:1fr;}
     }
 
     @media(max-width:800px){
-      .site-header{
-        padding:22px 16px 26px 16px;
-      }
-
-      .logo{
-        height:115px;
-      }
-
-      .header-title{
-        font-size:28px;
-      }
-
-      .header-subtitle{
-        font-size:16px;
-      }
-
-      .wrapper{
-        padding:0 15px;
-        margin:30px auto 50px auto;
-      }
-
-      .grid{
-        grid-template-columns:1fr;
-      }
-
-      .car-item{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .car-item img{
-        width:100%;
-        height:220px;
-      }
-
-      .car-actions{
-        width:100%;
-        min-width:auto;
-        flex-direction:row;
-      }
-
-      .car-actions button{
-        flex:1;
-      }
-
-      .top-actions{
-        flex-direction:column;
-      }
-
-      .action-btn{
-        width:100%;
-      }
-
-      .form-actions{
-        flex-direction:column;
-      }
-
-      .primary-btn,
-      .secondary-btn,
-      .danger-outline{
-        width:100%;
-      }
+      .site-header{padding:22px 16px 26px 16px;}
+      .logo{height:115px;}
+      .header-title{font-size:28px;}
+      .header-subtitle{font-size:16px;}
+      .wrapper{padding:0 15px;margin:30px auto 50px auto;}
+      .grid{grid-template-columns:1fr;}
+      .car-item{flex-direction:column;align-items:flex-start;}
+      .car-item img{width:100%;height:220px;}
+      .car-actions{width:100%;min-width:auto;flex-direction:row;}
+      .car-actions button{flex:1;}
+      .top-actions{flex-direction:column;}
+      .action-btn{width:100%;}
+      .form-actions{flex-direction:column;}
+      .primary-btn,.secondary-btn,.danger-outline{width:100%;}
+      .helper-row{flex-direction:column;}
+      .small-btn{width:100%;}
     }
   </style>
 </head>
@@ -525,7 +471,6 @@
   </header>
 
   <div class="wrapper">
-
     <div class="top-actions">
       <button class="action-btn" type="button" onclick="goToSite()">← Retour au site</button>
       <button class="action-btn" type="button" onclick="logout()">Se déconnecter</button>
@@ -549,11 +494,10 @@
     </div>
 
     <div class="layout">
-
       <div class="box">
         <h2 id="formTitle">Ajouter une voiture</h2>
         <p class="box-intro">
-          Ajoute un véhicule, organise les photos, puis publie-le directement sur le site.
+          Ajoute un véhicule, organise les photos, choisis les badges et génère une description automatiquement.
         </p>
 
         <div class="grid">
@@ -599,6 +543,36 @@
             </select>
           </div>
 
+          <div>
+            <label for="badge">Badge principal</label>
+            <select id="badge">
+              <option value="">Aucun</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="Bonne affaire">Bonne affaire</option>
+              <option value="Véhicule rare">Véhicule rare</option>
+              <option value="Très propre">Très propre</option>
+              <option value="Collection">Collection</option>
+              <option value="Révisé">Révisé</option>
+              <option value="Faible kilométrage">Faible kilométrage</option>
+              <option value="Petit prix">Petit prix</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="badge2">Badge secondaire</label>
+            <select id="badge2">
+              <option value="">Aucun</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="Bonne affaire">Bonne affaire</option>
+              <option value="Véhicule rare">Véhicule rare</option>
+              <option value="Très propre">Très propre</option>
+              <option value="Collection">Collection</option>
+              <option value="Révisé">Révisé</option>
+              <option value="Faible kilométrage">Faible kilométrage</option>
+              <option value="Petit prix">Petit prix</option>
+            </select>
+          </div>
+
           <div class="full">
             <label for="prix">Prix</label>
             <input type="text" id="prix" placeholder="Ex : 8990 €">
@@ -607,6 +581,11 @@
           <div class="full">
             <label for="description">Description</label>
             <textarea id="description" placeholder="Description du véhicule"></textarea>
+
+            <div class="helper-row">
+              <button type="button" class="small-btn" onclick="generateDescription()">✨ Générer description</button>
+              <button type="button" class="small-btn" onclick="generateShortDescription()">⚡ Version courte</button>
+            </div>
           </div>
 
           <div class="full">
@@ -641,7 +620,6 @@
           <p class="empty">Chargement...</p>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -669,12 +647,10 @@
 
     imageInput.addEventListener("change", function(){
       const files = Array.from(imageInput.files);
-
       if(files.length > 0){
         selectedFiles = [...selectedFiles, ...files];
         renderPreview();
       }
-
       imageInput.value = "";
     });
 
@@ -695,6 +671,15 @@
     function setMessage(text, type){
       message.textContent = text;
       message.className = "msg " + (type || "");
+    }
+
+    function getBadgeValues(){
+      const b1 = document.getElementById("badge").value.trim();
+      const b2 = document.getElementById("badge2").value.trim();
+      if(b1 && b2 && b1 === b2){
+        return [b1, ""];
+      }
+      return [b1, b2];
     }
 
     function renderPreview(){
@@ -809,14 +794,71 @@
       renderPreview();
     };
 
+    function normalizeKm(km){
+      return String(km || "").replace(/[^\d]/g, "");
+    }
+
+    function generateBaseDescription(isShort = false){
+      const marque = document.getElementById("marque").value.trim();
+      const modele = document.getElementById("modele").value.trim();
+      const annee = document.getElementById("annee").value.trim();
+      const km = normalizeKm(document.getElementById("km").value.trim());
+      const carburant = document.getElementById("carburant").value.trim();
+      const boite = document.getElementById("boite").value.trim();
+
+      if(!marque || !modele){
+        setMessage("Renseigne au moins la marque et le modèle avant de générer.", "error");
+        return "";
+      }
+
+      const title = `${marque} ${modele}`.trim();
+      const kmText = km ? new Intl.NumberFormat("fr-FR").format(Number(km)) + " km" : "";
+      const yearText = annee ? ` de ${annee}` : "";
+      const carbText = carburant ? ` avec motorisation ${carburant.toLowerCase()}` : "";
+      const boiteText = boite ? ` et boîte ${boite.toLowerCase()}` : "";
+
+      if(isShort){
+        return `${title}${yearText} en bon état général.
+
+Véhicule agréable à conduire${carbText}${boiteText}.
+${kmText ? `Kilométrage : ${kmText}.` : ""}
+
+Visible au garage DBJ Automobile.`;
+      }
+
+      return `${title}${yearText} en bon état général.
+
+Véhicule sérieux et agréable à conduire, idéal pour un usage quotidien ou plaisir selon la configuration.
+
+${carbText ? `Cette version dispose d'une motorisation ${carburant.toLowerCase()}` : "Ce véhicule dispose d'une mécanique agréable"}${boite ? ` associée à une boîte ${boite.toLowerCase()}` : ""}, offrant un bon compromis entre confort et agrément de conduite.
+
+${kmText ? `Avec ${kmText}, ce véhicule reste une belle opportunité pour un amateur recherchant un modèle fiable et intéressant.` : "Le véhicule représente une belle opportunité pour un amateur recherchant un modèle fiable et intéressant."}
+
+Véhicule visible au garage DBJ Automobile.`;
+    }
+
+    window.generateDescription = function(){
+      const text = generateBaseDescription(false);
+      if(text){
+        document.getElementById("description").value = text;
+        setMessage("Description générée.", "success");
+      }
+    };
+
+    window.generateShortDescription = function(){
+      const text = generateBaseDescription(true);
+      if(text){
+        document.getElementById("description").value = text;
+        setMessage("Description courte générée.", "success");
+      }
+    };
+
     async function checkAuth(){
       const { data, error } = await supabase.auth.getSession();
-
       if(error || !data.session){
         window.location.href = "login.html";
         return false;
       }
-
       return true;
     }
 
@@ -884,7 +926,6 @@
 
       for(const file of files){
         const compressed = await compressImage(file);
-
         const cleanName = compressed.name.replace(/\s+/g, "-").toLowerCase();
         const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${cleanName}`;
 
@@ -941,6 +982,10 @@
         const firstImage = imagesArray[0] || "images/hero.jpg";
         const title = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
 
+        const badges = [car.badge, car.badge2].filter(Boolean)
+          .map(b => `<span class="badge-chip">${b}</span>`)
+          .join("");
+
         carsList.innerHTML += `
           <div class="car-item">
             <img src="${firstImage}" alt="${title}">
@@ -948,6 +993,7 @@
               <h3>${title}</h3>
               <p>${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""} • ${car.boite || ""}</p>
               <div class="car-price">${car.prix || "Prix non renseigné"}</div>
+              ${badges ? `<div class="badges-row">${badges}</div>` : ""}
             </div>
             <div class="car-actions">
               <button class="edit-btn" onclick="editCar('${car.id}')">Modifier</button>
@@ -965,6 +1011,8 @@
       document.getElementById("km").value = "";
       document.getElementById("carburant").value = "";
       document.getElementById("boite").value = "";
+      document.getElementById("badge").value = "";
+      document.getElementById("badge2").value = "";
       document.getElementById("prix").value = "";
       document.getElementById("description").value = "";
       selectedFiles = [];
@@ -1006,6 +1054,8 @@
       document.getElementById("km").value = data.km || "";
       document.getElementById("carburant").value = data.carburant || "";
       document.getElementById("boite").value = data.boite || "";
+      document.getElementById("badge").value = data.badge || "";
+      document.getElementById("badge2").value = data.badge2 || "";
       document.getElementById("prix").value = data.prix || "";
       document.getElementById("description").value = data.description || "";
 
@@ -1027,6 +1077,7 @@
       const boite = document.getElementById("boite").value.trim();
       const prix = document.getElementById("prix").value.trim();
       const description = document.getElementById("description").value.trim();
+      const [badge, badge2] = getBadgeValues();
 
       if(!marque || !modele || !annee || !km || !carburant || !prix){
         setMessage("Remplis tous les champs obligatoires.", "error");
@@ -1056,6 +1107,8 @@
           km,
           carburant,
           boite,
+          badge,
+          badge2,
           prix,
           description,
           images: finalImages.join(",")
