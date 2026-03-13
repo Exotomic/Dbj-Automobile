@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catalogue - DBJ Automobile</title>
 
+<link rel="stylesheet" href="header.css">
+  
 <style>
 *{
   box-sizing:border-box;
@@ -330,22 +332,7 @@ h1{
 
 <body>
 
-<header class="site-header">
-  <div class="logo-center">
-    <img src="images/logo1.png" class="logo" alt="DBJ Automobile">
-  </div>
-
-  <div class="top-bar">
-    <div class="menu">
-      <a href="index.html">Accueil</a>
-      <a href="catalogue.html">Catalogue</a>
-      <a href="rachat.html">Estimer mon véhicule</a>
-      <a href="#" onclick="openContact(); return false;">Contact</a>
-    </div>
-  </div>
-
-  <p class="slogan">Votre spécialiste auto : achat, vente et réparation</p>
-</header>
+<div id="header"></div>
 
 <div class="container">
   <h1 class="page-title">Notre catalogue</h1>
@@ -524,5 +511,13 @@ window.addEventListener("click", function(e){
 });
 </script>
 
+<script>
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+document.getElementById("header").innerHTML = data;
+});
+</script>  
+  
 </body>
 </html>
