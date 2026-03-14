@@ -9,6 +9,7 @@
   <meta name="author" content="DBJ Automobile">
   <meta name="theme-color" content="#111111">
   <link rel="canonical" href="https://dbjautomobile.fr/">
+
   <meta property="og:title" content="DBJ Automobile - Garage automobile à Chocques">
   <meta property="og:description" content="Achat, vente, reprise et réparation de véhicules chez DBJ Automobile à Chocques. Découvrez notre catalogue automobile.">
   <meta property="og:type" content="website">
@@ -106,21 +107,21 @@
     .hero-banner{
       min-height:560px;
       background:
-        linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.32)),
+        linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.34)),
         url("images/hero.jpg") center/cover no-repeat;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:48px 20px;
+      padding:40px 20px;
       position:relative;
     }
 
     .hero-overlay{
       text-align:center;
       color:white;
-      background:rgba(0,0,0,0.22);
-      border:1px solid rgba(255,255,255,0.10);
-      box-shadow:0 20px 50px rgba(0,0,0,0.30);
+      background:rgba(0,0,0,0.26);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 18px 40px rgba(0,0,0,0.30);
       backdrop-filter:blur(4px);
       border-radius:24px;
       padding:55px 40px;
@@ -134,15 +135,12 @@
       font-size:64px;
       line-height:1.05;
       letter-spacing:0.5px;
-      text-shadow:0 4px 18px rgba(0,0,0,0.55);
     }
 
     .hero-overlay p{
       margin:0;
       font-size:24px;
       color:#f2f2f2;
-      line-height:1.5;
-      text-shadow:0 4px 16px rgba(0,0,0,0.45);
     }
 
     .hero-buttons{
@@ -293,6 +291,19 @@
       cursor:pointer;
     }
 
+    .site-footer{
+      text-align:center;
+      padding:20px;
+      background:#111;
+      color:#ddd;
+      font-size:14px;
+      margin-top:40px;
+    }
+
+    .site-footer p{
+      margin:0;
+    }
+
     @keyframes fadeUp{
       from{
         opacity:0;
@@ -396,29 +407,28 @@
     }
   </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AutoRepair",
-  "name": "DBJ Automobile",
-  "image": "https://dbjautomobile.fr/images/logo1.png",
-  "url": "https://dbjautomobile.fr/",
-  "telephone": "+33 6 66 37 96 85",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "600 Rue de Lillers",
-    "postalCode": "62920",
-    "addressLocality": "Chocques",
-    "addressCountry": "FR"
-  },
-  "areaServed": "Chocques",
-  "priceRange": "€€",
-  "sameAs": [
-    "https://www.google.com/search?q=DBJ+AUTOMOBILE+Chocques"
-  ]
-}
-</script>
-  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "DBJ Automobile",
+    "image": "https://dbjautomobile.fr/images/logo1.png",
+    "url": "https://dbjautomobile.fr/",
+    "telephone": "+33 6 66 37 96 85",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "600 Rue de Lillers",
+      "postalCode": "62920",
+      "addressLocality": "Chocques",
+      "addressCountry": "FR"
+    },
+    "areaServed": "Chocques",
+    "priceRange": "€€",
+    "sameAs": [
+      "https://www.google.com/search?q=DBJ+AUTOMOBILE+Chocques"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -494,19 +504,33 @@
       <span class="close" onclick="closeContact()">✕</span>
 
       <h2>Contact</h2>
+
       <p>📍 600 rue de Lillers, 62920 Chocques</p>
-      <p>📞 <a href="tel:+33666379685">06 66 37 96 85</a></p>
-      <p>✉️ <a href="mailto:dbjautomobile@gmail.com">dbjautomobile@gmail.com</a></p>
-      <p><a href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques" target="_blank">Voir sur Google Maps</a></p>
+
+      <p>
+        📞 <a href="tel:+33666379685">06 66 37 96 85</a>
+      </p>
+
+      <p>
+        ✉️ <a href="mailto:dbjautomobile@gmail.com">dbjautomobile@gmail.com</a>
+      </p>
+
+      <p>
+        <a href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques" target="_blank">
+          Voir sur Google Maps
+        </a>
+      </p>
 
       <h3>Horaires</h3>
-      <p>Lundi : 9h-12h / 14h-18h</p>
-      <p>Mardi : 9h-12h / 14h-18h</p>
-      <p>Mercredi : 9h-12h / 14h-18h</p>
-      <p>Jeudi : 9h-12h / 14h-18h</p>
-      <p>Vendredi : 9h-12h / 14h-18h</p>
-      <p>Samedi : Fermé</p>
+      <p>Lundi : 9h - 18h</p>
+      <p>Mardi : 9h - 18h</p>
+      <p>Mercredi : 9h - 18h</p>
+      <p>Jeudi : 9h - 18h</p>
+      <p>Vendredi : 9h - 18h</p>
+      <p>Samedi : 10h - 17h</p>
       <p>Dimanche : Fermé</p>
+    </div>
+  </div>
 
   <script>
     function openContact(){
@@ -524,6 +548,10 @@
       }
     });
   </script>
+
+  <footer class="site-footer">
+    <p>© 2026 DBJ Automobile. Tous droits réservés.</p>
+  </footer>
 
 </body>
 </html>
