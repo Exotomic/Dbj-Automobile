@@ -123,21 +123,24 @@
     }
 
     .main-image-wrap{
-      width:100%;
-      height:390px;
+      position:relative;
+      background:#f4f4f4;
       border-radius:18px;
       overflow:hidden;
-      background:#ddd;
-      box-shadow:0 8px 20px rgba(0,0,0,0.12);
-      position:relative;
+      border:1px solid #eee;
     }
 
     .main-image{
       width:100%;
-      height:100%;
+      height:330px;
       object-fit:cover;
       display:block;
       cursor:zoom-in;
+      transition:transform 0.25s ease;
+    }
+
+    .main-image:hover{
+      transform:scale(1.01);
     }
 
     .image-badges{
@@ -151,14 +154,16 @@
     }
 
     .badge{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:7px 12px;
       border-radius:999px;
       font-size:12px;
       font-weight:bold;
-      background:#111;
-      color:white;
-      box-shadow:0 4px 10px rgba(0,0,0,0.18);
+      letter-spacing:0.3px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.16);
+      backdrop-filter:blur(3px);
     }
 
     .badge-gold{
@@ -166,61 +171,35 @@
       color:#111;
     }
 
+    .badge-dark{
+      background:#111;
+      color:white;
+    }
+
     .thumbs{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:12px;
-      margin-top:16px;
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+      overflow-x:auto;
+      padding-bottom:4px;
     }
 
     .thumb{
-      width:100%;
-      height:88px;
+      width:92px;
+      height:68px;
       object-fit:cover;
-      border-radius:10px;
+      border-radius:12px;
       cursor:pointer;
       border:2px solid transparent;
-      transition:0.25s;
-      background:#ddd;
+      background:#f4f4f4;
+      flex:0 0 auto;
+      transition:0.2s;
     }
 
     .thumb:hover,
     .thumb.active{
       border-color:#d4af37;
-      transform:translateY(-2px) scale(1.03);
-    }
-
-    .section-box{
-      background:#fafafa;
-      border:1px solid #ececec;
-      border-radius:18px;
-      padding:22px;
-      margin-top:18px;
-    }
-
-    .section-box h3{
-      margin:0 0 14px 0;
-      font-size:24px;
-      color:#111;
-    }
-
-    .options-list{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px 14px;
-      margin:0;
-      padding:0;
-      list-style:none;
-    }
-
-    .options-list li{
-      background:white;
-      border:1px solid #ececec;
-      border-radius:12px;
-      padding:12px 14px;
-      font-size:15px;
-      line-height:1.6;
-      color:#222;
+      transform:translateY(-1px);
     }
 
     .info-col{
@@ -228,9 +207,9 @@
     }
 
     .vehicle-title{
-      font-size:42px;
-      line-height:1.12;
-      margin:0 0 14px 0;
+      margin:0 0 12px 0;
+      font-size:34px;
+      line-height:1.15;
       color:#111;
     }
 
@@ -238,73 +217,85 @@
       display:flex;
       gap:8px;
       flex-wrap:wrap;
-      margin-bottom:14px;
+      margin-bottom:16px;
     }
 
     .price{
-      display:inline-block;
-      background:linear-gradient(135deg,#d4af37,#c5a12f);
-      color:#111;
-      padding:12px 22px;
-      border-radius:10px;
-      font-size:28px;
-      font-weight:bold;
-      margin-bottom:18px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.15);
+      font-size:32px;
+      font-weight:800;
+      color:#d4af37;
+      margin-bottom:14px;
     }
 
     .short-specs{
       color:#555;
-      font-size:18px;
-      margin-bottom:24px;
-      line-height:1.5;
+      font-size:16px;
+      margin-bottom:22px;
     }
 
     .cta-row{
       display:flex;
-      gap:12px;
+      gap:14px;
       flex-wrap:wrap;
-      margin-bottom:24px;
+      margin-bottom:26px;
     }
 
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:12px;
       text-decoration:none;
-      padding:12px 18px;
-      border-radius:10px;
       font-weight:bold;
+      font-size:16px;
       transition:0.2s;
+      min-width:160px;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
     }
 
     .btn-dark{
       background:#111;
       color:white;
-      box-shadow:0 5px 15px rgba(0,0,0,0.25);
-    }
-
-    .btn-dark:hover{
-      background:#d4af37;
-      color:#111;
-      transform:translateY(-2px);
+      box-shadow:0 10px 18px rgba(0,0,0,0.15);
     }
 
     .btn-gold{
       background:#d4af37;
       color:#111;
-      box-shadow:0 5px 15px rgba(0,0,0,0.20);
+      box-shadow:0 10px 18px rgba(212,175,55,0.22);
     }
 
-    .btn-gold:hover{
-      background:#caa22d;
-      transform:translateY(-2px);
+    .section-box{
+      background:#fafafa;
+      border:1px solid #eee;
+      border-radius:18px;
+      padding:20px;
+      margin-bottom:20px;
+    }
+
+    .section-box h3{
+      margin:0 0 14px 0;
+      font-size:20px;
+      color:#111;
     }
 
     .description{
       color:#333;
-      font-size:16px;
-      line-height:1.9;
+      line-height:1.7;
       white-space:pre-line;
-      max-width:680px;
+      font-size:15px;
+    }
+
+    .options-list{
+      margin:0;
+      padding-left:18px;
+      color:#333;
+      line-height:1.9;
+      columns:1;
     }
 
     .spec-grid{
@@ -315,47 +306,34 @@
 
     .spec-item{
       background:white;
-      border-radius:12px;
+      border:1px solid #eee;
+      border-radius:14px;
       padding:14px;
-      border:1px solid #ececec;
     }
 
     .spec-label{
       display:block;
       font-size:13px;
       color:#777;
-      margin-bottom:6px;
-      text-transform:uppercase;
-      letter-spacing:0.3px;
+      margin-bottom:5px;
     }
 
     .spec-value{
-      font-size:16px;
-      color:#111;
+      font-size:15px;
       font-weight:bold;
-      word-break:break-word;
-    }
-
-    .empty{
-      background:white;
-      padding:30px;
-      border-radius:18px;
-      text-align:center;
-      box-shadow:0 8px 20px rgba(0,0,0,0.08);
-      color:#666;
+      color:#111;
     }
 
     .related-section{
       max-width:1180px;
-      margin:0 auto 70px auto;
+      margin:0 auto 80px auto;
       padding:0 20px;
     }
 
     .related-section h2{
-      margin:0 0 18px 0;
-      font-size:30px;
+      font-size:28px;
+      margin:0 0 22px 0;
       color:#111;
-      text-align:center;
     }
 
     .related-grid{
@@ -366,66 +344,63 @@
 
     .related-card{
       background:white;
-      border-radius:16px;
+      border-radius:18px;
       overflow:hidden;
-      box-shadow:0 8px 20px rgba(0,0,0,0.08);
-      transition:0.25s;
       border:1px solid #ececec;
+      box-shadow:0 14px 30px rgba(0,0,0,0.08);
+      transition:0.25s;
     }
 
     .related-card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 16px 30px rgba(0,0,0,0.12);
+      transform:translateY(-4px);
+      box-shadow:0 18px 34px rgba(0,0,0,0.12);
     }
 
     .related-image-wrap{
       position:relative;
+      height:210px;
+      background:#f2f2f2;
     }
 
-    .related-card img{
+    .related-image-wrap img{
       width:100%;
-      height:190px;
+      height:100%;
       object-fit:cover;
       display:block;
     }
 
     .related-body{
-      padding:16px;
+      padding:18px;
     }
 
     .related-title{
       font-size:20px;
-      font-weight:bold;
+      font-weight:800;
       margin-bottom:8px;
       color:#111;
-      line-height:1.3;
     }
 
     .related-meta{
-      color:#555;
+      color:#666;
       font-size:14px;
-      line-height:1.5;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
 
     .related-price{
-      display:inline-block;
-      background:linear-gradient(135deg,#d4af37,#c5a12f);
-      color:#111;
-      padding:8px 14px;
-      border-radius:8px;
-      font-weight:bold;
+      color:#d4af37;
+      font-size:24px;
+      font-weight:800;
       margin-bottom:12px;
     }
 
     .related-btn{
       display:inline-block;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:bold;
       background:#111;
       color:white;
-      text-decoration:none;
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:bold;
       transition:0.2s;
     }
 
@@ -434,58 +409,124 @@
       color:#111;
     }
 
+    .empty{
+      background:white;
+      padding:28px;
+      border-radius:18px;
+      text-align:center;
+      color:#666;
+      box-shadow:0 14px 30px rgba(0,0,0,0.08);
+      border:1px solid #ececec;
+    }
+
     .contact-popup{
       display:none;
       position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
+      inset:0;
       background:rgba(0,0,0,0.6);
       justify-content:center;
       align-items:center;
       z-index:9999;
+      padding:20px;
     }
 
     .contact-box{
       background:white;
-      color:#111;
-      padding:30px;
-      border-radius:14px;
-      width:90%;
-      max-width:420px;
+      padding:30px 24px;
+      border-radius:18px;
+      max-width:520px;
+      width:100%;
       text-align:center;
       position:relative;
-      box-shadow:0 8px 25px rgba(0,0,0,0.25);
+      box-shadow:0 18px 40px rgba(0,0,0,0.22);
+      max-height:90vh;
+      overflow-y:auto;
     }
 
-    .contact-box h2,
-    .contact-box h3{
+    .contact-box h2{
       margin-top:0;
+      color:#111;
+    }
+
+    .contact-box p{
+      margin:10px 0;
+      color:#333;
+      line-height:1.6;
     }
 
     .contact-box a{
-      color:#111;
-      text-decoration:none;
+      color:#d4af37;
       font-weight:bold;
+      text-decoration:none;
+    }
+
+    .contact-box a:hover{
+      text-decoration:underline;
     }
 
     .close{
       position:absolute;
-      top:10px;
-      right:15px;
-      font-size:24px;
+      top:12px;
+      right:16px;
+      font-size:28px;
       cursor:pointer;
+      color:#111;
+      line-height:1;
+    }
+
+    .form-group{
+      margin-bottom:14px;
+      text-align:left;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:6px;
+      font-weight:bold;
+      color:#111;
+      font-size:14px;
+    }
+
+    .form-group input,
+    .form-group textarea{
+      width:100%;
+      padding:12px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      font-size:15px;
+      font-family:Arial, sans-serif;
+      outline:none;
+      transition:border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus{
+      border-color:#d4af37;
+      box-shadow:0 0 0 3px rgba(212,175,55,0.12);
+    }
+
+    .form-status{
+      margin-top:14px;
+      text-align:center;
+      font-weight:bold;
+      min-height:20px;
+    }
+
+    .vehicle-interest-note{
+      margin-bottom:18px;
+      color:#555;
+      line-height:1.5;
+      font-size:15px;
     }
 
     .lightbox{
-      display:none;
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.92);
-      z-index:10000;
+      background:rgba(0,0,0,0.88);
+      display:none;
       justify-content:center;
       align-items:center;
+      z-index:10000;
       padding:30px;
     }
 
@@ -502,102 +543,125 @@
       align-items:center;
     }
 
-    .lightbox-image{
+    .lightbox img{
       max-width:100%;
-      max-height:85vh;
+      max-height:88vh;
       object-fit:contain;
-      border-radius:12px;
-      box-shadow:0 12px 30px rgba(0,0,0,0.35);
+      border-radius:16px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.35);
       background:#111;
     }
 
-    .lightbox-close{
+    .lightbox-close,
+    .lightbox-nav{
       position:absolute;
-      top:-50px;
-      right:0;
-      font-size:34px;
+      background:rgba(255,255,255,0.16);
       color:white;
+      border:none;
       cursor:pointer;
-      font-weight:bold;
+      backdrop-filter:blur(5px);
+      transition:0.2s;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-nav:hover{
+      background:rgba(255,255,255,0.26);
+    }
+
+    .lightbox-close{
+      top:-52px;
+      right:0;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      font-size:28px;
       line-height:1;
     }
 
     .lightbox-nav{
-      position:absolute;
       top:50%;
       transform:translateY(-50%);
       width:52px;
       height:52px;
-      border:none;
-      border-radius:50%;
-      background:rgba(255,255,255,0.14);
-      color:white;
-      font-size:28px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:0.2s;
+      border-radius:999px;
+      font-size:30px;
     }
 
-    .lightbox-nav:hover{
-      background:rgba(212,175,55,0.9);
-      color:#111;
+    .lightbox-prev{left:18px;}
+    .lightbox-next{right:18px;}
+
+    @media (max-width:980px){
+      .detail-card{
+        grid-template-columns:1fr;
+      }
+
+      .main-image{
+        height:300px;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
-    .lightbox-prev{left:20px;}
-    .lightbox-next{right:20px;}
+    @media (max-width:700px){
+      .logo{
+        height:110px;
+      }
 
-    @media(max-width:980px){
-      .detail-card{grid-template-columns:1fr;}
-      .main-image-wrap{height:340px;}
-      .vehicle-title{font-size:34px;}
-      .related-grid{grid-template-columns:1fr;}
-      .options-list{grid-template-columns:1fr;}
-    }
-
-    @media(max-width:768px){
-      .site-header{padding:22px 16px 26px 16px;}
-      .logo{height:115px;}
-      .logo-center{margin-bottom:14px;}
       .menu{
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-        max-width:320px;
-        width:100%;
-        margin:0 auto;
+        gap:18px;
       }
+
       .menu a{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        min-height:48px;
-        font-size:18px;
-        text-align:center;
-        background:rgba(255,255,255,0.04);
-        border:1px solid rgba(255,255,255,0.08);
-        border-radius:12px;
-        padding:10px 14px;
-      }
-      .slogan{
         font-size:16px;
-        line-height:1.5;
-        padding:0 16px;
-        max-width:340px;
-        margin:14px auto 0 auto;
       }
-      .page-wrap{margin:34px auto 50px auto;}
-      .detail-card{padding:18px;}
-      .main-image-wrap{height:260px;}
-      .thumbs{grid-template-columns:repeat(3, 1fr);}
-      .thumb{height:82px;}
-      .vehicle-title{font-size:28px;}
-      .price{font-size:24px;}
-      .short-specs{font-size:16px;}
-      .spec-grid{grid-template-columns:1fr;}
-      .options-list{grid-template-columns:1fr;}
-      .lightbox{padding:15px;}
+
+      .slogan{
+        font-size:17px;
+      }
+
+      .page-wrap{
+        margin:32px auto 50px auto;
+      }
+
+      .detail-card{
+        padding:18px;
+        border-radius:18px;
+      }
+
+      .vehicle-title{
+        font-size:28px;
+      }
+
+      .price{
+        font-size:28px;
+      }
+
+      .main-image{
+        height:250px;
+      }
+
+      .spec-grid{
+        grid-template-columns:1fr;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr;
+      }
+
+      .cta-row{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .lightbox{
+        padding:16px;
+      }
+
       .lightbox-close{top:-42px;font-size:30px;}
       .lightbox-nav{width:44px;height:44px;font-size:24px;}
       .lightbox-prev{left:8px;}
@@ -639,6 +703,7 @@
     </div>
   </section>
 
+  <!-- Popup Contact menu -->
   <div id="contactPopup" class="contact-popup">
     <div class="contact-box">
       <span class="close" onclick="closeContact()">✕</span>
@@ -660,17 +725,56 @@
     </div>
   </div>
 
+  <!-- Popup intérêt véhicule -->
+  <div id="interestPopup" class="contact-popup">
+    <div class="contact-box">
+      <span class="close" onclick="closeInterestPopup()">✕</span>
+
+      <h2>Je suis intéressé par ce véhicule</h2>
+      <p id="interestVehicleTitle" class="vehicle-interest-note"></p>
+
+      <form id="interestForm">
+        <div class="form-group">
+          <label for="interestName">Nom</label>
+          <input type="text" id="interestName" name="user_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="interestPhone">Téléphone</label>
+          <input type="tel" id="interestPhone" name="user_phone" required>
+        </div>
+
+        <div class="form-group">
+          <label for="interestMessage">Message</label>
+          <textarea id="interestMessage" name="message" rows="5">Bonjour, je suis intéressé par ce véhicule. Merci de me recontacter.</textarea>
+        </div>
+
+        <input type="hidden" id="interestCarTitle" name="car_title">
+        <input type="hidden" id="interestCarReference" name="car_reference">
+        <input type="hidden" id="interestCarPrice" name="car_price">
+        <input type="hidden" id="interestCarLink" name="car_link">
+
+        <button type="submit" id="interestSubmitBtn" class="btn btn-gold" style="border:none; cursor:pointer; width:100%;">
+          Envoyer la demande
+        </button>
+
+        <p id="interestStatus" class="form-status"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lightbox images -->
   <div id="lightbox" class="lightbox">
     <div class="lightbox-content">
-      <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
       <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">‹</button>
-      <img id="lightboxImage" class="lightbox-image" src="" alt="Photo véhicule">
+      <img id="lightboxImage" src="" alt="Image véhicule">
       <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">›</button>
     </div>
   </div>
 
   <script type="module">
-    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
     const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
     const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
@@ -681,69 +785,66 @@
 
     let currentImages = [];
     let currentImageIndex = 0;
+    let currentVehicle = null;
+
+    function safeValue(value) {
+      return value || "Non renseigné";
+    }
 
     function formatPrice(price) {
-      if (price === null || price === undefined || price === "") return "Prix sur demande";
-      const numeric = Number(String(price).replace(/[^\d.-]/g, ""));
-      if (Number.isNaN(numeric)) return price;
-      return new Intl.NumberFormat("fr-FR").format(numeric) + " €";
+      if (!price && price !== 0) return "Prix non renseigné";
+      return new Intl.NumberFormat("fr-FR").format(price) + " €";
     }
 
-    function safeValue(value, fallback = "Non renseigné") {
-      return value !== null && value !== undefined && value !== "" ? value : fallback;
-    }
-
-    function normalizeDescription(text) {
-      if (!text) return "Description à venir.";
-      return String(text).trim();
-    }
-
-    function renderBadges(car, withGoldFirst = true){
-      const badges = [car.badge, car.badge2].filter(Boolean);
-      if(!badges.length) return "";
-      return badges.map((badge, index) => `
-        <span class="badge ${withGoldFirst && index === 0 ? 'badge-gold' : ''}">${badge}</span>
-      `).join("");
-    }
-
-    function getOptionsArray(car){
-      if(!car.options) return [];
-      return car.options
-        .split("\n")
+    function getOptionsArray(car) {
+      if (!car.options) return [];
+      if (Array.isArray(car.options)) return car.options.filter(Boolean);
+      return String(car.options)
+        .split(",")
         .map(item => item.trim())
         .filter(Boolean);
     }
 
+    function normalizeDescription(text) {
+      if (!text) return "Aucune description renseignée.";
+      return String(text).trim();
+    }
+
+    function renderBadges(car) {
+      return [car.badge, car.badge2]
+        .filter(Boolean)
+        .map((badgeText, index) => {
+          const badgeClass = index === 0 ? "badge-gold" : "badge-dark";
+          return `<span class="badge ${badgeClass}">${badgeText}</span>`;
+        })
+        .join("");
+    }
+
     function updateMainImage(index) {
       if (!currentImages.length) return;
-
       currentImageIndex = index;
       const mainImage = document.getElementById("mainVehicleImage");
+      const thumbs = document.querySelectorAll(".thumb");
 
       if (mainImage) {
         mainImage.src = currentImages[index];
       }
 
-      document.querySelectorAll(".thumb").forEach((thumb, thumbIndex) => {
-        thumb.classList.toggle("active", thumbIndex === index);
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle("active", i === index);
       });
     }
 
     function openLightbox(index = 0) {
       if (!currentImages.length) return;
-
       currentImageIndex = index;
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImage = document.getElementById("lightboxImage");
-
-      lightboxImage.src = currentImages[currentImageIndex];
-      lightbox.classList.add("open");
+      document.getElementById("lightboxImage").src = currentImages[currentImageIndex];
+      document.getElementById("lightbox").classList.add("open");
       document.body.style.overflow = "hidden";
     }
 
     function closeLightbox() {
-      const lightbox = document.getElementById("lightbox");
-      lightbox.classList.remove("open");
+      document.getElementById("lightbox").classList.remove("open");
       document.body.style.overflow = "";
     }
 
@@ -763,6 +864,8 @@
 
     function renderVehicle(car) {
       const container = document.getElementById("vehicleContainer");
+      currentVehicle = car;
+      window.currentVehicle = car;
 
       currentImages = car.images
         ? car.images.split(",").map(img => img.trim()).filter(Boolean)
@@ -834,7 +937,7 @@
 
             <div class="cta-row">
               <a href="tel:+33666379685" class="btn btn-dark">Appeler</a>
-              <a href="#" onclick="openContact(); return false;" class="btn btn-gold">Nous contacter</a>
+              <a href="#" onclick="openInterestPopup(); return false;" class="btn btn-gold">Je suis intéressé</a>
             </div>
 
             <div class="section-box">
@@ -843,13 +946,8 @@
             </div>
 
             <div class="section-box">
-              <h3>Informations véhicule</h3>
+              <h3>Caractéristiques</h3>
               <div class="spec-grid">
-                <div class="spec-item">
-                  <span class="spec-label">Référence</span>
-                  <span class="spec-value">${safeValue(car.reference, "DBJ-NON-RENSEIGNEE")}</span>
-                </div>
-
                 <div class="spec-item">
                   <span class="spec-label">Marque</span>
                   <span class="spec-value">${safeValue(car.marque)}</span>
@@ -1001,7 +1099,11 @@
     });
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
+    emailjs.init("TON_PUBLIC_KEY");
+
     function openContact(){
       document.getElementById("contactPopup").style.display = "flex";
     }
@@ -1010,10 +1112,87 @@
       document.getElementById("contactPopup").style.display = "none";
     }
 
+    function openInterestPopup() {
+      const popup = document.getElementById("interestPopup");
+      const titleEl = document.getElementById("interestVehicleTitle");
+      const carTitleInput = document.getElementById("interestCarTitle");
+      const carReferenceInput = document.getElementById("interestCarReference");
+      const carPriceInput = document.getElementById("interestCarPrice");
+      const carLinkInput = document.getElementById("interestCarLink");
+      const messageInput = document.getElementById("interestMessage");
+
+      const car = window.currentVehicle || null;
+
+      const title = car
+        ? [car.marque, car.modele].filter(Boolean).join(" ") || "Véhicule disponible"
+        : "Véhicule disponible";
+
+      const reference = car?.reference || car?.id || "Non renseignée";
+      const price = car?.prix ? new Intl.NumberFormat("fr-FR").format(Number(car.prix)) + " €" : "Prix sur demande";
+      const link = window.location.href;
+
+      titleEl.textContent = title;
+
+      carTitleInput.value = title;
+      carReferenceInput.value = reference;
+      carPriceInput.value = price;
+      carLinkInput.value = link;
+
+      messageInput.value = `Bonjour, je suis intéressé par le véhicule ${title}. Merci de me recontacter.`;
+
+      document.getElementById("interestStatus").textContent = "";
+      popup.style.display = "flex";
+    }
+
+    function closeInterestPopup() {
+      document.getElementById("interestPopup").style.display = "none";
+    }
+
     window.addEventListener("click", function(e){
-      const popup = document.getElementById("contactPopup");
-      if(e.target === popup){
+      const contactPopup = document.getElementById("contactPopup");
+      const interestPopup = document.getElementById("interestPopup");
+
+      if(e.target === contactPopup){
         closeContact();
+      }
+
+      if(e.target === interestPopup){
+        closeInterestPopup();
+      }
+    });
+
+    document.getElementById("interestForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const status = document.getElementById("interestStatus");
+      const btn = document.getElementById("interestSubmitBtn");
+
+      status.style.color = "#111";
+      status.textContent = "";
+      btn.disabled = true;
+      btn.textContent = "Envoi en cours...";
+
+      try {
+        await emailjs.sendForm(
+          "service_yg5gjr5",
+          "template_xaf7tps",
+          this
+        );
+
+        status.style.color = "green";
+        status.textContent = "Votre demande a bien été envoyée.";
+        this.reset();
+
+        setTimeout(() => {
+          closeInterestPopup();
+        }, 1200);
+      } catch (error) {
+        console.error(error);
+        status.style.color = "red";
+        status.textContent = "Une erreur est survenue, veuillez réessayer.";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Envoyer la demande";
       }
     });
   </script>
