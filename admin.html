@@ -6,9 +6,8 @@
   <title>Admin - DBJ Automobile</title>
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
 
     body{
       font-family:Arial, sans-serif;
@@ -17,39 +16,43 @@
       background:linear-gradient(180deg,#ececec,#e2e2e2);
       background-image:radial-gradient(#d6d6d6 1px, transparent 1px);
       background-size:20px 20px;
+      overflow-x:hidden;
+      overflow-y:auto;
     }
 
     .site-header{
       background:linear-gradient(180deg,#0f0f0f,#1a1a1a);
       color:white;
-      padding:18px 20px 22px 20px;
+      padding:24px 20px 28px 20px;
       text-align:center;
       box-shadow:0 5px 15px rgba(0,0,0,0.25);
     }
 
     .logo{
-      height:120px;
+      height:130px;
       width:auto;
       max-width:100%;
       object-fit:contain;
       display:block;
-      margin:0 auto 12px auto;
+      margin:0 auto 14px auto;
     }
 
     .header-title{
       margin:0;
-      font-size:30px;
+      font-size:32px;
+      line-height:1.2;
     }
 
     .header-subtitle{
       margin:10px 0 0 0;
       color:#ddd;
       font-size:18px;
+      line-height:1.4;
     }
 
     .wrapper{
-      max-width:1180px;
-      margin:30px auto 60px auto;
+      max-width:1240px;
+      margin:36px auto 60px auto;
       padding:0 20px;
     }
 
@@ -57,7 +60,7 @@
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-bottom:20px;
+      margin-bottom:22px;
     }
 
     .action-btn{
@@ -109,7 +112,7 @@
 
     .layout{
       display:grid;
-      grid-template-columns:1.05fr 0.95fr;
+      grid-template-columns:1.08fr 0.92fr;
       gap:22px;
       align-items:start;
     }
@@ -126,6 +129,7 @@
       margin-top:0;
       margin-bottom:10px;
       font-size:30px;
+      line-height:1.2;
     }
 
     .box-intro{
@@ -140,9 +144,7 @@
       gap:14px;
     }
 
-    .full{
-      grid-column:1 / -1;
-    }
+    .full{grid-column:1 / -1;}
 
     label{
       display:block;
@@ -171,8 +173,32 @@
     }
 
     textarea{
-      min-height:150px;
+      min-height:170px;
       resize:vertical;
+    }
+
+    .helper-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .small-btn{
+      border:none;
+      border-radius:10px;
+      padding:11px 14px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+      background:#111;
+      color:white;
+    }
+
+    .small-btn:hover{
+      background:#d4af37;
+      color:#111;
+      transform:translateY(-2px);
     }
 
     .file-box{
@@ -212,6 +238,7 @@
       border-radius:8px;
       display:block;
       margin-bottom:8px;
+      background:#ddd;
     }
 
     .photo-badge{
@@ -248,17 +275,10 @@
       color:white;
     }
 
-    .preview-actions button:hover{
-      background:#333;
-    }
-
-    .preview-actions .remove-btn{
-      background:#c62828;
-    }
-
-    .preview-actions .remove-btn:hover{
-      background:#a61f1f;
-    }
+    .preview-actions button:hover{background:#333;}
+    .preview-actions .remove-btn{background:#c62828;}
+    .preview-actions .remove-btn:hover{background:#a61f1f;}
+    .preview-actions button:disabled{opacity:0.45;cursor:not-allowed;}
 
     .form-actions{
       display:flex;
@@ -307,9 +327,7 @@
       border:1px solid #e3b5b5;
     }
 
-    .danger-outline:hover{
-      background:#fff5f5;
-    }
+    .danger-outline:hover{background:#fff5f5;}
 
     .msg{
       margin-top:14px;
@@ -317,17 +335,9 @@
       min-height:24px;
     }
 
-    .success{
-      color:green;
-    }
-
-    .error{
-      color:#c62828;
-    }
-
-    .info{
-      color:#111;
-    }
+    .success{color:green;}
+    .error{color:#c62828;}
+    .info{color:#111;}
 
     .cars-list{
       display:flex;
@@ -368,11 +378,13 @@
     .car-item-content h3{
       margin:0 0 8px 0;
       font-size:22px;
+      line-height:1.25;
     }
 
     .car-item-content p{
       margin:4px 0;
       color:#555;
+      line-height:1.5;
     }
 
     .car-price{
@@ -382,6 +394,23 @@
       color:#111;
       padding:6px 12px;
       border-radius:8px;
+      font-weight:bold;
+    }
+
+    .badges-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .badge-chip{
+      display:inline-block;
+      background:#111;
+      color:white;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
       font-weight:bold;
     }
 
@@ -401,39 +430,22 @@
       transition:0.2s;
     }
 
-    .edit-btn{
-      background:#111;
-      color:white;
-    }
-
-    .edit-btn:hover{
-      background:#333;
-    }
-
-    .delete-btn{
-      background:#c62828;
-      color:white;
-    }
-
-    .delete-btn:hover{
-      background:#a61f1f;
-    }
-
-    .empty{
-      color:#666;
-    }
+    .edit-btn{background:#111;color:white;}
+    .edit-btn:hover{background:#333;}
+    .delete-btn{background:#c62828;color:white;}
+    .delete-btn:hover{background:#a61f1f;}
+    .empty{color:#666;}
 
     .generator-box{
       background:#fafafa;
       border:1px solid #ececec;
       border-radius:16px;
-      padding:20px;
-      margin-top:10px;
+      padding:18px;
+      margin-top:6px;
     }
 
     .generator-box h3{
-      margin-top:0;
-      margin-bottom:16px;
+      margin:0 0 16px 0;
       font-size:24px;
     }
 
@@ -464,77 +476,33 @@
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:20px;
+      margin-top:16px;
     }
 
     @media(max-width:980px){
-      .dashboard{
-        grid-template-columns:1fr;
-      }
-
-      .layout{
-        grid-template-columns:1fr;
-      }
+      .dashboard{grid-template-columns:1fr;}
+      .layout{grid-template-columns:1fr;}
     }
 
     @media(max-width:800px){
-      body{
-        padding:0;
-      }
-
-      .wrapper{
-        padding:0 15px;
-      }
-
-      .grid{
-        grid-template-columns:1fr;
-      }
-
-      .car-item{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .car-item img{
-        width:100%;
-        height:220px;
-      }
-
-      .car-actions{
-        width:100%;
-        min-width:auto;
-        flex-direction:row;
-      }
-
-      .car-actions button{
-        flex:1;
-      }
-
-      .top-actions{
-        flex-direction:column;
-      }
-
-      .action-btn{
-        width:100%;
-      }
-
-      .form-actions{
-        flex-direction:column;
-      }
-
-      .primary-btn,
-      .secondary-btn,
-      .danger-outline{
-        width:100%;
-      }
-
-      .checkbox-grid{
-        grid-template-columns:1fr;
-      }
-
-      .generator-actions{
-        flex-direction:column;
-      }
+      .site-header{padding:22px 16px 26px 16px;}
+      .logo{height:115px;}
+      .header-title{font-size:28px;}
+      .header-subtitle{font-size:16px;}
+      .wrapper{padding:0 15px;margin:30px auto 50px auto;}
+      .grid{grid-template-columns:1fr;}
+      .checkbox-grid{grid-template-columns:1fr;}
+      .car-item{flex-direction:column;align-items:flex-start;}
+      .car-item img{width:100%;height:220px;}
+      .car-actions{width:100%;min-width:auto;flex-direction:row;}
+      .car-actions button{flex:1;}
+      .top-actions{flex-direction:column;}
+      .action-btn{width:100%;}
+      .form-actions{flex-direction:column;}
+      .generator-actions{flex-direction:column;}
+      .primary-btn,.secondary-btn,.danger-outline{width:100%;}
+      .helper-row{flex-direction:column;}
+      .small-btn{width:100%;}
     }
   </style>
 </head>
@@ -547,7 +515,6 @@
   </header>
 
   <div class="wrapper">
-
     <div class="top-actions">
       <button class="action-btn" type="button" onclick="goToSite()">← Retour au site</button>
       <button class="action-btn" type="button" onclick="logout()">Se déconnecter</button>
@@ -571,32 +538,31 @@
     </div>
 
     <div class="layout">
-
       <div class="box">
         <h2 id="formTitle">Ajouter une voiture</h2>
         <p class="box-intro">
-          Ajoute un véhicule, organise les photos, puis publie-le directement sur le site.
+          Ajoute un véhicule, organise les photos, génère une annonce plus pro et publie-la directement.
         </p>
 
         <div class="grid">
           <div>
             <label for="marque">Marque</label>
-            <input type="text" id="marque" placeholder="Ex : Renault">
+            <input type="text" id="marque" placeholder="Ex : BMW">
           </div>
 
           <div>
             <label for="modele">Modèle</label>
-            <input type="text" id="modele" placeholder="Ex : Clio">
+            <input type="text" id="modele" placeholder="Ex : Série 1">
           </div>
 
           <div>
             <label for="annee">Année</label>
-            <input type="text" id="annee" placeholder="Ex : 2018">
+            <input type="text" id="annee" placeholder="Ex : 2016">
           </div>
 
           <div>
             <label for="km">Kilométrage</label>
-            <input type="text" id="km" placeholder="Ex : 82000">
+            <input type="text" id="km" placeholder="Ex : 184000">
           </div>
 
           <div>
@@ -621,14 +587,50 @@
             </select>
           </div>
 
-          <div class="full">
-            <label for="prix">Prix</label>
-            <input type="text" id="prix" placeholder="Ex : 8990 €">
+          <div>
+            <label for="badge">Badge principal</label>
+            <select id="badge">
+              <option value="">Aucun</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="Bonne affaire">Bonne affaire</option>
+              <option value="Véhicule rare">Véhicule rare</option>
+              <option value="Très propre">Très propre</option>
+              <option value="Collection">Collection</option>
+              <option value="Révisé">Révisé</option>
+              <option value="Faible kilométrage">Faible kilométrage</option>
+              <option value="Petit prix">Petit prix</option>
+              <option value="Boîte auto">Boîte auto</option>
+              <option value="Entretien suivi">Entretien suivi</option>
+              <option value="Bien équipée">Bien équipée</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="badge2">Badge secondaire</label>
+            <select id="badge2">
+              <option value="">Aucun</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="Bonne affaire">Bonne affaire</option>
+              <option value="Véhicule rare">Véhicule rare</option>
+              <option value="Très propre">Très propre</option>
+              <option value="Collection">Collection</option>
+              <option value="Révisé">Révisé</option>
+              <option value="Faible kilométrage">Faible kilométrage</option>
+              <option value="Petit prix">Petit prix</option>
+              <option value="Boîte auto">Boîte auto</option>
+              <option value="Entretien suivi">Entretien suivi</option>
+              <option value="Bien équipée">Bien équipée</option>
+            </select>
           </div>
 
           <div class="full">
-            <label for="description">Description</label>
-            <textarea id="description" placeholder="Description du véhicule"></textarea>
+            <label>Référence automatique</label>
+            <input type="text" id="referencePreview" placeholder="Ex : DBJ-001" readonly>
+          </div>
+
+          <div class="full">
+            <label for="prix">Prix</label>
+            <input type="text" id="prix" placeholder="Ex : 8990 €">
           </div>
 
           <div class="full">
@@ -673,8 +675,8 @@
                 </div>
 
                 <div>
-                  <label for="etat_general">État général</label>
-                  <select id="etat_general">
+                  <label for="etatGeneral">État général</label>
+                  <select id="etatGeneral">
                     <option value="">Choisir</option>
                     <option value="bon état général">Bon état général</option>
                     <option value="très bon état général">Très bon état général</option>
@@ -712,7 +714,7 @@
               </div>
 
               <div class="full" style="margin-top:18px;">
-                <label>Points forts</label>
+                <label>Points à mettre en avant</label>
                 <div class="checkbox-grid" id="highlightsChecklist">
                   <label><input type="checkbox" value="Entretien suivi"> Entretien suivi</label>
                   <label><input type="checkbox" value="Première main"> Première main</label>
@@ -742,7 +744,7 @@
 
               <div class="grid" style="margin-top:18px;">
                 <div>
-                  <label for="warrantyDuration">Garantie</label>
+                  <label for="warrantyDuration">Durée garantie</label>
                   <select id="warrantyDuration">
                     <option value="">Aucune</option>
                     <option value="3 mois">3 mois</option>
@@ -751,7 +753,7 @@
                 </div>
 
                 <div>
-                  <label for="warrantyType">Type de garantie</label>
+                  <label for="warrantyType">Type garantie</label>
                   <select id="warrantyType">
                     <option value="">Aucune</option>
                     <option value="garage">Garage</option>
@@ -763,7 +765,6 @@
 
               <div class="generator-actions">
                 <button type="button" class="secondary-btn" onclick="generateOptionsOnly()">Générer options</button>
-                <button type="button" class="secondary-btn" onclick="generateHighlightsOnly()">Générer points forts</button>
                 <button type="button" class="secondary-btn" onclick="generateDescriptionOnly()">Générer description</button>
                 <button type="button" class="primary-btn" onclick="generateAllContent()">Tout générer</button>
               </div>
@@ -771,23 +772,23 @@
           </div>
 
           <div class="full">
-            <label for="points_forts">Points forts</label>
-            <textarea id="points_forts" placeholder="Ex : Entretien suivi&#10;Bon état général&#10;Bien équipé"></textarea>
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Description du véhicule"></textarea>
+
+            <div class="helper-row">
+              <button type="button" class="small-btn" onclick="generateDescriptionOnly()">✨ Générer description</button>
+              <button type="button" class="small-btn" onclick="generateShortDescription()">⚡ Version courte</button>
+              <button type="button" class="small-btn" onclick="generateAllContent()">🚀 Générer fiche complète</button>
+            </div>
           </div>
 
           <div class="full">
             <label for="options">Options / équipements</label>
-            <textarea id="options" placeholder="Ex : GPS&#10;Bluetooth&#10;Radar de recul"></textarea>
-          </div>
+            <textarea id="options" placeholder="Une ligne = une option"></textarea>
 
-          <div>
-            <label for="badge">Badge 1</label>
-            <input type="text" id="badge" placeholder="Ex : Boîte auto">
-          </div>
-
-          <div>
-            <label for="badge2">Badge 2</label>
-            <input type="text" id="badge2" placeholder="Ex : Entretien suivi">
+            <div class="helper-row">
+              <button type="button" class="small-btn" onclick="generateOptionsOnly()">🛠️ Générer options</button>
+            </div>
           </div>
 
           <div class="full">
@@ -822,7 +823,6 @@
           <p class="empty">Chargement...</p>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -843,19 +843,19 @@
     const formTitle = document.getElementById("formTitle");
     const saveBtn = document.getElementById("saveBtn");
     const cancelEditBtn = document.getElementById("cancelEditBtn");
+    const referencePreview = document.getElementById("referencePreview");
 
     let selectedFiles = [];
     let editingId = null;
     let existingImages = [];
+    let carsDataCache = [];
 
     imageInput.addEventListener("change", function(){
       const files = Array.from(imageInput.files);
-
       if(files.length > 0){
         selectedFiles = [...selectedFiles, ...files];
         renderPreview();
       }
-
       imageInput.value = "";
     });
 
@@ -876,6 +876,45 @@
     function setMessage(text, type){
       message.textContent = text;
       message.className = "msg " + (type || "");
+    }
+
+    function getBadgeValues(){
+      const b1 = document.getElementById("badge").value.trim();
+      const b2 = document.getElementById("badge2").value.trim();
+      if(b1 && b2 && b1 === b2){
+        return [b1, ""];
+      }
+      return [b1, b2];
+    }
+
+    function hasBadge(name){
+      const [b1, b2] = getBadgeValues();
+      return b1 === name || b2 === name;
+    }
+
+    function getNextReference(){
+      const refs = carsDataCache
+        .map(car => car.reference || "")
+        .filter(Boolean);
+
+      let maxNumber = 0;
+
+      refs.forEach(ref => {
+        const match = ref.match(/^DBJ-(\d+)$/i);
+        if(match){
+          const n = parseInt(match[1], 10);
+          if(!Number.isNaN(n) && n > maxNumber){
+            maxNumber = n;
+          }
+        }
+      });
+
+      return `DBJ-${String(maxNumber + 1).padStart(3, "0")}`;
+    }
+
+    function updateReferencePreview(){
+      if(editingId) return;
+      referencePreview.value = getNextReference();
     }
 
     function renderPreview(){
@@ -990,14 +1029,266 @@
       renderPreview();
     };
 
+    function normalizeKm(km){
+      return String(km || "").replace(/[^\d]/g, "");
+    }
+
+    function getCheckedValues(containerId){
+      return Array.from(document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`))
+        .map(input => input.value.trim())
+        .filter(Boolean);
+    }
+
+    function uniqueValues(list){
+      return [...new Set(list.filter(Boolean))];
+    }
+
+    function formatList(items){
+      const clean = uniqueValues(items);
+      if(clean.length === 0) return "";
+      if(clean.length === 1) return clean[0];
+      if(clean.length === 2) return `${clean[0]} et ${clean[1]}`;
+      return `${clean.slice(0, -1).join(", ")} et ${clean[clean.length - 1]}`;
+    }
+
+    function getVehicleContext(){
+      const marque = document.getElementById("marque").value.trim();
+      const modele = document.getElementById("modele").value.trim();
+      const anneeValue = document.getElementById("annee").value.trim();
+      const kmValue = document.getElementById("km").value.trim();
+      const carburant = document.getElementById("carburant").value.trim();
+      const boite = document.getElementById("boite").value.trim();
+      const prix = document.getElementById("prix").value.trim();
+      const etatGeneral = document.getElementById("etatGeneral").value;
+      const vehicleType = document.getElementById("vehicleType").value;
+      const descriptionStyle = document.getElementById("descriptionStyle").value;
+      const salesPriority = document.getElementById("salesPriority").value;
+
+      const annee = parseInt(anneeValue, 10);
+      const km = parseInt(normalizeKm(kmValue), 10);
+      const currentYear = new Date().getFullYear();
+      const age = Number.isNaN(annee) ? null : currentYear - annee;
+
+      return {
+        marque,
+        modele,
+        annee,
+        km,
+        carburant,
+        boite,
+        prix,
+        age,
+        etatGeneral,
+        vehicleType,
+        descriptionStyle,
+        salesPriority
+      };
+    }
+
+    function detectVehicleProfile(ctx){
+      if(ctx.vehicleType) return ctx.vehicleType;
+
+      const lowerModele = (ctx.modele || "").toLowerCase();
+      const lowerMarque = (ctx.marque || "").toLowerCase();
+
+      if(["bmw","audi","mercedes","mini","lexus"].includes(lowerMarque)) return "premium";
+      if(lowerModele.includes("3008") || lowerModele.includes("qashqai") || lowerModele.includes("captur") || lowerModele.includes("2008")) return "suv";
+      if(lowerModele.includes("clio") || lowerModele.includes("208") || lowerModele.includes("c3") || lowerModele.includes("twingo") || lowerModele.includes("aygo")) return "citadine";
+      if(lowerModele.includes("trafic") || lowerModele.includes("master") || lowerModele.includes("partner") || lowerModele.includes("berlingo")) return "utilitaire";
+      if((ctx.carburant || "").toLowerCase() === "diesel" && (ctx.boite || "").toLowerCase() === "automatique") return "routiere";
+
+      return "compacte";
+    }
+
+    function buildWarrantySentence(){
+      const duration = document.getElementById("warrantyDuration").value;
+      const type = document.getElementById("warrantyType").value;
+      if(!duration || !type) return "";
+      return `Garantie ${type} ${duration}.`;
+    }
+
+    function buildSalesMentions(){
+      const mentions = [];
+
+      if(document.getElementById("mentionRevise").checked){
+        mentions.push("Ce véhicule sera vendu révisé pour la vente.");
+      }
+
+      const warranty = buildWarrantySentence();
+      if(warranty) mentions.push(warranty);
+
+      if(document.getElementById("mentionReprise").checked){
+        mentions.push("Reprise possible de votre ancien véhicule.");
+      }
+
+      if(document.getElementById("mentionEssai").checked){
+        mentions.push("Essai possible sur rendez-vous.");
+      }
+
+      if(document.getElementById("mentionCT").checked){
+        mentions.push("Contrôle technique à jour.");
+      }
+
+      return mentions;
+    }
+
+    function buildDescription(isShort = false){
+      const ctx = getVehicleContext();
+      const options = getCheckedValues("optionsChecklist");
+      const highlights = getCheckedValues("highlightsChecklist");
+      const profile = detectVehicleProfile(ctx);
+
+      if(!ctx.marque || !ctx.modele){
+        setMessage("Renseigne au moins la marque et le modèle avant de générer.", "error");
+        return "";
+      }
+
+      const title = `${ctx.marque} ${ctx.modele}`.trim();
+      const hasHighKm = !Number.isNaN(ctx.km) && ctx.km >= 180000;
+
+      let intro = `DBJ Automobile vous propose cette ${title}`;
+      if(ctx.annee) intro += ` de ${ctx.annee}`;
+      if(ctx.carburant) intro += ` en motorisation ${ctx.carburant.toLowerCase()}`;
+      if(ctx.boite) intro += ` avec boîte ${ctx.boite.toLowerCase()}`;
+      intro += ".";
+
+      let usageSentence = "Véhicule agréable à conduire et adapté à un usage quotidien.";
+      if(profile === "citadine") usageSentence = "Une citadine pratique et polyvalente, idéale pour les trajets du quotidien comme pour la ville.";
+      if(profile === "compacte") usageSentence = "Une compacte polyvalente, agréable au quotidien et adaptée aussi bien à la ville qu’aux trajets plus longs.";
+      if(profile === "routiere") usageSentence = "Un véhicule apprécié pour son confort de conduite et son agrément sur route comme sur les longs trajets.";
+      if(profile === "suv") usageSentence = "Un SUV polyvalent, apprécié pour son espace, son confort et sa praticité au quotidien.";
+      if(profile === "utilitaire") usageSentence = "Un véhicule pratique et fonctionnel, adapté à une utilisation professionnelle comme quotidienne.";
+      if(profile === "premium") usageSentence = "Un véhicule valorisant, apprécié pour son confort, sa présentation et son agrément de conduite.";
+
+      if(ctx.salesPriority === "equipement"){
+        usageSentence = "Ce véhicule se distingue par son bon niveau d’équipement et sa polyvalence au quotidien.";
+      }else if(ctx.salesPriority === "confort"){
+        usageSentence = "Ce véhicule offre un bon confort de conduite, apprécié aussi bien au quotidien que sur route.";
+      }else if(ctx.salesPriority === "economie"){
+        usageSentence = "Une configuration intéressante pour un usage quotidien, avec une attention portée à l’économie d’utilisation.";
+      }else if(ctx.salesPriority === "fiabilite"){
+        usageSentence = "Un véhicule sérieux, rassurant et adapté à un usage quotidien.";
+      }else if(ctx.salesPriority === "route"){
+        usageSentence = "Une configuration bien adaptée aux trajets réguliers comme aux longs parcours.";
+      }else if(ctx.salesPriority === "familial"){
+        usageSentence = "Un véhicule polyvalent, pratique et agréable pour un usage familial.";
+      }
+
+      const optionsText = formatList(options.slice(0, 5));
+      let optionsSentence = "";
+      if(optionsText){
+        optionsSentence = `Il dispose notamment de ${optionsText}.`;
+      }
+
+      const stateBits = [];
+      if(highlights.includes("Entretien suivi")) stateBits.push("entretien suivi");
+      if(highlights.includes("Première main")) stateBits.push("première main");
+      if(ctx.etatGeneral) stateBits.push(ctx.etatGeneral);
+      if(highlights.includes("Très bon état général") && !stateBits.includes("très bon état général")) stateBits.push("très bon état général");
+      if(highlights.includes("Bon état général") && !stateBits.includes("bon état général")) stateBits.push("bon état général");
+      if(highlights.includes("Véhicule propre")) stateBits.push("véhicule propre");
+      if(highlights.includes("Conduite agréable")) stateBits.push("conduite agréable");
+      if(highlights.includes("Bien équipé")) stateBits.push("bien équipé");
+
+      let stateSentence = "";
+      if(stateBits.length){
+        stateSentence = `${stateBits[0].charAt(0).toUpperCase() + stateBits[0].slice(1)}${stateBits.length > 1 ? `, ${stateBits.slice(1).join(", ")}` : ""}.`;
+      }
+
+      if(hasHighKm && !stateSentence){
+        stateSentence = "Présentation sérieuse et véhicule agréable à conduire.";
+      }
+
+      let text = `${intro} ${usageSentence}`;
+      if(!isShort && optionsSentence) text += ` ${optionsSentence}`;
+      if(stateSentence) text += ` ${stateSentence}`;
+
+      const salesMentions = buildSalesMentions();
+      if(salesMentions.length){
+        text += ` ${salesMentions.join(" ")}`;
+      }
+
+      if(ctx.descriptionStyle === "neutre"){
+        return text.replace("DBJ Automobile vous propose", "Nous vous proposons");
+      }
+
+      if(ctx.descriptionStyle === "vendeur"){
+        return `${text} Une occasion sérieuse, bien présentée et prête à prendre la route.`;
+      }
+
+      if(ctx.descriptionStyle === "premium"){
+        return `${text} Une configuration recherchée offrant un bon niveau de confort et une présentation valorisante.`;
+      }
+
+      return text;
+    }
+
+    function autoSelectBadges(){
+      const options = getCheckedValues("optionsChecklist");
+      const highlights = getCheckedValues("highlightsChecklist");
+      const ctx = getVehicleContext();
+
+      let badge1 = "";
+      let badge2 = "";
+
+      if((ctx.boite || "").toLowerCase() === "automatique") badge1 = "Boîte auto";
+      else if(highlights.includes("Entretien suivi")) badge1 = "Entretien suivi";
+      else if(highlights.includes("Bien équipé") || options.length >= 4) badge1 = "Bien équipée";
+      else if(!Number.isNaN(ctx.km) && ctx.km < 70000) badge1 = "Faible kilométrage";
+
+      if(highlights.includes("Entretien suivi") && badge1 !== "Entretien suivi") badge2 = "Entretien suivi";
+      else if(options.length >= 4 && badge1 !== "Bien équipée") badge2 = "Bien équipée";
+      else if(document.getElementById("mentionRevise").checked && badge1 !== "Révisé") badge2 = "Révisé";
+
+      document.getElementById("badge").value = badge1;
+      document.getElementById("badge2").value = badge2 && badge2 !== badge1 ? badge2 : "";
+    }
+
+    function buildGeneratedOptions(){
+      const options = getCheckedValues("optionsChecklist");
+      return uniqueValues(options).join("\n");
+    }
+
+    window.generateOptionsOnly = function(){
+      document.getElementById("options").value = buildGeneratedOptions();
+      autoSelectBadges();
+      setMessage("Options générées.", "success");
+    };
+
+    window.generateDescriptionOnly = function(){
+      const text = buildDescription(false);
+      if(text){
+        document.getElementById("description").value = text;
+        autoSelectBadges();
+        setMessage("Description générée.", "success");
+      }
+    };
+
+    window.generateShortDescription = function(){
+      const text = buildDescription(true);
+      if(text){
+        document.getElementById("description").value = text;
+        autoSelectBadges();
+        setMessage("Description courte générée.", "success");
+      }
+    };
+
+    window.generateAllContent = function(){
+      const description = buildDescription(false);
+      if(!description) return;
+
+      document.getElementById("description").value = description;
+      document.getElementById("options").value = buildGeneratedOptions();
+      autoSelectBadges();
+      setMessage("Fiche complète générée.", "success");
+    };
+
     async function checkAuth(){
       const { data, error } = await supabase.auth.getSession();
-
       if(error || !data.session){
         window.location.href = "login.html";
         return false;
       }
-
       return true;
     }
 
@@ -1065,7 +1356,6 @@
 
       for(const file of files){
         const compressed = await compressImage(file);
-
         const cleanName = compressed.name.replace(/\s+/g, "-").toLowerCase();
         const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}-${cleanName}`;
 
@@ -1106,29 +1396,39 @@
         return;
       }
 
-      const count = data?.length || 0;
+      carsDataCache = data || [];
+
+      const count = carsDataCache.length || 0;
       carsCount.textContent = String(count);
       document.getElementById("carsTitle").textContent = `Voitures en ligne (${count})`;
 
-      if(!data || data.length === 0){
+      updateReferencePreview();
+
+      if(!carsDataCache || carsDataCache.length === 0){
         carsList.innerHTML = `<p class="empty">Aucune voiture en ligne.</p>`;
         return;
       }
 
       carsList.innerHTML = "";
 
-      data.forEach(car => {
+      carsDataCache.forEach(car => {
         const imagesArray = car.images ? car.images.split(",").filter(Boolean) : [];
         const firstImage = imagesArray[0] || "images/hero.jpg";
         const title = `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
+
+        const badges = [car.badge, car.badge2].filter(Boolean)
+          .map(b => `<span class="badge-chip">${b}</span>`)
+          .join("");
 
         carsList.innerHTML += `
           <div class="car-item">
             <img src="${firstImage}" alt="${title}">
             <div class="car-item-content">
               <h3>${title}</h3>
+              <p>${car.reference || "Référence non définie"}</p>
               <p>${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""} • ${car.boite || ""}</p>
               <div class="car-price">${car.prix || "Prix non renseigné"}</div>
+              ${badges ? `<div class="badges-row">${badges}</div>` : ""}
             </div>
             <div class="car-actions">
               <button class="edit-btn" onclick="editCar('${car.id}')">Modifier</button>
@@ -1139,23 +1439,11 @@
       });
     }
 
-    function resetFormFields(){
-      document.getElementById("marque").value = "";
-      document.getElementById("modele").value = "";
-      document.getElementById("annee").value = "";
-      document.getElementById("km").value = "";
-      document.getElementById("carburant").value = "";
-      document.getElementById("boite").value = "";
-      document.getElementById("prix").value = "";
-      document.getElementById("description").value = "";
-      document.getElementById("points_forts").value = "";
-      document.getElementById("options").value = "";
-      document.getElementById("badge").value = "";
-      document.getElementById("badge2").value = "";
+    function resetGeneratorFields(){
       document.getElementById("vehicleType").value = "";
       document.getElementById("descriptionStyle").value = "pro";
       document.getElementById("salesPriority").value = "equipement";
-      document.getElementById("etat_general").value = "";
+      document.getElementById("etatGeneral").value = "";
       document.getElementById("warrantyDuration").value = "";
       document.getElementById("warrantyType").value = "";
       document.getElementById("mentionRevise").checked = false;
@@ -1166,9 +1454,24 @@
       document.querySelectorAll('#optionsChecklist input[type="checkbox"], #highlightsChecklist input[type="checkbox"]').forEach(input => {
         input.checked = false;
       });
+    }
 
+    function resetFormFields(){
+      document.getElementById("marque").value = "";
+      document.getElementById("modele").value = "";
+      document.getElementById("annee").value = "";
+      document.getElementById("km").value = "";
+      document.getElementById("carburant").value = "";
+      document.getElementById("boite").value = "";
+      document.getElementById("badge").value = "";
+      document.getElementById("badge2").value = "";
+      document.getElementById("prix").value = "";
+      document.getElementById("description").value = "";
+      document.getElementById("options").value = "";
+      referencePreview.value = getNextReference();
       selectedFiles = [];
       existingImages = [];
+      resetGeneratorFields();
       renderPreview();
     }
 
@@ -1185,6 +1488,43 @@
       resetFormFields();
       updateDashboard();
     };
+
+    function precheckFromText(containerId, text){
+      const lowerText = (text || "").toLowerCase();
+      document.querySelectorAll(`#${containerId} input[type="checkbox"]`).forEach(input => {
+        input.checked = lowerText.includes(input.value.toLowerCase());
+      });
+    }
+
+    function detectMentionsFromDescription(text){
+      const lower = (text || "").toLowerCase();
+      document.getElementById("mentionRevise").checked = lower.includes("vendu révisé");
+      document.getElementById("mentionReprise").checked = lower.includes("reprise possible");
+      document.getElementById("mentionEssai").checked = lower.includes("essai possible");
+      document.getElementById("mentionCT").checked = lower.includes("contrôle technique");
+    }
+
+    function detectWarrantyFromDescription(text){
+      const lower = (text || "").toLowerCase();
+
+      if(lower.includes("6 mois")){
+        document.getElementById("warrantyDuration").value = "6 mois";
+      }else if(lower.includes("3 mois")){
+        document.getElementById("warrantyDuration").value = "3 mois";
+      }else{
+        document.getElementById("warrantyDuration").value = "";
+      }
+
+      if(lower.includes("garage, moteur / boîte")){
+        document.getElementById("warrantyType").value = "garage, moteur / boîte";
+      }else if(lower.includes("moteur / boîte")){
+        document.getElementById("warrantyType").value = "moteur / boîte";
+      }else if(lower.includes("garantie garage")){
+        document.getElementById("warrantyType").value = "garage";
+      }else{
+        document.getElementById("warrantyType").value = "";
+      }
+    }
 
     window.editCar = async function(id){
       const { data, error } = await supabase
@@ -1206,12 +1546,18 @@
       document.getElementById("km").value = data.km || "";
       document.getElementById("carburant").value = data.carburant || "";
       document.getElementById("boite").value = data.boite || "";
-      document.getElementById("prix").value = data.prix || "";
-      document.getElementById("description").value = data.description || "";
-      document.getElementById("points_forts").value = data.points_forts || "";
-      document.getElementById("options").value = data.options || "";
       document.getElementById("badge").value = data.badge || "";
       document.getElementById("badge2").value = data.badge2 || "";
+      document.getElementById("prix").value = data.prix || "";
+      document.getElementById("description").value = data.description || "";
+      document.getElementById("options").value = data.options || "";
+      referencePreview.value = data.reference || "";
+
+      resetGeneratorFields();
+      precheckFromText("optionsChecklist", data.options || "");
+      precheckFromText("highlightsChecklist", data.description || "");
+      detectMentionsFromDescription(data.description || "");
+      detectWarrantyFromDescription(data.description || "");
 
       existingImages = data.images ? data.images.split(",").filter(Boolean) : [];
       selectedFiles = [];
@@ -1222,250 +1568,6 @@
       setMessage("Mode modification activé.", "info");
     };
 
-    function getCheckedValues(containerId){
-      return Array.from(document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`))
-        .map(input => input.value.trim())
-        .filter(Boolean);
-    }
-
-    function uniqueValues(list){
-      return [...new Set(list.filter(Boolean))];
-    }
-
-    function formatList(items){
-      const clean = uniqueValues(items);
-      if(clean.length === 0) return "";
-      if(clean.length === 1) return clean[0];
-      if(clean.length === 2) return `${clean[0]} et ${clean[1]}`;
-      return `${clean.slice(0, -1).join(", ")} et ${clean[clean.length - 1]}`;
-    }
-
-    function detectVehicleProfile({
-      marque,
-      modele,
-      carburant,
-      boite,
-      vehicleType,
-      km
-    }){
-      if(vehicleType) return vehicleType;
-
-      const lowerModele = (modele || "").toLowerCase();
-      const lowerMarque = (marque || "").toLowerCase();
-      const mileage = parseInt(String(km || "").replace(/[^\d]/g, ""), 10) || 0;
-
-      if(["bmw", "audi", "mercedes", "mini", "lexus"].includes(lowerMarque)) return "premium";
-      if(lowerModele.includes("3008") || lowerModele.includes("qashqai") || lowerModele.includes("captur") || lowerModele.includes("2008")) return "suv";
-      if(lowerModele.includes("clio") || lowerModele.includes("208") || lowerModele.includes("c3") || lowerModele.includes("twingo") || lowerModele.includes("aygo")) return "citadine";
-      if(lowerModele.includes("megane") || lowerModele.includes("308") || lowerModele.includes("golf") || lowerModele.includes("a3")) return "compacte";
-      if(lowerModele.includes("trafic") || lowerModele.includes("master") || lowerModele.includes("partner") || lowerModele.includes("berlingo")) return "utilitaire";
-      if(carburant === "Diesel" && boite === "Automatique" && mileage > 120000) return "routiere";
-
-      return "compacte";
-    }
-
-    function buildWarrantySentence(){
-      const duration = document.getElementById("warrantyDuration").value;
-      const type = document.getElementById("warrantyType").value;
-
-      if(!duration || !type) return "";
-      return `Garantie ${type} ${duration}.`;
-    }
-
-    function buildSalesMentions(){
-      const mentions = [];
-
-      if(document.getElementById("mentionRevise").checked){
-        mentions.push("Ce véhicule sera vendu révisé pour la vente.");
-      }
-
-      const warranty = buildWarrantySentence();
-      if(warranty) mentions.push(warranty);
-
-      if(document.getElementById("mentionReprise").checked){
-        mentions.push("Reprise possible de votre ancien véhicule.");
-      }
-
-      if(document.getElementById("mentionEssai").checked){
-        mentions.push("Essai possible sur rendez-vous.");
-      }
-
-      if(document.getElementById("mentionCT").checked){
-        mentions.push("Contrôle technique à jour.");
-      }
-
-      return mentions;
-    }
-
-    function buildDescription(data){
-      const {
-        marque,
-        modele,
-        annee,
-        km,
-        carburant,
-        boite,
-        etatGeneral,
-        options,
-        highlights,
-        style,
-        priority,
-        profile
-      } = data;
-
-      const title = [marque, modele].filter(Boolean).join(" ");
-      const optionsText = formatList(options.slice(0, 5));
-      const state = etatGeneral || "";
-      const hasHighKm = (parseInt(String(km || "").replace(/[^\d]/g, ""), 10) || 0) >= 180000;
-
-      let intro = `DBJ Automobile vous propose cette ${title}`;
-      if(annee) intro += ` de ${annee}`;
-      if(carburant) intro += ` en motorisation ${carburant.toLowerCase()}`;
-      if(boite) intro += ` avec boîte ${boite.toLowerCase()}`;
-      intro += ".";
-
-      let usageSentence = "Véhicule agréable à conduire et adapté à un usage quotidien.";
-      if(profile === "citadine") usageSentence = "Une citadine pratique et polyvalente, idéale pour les trajets du quotidien comme pour la ville.";
-      if(profile === "compacte") usageSentence = "Une compacte polyvalente, agréable au quotidien et adaptée aussi bien à la ville qu’aux trajets plus longs.";
-      if(profile === "routiere") usageSentence = "Un véhicule apprécié pour son confort de conduite et son agrément sur route comme sur les longs trajets.";
-      if(profile === "suv") usageSentence = "Un SUV polyvalent, apprécié pour son espace, son confort et sa praticité au quotidien.";
-      if(profile === "utilitaire") usageSentence = "Un véhicule pratique et fonctionnel, adapté à une utilisation professionnelle comme quotidienne.";
-      if(profile === "premium") usageSentence = "Un véhicule valorisant, apprécié pour son confort, sa présentation et son agrément de conduite.";
-
-      if(priority === "equipement"){
-        usageSentence = "Ce véhicule se distingue par son bon niveau d’équipement et sa polyvalence au quotidien.";
-      }else if(priority === "confort"){
-        usageSentence = "Ce véhicule offre un bon confort de conduite, apprécié aussi bien au quotidien que sur route.";
-      }else if(priority === "economie"){
-        usageSentence = "Une configuration intéressante pour un usage quotidien, avec une attention portée à l’économie d’utilisation.";
-      }else if(priority === "fiabilite"){
-        usageSentence = "Un véhicule sérieux, rassurant et adapté à un usage quotidien.";
-      }else if(priority === "route"){
-        usageSentence = "Une configuration bien adaptée aux trajets réguliers comme aux longs parcours.";
-      }else if(priority === "familial"){
-        usageSentence = "Un véhicule polyvalent, pratique et agréable pour un usage familial.";
-      }
-
-      let optionsSentence = "";
-      if(optionsText){
-        optionsSentence = `Il dispose notamment de ${optionsText}.`;
-      }
-
-      const stateBits = [];
-      if(highlights.includes("Entretien suivi")) stateBits.push("entretien suivi");
-      if(highlights.includes("Première main")) stateBits.push("première main");
-      if(state) stateBits.push(state);
-
-      let stateSentence = "";
-      if(stateBits.length){
-        stateSentence = `${stateBits[0].charAt(0).toUpperCase() + stateBits[0].slice(1)}${stateBits.length > 1 ? `, ${stateBits.slice(1).join(", ")}` : ""}.`;
-      }
-
-      if(hasHighKm && !stateSentence){
-        stateSentence = "Présentation sérieuse et véhicule agréable à conduire.";
-      }
-
-      let text = `${intro} ${usageSentence}`;
-      if(optionsSentence) text += ` ${optionsSentence}`;
-      if(stateSentence) text += ` ${stateSentence}`;
-
-      const salesMentions = buildSalesMentions();
-      if(salesMentions.length){
-        text += ` ${salesMentions.join(" ")}`;
-      }
-
-      if(style === "neutre"){
-        return text.replace("DBJ Automobile vous propose", "Nous vous proposons");
-      }
-
-      if(style === "vendeur"){
-        return `${text} Une occasion sérieuse, bien présentée et prête à prendre la route.`;
-      }
-
-      if(style === "premium"){
-        return `${text} Une configuration recherchée offrant un bon niveau de confort et une présentation valorisante.`;
-      }
-
-      return text;
-    }
-
-    function generateOptionsOnly(){
-      const options = getCheckedValues("optionsChecklist");
-      document.getElementById("options").value = uniqueValues(options).join("\n");
-      setMessage("Options générées.", "success");
-    }
-
-    function generateHighlightsOnly(){
-      const highlights = getCheckedValues("highlightsChecklist");
-      const salesMentions = buildSalesMentions();
-      document.getElementById("points_forts").value = uniqueValues([...highlights, ...salesMentions]).join("\n");
-      setMessage("Points forts générés.", "success");
-    }
-
-    function generateDescriptionOnly(){
-      const marque = document.getElementById("marque").value.trim();
-      const modele = document.getElementById("modele").value.trim();
-      const annee = document.getElementById("annee").value.trim();
-      const km = document.getElementById("km").value.trim();
-      const carburant = document.getElementById("carburant").value.trim();
-      const boite = document.getElementById("boite").value.trim();
-      const vehicleType = document.getElementById("vehicleType").value;
-      const style = document.getElementById("descriptionStyle").value;
-      const priority = document.getElementById("salesPriority").value;
-      const etatGeneral = document.getElementById("etat_general").value;
-      const options = getCheckedValues("optionsChecklist");
-      const highlights = getCheckedValues("highlightsChecklist");
-
-      if(!marque || !modele){
-        setMessage("Renseigne au moins la marque et le modèle pour générer la description.", "error");
-        return;
-      }
-
-      const profile = detectVehicleProfile({ marque, modele, carburant, boite, vehicleType, km });
-
-      const description = buildDescription({
-        marque,
-        modele,
-        annee,
-        km,
-        carburant,
-        boite,
-        etatGeneral,
-        options,
-        highlights,
-        style,
-        priority,
-        profile
-      });
-
-      document.getElementById("description").value = description;
-      setMessage("Description générée.", "success");
-    }
-
-    function generateAllContent(){
-      const options = getCheckedValues("optionsChecklist");
-      const highlights = getCheckedValues("highlightsChecklist");
-      const salesMentions = buildSalesMentions();
-
-      document.getElementById("options").value = uniqueValues(options).join("\n");
-      document.getElementById("points_forts").value = uniqueValues([...highlights, ...salesMentions]).join("\n");
-
-      generateDescriptionOnly();
-
-      const badge1 = highlights[0] || options[0] || "";
-      const badge2 = highlights[1] || options[1] || "";
-
-      document.getElementById("badge").value = badge1;
-      document.getElementById("badge2").value = badge2;
-
-      setMessage("Description, options, points forts et badges générés.", "success");
-    }
-
-    window.generateOptionsOnly = generateOptionsOnly;
-    window.generateHighlightsOnly = generateHighlightsOnly;
-    window.generateDescriptionOnly = generateDescriptionOnly;
-    window.generateAllContent = generateAllContent;
-
     window.saveCar = async function(){
       const marque = document.getElementById("marque").value.trim();
       const modele = document.getElementById("modele").value.trim();
@@ -1475,10 +1577,8 @@
       const boite = document.getElementById("boite").value.trim();
       const prix = document.getElementById("prix").value.trim();
       const description = document.getElementById("description").value.trim();
-      const points_forts = document.getElementById("points_forts").value.trim();
       const options = document.getElementById("options").value.trim();
-      const badge = document.getElementById("badge").value.trim();
-      const badge2 = document.getElementById("badge2").value.trim();
+      const [badge, badge2] = getBadgeValues();
 
       if(!marque || !modele || !annee || !km || !carburant || !prix){
         setMessage("Remplis tous les champs obligatoires.", "error");
@@ -1501,19 +1601,23 @@
           return;
         }
 
+        const reference = editingId
+          ? (referencePreview.value.trim() || "")
+          : getNextReference();
+
         const payload = {
+          reference,
           marque,
           modele,
           annee,
           km,
           carburant,
           boite,
-          prix,
-          description,
-          points_forts,
-          options,
           badge,
           badge2,
+          prix,
+          description,
+          options,
           images: finalImages.join(",")
         };
 
