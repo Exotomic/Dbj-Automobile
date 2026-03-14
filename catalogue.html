@@ -9,6 +9,7 @@
   <meta name="author" content="DBJ Automobile">
   <meta name="theme-color" content="#111111">
   <link rel="canonical" href="https://dbjautomobile.fr/catalogue.html">
+
   <meta property="og:title" content="Voitures d'occasion à Chocques - DBJ Automobile">
   <meta property="og:description" content="Retrouvez les voitures d'occasion disponibles chez DBJ Automobile à Chocques. Consultez notre catalogue automobile.">
   <meta property="og:type" content="website">
@@ -19,7 +20,7 @@
   <meta name="twitter:title" content="Voitures d'occasion à Chocques - DBJ Automobile">
   <meta name="twitter:description" content="Retrouvez les voitures d'occasion disponibles chez DBJ Automobile à Chocques.">
   <meta name="twitter:image" content="https://dbjautomobile.fr/images/logo1.png">
-  
+
   <style>
     *{
       box-sizing:border-box;
@@ -104,7 +105,7 @@
     }
 
     .container{
-      max-width:1500px;
+      max-width:1150px;
       margin:48px auto 70px auto;
       padding:0 20px;
     }
@@ -328,6 +329,19 @@
       cursor:pointer;
     }
 
+    .site-footer{
+      text-align:center;
+      padding:20px;
+      background:#111;
+      color:#ddd;
+      font-size:14px;
+      margin-top:40px;
+    }
+
+    .site-footer p{
+      margin:0;
+    }
+
     @media(max-width:768px){
       .site-header{
         padding:22px 16px 26px 16px;
@@ -470,12 +484,12 @@
       <p><a href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques" target="_blank">Voir sur Google Maps</a></p>
 
       <h3>Horaires</h3>
-      <p>Lundi : 9h-12h / 14h-18h</p>
-      <p>Mardi : 9h-12h / 14h-18h</p>
-      <p>Mercredi : 9h-12h / 14h-18h</p>
-      <p>Jeudi : 9h-12h / 14h-18h</p>
-      <p>Vendredi : 9h-12h / 14h-18h</p>
-      <p>Samedi : Fermé</p>
+      <p>Lundi : 9h - 18h</p>
+      <p>Mardi : 9h - 18h</p>
+      <p>Mercredi : 9h - 18h</p>
+      <p>Jeudi : 9h - 18h</p>
+      <p>Vendredi : 9h - 18h</p>
+      <p>Samedi : 10h - 17h</p>
       <p>Dimanche : Fermé</p>
     </div>
   </div>
@@ -521,7 +535,7 @@
       return `
         <div class="card-badges">
           ${badges.map((badge, index) => `
-            <span class="badge ${index === 0 ? 'badge-gold' : ''}">${badge}</span>
+            <span class="badge ${index === 0 ? "badge-gold" : ""}">${badge}</span>
           `).join("")}
         </div>
       `;
@@ -618,6 +632,10 @@
       }
     });
   </script>
+
+  <footer class="site-footer">
+    <p>© 2026 DBJ Automobile. Tous droits réservés.</p>
+  </footer>
 
 </body>
 </html>
