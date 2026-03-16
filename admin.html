@@ -601,6 +601,7 @@
               <option value="Petit prix">Petit prix</option>
               <option value="Boîte auto">Boîte auto</option>
               <option value="Entretien suivi">Entretien suivi</option>
+              <option value="Première main">Première main</option>
               <option value="Bien équipée">Bien équipée</option>
             </select>
           </div>
@@ -619,6 +620,7 @@
               <option value="Petit prix">Petit prix</option>
               <option value="Boîte auto">Boîte auto</option>
               <option value="Entretien suivi">Entretien suivi</option>
+              <option value="Première main">Première main</option>
               <option value="Bien équipée">Bien équipée</option>
             </select>
           </div>
@@ -1231,12 +1233,14 @@
       let badge1 = "";
       let badge2 = "";
 
-      if((ctx.boite || "").toLowerCase() === "automatique") badge1 = "Boîte auto";
+      if(highlights.includes("Première main")) badge1 = "Première main";
+      else if((ctx.boite || "").toLowerCase() === "automatique") badge1 = "Boîte auto";
       else if(highlights.includes("Entretien suivi")) badge1 = "Entretien suivi";
       else if(highlights.includes("Bien équipé") || options.length >= 4) badge1 = "Bien équipée";
       else if(!Number.isNaN(ctx.km) && ctx.km < 70000) badge1 = "Faible kilométrage";
 
-      if(highlights.includes("Entretien suivi") && badge1 !== "Entretien suivi") badge2 = "Entretien suivi";
+      if(highlights.includes("Première main") && badge1 !== "Première main") badge2 = "Première main";
+      else if(highlights.includes("Entretien suivi") && badge1 !== "Entretien suivi") badge2 = "Entretien suivi";
       else if(options.length >= 4 && badge1 !== "Bien équipée") badge2 = "Bien équipée";
       else if(document.getElementById("mentionRevise").checked && badge1 !== "Révisé") badge2 = "Révisé";
 
