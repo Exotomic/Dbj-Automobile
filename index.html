@@ -70,6 +70,7 @@
       --radius-lg:22px;
       --radius-md:16px;
       --site-width:1180px;
+      --header-height:248px;
     }
 
     html{
@@ -79,14 +80,14 @@
     body{
       font-family:"Manrope","Segoe UI",sans-serif;
       margin:0;
-      padding-top:250px;
+      padding-top:var(--header-height);
       color:var(--text);
       background:
         radial-gradient(circle at top left, rgba(240,122,31,0.14), transparent 28%),
         radial-gradient(circle at 85% 10%, rgba(240,122,31,0.12), transparent 22%),
         linear-gradient(180deg,#090909 0%, #050505 42%, #0b0b0b 100%);
       overflow-x:hidden;
-      overflow-y:auto;
+      overflow-y:visible;
       position:relative;
     }
 
@@ -117,8 +118,9 @@
 
     .site-header{
       width:100%;
+      height:var(--header-height);
       margin:0;
-      padding:20px 28px 24px;
+      padding:0;
       color:var(--text);
       text-align:center;
       position:fixed;
@@ -131,10 +133,13 @@
       box-shadow:0 6px 18px rgba(0,0,0,0.14);
       backdrop-filter:blur(18px);
       overflow:hidden;
+      transform:none;
+      animation:none;
+      transition:none;
     }
 
     .site-header::before{
-      content:none;
+      content:"";
       position:absolute;
       inset:0 auto auto 0;
       width:100%;
@@ -145,11 +150,14 @@
 
     .header-shell{
       width:min(100%, var(--site-width));
+      height:100%;
       margin:0 auto;
+      padding:20px 28px 24px;
       display:flex;
       flex-direction:column;
+      justify-content:center;
       align-items:center;
-      gap:14px;
+      gap:12px;
     }
 
     .logo-center{
@@ -158,7 +166,7 @@
       justify-content:center;
       align-items:center;
       width:100%;
-      margin:0 0 16px 0;
+      margin:0;
     }
 
     .logo{
@@ -171,7 +179,7 @@
     }
 
     .brand-copy{
-      margin-top:2px;
+      margin-top:0;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -225,7 +233,7 @@
       letter-spacing:0.04em;
       text-transform:uppercase;
       line-height:1.2;
-      transition:color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      transition:color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
       padding:12px 20px;
       border-radius:999px;
       border:1px solid transparent;
@@ -235,7 +243,6 @@
       color:var(--text);
       background:rgba(240,122,31,0.08);
       border-color:rgba(240,122,31,0.22);
-      transform:translateY(-1px);
     }
 
     .slogan{
@@ -580,18 +587,18 @@
     }
 
     @media(max-width:768px){
-      body{
-        padding-top:290px;
+      :root{
+        --header-height:286px;
       }
 
       .site-header{
         width:100%;
         margin-top:0;
-        position:fixed;
-        top:0;
-        left:0;
-        z-index:1200;
+      }
+
+      .header-shell{
         padding:18px 14px 18px;
+        gap:10px;
       }
 
       .logo{
@@ -599,7 +606,7 @@
       }
 
       .logo-center{
-        margin-bottom:12px;
+        margin:0;
       }
 
       .brand-title{
@@ -640,7 +647,7 @@
         line-height:1.5;
         padding:0 8px;
         max-width:380px;
-        margin:14px auto 0 auto;
+        margin:0 auto;
       }
 
       .hero-banner{
@@ -772,6 +779,7 @@
         padding:0 0 26px;
       }
     }
+
   </style>
 
   <script type="application/ld+json">
@@ -925,3 +933,4 @@
 
 </body>
 </html>
+
