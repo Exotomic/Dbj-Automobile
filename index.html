@@ -70,7 +70,6 @@
       --radius-lg:22px;
       --radius-md:16px;
       --site-width:1180px;
-      --header-height:248px;
     }
 
     html{
@@ -80,7 +79,6 @@
     body{
       font-family:"Manrope","Segoe UI",sans-serif;
       margin:0;
-      padding-top:var(--header-height);
       color:var(--text);
       background:
         radial-gradient(circle at top left, rgba(240,122,31,0.14), transparent 28%),
@@ -118,24 +116,19 @@
 
     .site-header{
       width:100%;
-      height:var(--header-height);
       margin:0;
-      padding:0;
+      padding:20px 28px 24px;
       color:var(--text);
       text-align:center;
-      position:fixed;
+      position:relative;
       top:0;
-      left:0;
-      z-index:1200;
+      z-index:10;
       background:
         linear-gradient(180deg, rgba(14,14,14,0.9), rgba(7,7,7,0.96)),
         linear-gradient(90deg, rgba(240,122,31,0.05), transparent 45%, rgba(240,122,31,0.02));
       box-shadow:0 6px 18px rgba(0,0,0,0.14);
       backdrop-filter:blur(18px);
       overflow:hidden;
-      transform:none;
-      animation:none;
-      transition:none;
     }
 
     .site-header::before{
@@ -150,14 +143,11 @@
 
     .header-shell{
       width:min(100%, var(--site-width));
-      height:100%;
       margin:0 auto;
-      padding:20px 28px 24px;
       display:flex;
       flex-direction:column;
-      justify-content:center;
       align-items:center;
-      gap:12px;
+      gap:14px;
     }
 
     .logo-center{
@@ -166,7 +156,7 @@
       justify-content:center;
       align-items:center;
       width:100%;
-      margin:0;
+      margin:0 0 16px 0;
     }
 
     .logo{
@@ -179,7 +169,7 @@
     }
 
     .brand-copy{
-      margin-top:0;
+      margin-top:2px;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -587,18 +577,14 @@
     }
 
     @media(max-width:768px){
-      :root{
-        --header-height:286px;
-      }
-
       .site-header{
         width:100%;
         margin-top:0;
+        padding:18px 14px 18px;
       }
 
       .header-shell{
-        padding:18px 14px 18px;
-        gap:10px;
+        gap:14px;
       }
 
       .logo{
@@ -606,7 +592,7 @@
       }
 
       .logo-center{
-        margin:0;
+        margin-bottom:12px;
       }
 
       .brand-title{
@@ -647,7 +633,7 @@
         line-height:1.5;
         padding:0 8px;
         max-width:380px;
-        margin:0 auto;
+        margin:14px auto 0 auto;
       }
 
       .hero-banner{
@@ -933,4 +919,3 @@
 
 </body>
 </html>
-
