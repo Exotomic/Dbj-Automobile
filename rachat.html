@@ -118,7 +118,6 @@
         position: relative;
         top: 0;
         z-index: 10;
-        border-bottom: 1px solid var(--line);
         background:
           linear-gradient(180deg, rgba(14, 14, 14, 0.9), rgba(7, 7, 7, 0.96)),
           linear-gradient(
@@ -127,12 +126,12 @@
             transparent 45%,
             rgba(240, 122, 31, 0.02)
           );
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
         backdrop-filter: blur(18px);
         overflow: hidden;
       }
       .site-header::before {
-        content: "";
+        content: none;
         position: absolute;
         inset: 0 auto auto 0;
         width: 100%;
@@ -685,7 +684,7 @@
       #contactPopup .contact-map-link {
         display: inline-flex;
         top: -12px;
-        transform: translate(160px, -2px);
+        transform: translate(150px, -2px);
         gap: 10px;
         margin-top: 4px;
         color: #ffcfab;
@@ -895,6 +894,45 @@
         .site-footer {
           width: min(calc(100% - 20px), var(--site-width));
           padding: 0 0 26px;
+        }
+      }
+      @media (max-width: 768px) {
+        a,
+        button,
+        input,
+        select,
+        textarea,
+        .btn,
+        .menu a,
+        .back-link,
+        .thumb,
+        .gallery-thumb,
+        .filter-select,
+        .filter-input {
+          -webkit-tap-highlight-color: transparent;
+        }
+        a:focus,
+        a:focus-visible,
+        button:focus,
+        button:focus-visible,
+        input:focus,
+        input:focus-visible,
+        select:focus,
+        select:focus-visible,
+        textarea:focus,
+        textarea:focus-visible,
+        .btn:focus,
+        .btn:focus-visible,
+        .menu a:focus,
+        .menu a:focus-visible,
+        .back-link:focus,
+        .back-link:focus-visible,
+        .thumb:focus,
+        .thumb:focus-visible,
+        .gallery-thumb:focus,
+        .gallery-thumb:focus-visible {
+          outline: none !important;
+          box-shadow: none !important;
         }
       }
     </style>
