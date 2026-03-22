@@ -1,1276 +1,925 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#111111" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-
-    <title>DBJ Automobile - Garage automobile à Chocques</title>
-    <meta
-      name="description"
-      content="DBJ Automobile, garage à Chocques spécialisé dans l’achat, la vente, la reprise et la réparation de véhicules. Consultez notre catalogue et obtenez une estimation rapide."
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="DBJ Automobile" />
-    <meta name="theme-color" content="#111111" />
-    <link rel="canonical" href="https://dbjautomobile.fr/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <meta property="og:title" content="DBJ Automobile" />
-    <meta
-      property="og:description"
-      content="Vente, reprise et réparation de véhicules. Un service simple, fiable et sans surprise."
-    />
-    <meta property="og:image" content="https://dbjautomobile.fr/preview.jpg" />
-    <meta property="og:url" content="https://dbjautomobile.fr/" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DBJ Automobile" />
-    <meta
-      name="twitter:description"
-      content="Véhicules contrôlés, service professionnel et estimation rapide."
-    />
-    <meta name="twitter:image" content="https://dbjautomobile.fr/preview.jpg" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "AutoRepair",
-        "name": "DBJ Automobile",
-        "image": "https://dbjautomobile.fr/images/logo1.png",
-        "url": "https://dbjautomobile.fr/",
-        "telephone": "+33 6 66 37 96 85",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "600 Rue de Lillers",
-          "postalCode": "62920",
-          "addressLocality": "Chocques",
-          "addressCountry": "FR"
-        },
-        "areaServed": "Chocques",
-        "priceRange": "â‚¬â‚¬",
-        "sameAs": ["https://www.google.com/search?q=DBJ+AUTOMOBILE+Chocques"]
-      }
-    </script>
-
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      :root {
-        --bg: #050505;
-        --bg-soft: #101010;
-        --panel: rgba(17, 17, 17, 0.8);
-        --panel-strong: rgba(12, 12, 12, 0.92);
-        --line: rgba(255, 255, 255, 0.08);
-        --line-strong: rgba(255, 255, 255, 0.14);
-        --text: #f6f3ee;
-        --muted: #b9b0a5;
-        --accent: #f07a1f;
-        --accent-soft: #ff9c52;
-        --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
-        --radius-xl: 30px;
-        --radius-lg: 22px;
-        --radius-md: 16px;
-        --site-width: 1180px;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: "Manrope", "Segoe UI", sans-serif;
-        margin: 0;
-        color: var(--text);
-        background:
-          radial-gradient(
-            circle at top left,
-            rgba(240, 122, 31, 0.14),
-            transparent 28%
-          ),
-          radial-gradient(
-            circle at 85% 10%,
-            rgba(240, 122, 31, 0.12),
-            transparent 22%
-          ),
-          linear-gradient(180deg, #090909 0%, #050505 42%, #0b0b0b 100%);
-        overflow-x: hidden;
-        overflow-y: visible;
-        position: relative;
-      }
-
-      body::before,
-      body::after {
-        content: "";
-        position: fixed;
-        width: 34rem;
-        height: 34rem;
-        border-radius: 50%;
-        filter: blur(110px);
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.34;
-      }
-
-      body::before {
-        top: -10rem;
-        left: -8rem;
-        background: rgba(240, 122, 31, 0.18);
-      }
-
-      body::after {
-        right: -12rem;
-        bottom: -10rem;
-        background: rgba(240, 122, 31, 0.1);
-      }
-
-      .site-header {
-        width: 100%;
-        margin: 0;
-        padding: 20px 28px 24px;
-        color: var(--text);
-        text-align: center;
-        position: relative;
-        top: 0;
-        z-index: 10;
-        background:
-          linear-gradient(180deg, rgba(14, 14, 14, 0.9), rgba(7, 7, 7, 0.96)),
-          linear-gradient(
-            90deg,
-            rgba(240, 122, 31, 0.05),
-            transparent 45%,
-            rgba(240, 122, 31, 0.02)
-          );
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-        backdrop-filter: blur(18px);
-        overflow: hidden;
-      }
-      .site-header::before {
-        content: none;
-        position: absolute;
-        inset: 0 auto auto 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.25),
-          transparent
-        );
-        opacity: 0.55;
-      }
-      .header-shell {
-        width: min(100%, var(--site-width));
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .logo-center {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 0 0 16px 0;
-      }
-
-      .logo {
-        height: 118px;
-        width: auto;
-        max-width: 100%;
-        object-fit: contain;
-        display: block;
-        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.28));
-      }
-
-      .brand-copy {
-        margin-top: 2px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-      }
-
-      .brand-title {
-        margin: 0;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: -0.035em;
-        color: var(--text);
-      }
-
-      .brand-subtitle {
-        margin: 0;
-        color: #cdb49a;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-      }
-
-      .top-bar {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .menu {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: rgba(255, 255, 255, 0.025);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.04),
-          0 10px 24px rgba(0, 0, 0, 0.14);
-      }
-
-      .menu a {
-        color: rgba(246, 243, 238, 0.88);
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 15px;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        line-height: 1.2;
-        transition:
-          color 0.25s ease,
-          background 0.25s ease,
-          border-color 0.25s ease;
-        padding: 12px 20px;
-        border-radius: 999px;
-        border: 1px solid transparent;
-      }
-
-      .menu a:hover {
-        color: var(--text);
-        background: rgba(240, 122, 31, 0.08);
-        border-color: rgba(240, 122, 31, 0.22);
-      }
-
-      .slogan {
-        text-align: center;
-        margin: 0 auto;
-        color: var(--muted);
-        font-size: 13px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        line-height: 1.6;
-        max-width: 860px;
-      }
-
-      .hero-banner {
-        width: 100%;
-        max-width: none;
-        min-height: 560px;
-        margin: 0;
-        background:
-          linear-gradient(
-            90deg,
-            rgba(3, 3, 3, 0.88) 0%,
-            rgba(3, 3, 3, 0.38) 18%,
-            rgba(3, 3, 3, 0.16) 50%,
-            rgba(3, 3, 3, 0.42) 82%,
-            rgba(3, 3, 3, 0.9) 100%
-          ),
-          linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0)
-          ),
-          url("images/hero.jpg") center center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 52px 56px;
-        position: relative;
-        overflow: hidden;
-        border-radius: 0;
-        border: none;
-        box-shadow: none;
-      }
-
-      .hero-banner::before {
-        content: "";
-        position: absolute;
-        width: 26rem;
-        height: 26rem;
-        right: 10%;
-        top: 56%;
-        transform: translateY(-50%);
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(240, 122, 31, 0.16) 0%,
-          rgba(240, 122, 31, 0.05) 34%,
-          transparent 68%
-        );
-        filter: blur(44px);
-        pointer-events: none;
-      }
-
-      .hero-banner::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at center,
-            transparent 42%,
-            rgba(0, 0, 0, 0.08) 72%,
-            rgba(0, 0, 0, 0.28) 100%
-          ),
-          linear-gradient(
-            180deg,
-            transparent 0%,
-            transparent 18%,
-            transparent 82%,
-            rgba(0, 0, 0, 0.24)
-          );
-        pointer-events: none;
-      }
-
-      .hero-overlay {
-        text-align: center;
-        color: var(--text);
-        background: linear-gradient(
-          180deg,
-          rgba(14, 14, 14, 0.42),
-          rgba(10, 10, 10, 0.18)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow:
-          0 20px 44px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(5px);
-        border-radius: var(--radius-xl);
-        padding: 50px 52px;
-        max-width: 900px;
-        width: min(100%, 900px);
-        animation: fadeUp 0.8s ease;
-        position: relative;
-        z-index: 1;
-      }
-
-      .hero-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 22px;
-        padding: 10px 18px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #efe3d2;
-      }
-
-      .hero-kicker::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, var(--accent-soft), var(--accent));
-        box-shadow: 0 0 16px rgba(240, 122, 31, 0.5);
-      }
-
-      .hero-overlay h1 {
-        margin: 0 0 18px 0;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 78px;
-        line-height: 0.96;
-        letter-spacing: -0.05em;
-        max-width: 12ch;
-        margin-left: auto;
-        margin-right: auto;
-        text-wrap: pretty;
-        text-shadow: 0 10px 34px rgba(0, 0, 0, 0.34);
-      }
-
-      .hero-overlay h1 span {
-        color: #ffab67;
-      }
-
-      .hero-overlay p {
-        margin: 0 auto;
-        max-width: 46rem;
-        font-size: 20px;
-        line-height: 1.75;
-        color: #f0e6db;
-        text-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
-      }
-
-      .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 30px;
-        justify-content: center;
-      }
-
-      .hero-meta span {
-        display: inline-flex;
-        align-items: center;
-        min-height: 42px;
-        padding: 11px 18px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #eadfd2;
-        font-size: 14px;
-        font-weight: 700;
-      }
-
-      .hero-buttons {
-        margin-top: 40px;
-        display: flex;
-        gap: 18px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .hero-btn {
-        display: inline-block;
-        min-width: 210px;
-        padding: 16px 28px;
-        border-radius: 14px;
-        font-weight: 800;
-        text-decoration: none;
-        font-size: 15px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease,
-          background 0.25s ease,
-          border-color 0.25s ease,
-          color 0.25s ease;
-        text-align: center;
-      }
-
-      .hero-btn-dark {
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--text);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      }
-
-      .hero-btn-dark:hover {
-        transform: translateY(-3px);
-        background: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.26);
-      }
-
-      .hero-btn-gold {
-        background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-        color: #120b06;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 14px 32px rgba(240, 122, 31, 0.28);
-      }
-
-      .hero-btn-gold:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 18px 36px rgba(240, 122, 31, 0.34);
-        filter: saturate(1.06);
-      }
-
-      .intro-section {
-        width: min(calc(100% - 32px), 1040px);
-        margin: 34px auto 0;
-        padding: 42px 38px;
-        text-align: center;
-        border-radius: var(--radius-xl);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        background:
-          linear-gradient(
-            180deg,
-            rgba(18, 18, 18, 0.9),
-            rgba(11, 11, 11, 0.92)
-          ),
-          radial-gradient(
-            circle at top,
-            rgba(240, 122, 31, 0.07),
-            transparent 40%
-          );
-        box-shadow: var(--shadow);
-      }
-
-      .intro-section h2 {
-        margin: 0 0 14px 0;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 38px;
-        line-height: 1.1;
-        color: var(--text);
-        letter-spacing: -0.03em;
-      }
-
-      .intro-section p {
-        margin: 0 auto;
-        max-width: 820px;
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.7;
-      }
-
-      .features {
-        width: min(calc(100% - 32px), 1040px);
-        margin: 24px auto 80px auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-        padding: 0;
-      }
-
-      .feature {
-        background: linear-gradient(
-          180deg,
-          rgba(19, 19, 19, 0.94),
-          rgba(11, 11, 11, 0.96)
-        );
-        padding: 32px 28px;
-        border-radius: 26px;
-        text-align: left;
-        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease,
-          border-color 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .feature::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.03),
-          transparent 36%
-        );
-        pointer-events: none;
-      }
-
-      .feature:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
-        border-color: rgba(240, 122, 31, 0.22);
-      }
-
-      .feature h3 {
-        margin: 0 0 12px;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 24px;
-        color: var(--text);
-        letter-spacing: -0.02em;
-      }
-
-      .feature p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.8;
-        font-size: 17px;
-      }
-
-      .contact-popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-      #contactPopup.contact-popup {
-        padding: 24px;
-        background:
-          radial-gradient(
-            circle at top,
-            rgba(240, 122, 31, 0.12),
-            transparent 24%
-          ),
-          rgba(2, 2, 2, 0.78);
-        backdrop-filter: blur(12px);
-      }
-      #contactPopup .contact-box {
-        background: linear-gradient(
-          180deg,
-          rgba(23, 23, 23, 0.96),
-          rgba(10, 10, 10, 0.98)
-        );
-        color: var(--text);
-        padding: 34px 30px 28px;
-        border-radius: 28px;
-        width: min(100%, 560px);
-        text-align: left;
-        position: relative;
-        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        overflow: hidden;
-      }
-      #contactPopup .contact-box::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 24%),
-          radial-gradient(
-            circle at top right,
-            rgba(240, 122, 31, 0.14),
-            transparent 28%
-          );
-        pointer-events: none;
-      }
-      #contactPopup .contact-box > * {
-        position: relative;
-        z-index: 1;
-      }
-      #contactPopup .contact-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 14px;
-        padding: 10px 16px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #efe3d2;
-      }
-      #contactPopup .contact-kicker::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, var(--accent-soft), var(--accent));
-        box-shadow: 0 0 14px rgba(240, 122, 31, 0.48);
-      }
-      #contactPopup .contact-box h2,
-      #contactPopup .contact-box h3 {
-        margin-top: 0;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        color: var(--text);
-      }
-      #contactPopup .contact-box h2 {
-        margin-bottom: 10px;
-        font-size: 32px;
-        letter-spacing: -0.03em;
-      }
-      #contactPopup .contact-intro {
-        margin: 0 0 22px;
-        color: #d2c5b8;
-        line-height: 1.75;
-        font-size: 15px;
-        max-width: 44ch;
-      }
-      #contactPopup .contact-box h3 {
-        margin: 0 0 14px;
-        font-size: 18px;
-        color: #f0d4bd;
-      }
-      #contactPopup .contact-grid {
-        display: grid;
-        gap: 12px;
-        margin-bottom: 24px;
-      }
-      #contactPopup .contact-item {
-        padding: 15px 16px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-      }
-      #contactPopup .contact-item-label {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #9f9183;
-      }
-      #contactPopup .contact-item-value,
-      #contactPopup .contact-item-value a {
-        color: #f6f3ee;
-        text-decoration: none;
-        font-weight: 700;
-        line-height: 1.6;
-      }
-      #contactPopup .contact-item-value a:hover,
-      #contactPopup .contact-map-link:hover {
-        color: #ffcfab;
-      }
-      #contactPopup .contact-map-link {
-        display: inline-flex;
-        top: -12px;
-        transform: translate(150px, -2px);
-        gap: 10px;
-        margin-top: 4px;
-        color: #ffcfab;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-      }
-
-      @media (max-width: 768px) {
-        #contactPopup .contact-map-link {
-          display: flex;
-          transform: translateX(75px);
-        }
-      }
-
-      #contactPopup .contact-hours {
-        padding: 18px;
-        border-radius: 22px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.035),
-          rgba(255, 255, 255, 0.015)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      #contactPopup .contact-hours-list {
-        display: grid;
-        gap: 10px;
-      }
-      #contactPopup .contact-hour-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        color: #ded4ca;
-      }
-      #contactPopup .contact-hour-row:last-child {
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-      #contactPopup .contact-day {
-        font-weight: 700;
-        color: #f4ede5;
-      }
-      #contactPopup .contact-time {
-        color: #baaea1;
-        text-align: right;
-      }
-      #contactPopup .close {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        font-size: 22px;
-        cursor: pointer;
-        color: #f0d4bd;
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition:
-          background 0.25s ease,
-          border-color 0.25s ease,
-          transform 0.25s ease,
-          color 0.25s ease;
-      }
-      #contactPopup .close:hover {
-        background: rgba(240, 122, 31, 0.12);
-        border-color: rgba(240, 122, 31, 0.24);
-        color: #fff4e8;
-        transform: translateY(-1px);
-      }
-
-      .site-footer {
-        width: min(calc(100% - 32px), var(--site-width));
-        text-align: center;
-        padding: 0 20px 32px;
-        background: linear-gradient(
-            180deg,
-            rgba(10, 10, 10, 0.96),
-            rgba(10, 10, 10, 0.88)
-          )
-          linear-gradient(
-            90deg,
-            rgba(240, 122, 31, 0.05),
-            transparent 45%,
-            rgba(240, 122, 31, 0.02)
-          );
-        color: #998d81;
-        font-size: 13px;
-        margin: 0 auto;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .site-footer p {
-        margin: 0;
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 900px) {
-        .features {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-banner {
-          min-height: 500px;
-          padding: 38px 34px;
-          margin-top: 0;
-        }
-
-        .hero-overlay h1 {
-          font-size: 58px;
-          max-width: 12ch;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .site-header {
-          width: 100%;
-          margin-top: 0;
-          padding: 18px 14px 18px;
-        }
-
-        .header-shell {
-          gap: 14px;
-        }
-
-        .logo {
-          height: 96px;
-        }
-
-        .logo-center {
-          margin-bottom: 12px;
-        }
-
-        .brand-title {
-          font-size: 23px;
-        }
-
-        .brand-subtitle {
-          font-size: 11px;
-          letter-spacing: 0.16em;
-        }
-
-        .menu {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          max-width: 100%;
-          width: 100%;
-          margin: 0 auto;
-          border-radius: 20px;
-          padding: 10px;
-        }
-
-        .menu a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          min-height: 50px;
-          font-size: 14px;
-          text-align: center;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 14px;
-          padding: 10px 14px;
-        }
-
-        .slogan {
-          font-size: 12px;
-          line-height: 1.5;
-          padding: 0 8px;
-          max-width: 380px;
-          margin: 14px auto 0 auto;
-        }
-
-        .hero-banner {
-          width: 100%;
-          min-height: 480px;
-          padding: 22px 16px;
-          border-radius: 0;
-          margin-top: 0;
-        }
-
-        .hero-overlay {
-          padding: 34px 22px;
-          border-radius: 22px;
-        }
-
-        .hero-kicker {
-          font-size: 11px;
-          letter-spacing: 0.12em;
-        }
-
-        .hero-overlay h1 {
-          font-size: 42px;
-          line-height: 1.02;
-          max-width: 11ch;
-        }
-
-        .hero-overlay p {
-          font-size: 17px;
-          max-width: 100%;
-        }
-
-        .hero-btn {
-          width: 100%;
-          min-width: 0;
-          max-width: none;
-        }
-
-        .hero-meta {
-          gap: 10px;
-        }
-
-        .hero-meta span {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .intro-section {
-          width: min(calc(100% - 20px), 1040px);
-          margin-top: 18px;
-          padding: 30px 20px;
-          border-radius: 24px;
-        }
-        .intro-section::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(
-            circle at top center,
-            rgba(240, 122, 31, 0.06),
-            transparent 42%
-          );
-          pointer-events: none;
-          border-radius: inherit;
-        }
-
-        .intro-section h2 {
-          font-size: 28px;
-        }
-
-        .intro-section p {
-          font-size: 16px;
-        }
-
-        .features {
-          width: min(calc(100% - 20px), 1040px);
-          gap: 16px;
-          margin-bottom: 52px;
-        }
-
-        .feature {
-          padding: 24px 20px;
-          border-radius: 22px;
-        }
-
-        .feature h3 {
-          font-size: 22px;
-        }
-
-        .feature p {
-          font-size: 16px;
-        }
-
-        #contactPopup.contact-popup {
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          padding: 20px;
-          background: rgba(0, 0, 0, 0.6);
-          display: none;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-
-        #contactPopup .contact-box {
-          width: 100%;
-          max-width: 400px;
-          max-height: 90vh;
-          padding: 22px 18px 20px;
-          border-radius: 20px;
-          overflow-y: auto;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
-        }
-
-        #contactPopup .contact-box h2 {
-          font-size: 28px;
-        }
-
-        #contactPopup .close {
-          position: sticky;
-          top: 0;
-          right: auto;
-          margin-left: auto;
-          margin-bottom: 10px;
-          z-index: 5;
-        }
-
-        #contactPopup .contact-hour-row {
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        #contactPopup .contact-time {
-          text-align: left;
-        }
-
-        .site-footer {
-          width: min(calc(100% - 20px), var(--site-width));
-          padding: 0 0 26px;
-        }
-      }
-    </style>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "AutoRepair",
-        "name": "DBJ Automobile",
-        "image": "https://dbjautomobile.fr/images/logo1.png",
-        "url": "https://dbjautomobile.fr/",
-        "telephone": "+33 6 66 37 96 85",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "600 Rue de Lillers",
-          "postalCode": "62920",
-          "addressLocality": "Chocques",
-          "addressCountry": "FR"
-        },
-        "areaServed": "Chocques",
-        "priceRange": "â‚¬â‚¬",
-        "sameAs": ["https://www.google.com/search?q=DBJ+AUTOMOBILE+Chocques"]
-      }
-    </script>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-shell">
-        <div class="logo-center">
-          <img src="images/logo1.png" class="logo" alt="DBJ Automobile" />
-          <div class="brand-copy">
-            <p class="brand-title">DBJ Automobile</p>
-            <p class="brand-subtitle">Achat, Vente, Reprise, RÃ©paration</p>
-          </div>
-        </div>
-
-        <div class="top-bar">
-          <div class="menu">
-            <a href="index.html">Accueil</a>
-            <a href="catalogue.html">Catalogue</a>
-            <a href="rachat.html">Estimer mon vÃ©hicule</a>
-            <a
-              href="#"
-              onclick="
-                openContact();
-                return false;
-              "
-              >Contact</a
-            >
-          </div>
-        </div>
-
-        <p class="slogan">Des services clairs, sans prise de tÃªte</p>
-      </div>
-    </header>
-
-    <section class="hero-banner">
-      <div class="hero-overlay">
-        <div class="hero-kicker">Garage automobile Ã  Chocques</div>
-        <h1>
-          DBJ Automobile, <span>l'exigence</span> au service de votre vÃ©hicule
-        </h1>
-        <p>
-          Achat, vente, reprise et rÃ©paration. Un service simple, clair et sans
-          surprise.
-        </p>
-
-        <div class="hero-meta">
-          <span>VÃ©hicules contrÃ´lÃ©s</span>
-          <span>Disponible et Ã  lâ€™Ã©coute</span>
-          <span>Entretien et rÃ©parations fiables</span>
-        </div>
-
-        <div class="hero-buttons">
-          <a href="catalogue.html" class="hero-btn hero-btn-dark"
-            >Voir le catalogue</a
-          >
-          <a href="rachat.html" class="hero-btn hero-btn-gold"
-            >Estimer mon vÃ©hicule</a
-          >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <title>DBJ Automobile - Garage automobile à Chocques</title>
+  <meta name="description" content="DBJ Automobile, garage automobile à Chocques. Achat, vente, reprise et réparation de véhicules. Découvrez notre catalogue et demandez une estimation.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="DBJ Automobile">
+  <meta name="theme-color" content="#111111">
+  <link rel="canonical" href="https://dbjautomobile.fr/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="DBJ Automobile" />
+  <meta property="og:description" content="Vente, reprise et réparation de véhicules. Un service simple, fiable et sans surprise." />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dbjautomobile.fr/">
+  <meta property="og:image" content="https://dbjautomobile.fr/preview.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DBJ Automobile - Garage automobile à Chocques">
+  <meta name="twitter:description" content="Achat, vente, reprise et réparation de véhicules chez DBJ Automobile à Chocques.">
+  <meta name="twitter:image" content="https://dbjautomobile.fr/images/logo1.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "DBJ Automobile",
+    "image": "https://dbjautomobile.fr/images/logo1.png",
+    "url": "https://dbjautomobile.fr/",
+    "telephone": "+33 6 66 37 96 85",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "600 Rue de Lillers",
+      "postalCode": "62920",
+      "addressLocality": "Chocques",
+      "addressCountry": "FR"
+    },
+    "areaServed": "Chocques",
+    "priceRange": "€€",
+    "sameAs": [
+      "https://www.google.com/search?q=DBJ+AUTOMOBILE+Chocques"
+    ]
+  }
+  </script>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#050505;
+      --bg-soft:#101010;
+      --panel:rgba(17,17,17,0.8);
+      --panel-strong:rgba(12,12,12,0.92);
+      --line:rgba(255,255,255,0.08);
+      --line-strong:rgba(255,255,255,0.14);
+      --text:#f6f3ee;
+      --muted:#b9b0a5;
+      --accent:#f07a1f;
+      --accent-soft:#ff9c52;
+      --shadow:0 24px 60px rgba(0,0,0,0.38);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --site-width:1180px;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Manrope","Segoe UI",sans-serif;
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(240,122,31,0.14), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(240,122,31,0.12), transparent 22%),
+        linear-gradient(180deg,#090909 0%, #050505 42%, #0b0b0b 100%);
+      overflow-x:hidden;
+      overflow-y:visible;
+      position:relative;
+    }
+
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      width:34rem;
+      height:34rem;
+      border-radius:50%;
+      filter:blur(110px);
+      z-index:-1;
+      pointer-events:none;
+      opacity:0.34;
+    }
+
+    body::before{
+      top:-10rem;
+      left:-8rem;
+      background:rgba(240,122,31,0.18);
+    }
+
+    body::after{
+      right:-12rem;
+      bottom:-10rem;
+      background:rgba(240,122,31,0.1);
+    }
+
+    .site-header{
+      width:100%;
+      margin:0;
+      padding:20px 28px 24px;
+      color:var(--text);
+      text-align:center;
+      position:relative;
+      top:0;
+      z-index:10;
+      background:
+        linear-gradient(180deg, rgba(14,14,14,0.9), rgba(7,7,7,0.96)),
+        linear-gradient(90deg, rgba(240,122,31,0.05), transparent 45%, rgba(240,122,31,0.02));
+      box-shadow:0 6px 18px rgba(0,0,0,0.14);
+      backdrop-filter:blur(18px);
+      overflow:hidden;
+    }
+
+    .site-header::before{
+      content:"";
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      opacity:0.55;
+    }
+
+    .header-shell{
+      width:min(100%, var(--site-width));
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-center{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      width:100%;
+      margin:0 0 16px 0;
+    }
+
+    .logo{
+      height:118px;
+      width:auto;
+      max-width:100%;
+      object-fit:contain;
+      display:block;
+      filter:drop-shadow(0 12px 24px rgba(0,0,0,0.28));
+    }
+
+    .brand-copy{
+      margin-top:2px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+    }
+
+    .brand-title{
+      margin:0;
+      font-family:"Sora","Segoe UI",sans-serif;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:-0.035em;
+      color:var(--text);
+    }
+
+    .brand-subtitle{
+      margin:0;
+      color:#cdb49a;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+    }
+
+    .top-bar{
+      display:flex;
+      justify-content:center;
+      width:100%;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .menu{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.025);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.04), 0 10px 24px rgba(0,0,0,0.14);
+    }
+
+    .menu a{
+      color:rgba(246,243,238,0.88);
+      text-decoration:none;
+      font-weight:700;
+      font-size:15px;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      line-height:1.2;
+      transition:color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      padding:12px 20px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+
+    .menu a:hover{
+      color:var(--text);
+      background:rgba(240,122,31,0.08);
+      border-color:rgba(240,122,31,0.22);
+    }
+
+    .slogan{
+      text-align:center;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      line-height:1.6;
+      max-width:860px;
+    }
+
+    .hero-banner{
+      width:100%;
+      max-width:none;
+      min-height:560px;
+      margin:0;
+      background:
+        linear-gradient(90deg, rgba(3,3,3,0.88) 0%, rgba(3,3,3,0.38) 18%, rgba(3,3,3,0.16) 50%, rgba(3,3,3,0.42) 82%, rgba(3,3,3,0.9) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0)),
+        url("images/hero.jpg") center center/cover no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:52px 56px;
+      position:relative;
+      overflow:hidden;
+      border-radius:0;
+      border:none;
+      box-shadow:none;
+    }
+
+    .hero-banner::before{
+      content:"";
+      position:absolute;
+      width:26rem;
+      height:26rem;
+      right:10%;
+      top:56%;
+      transform:translateY(-50%);
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(240,122,31,0.16) 0%, rgba(240,122,31,0.05) 34%, transparent 68%);
+      filter:blur(44px);
+      pointer-events:none;
+    }
+
+    .hero-banner::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at center, transparent 42%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0.28) 100%),
+        linear-gradient(180deg, transparent 0%, transparent 18%, transparent 82%, rgba(0,0,0,0.24));
+      pointer-events:none;
+    }
+
+    .hero-overlay{
+      text-align:center;
+      color:var(--text);
+      background:linear-gradient(180deg, rgba(14,14,14,0.42), rgba(10,10,10,0.18));
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 20px 44px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter:blur(5px);
+      border-radius:var(--radius-xl);
+      padding:50px 52px;
+      max-width:900px;
+      width:min(100%, 900px);
+      animation:fadeUp 0.8s ease;
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:22px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.035);
+      border:1px solid rgba(255,255,255,0.08);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:#efe3d2;
+    }
+
+    .hero-kicker::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(180deg, var(--accent-soft), var(--accent));
+      box-shadow:0 0 16px rgba(240,122,31,0.5);
+    }
+
+    .hero-overlay h1{
+      margin:0 0 18px 0;
+      font-family:"Sora","Segoe UI",sans-serif;
+      font-size:78px;
+      line-height:0.96;
+      letter-spacing:-0.05em;
+      max-width:12ch;
+      margin-left:auto;
+      margin-right:auto;
+      text-wrap:pretty;
+      text-shadow:0 10px 34px rgba(0,0,0,0.34);
+    }
+
+    .hero-overlay h1 span{
+      color:#ffab67;
+    }
+
+    .hero-overlay p{
+      margin:0 auto;
+      max-width:46rem;
+      font-size:20px;
+      line-height:1.75;
+      color:#f0e6db;
+      text-shadow:0 6px 20px rgba(0,0,0,0.22);
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+      justify-content:center;
+    }
+
+    .hero-meta span{
+      display:inline-flex;
+      align-items:center;
+      min-height:42px;
+      padding:11px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#eadfd2;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .hero-buttons{
+      margin-top:40px;
+      display:flex;
+      gap:18px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .hero-btn{
+      display:inline-block;
+      min-width:210px;
+      padding:16px 28px;
+      border-radius:14px;
+      font-weight:800;
+      text-decoration:none;
+      font-size:15px;
+      letter-spacing:0.05em;
+      text-transform:uppercase;
+      transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      text-align:center;
+    }
+
+    .hero-btn-dark{
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.16);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .hero-btn-dark:hover{
+      transform:translateY(-3px);
+      background:rgba(255,255,255,0.08);
+      box-shadow:0 14px 32px rgba(0,0,0,0.26);
+    }
+
+    .hero-btn-gold{
+      background:linear-gradient(135deg, var(--accent-soft), var(--accent));
+      color:#120b06;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 14px 32px rgba(240,122,31,0.28);
+    }
+
+    .hero-btn-gold:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 36px rgba(240,122,31,0.34);
+      filter:saturate(1.06);
+    }
+
+    .intro-section{
+      width:min(calc(100% - 32px), 1040px);
+      margin:34px auto 0;
+      padding:42px 38px;
+      text-align:center;
+      border-radius:var(--radius-xl);
+      border:1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(18,18,18,0.9), rgba(11,11,11,0.92)),
+        radial-gradient(circle at top, rgba(240,122,31,0.07), transparent 40%);
+      box-shadow:var(--shadow);
+    }
+
+    .intro-section h2{
+      margin:0 0 14px 0;
+      font-family:"Sora","Segoe UI",sans-serif;
+      font-size:38px;
+      line-height:1.1;
+      color:var(--text);
+      letter-spacing:-0.03em;
+    }
+
+    .intro-section p{
+      margin:0 auto;
+      max-width:820px;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .features{
+      width:min(calc(100% - 32px), 1040px);
+      margin:24px auto 80px auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      padding:0;
+    }
+
+    .feature{
+      background:linear-gradient(180deg, rgba(19,19,19,0.94), rgba(11,11,11,0.96));
+      padding:32px 28px;
+      border-radius:26px;
+      text-align:left;
+      box-shadow:0 16px 34px rgba(0,0,0,0.22);
+      transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      border:1px solid rgba(255,255,255,0.08);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .feature::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), transparent 36%);
+      pointer-events:none;
+    }
+
+    .feature:hover{
+      transform:translateY(-8px);
+      box-shadow:0 24px 48px rgba(0,0,0,0.28);
+      border-color:rgba(240,122,31,0.22);
+    }
+
+    .feature h3{
+      margin:0 0 12px;
+      font-family:"Sora","Segoe UI",sans-serif;
+      font-size:24px;
+      color:var(--text);
+      letter-spacing:-0.02em;
+    }
+
+    .feature p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:17px;
+    }
+
+    .contact-popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;justify-content:center;align-items:center;z-index:9999;}
+    #contactPopup.contact-popup{padding:24px;background:radial-gradient(circle at top, rgba(240,122,31,0.12), transparent 24%),rgba(2,2,2,0.78);backdrop-filter:blur(12px);}
+    #contactPopup .contact-box{background:linear-gradient(180deg, rgba(23,23,23,0.96), rgba(10,10,10,0.98));color:var(--text);padding:34px 30px 28px;border-radius:28px;width:min(100%, 560px);text-align:left;position:relative;box-shadow:0 30px 70px rgba(0,0,0,0.42);border:1px solid rgba(255,255,255,0.08);overflow:hidden;}
+    #contactPopup .contact-box::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.045), transparent 24%),radial-gradient(circle at top right, rgba(240,122,31,0.14), transparent 28%);pointer-events:none;}
+    #contactPopup .contact-box > *{position:relative;z-index:1;}
+    #contactPopup .contact-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);font-size:11px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#efe3d2;}
+    #contactPopup .contact-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg, var(--accent-soft), var(--accent));box-shadow:0 0 14px rgba(240,122,31,0.48);}
+    #contactPopup .contact-box h2,#contactPopup .contact-box h3{margin-top:0;font-family:"Sora","Segoe UI",sans-serif;color:var(--text);}
+    #contactPopup .contact-box h2{margin-bottom:10px;font-size:32px;letter-spacing:-0.03em;}
+    #contactPopup .contact-intro{margin:0 0 22px;color:#d2c5b8;line-height:1.75;font-size:15px;max-width:44ch;}
+    #contactPopup .contact-box h3{margin:0 0 14px;font-size:18px;color:#f0d4bd;}
+    #contactPopup .contact-grid{display:grid;gap:12px;margin-bottom:24px;}
+    #contactPopup .contact-item{padding:15px 16px;border-radius:18px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);}
+    #contactPopup .contact-item-label{display:block;margin-bottom:8px;font-size:11px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#9f9183;}
+    #contactPopup .contact-item-value,#contactPopup .contact-item-value a{color:#f6f3ee;text-decoration:none;font-weight:700;line-height:1.6;}
+    #contactPopup .contact-item-value a:hover,#contactPopup .contact-map-link:hover{color:#ffcfab;}
+    #contactPopup .contact-map-link{display:inline-flex;align-items:center;gap:10px;margin-top:4px;color:#ffcfab;text-decoration:none;font-weight:800;letter-spacing:0.04em;}
+    #contactPopup .contact-hours{padding:18px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.08);}
+    #contactPopup .contact-hours-list{display:grid;gap:10px;}
+    #contactPopup .contact-hour-row{display:flex;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);color:#ded4ca;}
+    #contactPopup .contact-hour-row:last-child{padding-bottom:0;border-bottom:none;}
+    #contactPopup .contact-day{font-weight:700;color:#f4ede5;}
+    #contactPopup .contact-time{color:#baaea1;text-align:right;}
+    #contactPopup .close{position:absolute;top:18px;right:18px;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;font-size:22px;cursor:pointer;color:#f0d4bd;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);transition:background 0.25s ease,border-color 0.25s ease,transform 0.25s ease,color 0.25s ease;}
+    #contactPopup .close:hover{background:rgba(240,122,31,0.12);border-color:rgba(240,122,31,0.24);color:#fff4e8;transform:translateY(-1px);}
+
+    .site-footer{
+      width:min(calc(100% - 32px), var(--site-width));
+      text-align:center;
+      padding:0 20px 32px;
+      background:transparent;
+      color:#998d81;
+      font-size:13px;
+      margin:0 auto;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+
+    .site-footer p{
+      margin:0;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:900px){
+      .features{
+        grid-template-columns:1fr;
+      }
+
+      .hero-banner{
+        min-height:500px;
+        padding:38px 34px;
+        margin-top:0;
+      }
+
+      .hero-overlay h1{
+        font-size:58px;
+        max-width:12ch;
+      }
+    }
+
+    @media(max-width:768px){
+      .site-header{
+        width:100%;
+        margin-top:0;
+        padding:18px 14px 18px;
+      }
+
+      .header-shell{
+        gap:14px;
+      }
+
+      .logo{
+        height:96px;
+      }
+
+      .logo-center{
+        margin-bottom:12px;
+      }
+
+      .brand-title{
+        font-size:23px;
+      }
+
+      .brand-subtitle{
+        font-size:11px;
+        letter-spacing:0.16em;
+      }
+
+      .menu{
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+        max-width:100%;
+        width:100%;
+        margin:0 auto;
+        border-radius:20px;
+        padding:10px;
+      }
+
+      .menu a{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:100%;
+        min-height:50px;
+        font-size:14px;
+        text-align:center;
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:14px;
+        padding:10px 14px;
+      }
+
+      .slogan{
+        font-size:12px;
+        line-height:1.5;
+        padding:0 8px;
+        max-width:380px;
+        margin:14px auto 0 auto;
+      }
+
+      .hero-banner{
+        width:100%;
+        min-height:480px;
+        padding:22px 16px;
+        border-radius:0;
+        margin-top:0;
+      }
+
+      .hero-overlay{
+        padding:34px 22px;
+        border-radius:22px;
+      }
+
+      .hero-kicker{
+        font-size:11px;
+        letter-spacing:0.12em;
+      }
+
+      .hero-overlay h1{
+        font-size:42px;
+        line-height:1.02;
+        max-width:11ch;
+      }
+
+      .hero-overlay p{
+        font-size:17px;
+        max-width:100%;
+      }
+
+      .hero-btn{
+        width:100%;
+        min-width:0;
+        max-width:none;
+      }
+
+      .hero-meta{
+        gap:10px;
+      }
+
+      .hero-meta span{
+        width:100%;
+        justify-content:center;
+      }
+
+      .intro-section{
+        width:min(calc(100% - 20px), 1040px);
+        margin-top:18px;
+        padding:30px 20px;
+        border-radius:24px;
+      }
+
+      .intro-section h2{
+        font-size:28px;
+      }
+
+      .intro-section p{
+        font-size:16px;
+      }
+
+      .features{
+        width:min(calc(100% - 20px), 1040px);
+        gap:16px;
+        margin-bottom:52px;
+      }
+
+      .feature{
+        padding:24px 20px;
+        border-radius:22px;
+      }
+
+      .feature h3{
+        font-size:22px;
+      }
+
+      .feature p{
+        font-size:16px;
+      }
+
+      #contactPopup.contact-popup{
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        padding:20px;
+        background:rgba(0,0,0,0.6);
+        display:none;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+      }
+
+      #contactPopup .contact-box{
+        width:100%;
+        max-width:400px;
+        max-height:90vh;
+        padding:22px 18px 20px;
+        border-radius:20px;
+        overflow-y:auto;
+        overscroll-behavior:contain;
+        -webkit-overflow-scrolling:touch;
+      }
+
+      #contactPopup .contact-box h2{
+        font-size:28px;
+      }
+
+      #contactPopup .close{
+        position:sticky;
+        top:0;
+        right:auto;
+        margin-left:auto;
+        margin-bottom:10px;
+        z-index:5;
+      }
+
+      #contactPopup .contact-hour-row{
+        flex-direction:column;
+        gap:4px;
+      }
+
+      #contactPopup .contact-time{
+        text-align:left;
+      }
+
+      .site-footer{
+        width:min(calc(100% - 20px), var(--site-width));
+        padding:0 0 26px;
+      }
+    }
+
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "DBJ Automobile",
+    "image": "https://dbjautomobile.fr/images/logo1.png",
+    "url": "https://dbjautomobile.fr/",
+    "telephone": "+33 6 66 37 96 85",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "600 Rue de Lillers",
+      "postalCode": "62920",
+      "addressLocality": "Chocques",
+      "addressCountry": "FR"
+    },
+    "areaServed": "Chocques",
+    "priceRange": "€€",
+    "sameAs": [
+      "https://www.google.com/search?q=DBJ+AUTOMOBILE+Chocques"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-shell">
+      <div class="logo-center">
+        <img src="images/logo1.png" class="logo" alt="DBJ Automobile">
+        <div class="brand-copy">
+          <p class="brand-title">DBJ Automobile</p>
+          <p class="brand-subtitle">Achat, Vente, Reprise, Réparation</p>
         </div>
       </div>
-    </section>
 
-    <section class="intro-section">
-      <h2>Un garage fiable pour votre vÃ©hicule</h2>
+      <div class="top-bar">
+        <div class="menu">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="rachat.html">Estimer mon véhicule</a>
+          <a href="#" onclick="openContact(); return false;">Contact</a>
+        </div>
+      </div>
+
+      <p class="slogan">Une expérience automobile sérieuse et transparente pour chaque projet.</p>
+    </div>
+  </header>
+
+  <section class="hero-banner">
+    <div class="hero-overlay">
+      <div class="hero-kicker">Garage automobile à Chocques</div>
+      <h1>DBJ Automobile, <span>l'exigence</span> au service de votre véhicule.</h1>
+      <p>Achat, vente, reprise et réparation automobile avec une approche sérieuse, claire et professionnelle pour chaque projet.</p>
+
+      <div class="hero-meta">
+        <span>Véhicules sélectionnés avec soin</span>
+        <span>Accompagnement de proximité</span>
+        <span>Entretien et réparation</span>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="catalogue.html" class="hero-btn hero-btn-dark">Voir le catalogue</a>
+        <a href="rachat.html" class="hero-btn hero-btn-gold">Estimer mon véhicule</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <h2>Un garage de confiance pour votre projet automobile</h2>
+    <p>
+      DBJ Automobile vous accompagne pour l'achat, la vente, la reprise
+      et la réparation de votre véhicule. Nous sélectionnons nos voitures
+      avec soin afin de vous proposer des véhicules sérieux, fiables et adaptés à vos besoins.
+    </p>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h3>Achat / Vente</h3>
       <p>
-        Chez DBJ Automobile, on sâ€™occupe de votre vÃ©hicule de A Ã  Z : achat,
-        vente, reprise et rÃ©paration. On sÃ©lectionne des voitures fiables et
-        adaptÃ©es Ã  vos besoins.
+        Découvrez nos véhicules disponibles et profitez d'un accompagnement
+        professionnel pour votre achat automobile.
       </p>
-    </section>
+    </div>
 
-    <section class="features">
-      <div class="feature">
-        <h3>Achat / Vente</h3>
-        <p>
-          Consultez nos vÃ©hicules disponibles, sÃ©lectionnÃ©s et contrÃ´lÃ©s
-          avec sÃ©rieux.
-        </p>
+    <div class="feature">
+      <h3>Reprise de véhicule</h3>
+      <p>
+        Faites estimer votre voiture rapidement grâce à notre formulaire
+        de rachat simple, clair et rapide.
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>Réparation</h3>
+      <p>
+        DBJ Automobile vous accompagne aussi pour l'entretien
+        et la réparation de votre véhicule au quotidien.
+      </p>
+    </div>
+  </section>
+
+  <div id="contactPopup" class="contact-popup">
+    <div class="contact-box">
+      <span class="close" onclick="closeContact()">&times;</span>
+      <div class="contact-kicker">Prendre contact</div>
+      <h2>Contact DBJ Automobile</h2>
+      <p class="contact-intro">Retrouvez nos coordonnées et nos horaires pour échanger simplement avec le garage dans un cadre clair, sérieux et rassurant.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><span class="contact-item-label">Adresse</span><div class="contact-item-value">600 rue de Lillers, 62920 Chocques</div></div>
+        <div class="contact-item"><span class="contact-item-label">Téléphone</span><div class="contact-item-value"><a href="tel:+33666379685">06 66 37 96 85</a></div></div>
+        <div class="contact-item"><span class="contact-item-label">Email</span><div class="contact-item-value"><a href="mailto:dbjautomobile@gmail.com">dbjautomobile@gmail.com</a></div></div>
       </div>
-
-      <div class="feature">
-        <h3>Reprise de vÃ©hicule</h3>
-        <p>
-          Faites estimer votre voiture rapidement, avec une rÃ©ponse claire et
-          sans surprise.
-        </p>
-      </div>
-
-      <div class="feature">
-        <h3>RÃ©paration</h3>
-        <p>Entretien et rÃ©parations pour rouler sereinement au quotidien.</p>
-      </div>
-    </section>
-
-    <div id="contactPopup" class="contact-popup">
-      <div class="contact-box">
-        <span class="close" onclick="closeContact()">&times;</span>
-        <div class="contact-kicker">Prendre contact</div>
-        <h2>Contact DBJ Automobile</h2>
-        <p class="contact-intro">
-          Retrouvez nos coordonnÃ©es et nos horaires pour nous contacter
-          facilement.
-        </p>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <span class="contact-item-label">Adresse</span>
-            <div class="contact-item-value">
-              600 rue de Lillers, 62920 Chocques
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-item-label">TÃ©lÃ©phone</span>
-            <div class="contact-item-value">
-              <a href="tel:+33666379685">06 66 37 96 85</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-item-label">Email</span>
-            <div class="contact-item-value">
-              <a href="mailto:dbjautomobile@gmail.com"
-                >dbjautomobile@gmail.com</a
-              >
-            </div>
-          </div>
-        </div>
-        <a
-          class="contact-map-link"
-          href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques"
-          target="_blank"
-          >Voir sur Google Maps</a
-        >
-        <div class="contact-hours">
-          <h3>Horaires</h3>
-          <div class="contact-hours-list">
-            <div class="contact-hour-row">
-              <span class="contact-day">Lundi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Mardi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Mercredi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Jeudi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Vendredi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Samedi</span
-              ><span class="contact-time">FermÃ©</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Dimanche</span
-              ><span class="contact-time">FermÃ©</span>
-            </div>
-          </div>
+      <a class="contact-map-link" href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques" target="_blank">Voir sur Google Maps</a>
+      <div class="contact-hours">
+        <h3>Horaires</h3>
+        <div class="contact-hours-list">
+          <div class="contact-hour-row"><span class="contact-day">Lundi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Mardi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Mercredi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Jeudi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Vendredi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Samedi</span><span class="contact-time">Fermé</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Dimanche</span><span class="contact-time">Fermé</span></div>
         </div>
       </div>
     </div>
-    <script>
-      function openContact() {
-        document.getElementById("contactPopup").style.display = "flex";
+  </div>
+  <script>
+    function openContact(){
+      document.getElementById("contactPopup").style.display = "flex";
+    }
+
+    function closeContact(){
+      document.getElementById("contactPopup").style.display = "none";
+    }
+
+    window.addEventListener("click", function(e){
+      const popup = document.getElementById("contactPopup");
+      if(e.target === popup){
+        closeContact();
       }
+    });
+  </script>
 
-      function closeContact() {
-        document.getElementById("contactPopup").style.display = "none";
-      }
+  <footer class="site-footer">
+    <p>© 2026 DBJ Automobile. Tous droits réservés.</p>
+  </footer>
 
-      window.addEventListener("click", function (e) {
-        const popup = document.getElementById("contactPopup");
-        if (e.target === popup) {
-          closeContact();
-        }
-      });
-    </script>
-
-    <footer class="site-footer">
-      <p>Â© 2026 DBJ Automobile. Tous droits rÃ©servÃ©s.</p>
-    </footer>
-  </body>
+</body>
 </html>

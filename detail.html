@@ -1,1812 +1,289 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#111111" />
-    <link rel="icon" href="favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="apple-touch-icon" href="favicon.png" />
-    <title>D&eacute;tail v&eacute;hicule - DBJ Automobile</title>
-    <meta
-      name="description"
-      content="Consultez les d&eacute;tails du v&eacute;hicule disponible chez DBJ Automobile &agrave; Chocques. Photos, caract&eacute;ristiques, options et demande d'information."
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="DBJ Automobile" />
-    <meta name="theme-color" content="#111111" />
-    <link rel="canonical" href="https://dbjautomobile.fr/detail.html" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <meta property="og:title" content="DBJ Automobile" />
-    <meta
-      property="og:description"
-      content="Vente, reprise et réparation de véhicules. Un service simple, fiable et sans surprise."
-    />
-    <meta property="og:image" content="https://dbjautomobile.fr/preview.jpg" />
-    <meta property="og:url" content="https://dbjautomobile.fr/detail.html" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DBJ Automobile" />
-    <meta
-      name="twitter:description"
-      content="Véhicules contrôlés, service professionnel et estimation rapide."
-    />
-    <meta name="twitter:image" content="https://dbjautomobile.fr/preview.jpg" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      :root {
-        --bg: #050505;
-        --bg-soft: #101010;
-        --panel: rgba(17, 17, 17, 0.82);
-        --panel-strong: rgba(12, 12, 12, 0.94);
-        --text: #f6f3ee;
-        --muted: #b9b0a5;
-        --accent: #f07a1f;
-        --accent-soft: #ff9c52;
-        --line: rgba(255, 255, 255, 0.08);
-        --line-strong: rgba(255, 255, 255, 0.14);
-        --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
-        --shadow-strong: 0 34px 80px rgba(0, 0, 0, 0.42);
-        --radius-xl: 30px;
-        --radius-lg: 22px;
-        --radius-md: 16px;
-        --site-width: 1180px;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Manrope", "Segoe UI", sans-serif;
-        margin: 0;
-        color: var(--text);
-        background:
-          radial-gradient(
-            circle at top left,
-            rgba(240, 122, 31, 0.14),
-            transparent 26%
-          ),
-          radial-gradient(
-            circle at 88% 8%,
-            rgba(240, 122, 31, 0.1),
-            transparent 18%
-          ),
-          linear-gradient(180deg, #090909 0%, #050505 48%, #0b0b0b 100%);
-        overflow-x: hidden;
-        overflow-y: auto;
-        position: relative;
-      }
-      body::before,
-      body::after {
-        content: "";
-        position: fixed;
-        width: 34rem;
-        height: 34rem;
-        border-radius: 50%;
-        filter: blur(110px);
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.28;
-      }
-      body::before {
-        top: -11rem;
-        left: -10rem;
-        background: rgba(240, 122, 31, 0.16);
-      }
-      body::after {
-        right: -12rem;
-        bottom: -12rem;
-        background: rgba(240, 122, 31, 0.08);
-      }
-      .site-header {
-        width: 100%;
-        margin: 0;
-        padding: 20px 28px 24px;
-        color: var(--text);
-        text-align: center;
-        position: relative;
-        top: 0;
-        z-index: 10;
-        background:
-          linear-gradient(180deg, rgba(14, 14, 14, 0.9), rgba(7, 7, 7, 0.96)),
-          linear-gradient(
-            90deg,
-            rgba(240, 122, 31, 0.05),
-            transparent 45%,
-            rgba(240, 122, 31, 0.02)
-          );
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-        backdrop-filter: blur(18px);
-        overflow: hidden;
-      }
-      .site-header::before {
-        content: none;
-        position: absolute;
-        inset: 0 auto auto 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.25),
-          transparent
-        );
-        opacity: 0.55;
-      }
-      .header-shell {
-        width: min(100%, var(--site-width));
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-      }
-      .logo-center {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 0 0 16px 0;
-      }
-      .logo {
-        height: 118px;
-        width: auto;
-        max-width: 100%;
-        object-fit: contain;
-        display: block;
-        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.28));
-      }
-      .brand-copy {
-        margin-top: 2px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-      }
-      .brand-title {
-        margin: 0;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: -0.035em;
-        color: var(--text);
-      }
-      .brand-subtitle {
-        margin: 0;
-        color: #cdb49a;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-      }
-      .top-bar {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .menu {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: rgba(255, 255, 255, 0.025);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.04),
-          0 10px 24px rgba(0, 0, 0, 0.14);
-      }
-      .menu a {
-        color: rgba(246, 243, 238, 0.88);
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 15px;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        line-height: 1.2;
-        transition:
-          color 0.25s ease,
-          background 0.25s ease,
-          border-color 0.25s ease,
-          transform 0.25s ease;
-        padding: 12px 20px;
-        border-radius: 999px;
-        border: 1px solid transparent;
-      }
-      .menu a:hover {
-        color: var(--text);
-        background: rgba(240, 122, 31, 0.08);
-        border-color: rgba(240, 122, 31, 0.22);
-        transform: translateY(-1px);
-      }
-      .slogan {
-        text-align: center;
-        margin: 0 auto;
-        color: var(--muted);
-        font-size: 13px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        line-height: 1.6;
-        max-width: 860px;
-      }
-      .detail-hero {
-        width: min(calc(100% - 32px), var(--site-width));
-        margin: 30px auto 18px;
-        padding: 0;
-        border-radius: var(--radius-xl);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        background: linear-gradient(
-          180deg,
-          rgba(16, 16, 16, 0.92),
-          rgba(10, 10, 10, 0.96)
-        );
-        box-shadow: var(--shadow);
-        overflow: hidden;
-        position: relative;
-      }
-      .detail-hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at 82% 24%,
-            rgba(240, 122, 31, 0.18),
-            transparent 26%
-          ),
-          linear-gradient(
-            90deg,
-            rgba(8, 8, 8, 0.22),
-            rgba(8, 8, 8, 0.04) 42%,
-            rgba(8, 8, 8, 0.3)
-          );
-        pointer-events: none;
-      }
-      .detail-hero::after {
-        content: "";
-        position: absolute;
-        inset: auto 30px 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.16),
-          transparent
-        );
-        opacity: 0.8;
-        pointer-events: none;
-      }
-      .detail-hero-inner {
-        position: relative;
-        z-index: 1;
-        padding: 36px 34px 32px;
-        text-align: center;
-      }
-      .detail-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 18px;
-        padding: 10px 16px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #efe3d2;
-      }
-      .detail-kicker::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, var(--accent-soft), var(--accent));
-        box-shadow: 0 0 16px rgba(240, 122, 31, 0.48);
-      }
-      .detail-hero h1 {
-        margin: 0 auto 12px;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 30px;
-        line-height: 1.05;
-        letter-spacing: -0.04em;
-        max-width: none;
-        white-space: nowrap;
-      }
-      .detail-hero p {
-        margin: 0 auto;
-        max-width: 720px;
-        color: #ddd3c7;
-        font-size: 17px;
-        line-height: 1.8;
-      }
-      .page-wrap {
-        width: min(calc(100% - 32px), 1180px);
-        margin: 0 auto 60px;
-      }
-      .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 18px;
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 800;
-        background: rgba(255, 255, 255, 0.04);
-        padding: 12px 18px;
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-        transition: 0.25s;
-      }
-      .back-link:hover {
-        background: rgba(240, 122, 31, 0.1);
-        border-color: rgba(240, 122, 31, 0.24);
-        transform: translateY(-2px);
-      }
-      .detail-card {
-        background: linear-gradient(
-          180deg,
-          rgba(18, 18, 18, 0.94),
-          rgba(10, 10, 10, 0.98)
-        );
-        border-radius: 28px;
-        box-shadow: var(--shadow-strong);
-        padding: 30px;
-        display: grid;
-        grid-template-columns: minmax(0, 470px) minmax(0, 1fr);
-        gap: 36px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        position: relative;
-        overflow: hidden;
-      }
-      .detail-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 22%),
-          radial-gradient(
-            circle at top right,
-            rgba(240, 122, 31, 0.08),
-            transparent 28%
-          );
-        pointer-events: none;
-      }
-      .gallery-col,
-      .info-col {
-        min-width: 0;
-      }
-      .gallery-panel,
-      .info-panel {
-        position: relative;
-        z-index: 1;
-      }
-      .gallery-frame {
-        padding: 14px;
-        border-radius: 26px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.05),
-          rgba(255, 255, 255, 0.02)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.04),
-          0 18px 38px rgba(0, 0, 0, 0.22);
-      }
-      .main-image-wrap {
-        width: 100%;
-        height: 430px;
-        border-radius: 22px;
-        overflow: hidden;
-        background: #0f0f0f;
-        box-shadow: 0 20px 44px rgba(0, 0, 0, 0.26);
-        position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .main-image-wrap::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%),
-          linear-gradient(0deg, rgba(0, 0, 0, 0.44), transparent 28%);
-        pointer-events: none;
-        z-index: 1;
-      }
-      .main-image-wrap::after {
-        content: "";
-        position: absolute;
-        inset: auto 0 0;
-        height: 96px;
-        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.68));
-        pointer-events: none;
-        z-index: 1;
-      }
-      .main-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        cursor: zoom-in;
-        transition:
-          transform 0.5s ease,
-          filter 0.35s ease;
-        filter: saturate(0.97) contrast(1.03);
-      }
-      .main-image:hover {
-        transform: scale(1.025);
-        filter: saturate(1.03) contrast(1.05);
-      }
-      .image-badges {
-        position: absolute;
-        top: 14px;
-        left: 14px;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        gap: 6px;
-        z-index: 2;
-        max-width: calc(100% - 28px);
-        overflow: hidden;
-      }
-      .gallery-caption {
-        position: absolute;
-        left: 18px;
-        right: 18px;
-        bottom: 16px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 16px;
-        z-index: 2;
-      }
-      .gallery-caption-text {
-        max-width: 70%;
-        color: #f3ece3;
-      }
-      .gallery-caption-label {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #cfb59d;
-      }
-      .gallery-caption-title {
-        display: block;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 1.2;
-        text-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
-      }
-      .gallery-counter {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 58px;
-        min-height: 42px;
-        padding: 10px 12px;
-        border-radius: 999px;
-        background: rgba(10, 10, 10, 0.66);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #f6f3ee;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.26);
-      }
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        max-width: 100%;
-        padding: 7px 11px;
-        border-radius: 999px;
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 0.07em;
-        text-transform: uppercase;
-        background: rgba(14, 14, 14, 0.88);
-        color: #f4efe9;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.26);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        flex: 0 1 auto;
-      }
-      .badge-gold {
-        background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-        color: #16100b;
-        border-color: rgba(255, 255, 255, 0.12);
-      }
-      .thumbs {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-        margin-top: 16px;
-      }
-      .thumb {
-        width: 100%;
-        height: 92px;
-        object-fit: cover;
-        border-radius: 16px;
-        cursor: pointer;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: 0.25s;
-        background: #101010;
-        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-      }
-      .thumb:hover,
-      .thumb.active {
-        border-color: var(--accent);
-        transform: translateY(-2px) scale(1.03);
-        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.26);
-      }
-      .section-box {
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.035),
-          rgba(255, 255, 255, 0.02)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 22px;
-        padding: 24px;
-        margin-top: 18px;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
-      }
-      .section-box h3 {
-        margin: 0 0 14px;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 24px;
-        color: var(--text);
-        letter-spacing: -0.02em;
-      }
-      .section-heading {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        margin-bottom: 16px;
-      }
-      .section-heading h3 {
-        margin: 0;
-      }
-      .section-note {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #ae9f8f;
-      }
-      .options-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px 14px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      .options-list li {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 13px 15px;
-        font-size: 15px;
-        line-height: 1.6;
-        color: #ddd5ca;
-      }
-      .info-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-      }
-      .intro-card {
-        padding: 26px;
-        border-radius: 26px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.015)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      }
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 16px;
-        color: #ceb69d;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-      .eyebrow::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, var(--accent-soft), var(--accent));
-        box-shadow: 0 0 14px rgba(240, 122, 31, 0.4);
-      }
-      .vehicle-title {
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 46px;
-        line-height: 1.02;
-        margin: 0 0 16px;
-        color: var(--text);
-        letter-spacing: -0.04em;
-      }
-      .title-badges {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 18px;
-      }
-      .summary-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 18px;
-        align-items: end;
-        margin-bottom: 22px;
-      }
-      .price-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-      .price-label {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #b8a999;
-      }
-      .price {
-        display: inline-flex;
-        align-items: center;
-        min-height: 62px;
-        background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-        color: #111;
-        padding: 14px 24px;
-        border-radius: 18px;
-        font-size: 32px;
-        font-weight: 800;
-        margin-bottom: 0;
-        box-shadow: 0 18px 34px rgba(240, 122, 31, 0.24);
-      }
-      .short-specs {
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.7;
-        padding: 18px 20px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.025);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .spec-highlight-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-      }
-      .spec-highlight {
-        padding: 16px 16px 14px;
-        border-radius: 18px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.015)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.07);
-      }
-      .spec-highlight-label {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #958779;
-      }
-      .spec-highlight-value {
-        display: block;
-        font-size: 17px;
-        font-weight: 700;
-        color: var(--text);
-      }
-      .cta-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        margin-bottom: 0;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        padding: 15px 20px;
-        border-radius: 16px;
-        font-weight: 800;
-        transition: 0.25s;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        font-size: 13px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-      .btn-dark {
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--text);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-      }
-      .btn-dark:hover {
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-2px);
-      }
-      .btn-gold {
-        background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-        color: #111;
-        box-shadow: 0 18px 34px rgba(240, 122, 31, 0.24);
-        border-color: rgba(255, 255, 255, 0.1);
-      }
-      .btn-gold:hover {
-        filter: saturate(1.05);
-        transform: translateY(-2px);
-        box-shadow: 0 22px 38px rgba(240, 122, 31, 0.28);
-      }
-      .description {
-        color: #ddd5ca;
-        font-size: 16px;
-        line-height: 1.95;
-        white-space: pre-line;
-        max-width: 680px;
-      }
-      .description-box {
-        padding: 20px 22px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      .spec-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-      .spec-item {
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 16px;
-        padding: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .spec-label {
-        display: block;
-        font-size: 12px;
-        color: #91877c;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-      }
-      .spec-value {
-        font-size: 16px;
-        color: var(--text);
-        font-weight: 700;
-        word-break: break-word;
-      }
-      .empty {
-        background: linear-gradient(
-          180deg,
-          rgba(18, 18, 18, 0.94),
-          rgba(10, 10, 10, 0.98)
-        );
-        padding: 30px;
-        border-radius: 22px;
-        text-align: center;
-        box-shadow: var(--shadow);
-        color: var(--muted);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .related-section {
-        width: min(calc(100% - 32px), 1180px);
-        margin: 0 auto 70px;
-      }
-      .related-section h2 {
-        margin: 0 0 18px;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 32px;
-        color: var(--text);
-        text-align: center;
-      }
-      .related-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-      .related-card {
-        background: linear-gradient(
-          180deg,
-          rgba(19, 19, 19, 0.96),
-          rgba(11, 11, 11, 0.98)
-        );
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
-        transition: 0.25s;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .related-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 26px 48px rgba(0, 0, 0, 0.28);
-        border-color: rgba(240, 122, 31, 0.22);
-      }
-      .related-image-wrap {
-        position: relative;
-      }
-      .related-card img {
-        width: 100%;
-        height: 238px;
-        object-fit: cover;
-        display: block;
-      }
-      .related-body {
-        padding: 20px 18px 22px;
-      }
-      .related-title {
-        font-family: "Sora", "Segoe UI", sans-serif;
-        font-size: 21px;
-        font-weight: 700;
-        margin-bottom: 8px;
-        color: var(--text);
-        line-height: 1.25;
-      }
-      .related-meta {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.6;
-        margin-bottom: 12px;
-      }
-      .related-price {
-        display: inline-block;
-        background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-        color: #111;
-        padding: 8px 14px;
-        border-radius: 10px;
-        font-weight: 800;
-        margin-bottom: 12px;
-      }
-      .related-btn {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--text);
-        text-decoration: none;
-        padding: 11px 14px;
-        border-radius: 12px;
-        font-weight: 800;
-        transition: 0.25s;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-      }
-      .related-btn:hover {
-        background: rgba(240, 122, 31, 0.1);
-        border-color: rgba(240, 122, 31, 0.22);
-      }
-      .contact-popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-      #contactPopup.contact-popup,
-      #interestPopup.contact-popup {
-        padding: 24px;
-        background:
-          radial-gradient(
-            circle at top,
-            rgba(240, 122, 31, 0.12),
-            transparent 24%
-          ),
-          rgba(2, 2, 2, 0.78);
-        backdrop-filter: blur(12px);
-      }
-      #contactPopup .contact-box,
-      #interestPopup .contact-box {
-        background: linear-gradient(
-          180deg,
-          rgba(23, 23, 23, 0.96),
-          rgba(10, 10, 10, 0.98)
-        );
-        color: var(--text);
-        padding: 34px 30px 28px;
-        border-radius: 28px;
-        width: min(100%, 560px);
-        text-align: left;
-        position: relative;
-        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        overflow: hidden;
-      }
-      #contactPopup .contact-box::before,
-      #interestPopup .contact-box::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 24%),
-          radial-gradient(
-            circle at top right,
-            rgba(240, 122, 31, 0.14),
-            transparent 28%
-          );
-        pointer-events: none;
-      }
-      #contactPopup .contact-box > *,
-      #interestPopup .contact-box > * {
-        position: relative;
-        z-index: 1;
-      }
-      #contactPopup .contact-kicker,
-      #interestPopup .contact-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 14px;
-        padding: 10px 16px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #efe3d2;
-      }
-      #contactPopup .contact-kicker::before,
-      #interestPopup .contact-kicker::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, var(--accent-soft), var(--accent));
-        box-shadow: 0 0 14px rgba(240, 122, 31, 0.48);
-      }
-      #contactPopup .contact-box h2,
-      #contactPopup .contact-box h3,
-      #interestPopup .contact-box h2,
-      #interestPopup .contact-box h3 {
-        margin-top: 0;
-        font-family: "Sora", "Segoe UI", sans-serif;
-        color: var(--text);
-      }
-      #contactPopup .contact-box h2,
-      #interestPopup .contact-box h2 {
-        margin-bottom: 10px;
-        font-size: 32px;
-        letter-spacing: -0.03em;
-      }
-      #contactPopup .contact-intro,
-      #interestPopup .contact-intro {
-        margin: 0 0 22px;
-        color: #d2c5b8;
-        line-height: 1.75;
-        font-size: 15px;
-        max-width: 44ch;
-      }
-      #contactPopup .contact-box h3,
-      #interestPopup .contact-box h3 {
-        margin: 0 0 14px;
-        font-size: 18px;
-        color: #f0d4bd;
-      }
-      #contactPopup .contact-grid,
-      #interestPopup .contact-grid {
-        display: grid;
-        gap: 12px;
-        margin-bottom: 24px;
-      }
-      #contactPopup .contact-item,
-      #interestPopup .contact-item {
-        padding: 15px 16px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-      }
-      #contactPopup .contact-item-label,
-      #interestPopup .contact-item-label {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #9f9183;
-      }
-      #contactPopup .contact-item-value,
-      #contactPopup .contact-item-value a,
-      #interestPopup .contact-item-value,
-      #interestPopup .contact-item-value a {
-        color: #f6f3ee;
-        text-decoration: none;
-        font-weight: 700;
-        line-height: 1.6;
-      }
-      #contactPopup .contact-item-value a:hover,
-      #contactPopup .contact-map-link:hover,
-      #interestPopup .contact-item-value a:hover,
-      #interestPopup .contact-map-link:hover {
-        color: #ffcfab;
-      }
-      #contactPopup .contact-map-link,
-      #interestPopup .contact-map-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 4px;
-        color: #ffcfab;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-      }
-      #contactPopup .contact-map-link {
-        display: inline-flex;
-        top: -12px;
-        transform: translate(150px, -2px);
-        gap: 10px;
-        margin-top: 4px;
-        color: #ffcfab;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-      }
-
-      @media (max-width: 768px) {
-        #contactPopup .contact-map-link {
-          display: flex;
-          transform: translateX(75px);
-        }
-      }
-      #contactPopup .contact-hours,
-      #interestPopup .contact-hours {
-        padding: 18px;
-        border-radius: 22px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.035),
-          rgba(255, 255, 255, 0.015)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      #contactPopup .contact-hours-list,
-      #interestPopup .contact-hours-list {
-        display: grid;
-        gap: 10px;
-      }
-      #contactPopup .contact-hour-row,
-      #interestPopup .contact-hour-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        color: #ded4ca;
-      }
-      #contactPopup .contact-hour-row:last-child,
-      #interestPopup .contact-hour-row:last-child {
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-      #contactPopup .contact-day,
-      #interestPopup .contact-day {
-        font-weight: 700;
-        color: #f4ede5;
-      }
-      #contactPopup .contact-time,
-      #interestPopup .contact-time {
-        color: #baaea1;
-        text-align: right;
-      }
-      .contact-box input,
-      .contact-box textarea {
-        width: 100%;
-        padding: 14px 15px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 14px;
-        font-size: 15px;
-        outline: none;
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--text);
-      }
-      .contact-box input:focus,
-      .contact-box textarea:focus {
-        border-color: rgba(240, 122, 31, 0.38);
-        box-shadow: 0 0 0 4px rgba(240, 122, 31, 0.12);
-      }
-      #contactPopup .close,
-      #interestPopup .close {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        font-size: 22px;
-        cursor: pointer;
-        color: #f0d4bd;
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition:
-          background 0.25s ease,
-          border-color 0.25s ease,
-          transform 0.25s ease,
-          color 0.25s ease;
-        z-index: 3;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-      }
-      #contactPopup .close:hover,
-      #interestPopup .close:hover {
-        background: rgba(240, 122, 31, 0.12);
-        border-color: rgba(240, 122, 31, 0.24);
-        color: #fff4e8;
-        transform: translateY(-1px);
-      }
-      .lightbox {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.92);
-        z-index: 10000;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-      }
-      .lightbox.open {
-        display: flex;
-      }
-      .lightbox-content {
-        position: relative;
-        max-width: 1100px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .lightbox-image {
-        max-width: 100%;
-        max-height: 85vh;
-        object-fit: contain;
-        border-radius: 16px;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-        background: #111;
-      }
-      .lightbox-close {
-        position: absolute;
-        top: -50px;
-        right: 0;
-        font-size: 34px;
-        color: white;
-        cursor: pointer;
-        font-weight: bold;
-        line-height: 1;
-      }
-      .lightbox-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 52px;
-        height: 52px;
-        border: none;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.14);
-        color: white;
-        font-size: 28px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.2s;
-      }
-      .lightbox-nav:hover {
-        background: rgba(240, 122, 31, 0.9);
-        color: #111;
-      }
-      .lightbox-prev {
-        left: 20px;
-      }
-      .lightbox-next {
-        right: 20px;
-      }
-      .site-footer {
-        width: min(calc(100% - 32px), var(--site-width));
-        text-align: center;
-        padding: 0 20px 32px;
-        background: transparent;
-        color: #998d81;
-        font-size: 13px;
-        margin: 0 auto;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .site-footer p {
-        margin: 0;
-      }
-      @media (max-width: 980px) {
-        .detail-card {
-          grid-template-columns: 1fr;
-        }
-        .main-image-wrap {
-          height: 360px;
-        }
-        .vehicle-title {
-          font-size: 34px;
-        }
-        .related-grid,
-        .options-list,
-        .spec-grid,
-        .spec-highlight-grid,
-        .cta-row {
-          grid-template-columns: 1fr;
-        }
-        .summary-grid {
-          grid-template-columns: 1fr;
-        }
-        .gallery-caption-text {
-          max-width: 100%;
-        }
-      }
-      @media (max-width: 768px) {
-        .site-header {
-          padding: 18px 14px 18px;
-        }
-        .logo {
-          height: 96px;
-        }
-        .logo-center {
-          margin-bottom: 12px;
-        }
-        .brand-title {
-          font-size: 23px;
-        }
-        .brand-subtitle {
-          font-size: 11px;
-          letter-spacing: 0.16em;
-        }
-        .menu {
-          flex-direction: column;
-          gap: 8px;
-          max-width: 100%;
-          width: 100%;
-          margin: 0 auto;
-          border-radius: 20px;
-          padding: 10px;
-        }
-        .menu a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 50px;
-          font-size: 14px;
-          width: 100%;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 14px;
-        }
-        .slogan {
-          font-size: 12px;
-          line-height: 1.5;
-          padding: 0 8px;
-          max-width: 380px;
-          margin: 14px auto 0;
-        }
-        .detail-hero,
-        .page-wrap,
-        .related-section,
-        .site-footer {
-          width: min(calc(100% - 20px), var(--site-width));
-        }
-        .detail-hero {
-          margin-top: 18px;
-        }
-        .detail-hero-inner {
-          padding: 26px 20px;
-        }
-        .detail-kicker {
-          font-size: 11px;
-          letter-spacing: 0.12em;
-        }
-        .detail-hero h1 {
-          font-size: 36px;
-          max-width: 100%;
-          white-space: normal;
-        }
-        .detail-card {
-          padding: 18px;
-          border-radius: 24px;
-          gap: 20px;
-        }
-        .gallery-frame {
-          padding: 10px;
-          border-radius: 22px;
-        }
-        .main-image-wrap {
-          height: 260px;
-        }
-        .gallery-caption {
-          left: 14px;
-          right: 14px;
-          bottom: 14px;
-          align-items: flex-end;
-        }
-        .gallery-caption-title {
-          font-size: 16px;
-        }
-        .gallery-counter {
-          min-width: 48px;
-          min-height: 38px;
-          font-size: 11px;
-        }
-        .thumbs {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .thumb {
-          height: 82px;
-        }
-        .intro-card {
-          padding: 20px;
-        }
-        .vehicle-title {
-          font-size: 28px;
-        }
-        .price {
-          font-size: 24px;
-          min-height: 54px;
-          padding: 12px 18px;
-        }
-        .short-specs {
-          font-size: 16px;
-          padding: 16px;
-        }
-        .section-box {
-          padding: 20px;
-        }
-        .description-box {
-          padding: 16px;
-        }
-        .lightbox {
-          padding: 15px;
-        }
-        .lightbox-close {
-          top: -42px;
-          font-size: 30px;
-        }
-        .lightbox-nav {
-          width: 44px;
-          height: 44px;
-          font-size: 24px;
-        }
-        .lightbox-prev {
-          left: 8px;
-        }
-        .lightbox-next {
-          right: 8px;
-        }
-        #contactPopup.contact-popup,
-        #interestPopup.contact-popup {
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          padding: 20px;
-          background: rgba(0, 0, 0, 0.6);
-          display: none;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-        #contactPopup .contact-box,
-        #interestPopup .contact-box {
-          width: 100%;
-          max-width: 400px;
-          max-height: 90vh;
-          padding: 22px 18px 20px;
-          border-radius: 20px;
-          overflow-y: auto;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
-        }
-        #contactPopup .contact-box h2,
-        #interestPopup .contact-box h2 {
-          font-size: 28px;
-        }
-        #contactPopup .close,
-        #interestPopup .close {
-          position: sticky;
-          top: 0;
-          right: auto;
-          margin-left: auto;
-          margin-bottom: 10px;
-          z-index: 5;
-        }
-        #contactPopup .contact-hour-row,
-        #interestPopup .contact-hour-row {
-          flex-direction: column;
-          gap: 4px;
-        }
-        #contactPopup .contact-time,
-        #interestPopup .contact-time {
-          text-align: left;
-        }
-      }
-      @media (max-width: 768px) {
-        a,
-        button,
-        input,
-        select,
-        textarea,
-        .btn,
-        .menu a,
-        .back-link,
-        .thumb,
-        .gallery-thumb,
-        .filter-select,
-        .filter-input {
-          -webkit-tap-highlight-color: transparent;
-        }
-        a:focus,
-        a:focus-visible,
-        button:focus,
-        button:focus-visible,
-        input:focus,
-        input:focus-visible,
-        select:focus,
-        select:focus-visible,
-        textarea:focus,
-        textarea:focus-visible,
-        .btn:focus,
-        .btn:focus-visible,
-        .menu a:focus,
-        .menu a:focus-visible,
-        .back-link:focus,
-        .back-link:focus-visible,
-        .thumb:focus,
-        .thumb:focus-visible,
-        .gallery-thumb:focus,
-        .gallery-thumb:focus-visible {
-          outline: none !important;
-          box-shadow: none !important;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-shell">
-        <div class="logo-center">
-          <img src="images/logo1.png" class="logo" alt="DBJ Automobile" />
-          <div class="brand-copy">
-            <p class="brand-title">DBJ Automobile</p>
-            <p class="brand-subtitle">
-              Achat, Vente, Reprise, R&eacute;paration
-            </p>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>D&eacute;tail v&eacute;hicule - DBJ Automobile</title>
+  <meta name="description" content="Consultez les d&eacute;tails du v&eacute;hicule disponible chez DBJ Automobile &agrave; Chocques. Photos, caract&eacute;ristiques, options et demande d'information.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="DBJ Automobile">
+  <meta name="theme-color" content="#111111">
+  <link rel="canonical" href="https://dbjautomobile.fr/detail.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:title" content="DBJ Automobile" />
+  <meta property="og:description" content="Vente, reprise et réparation de véhicules. Un service simple, fiable et sans surprise." />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dbjautomobile.fr/detail.html">
+  <meta property="og:image" content="https://dbjautomobile.fr/preview.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="D&eacute;tail v&eacute;hicule - DBJ Automobile">
+  <meta name="twitter:description" content="Consultez les d&eacute;tails du v&eacute;hicule disponible chez DBJ Automobile &agrave; Chocques.">
+  <meta name="twitter:image" content="https://dbjautomobile.fr/images/logo1.png">
+  <style>
+    *{box-sizing:border-box;}
+    :root{--bg:#050505;--bg-soft:#101010;--panel:rgba(17,17,17,0.82);--panel-strong:rgba(12,12,12,0.94);--text:#f6f3ee;--muted:#b9b0a5;--accent:#f07a1f;--accent-soft:#ff9c52;--line:rgba(255,255,255,0.08);--line-strong:rgba(255,255,255,0.14);--shadow:0 24px 60px rgba(0,0,0,0.34);--shadow-strong:0 34px 80px rgba(0,0,0,0.42);--radius-xl:30px;--radius-lg:22px;--radius-md:16px;--site-width:1180px;}
+    html{scroll-behavior:smooth;}
+    body{font-family:"Manrope","Segoe UI",sans-serif;margin:0;color:var(--text);background:radial-gradient(circle at top left, rgba(240,122,31,0.14), transparent 26%),radial-gradient(circle at 88% 8%, rgba(240,122,31,0.1), transparent 18%),linear-gradient(180deg,#090909 0%, #050505 48%, #0b0b0b 100%);overflow-x:hidden;overflow-y:auto;position:relative;}
+    body::before,body::after{content:"";position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(110px);z-index:-1;pointer-events:none;opacity:0.28;}
+    body::before{top:-11rem;left:-10rem;background:rgba(240,122,31,0.16);}
+    body::after{right:-12rem;bottom:-12rem;background:rgba(240,122,31,0.08);}
+    .site-header{width:100%;margin:0;padding:20px 28px 24px;color:var(--text);text-align:center;position:relative;top:0;z-index:10;border-bottom:1px solid var(--line);background:linear-gradient(180deg, rgba(14,14,14,0.9), rgba(7,7,7,0.96)),linear-gradient(90deg, rgba(240,122,31,0.05), transparent 45%, rgba(240,122,31,0.02));box-shadow:0 10px 30px rgba(0,0,0,0.22);backdrop-filter:blur(18px);overflow:hidden;}
+    .site-header::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);opacity:0.55;}
+    .header-shell{width:min(100%, var(--site-width));margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;}
+    .logo-center{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;margin:0 0 16px 0;}
+    .logo{height:118px;width:auto;max-width:100%;object-fit:contain;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.28));}
+    .brand-copy{margin-top:2px;display:flex;flex-direction:column;align-items:center;gap:4px;}
+    .brand-title{margin:0;font-family:"Sora","Segoe UI",sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.035em;color:var(--text);}
+    .brand-subtitle{margin:0;color:#cdb49a;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;}
+    .top-bar{display:flex;justify-content:center;width:100%;max-width:1100px;margin:0 auto;}
+    .menu{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.025);box-shadow:inset 0 1px 0 rgba(255,255,255,0.04), 0 10px 24px rgba(0,0,0,0.14);}
+    .menu a{color:rgba(246,243,238,0.88);text-decoration:none;font-weight:700;font-size:15px;letter-spacing:0.04em;text-transform:uppercase;line-height:1.2;transition:color .25s ease,background .25s ease,border-color .25s ease,transform .25s ease;padding:12px 20px;border-radius:999px;border:1px solid transparent;}
+    .menu a:hover{color:var(--text);background:rgba(240,122,31,0.08);border-color:rgba(240,122,31,0.22);transform:translateY(-1px);}
+    .slogan{text-align:center;margin:0 auto;color:var(--muted);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;line-height:1.6;max-width:860px;}
+    .detail-hero{width:min(calc(100% - 32px), var(--site-width));margin:30px auto 18px;padding:0;border-radius:var(--radius-xl);border:1px solid rgba(255,255,255,0.08);background:linear-gradient(180deg, rgba(16,16,16,0.92), rgba(10,10,10,0.96));box-shadow:var(--shadow);overflow:hidden;position:relative;}
+    .detail-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 24%, rgba(240,122,31,0.18), transparent 26%),linear-gradient(90deg, rgba(8,8,8,0.22), rgba(8,8,8,0.04) 42%, rgba(8,8,8,0.3));pointer-events:none;}
+    .detail-hero::after{content:"";position:absolute;inset:auto 30px 0;height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);opacity:.8;pointer-events:none;}
+    .detail-hero-inner{position:relative;z-index:1;padding:36px 34px 32px;text-align:center;}
+    .detail-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#efe3d2;}
+    .detail-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg, var(--accent-soft), var(--accent));box-shadow:0 0 16px rgba(240,122,31,0.48);}
+    .detail-hero h1{margin:0 auto 12px;font-family:"Sora","Segoe UI",sans-serif;font-size:30px;line-height:1.05;letter-spacing:-0.04em;max-width:none;white-space:nowrap;}
+    .detail-hero p{margin:0 auto;max-width:720px;color:#ddd3c7;font-size:17px;line-height:1.8;}
+    .page-wrap{width:min(calc(100% - 32px), 1180px);margin:0 auto 60px;}
+    .back-link{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;text-decoration:none;color:var(--text);font-weight:800;background:rgba(255,255,255,0.04);padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);transition:.25s;}
+    .back-link:hover{background:rgba(240,122,31,0.1);border-color:rgba(240,122,31,0.24);transform:translateY(-2px);}
+    .detail-card{background:linear-gradient(180deg, rgba(18,18,18,0.94), rgba(10,10,10,0.98));border-radius:28px;box-shadow:var(--shadow-strong);padding:30px;display:grid;grid-template-columns:minmax(0, 470px) minmax(0, 1fr);gap:36px;border:1px solid rgba(255,255,255,0.08);position:relative;overflow:hidden;}
+    .detail-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.03), transparent 22%),radial-gradient(circle at top right, rgba(240,122,31,0.08), transparent 28%);pointer-events:none;}
+    .gallery-col,.info-col{min-width:0;}
+    .gallery-panel,.info-panel{position:relative;z-index:1;}
+    .gallery-frame{padding:14px;border-radius:26px;background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.07);box-shadow:inset 0 1px 0 rgba(255,255,255,0.04),0 18px 38px rgba(0,0,0,0.22);}
+    .main-image-wrap{width:100%;height:430px;border-radius:22px;overflow:hidden;background:#0f0f0f;box-shadow:0 20px 44px rgba(0,0,0,0.26);position:relative;border:1px solid rgba(255,255,255,0.06);}
+    .main-image-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.08), transparent 28%),linear-gradient(0deg, rgba(0,0,0,0.44), transparent 28%);pointer-events:none;z-index:1;}
+    .main-image-wrap::after{content:"";position:absolute;inset:auto 0 0;height:96px;background:linear-gradient(180deg, transparent, rgba(0,0,0,0.68));pointer-events:none;z-index:1;}
+    .main-image{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:transform .5s ease,filter .35s ease;filter:saturate(.97) contrast(1.03);}
+    .main-image:hover{transform:scale(1.025);filter:saturate(1.03) contrast(1.05);}
+    .image-badges{position:absolute;top:14px;left:14px;display:flex;flex-wrap:nowrap;align-items:center;gap:6px;z-index:2;max-width:calc(100% - 28px);overflow:hidden;}
+    .gallery-caption{position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;z-index:2;}
+    .gallery-caption-text{max-width:70%;color:#f3ece3;}
+    .gallery-caption-label{display:block;margin-bottom:6px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#cfb59d;}
+    .gallery-caption-title{display:block;font-family:"Sora","Segoe UI",sans-serif;font-size:20px;font-weight:700;line-height:1.2;text-shadow:0 10px 24px rgba(0,0,0,0.34);}
+    .gallery-counter{display:inline-flex;align-items:center;justify-content:center;min-width:58px;min-height:42px;padding:10px 12px;border-radius:999px;background:rgba(10,10,10,0.66);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#f6f3ee;box-shadow:0 12px 24px rgba(0,0,0,0.26);}
+    .badge{display:inline-flex;align-items:center;max-width:100%;padding:7px 11px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;background:rgba(14,14,14,0.88);color:#f4efe9;border:1px solid rgba(255,255,255,0.08);box-shadow:0 6px 16px rgba(0,0,0,0.26);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1 auto;}
+    .badge-gold{background:linear-gradient(135deg, var(--accent-soft), var(--accent));color:#16100b;border-color:rgba(255,255,255,0.12);}
+    .thumbs{display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;margin-top:16px;}
+    .thumb{width:100%;height:92px;object-fit:cover;border-radius:16px;cursor:pointer;border:1px solid rgba(255,255,255,0.08);transition:.25s;background:#101010;box-shadow:0 10px 22px rgba(0,0,0,0.18);}
+    .thumb:hover,.thumb.active{border-color:var(--accent);transform:translateY(-2px) scale(1.03);box-shadow:0 16px 28px rgba(0,0,0,0.26);}
+    .section-box{background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:24px;margin-top:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);}
+    .section-box h3{margin:0 0 14px;font-family:"Sora","Segoe UI",sans-serif;font-size:24px;color:var(--text);letter-spacing:-.02em;}
+    .section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;}
+    .section-heading h3{margin:0;}
+    .section-note{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ae9f8f;}
+    .options-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin:0;padding:0;list-style:none;}
+    .options-list li{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:13px 15px;font-size:15px;line-height:1.6;color:#ddd5ca;}
+    .info-panel{display:flex;flex-direction:column;gap:18px;}
+    .intro-card{padding:26px;border-radius:26px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;color:#ceb69d;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg, var(--accent-soft), var(--accent));box-shadow:0 0 14px rgba(240,122,31,0.4);}
+    .vehicle-title{font-family:"Sora","Segoe UI",sans-serif;font-size:46px;line-height:1.02;margin:0 0 16px;color:var(--text);letter-spacing:-0.04em;}
+    .title-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+    .summary-grid{display:grid;grid-template-columns:minmax(0, 1fr) auto;gap:18px;align-items:end;margin-bottom:22px;}
+    .price-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+    .price-label{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b8a999;}
+    .price{display:inline-flex;align-items:center;min-height:62px;background:linear-gradient(135deg,var(--accent-soft),var(--accent));color:#111;padding:14px 24px;border-radius:18px;font-size:32px;font-weight:800;margin-bottom:0;box-shadow:0 18px 34px rgba(240,122,31,0.24);}
+    .short-specs{color:var(--muted);font-size:18px;line-height:1.7;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);}
+    .spec-highlight-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px;}
+    .spec-highlight{padding:16px 16px 14px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.07);}
+    .spec-highlight-label{display:block;margin-bottom:8px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#958779;}
+    .spec-highlight-value{display:block;font-size:17px;font-weight:700;color:var(--text);}
+    .cta-row{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px;margin-bottom:0;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:15px 20px;border-radius:16px;font-weight:800;transition:.25s;letter-spacing:0.08em;text-transform:uppercase;font-size:13px;border:1px solid rgba(255,255,255,0.12);}
+    .btn-dark{background:rgba(255,255,255,0.04);color:var(--text);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);}
+    .btn-dark:hover{background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+    .btn-gold{background:linear-gradient(135deg,var(--accent-soft),var(--accent));color:#111;box-shadow:0 18px 34px rgba(240,122,31,0.24);border-color:rgba(255,255,255,0.1);}
+    .btn-gold:hover{filter:saturate(1.05);transform:translateY(-2px);box-shadow:0 22px 38px rgba(240,122,31,0.28);}
+    .description{color:#ddd5ca;font-size:16px;line-height:1.95;white-space:pre-line;max-width:680px;}
+    .description-box{padding:20px 22px;border-radius:18px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);}
+    .spec-grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:12px;}
+    .spec-item{background:rgba(255,255,255,0.03);border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.08);}
+    .spec-label{display:block;font-size:12px;color:#91877c;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.16em;}
+    .spec-value{font-size:16px;color:var(--text);font-weight:700;word-break:break-word;}
+    .empty{background:linear-gradient(180deg, rgba(18,18,18,0.94), rgba(10,10,10,0.98));padding:30px;border-radius:22px;text-align:center;box-shadow:var(--shadow);color:var(--muted);border:1px solid rgba(255,255,255,0.08);}
+    .related-section{width:min(calc(100% - 32px), 1180px);margin:0 auto 70px;}
+    .related-section h2{margin:0 0 18px;font-family:"Sora","Segoe UI",sans-serif;font-size:32px;color:var(--text);text-align:center;}
+    .related-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:22px;}
+    .related-card{background:linear-gradient(180deg, rgba(19,19,19,0.96), rgba(11,11,11,0.98));border-radius:24px;overflow:hidden;box-shadow:0 18px 36px rgba(0,0,0,0.22);transition:.25s;border:1px solid rgba(255,255,255,0.08);}
+    .related-card:hover{transform:translateY(-5px);box-shadow:0 26px 48px rgba(0,0,0,0.28);border-color:rgba(240,122,31,0.22);}
+    .related-image-wrap{position:relative;}
+    .related-card img{width:100%;height:238px;object-fit:cover;display:block;}
+    .related-body{padding:20px 18px 22px;}
+    .related-title{font-family:"Sora","Segoe UI",sans-serif;font-size:21px;font-weight:700;margin-bottom:8px;color:var(--text);line-height:1.25;}
+    .related-meta{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:12px;}
+    .related-price{display:inline-block;background:linear-gradient(135deg,var(--accent-soft),var(--accent));color:#111;padding:8px 14px;border-radius:10px;font-weight:800;margin-bottom:12px;}
+    .related-btn{display:inline-block;background:rgba(255,255,255,0.04);color:var(--text);text-decoration:none;padding:11px 14px;border-radius:12px;font-weight:800;transition:.25s;border:1px solid rgba(255,255,255,0.12);text-transform:uppercase;font-size:12px;letter-spacing:0.06em;}
+    .related-btn:hover{background:rgba(240,122,31,0.1);border-color:rgba(240,122,31,0.22);}
+    .contact-popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;justify-content:center;align-items:center;z-index:9999;}
+    #contactPopup.contact-popup,#interestPopup.contact-popup{padding:24px;background:radial-gradient(circle at top, rgba(240,122,31,0.12), transparent 24%),rgba(2,2,2,0.78);backdrop-filter:blur(12px);}
+    #contactPopup .contact-box,#interestPopup .contact-box{background:linear-gradient(180deg, rgba(23,23,23,0.96), rgba(10,10,10,0.98));color:var(--text);padding:34px 30px 28px;border-radius:28px;width:min(100%, 560px);text-align:left;position:relative;box-shadow:0 30px 70px rgba(0,0,0,0.42);border:1px solid rgba(255,255,255,0.08);overflow:hidden;}
+    #contactPopup .contact-box::before,#interestPopup .contact-box::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.045), transparent 24%),radial-gradient(circle at top right, rgba(240,122,31,0.14), transparent 28%);pointer-events:none;}
+    #contactPopup .contact-box > *,#interestPopup .contact-box > *{position:relative;z-index:1;}
+    #contactPopup .contact-kicker,#interestPopup .contact-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#efe3d2;}
+    #contactPopup .contact-kicker::before,#interestPopup .contact-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg, var(--accent-soft), var(--accent));box-shadow:0 0 14px rgba(240,122,31,0.48);}
+    #contactPopup .contact-box h2,#contactPopup .contact-box h3,#interestPopup .contact-box h2,#interestPopup .contact-box h3{margin-top:0;font-family:"Sora","Segoe UI",sans-serif;color:var(--text);}
+    #contactPopup .contact-box h2,#interestPopup .contact-box h2{margin-bottom:10px;font-size:32px;letter-spacing:-0.03em;}
+    #contactPopup .contact-intro,#interestPopup .contact-intro{margin:0 0 22px;color:#d2c5b8;line-height:1.75;font-size:15px;max-width:44ch;}
+    #contactPopup .contact-box h3,#interestPopup .contact-box h3{margin:0 0 14px;font-size:18px;color:#f0d4bd;}
+    #contactPopup .contact-grid,#interestPopup .contact-grid{display:grid;gap:12px;margin-bottom:24px;}
+    #contactPopup .contact-item,#interestPopup .contact-item{padding:15px 16px;border-radius:18px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);}
+    #contactPopup .contact-item-label,#interestPopup .contact-item-label{display:block;margin-bottom:8px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9f9183;}
+    #contactPopup .contact-item-value,#contactPopup .contact-item-value a,#interestPopup .contact-item-value,#interestPopup .contact-item-value a{color:#f6f3ee;text-decoration:none;font-weight:700;line-height:1.6;}
+    #contactPopup .contact-item-value a:hover,#contactPopup .contact-map-link:hover,#interestPopup .contact-item-value a:hover,#interestPopup .contact-map-link:hover{color:#ffcfab;}
+    #contactPopup .contact-map-link,#interestPopup .contact-map-link{display:inline-flex;align-items:center;gap:10px;margin-top:4px;color:#ffcfab;text-decoration:none;font-weight:800;letter-spacing:.04em;}
+    #contactPopup .contact-hours,#interestPopup .contact-hours{padding:18px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.08);}
+    #contactPopup .contact-hours-list,#interestPopup .contact-hours-list{display:grid;gap:10px;}
+    #contactPopup .contact-hour-row,#interestPopup .contact-hour-row{display:flex;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);color:#ded4ca;}
+    #contactPopup .contact-hour-row:last-child,#interestPopup .contact-hour-row:last-child{padding-bottom:0;border-bottom:none;}
+    #contactPopup .contact-day,#interestPopup .contact-day{font-weight:700;color:#f4ede5;}
+    #contactPopup .contact-time,#interestPopup .contact-time{color:#baaea1;text-align:right;}
+    .contact-box input,.contact-box textarea{width:100%;padding:14px 15px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;font-size:15px;outline:none;background:rgba(255,255,255,0.03);color:var(--text);}
+    .contact-box input:focus,.contact-box textarea:focus{border-color:rgba(240,122,31,0.38);box-shadow:0 0 0 4px rgba(240,122,31,0.12);}
+    #contactPopup .close,#interestPopup .close{position:absolute;top:18px;right:18px;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;font-size:22px;cursor:pointer;color:#f0d4bd;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);transition:background .25s ease,border-color .25s ease,transform .25s ease,color .25s ease;z-index:3;user-select:none;-webkit-tap-highlight-color:transparent;}
+    #contactPopup .close:hover,#interestPopup .close:hover{background:rgba(240,122,31,0.12);border-color:rgba(240,122,31,0.24);color:#fff4e8;transform:translateY(-1px);}
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;justify-content:center;align-items:center;padding:30px;}
+    .lightbox.open{display:flex;}
+    .lightbox-content{position:relative;max-width:1100px;width:100%;display:flex;justify-content:center;align-items:center;}
+    .lightbox-image{max-width:100%;max-height:85vh;object-fit:contain;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,0.35);background:#111;}
+    .lightbox-close{position:absolute;top:-50px;right:0;font-size:34px;color:white;cursor:pointer;font-weight:bold;line-height:1;}
+    .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border:none;border-radius:50%;background:rgba(255,255,255,0.14);color:white;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
+    .lightbox-nav:hover{background:rgba(240,122,31,0.9);color:#111;}
+    .lightbox-prev{left:20px;}
+    .lightbox-next{right:20px;}
+    .site-footer{width:min(calc(100% - 32px), var(--site-width));text-align:center;padding:0 20px 32px;background:transparent;color:#998d81;font-size:13px;margin:0 auto;letter-spacing:0.08em;text-transform:uppercase;}
+    .site-footer p{margin:0;}
+    @media(max-width:980px){.detail-card{grid-template-columns:1fr;}.main-image-wrap{height:360px;}.vehicle-title{font-size:34px;}.related-grid,.options-list,.spec-grid,.spec-highlight-grid,.cta-row{grid-template-columns:1fr;}.summary-grid{grid-template-columns:1fr;}.gallery-caption-text{max-width:100%;}}
+    @media(max-width:768px){.site-header{padding:18px 14px 18px;}.logo{height:96px;}.logo-center{margin-bottom:12px;}.brand-title{font-size:23px;}.brand-subtitle{font-size:11px;letter-spacing:0.16em;}.menu{flex-direction:column;gap:8px;max-width:100%;width:100%;margin:0 auto;border-radius:20px;padding:10px;}.menu a{display:flex;align-items:center;justify-content:center;min-height:50px;font-size:14px;width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;}.slogan{font-size:12px;line-height:1.5;padding:0 8px;max-width:380px;margin:14px auto 0;}.detail-hero,.page-wrap,.related-section,.site-footer{width:min(calc(100% - 20px), var(--site-width));}.detail-hero{margin-top:18px;}.detail-hero-inner{padding:26px 20px;}.detail-kicker{font-size:11px;letter-spacing:.12em;}.detail-hero h1{font-size:36px;max-width:100%;white-space:normal;}.detail-card{padding:18px;border-radius:24px;gap:20px;}.gallery-frame{padding:10px;border-radius:22px;}.main-image-wrap{height:260px;}.gallery-caption{left:14px;right:14px;bottom:14px;align-items:flex-end;}.gallery-caption-title{font-size:16px;}.gallery-counter{min-width:48px;min-height:38px;font-size:11px;}.thumbs{grid-template-columns:repeat(3, 1fr);}.thumb{height:82px;}.intro-card{padding:20px;}.vehicle-title{font-size:28px;}.price{font-size:24px;min-height:54px;padding:12px 18px;}.short-specs{font-size:16px;padding:16px;}.section-box{padding:20px;}.description-box{padding:16px;}.lightbox{padding:15px;}.lightbox-close{top:-42px;font-size:30px;}.lightbox-nav{width:44px;height:44px;font-size:24px;}.lightbox-prev{left:8px;}.lightbox-next{right:8px;}#contactPopup.contact-popup,#interestPopup.contact-popup{top:0;left:0;width:100%;height:100%;padding:20px;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;overflow:hidden;}#contactPopup .contact-box,#interestPopup .contact-box{width:100%;max-width:400px;max-height:90vh;padding:22px 18px 20px;border-radius:20px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}#contactPopup .contact-box h2,#interestPopup .contact-box h2{font-size:28px;}#contactPopup .close,#interestPopup .close{position:sticky;top:0;right:auto;margin-left:auto;margin-bottom:10px;z-index:5;}#contactPopup .contact-hour-row,#interestPopup .contact-hour-row{flex-direction:column;gap:4px;}#contactPopup .contact-time,#interestPopup .contact-time{text-align:left;}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-shell">
+      <div class="logo-center">
+        <img src="images/logo1.png" class="logo" alt="DBJ Automobile">
+        <div class="brand-copy">
+          <p class="brand-title">DBJ Automobile</p>
+          <p class="brand-subtitle">Achat, Vente, Reprise, R&eacute;paration</p>
         </div>
-        <div class="top-bar">
-          <div class="menu">
-            <a href="index.html">Accueil</a>
-            <a href="catalogue.html">Catalogue</a>
-            <a href="rachat.html">Estimer mon v&eacute;hicule</a>
-            <a
-              href="#"
-              onclick="
-                openContact();
-                return false;
-              "
-              >Contact</a
-            >
-          </div>
+      </div>
+      <div class="top-bar">
+        <div class="menu">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="rachat.html">Estimer mon v&eacute;hicule</a>
+          <a href="#" onclick="openContact(); return false;">Contact</a>
         </div>
-        <p class="slogan">Des services clairs, sans prise de tÃªte</p>
       </div>
-    </header>
-    <section class="detail-hero">
-      <div class="detail-hero-inner">
-        <div class="detail-kicker">DÃ©tails du vÃ©hicule</div>
-        <h1>Toutes les informations importantes en un coup dâ€™Å“il</h1>
-        <p>Photos, informations et contact direct pour ce vÃ©hicule.</p>
+      <p class="slogan">Une exp&eacute;rience automobile s&eacute;rieuse et transparente pour chaque projet.</p>
+    </div>
+  </header>
+  <section class="detail-hero">
+    <div class="detail-hero-inner">
+      <div class="detail-kicker">D&eacute;tail v&eacute;hicule DBJ Automobile</div>
+      <h1>Consultez chaque v&eacute;hicule dans un cadre clair, premium et professionnel.</h1>
+      <p>Photos, &eacute;quipements, caract&eacute;ristiques et prise de contact directe : tout est organis&eacute; pour une lecture fluide et cr&eacute;dible, dans la continuit&eacute; visuelle de DBJ Automobile.</p>
+    </div>
+  </section>
+  <main class="page-wrap">
+    <a href="catalogue.html" class="back-link">&larr; Retour au catalogue</a>
+    <div id="vehicleContainer"><div class="empty">Chargement du v&eacute;hicule...</div></div>
+  </main>
+  <section class="related-section">
+    <h2>Autres v&eacute;hicules disponibles</h2>
+    <div id="relatedVehicles" class="related-grid"><div class="empty">Chargement des autres v&eacute;hicules...</div></div>
+  </section>
+  <div id="contactPopup" class="contact-popup">
+    <div class="contact-box">
+      <span class="close" onclick="closeContact()">&times;</span>
+      <div class="contact-kicker">Prendre contact</div>
+      <h2>Contact DBJ Automobile</h2>
+      <p class="contact-intro">Retrouvez nos coordonn&eacute;es et nos horaires pour &eacute;changer simplement avec le garage dans un cadre clair, s&eacute;rieux et rassurant.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><span class="contact-item-label">Adresse</span><div class="contact-item-value">600 rue de Lillers, 62920 Chocques</div></div>
+        <div class="contact-item"><span class="contact-item-label">T&eacute;l&eacute;phone</span><div class="contact-item-value"><a href="tel:+33666379685">06 66 37 96 85</a></div></div>
+        <div class="contact-item"><span class="contact-item-label">Email</span><div class="contact-item-value"><a href="mailto:dbjautomobile@gmail.com">dbjautomobile@gmail.com</a></div></div>
       </div>
-    </section>
-    <main class="page-wrap">
-      <a href="catalogue.html" class="back-link">&larr; Retour au catalogue</a>
-      <div id="vehicleContainer">
-        <div class="empty">Chargement du v&eacute;hicule...</div>
-      </div>
-    </main>
-    <section class="related-section">
-      <h2>Autres v&eacute;hicules disponibles</h2>
-      <div id="relatedVehicles" class="related-grid">
-        <div class="empty">Chargement des autres v&eacute;hicules...</div>
-      </div>
-    </section>
-    <div id="contactPopup" class="contact-popup">
-      <div class="contact-box">
-        <span class="close" onclick="closeContact()">&times;</span>
-        <div class="contact-kicker">Prendre contact</div>
-        <h2>Contact DBJ Automobile</h2>
-        <p class="contact-intro">
-          Retrouvez nos coordonnÃ©es et nos horaires pour nous contacter
-          facilement.
-        </p>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <span class="contact-item-label">Adresse</span>
-            <div class="contact-item-value">
-              600 rue de Lillers, 62920 Chocques
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-item-label">T&eacute;l&eacute;phone</span>
-            <div class="contact-item-value">
-              <a href="tel:+33666379685">06 66 37 96 85</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-item-label">Email</span>
-            <div class="contact-item-value">
-              <a href="mailto:dbjautomobile@gmail.com"
-                >dbjautomobile@gmail.com</a
-              >
-            </div>
-          </div>
-        </div>
-        <a
-          class="contact-map-link"
-          href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques"
-          target="_blank"
-          >Voir sur Google Maps</a
-        >
-        <div class="contact-hours">
-          <h3>Horaires</h3>
-          <div class="contact-hours-list">
-            <div class="contact-hour-row">
-              <span class="contact-day">Lundi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Mardi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Mercredi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Jeudi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Vendredi</span
-              ><span class="contact-time">9h-12h / 14h-18h</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Samedi</span
-              ><span class="contact-time">Ferm&eacute;</span>
-            </div>
-            <div class="contact-hour-row">
-              <span class="contact-day">Dimanche</span
-              ><span class="contact-time">Ferm&eacute;</span>
-            </div>
-          </div>
+      <a class="contact-map-link" href="https://maps.google.com/?q=600 rue de Lillers 62920 Chocques" target="_blank">Voir sur Google Maps</a>
+      <div class="contact-hours">
+        <h3>Horaires</h3>
+        <div class="contact-hours-list">
+          <div class="contact-hour-row"><span class="contact-day">Lundi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Mardi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Mercredi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Jeudi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Vendredi</span><span class="contact-time">9h-12h / 14h-18h</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Samedi</span><span class="contact-time">Ferm&eacute;</span></div>
+          <div class="contact-hour-row"><span class="contact-day">Dimanche</span><span class="contact-time">Ferm&eacute;</span></div>
         </div>
       </div>
     </div>
-    <div id="interestPopup" class="contact-popup">
-      <div class="contact-box">
-        <span class="close" onclick="closeInterestPopup()">&times;</span>
-        <h2>Je suis int&eacute;ress&eacute; par ce v&eacute;hicule</h2>
-        <input
-          type="text"
-          id="interestName"
-          placeholder="Votre nom"
-          style="margin-bottom: 12px"
-        />
-        <input
-          type="text"
-          id="interestPhone"
-          placeholder="Votre t&eacute;l&eacute;phone"
-          style="margin-bottom: 12px"
-        />
-        <textarea
-          id="interestMessage"
-          placeholder="Votre message"
-          style="min-height: 120px; margin-bottom: 12px"
-        ></textarea>
-        <button
-          class="btn btn-gold"
-          style="cursor: pointer"
-          onclick="sendInterestEmail()"
-        >
-          Envoyer ma demande
-        </button>
-        <p id="interestStatus" style="margin-top: 14px; font-weight: bold"></p>
-      </div>
+  </div>
+  <div id="interestPopup" class="contact-popup">
+    <div class="contact-box">
+      <span class="close" onclick="closeInterestPopup()">&times;</span>
+      <h2>Je suis int&eacute;ress&eacute; par ce v&eacute;hicule</h2>
+      <input type="text" id="interestName" placeholder="Votre nom" style="margin-bottom:12px;">
+      <input type="text" id="interestPhone" placeholder="Votre t&eacute;l&eacute;phone" style="margin-bottom:12px;">
+      <textarea id="interestMessage" placeholder="Votre message" style="min-height:120px; margin-bottom:12px;"></textarea>
+      <button class="btn btn-gold" style="cursor:pointer;" onclick="sendInterestEmail()">Envoyer ma demande</button>
+      <p id="interestStatus" style="margin-top:14px; font-weight:bold;"></p>
     </div>
-    <div id="lightbox" class="lightbox">
-      <div class="lightbox-content">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <button
-          class="lightbox-nav lightbox-prev"
-          onclick="prevLightboxImage()"
-        >
-          &#8249;
-        </button>
-        <img
-          id="lightboxImage"
-          class="lightbox-image"
-          src=""
-          alt="Photo v&eacute;hicule"
-        />
-        <button
-          class="lightbox-nav lightbox-next"
-          onclick="nextLightboxImage()"
-        >
-          &#8250;
-        </button>
-      </div>
+  </div>
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+      <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">&#8249;</button>
+      <img id="lightboxImage" class="lightbox-image" src="" alt="Photo v&eacute;hicule">
+      <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">&#8250;</button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-      emailjs.init({ publicKey: "obldBmRW1sMNqy3S8" });
-    </script>
-    <script type="module">
-      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-      const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
-      const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
-      const supabase = createClient(supabaseUrl, supabaseKey);
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      let currentImages = [];
-      let currentImageIndex = 0;
-      window.currentVehicleData = null;
-      function formatPrice(price) {
-        if (price === null || price === undefined || price === "")
-          return "Prix sur demande";
-        const numeric = Number(String(price).replace(/[^\d.-]/g, ""));
-        if (Number.isNaN(numeric)) return price;
-        return new Intl.NumberFormat("fr-FR").format(numeric) + " \u20ac";
-      }
-      function safeValue(value, fallback = "Non renseign\u00e9") {
-        return value !== null && value !== undefined && value !== ""
-          ? value
-          : fallback;
-      }
-      function normalizeDescription(text) {
-        if (!text) return "Description \u00e0 venir.";
-        return String(text).trim();
-      }
-      function renderBadges(car, withGoldFirst = true) {
-        const badges = [car.badge, car.badge2].filter(Boolean);
-        if (!badges.length) return "";
-        return badges
-          .map(
-            (badge, index) =>
-              `<span class="badge ${withGoldFirst && index === 0 ? "badge-gold" : ""}">${badge}</span>`,
-          )
-          .join("");
-      }
-      function getOptionsArray(car) {
-        if (!car.options) return [];
-        return car.options
-          .split("\n")
-          .map((item) => item.trim())
-          .filter(Boolean);
-      }
-      function updateMainImage(index) {
-        if (!currentImages.length) return;
-        currentImageIndex = index;
-        const mainImage = document.getElementById("mainVehicleImage");
-        if (mainImage) {
-          mainImage.src = currentImages[index];
-        }
-        document.querySelectorAll(".thumb").forEach((thumb, thumbIndex) => {
-          thumb.classList.toggle("active", thumbIndex === index);
-        });
-      }
-      function openLightbox(index = 0) {
-        if (!currentImages.length) return;
-        currentImageIndex = index;
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImage = document.getElementById("lightboxImage");
-        lightboxImage.src = currentImages[currentImageIndex];
-        lightbox.classList.add("open");
-        document.body.style.overflow = "hidden";
-      }
-      function closeLightbox() {
-        const lightbox = document.getElementById("lightbox");
-        lightbox.classList.remove("open");
-        document.body.style.overflow = "";
-      }
-      function nextLightboxImage() {
-        if (!currentImages.length) return;
-        currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-        document.getElementById("lightboxImage").src =
-          currentImages[currentImageIndex];
-        updateMainImage(currentImageIndex);
-      }
-      function prevLightboxImage() {
-        if (!currentImages.length) return;
-        currentImageIndex =
-          (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-        document.getElementById("lightboxImage").src =
-          currentImages[currentImageIndex];
-        updateMainImage(currentImageIndex);
-      }
-      function renderVehicle(car) {
-        const container = document.getElementById("vehicleContainer");
-        currentImages = car.images
-          ? car.images
-              .split(",")
-              .map((img) => img.trim())
-              .filter(Boolean)
-          : [];
-        const options = getOptionsArray(car);
-        const title =
-          [car.marque, car.modele].filter(Boolean).join(" ") ||
-          "V\u00e9hicule disponible";
-        const price = formatPrice(car.prix);
-        window.currentVehicleData = {
-          title: title,
-          reference: car.reference || "Non renseign\u00e9e",
-          price: price,
-          link: window.location.href,
-        };
-        const shortSpecs = [
-          car.annee,
-          car.km ? `${car.km} km` : null,
-          car.carburant,
-        ]
-          .filter(Boolean)
-          .join(" \u2022 ");
-        const mainImage = currentImages[0] || "images/hero.jpg";
-        const thumbsHtml = currentImages
-          .map(
-            (img, index) =>
-              `<img src="${img}" alt="${title} ${index + 1}" class="thumb ${index === 0 ? "active" : ""}" onclick="changeMainImage(${index})">`,
-          )
-          .join("");
-        const optionsHtml = options.length
-          ? options.map((item) => `<li>\u2713 ${item}</li>`).join("")
-          : `<li>Aucune option renseign\u00e9e</li>`;
-        const imageCount = currentImages.length || 1;
-        container.innerHTML = `
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init({ publicKey: "obldBmRW1sMNqy3S8" });</script>
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+    const supabaseUrl = "https://nkwxuxzgyhwzdqtdazrd.supabase.co";
+    const supabaseKey = "sb_publishable_aC1fXSWczl7xmYFMrXYI8g_Pr93UB8_";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    let currentImages = [];
+    let currentImageIndex = 0;
+    window.currentVehicleData = null;
+    function formatPrice(price) { if (price === null || price === undefined || price === "") return "Prix sur demande"; const numeric = Number(String(price).replace(/[^\d.-]/g, "")); if (Number.isNaN(numeric)) return price; return new Intl.NumberFormat("fr-FR").format(numeric) + " \u20ac"; }
+    function safeValue(value, fallback = "Non renseign\u00e9") { return value !== null && value !== undefined && value !== "" ? value : fallback; }
+    function normalizeDescription(text) { if (!text) return "Description \u00e0 venir."; return String(text).trim(); }
+    function renderBadges(car, withGoldFirst = true){ const badges = [car.badge, car.badge2].filter(Boolean); if(!badges.length) return ""; return badges.map((badge, index) => `<span class="badge ${withGoldFirst && index === 0 ? "badge-gold" : ""}">${badge}</span>`).join(""); }
+    function getOptionsArray(car){ if(!car.options) return []; return car.options.split("\n").map(item => item.trim()).filter(Boolean); }
+    function updateMainImage(index) { if (!currentImages.length) return; currentImageIndex = index; const mainImage = document.getElementById("mainVehicleImage"); if (mainImage) { mainImage.src = currentImages[index]; } document.querySelectorAll(".thumb").forEach((thumb, thumbIndex) => { thumb.classList.toggle("active", thumbIndex === index); }); }
+    function openLightbox(index = 0) { if (!currentImages.length) return; currentImageIndex = index; const lightbox = document.getElementById("lightbox"); const lightboxImage = document.getElementById("lightboxImage"); lightboxImage.src = currentImages[currentImageIndex]; lightbox.classList.add("open"); document.body.style.overflow = "hidden"; }
+    function closeLightbox() { const lightbox = document.getElementById("lightbox"); lightbox.classList.remove("open"); document.body.style.overflow = ""; }
+    function nextLightboxImage() { if (!currentImages.length) return; currentImageIndex = (currentImageIndex + 1) % currentImages.length; document.getElementById("lightboxImage").src = currentImages[currentImageIndex]; updateMainImage(currentImageIndex); }
+    function prevLightboxImage() { if (!currentImages.length) return; currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length; document.getElementById("lightboxImage").src = currentImages[currentImageIndex]; updateMainImage(currentImageIndex); }
+    function renderVehicle(car) {
+      const container = document.getElementById("vehicleContainer");
+      currentImages = car.images ? car.images.split(",").map(img => img.trim()).filter(Boolean) : [];
+      const options = getOptionsArray(car);
+      const title = [car.marque, car.modele].filter(Boolean).join(" ") || "V\u00e9hicule disponible";
+      const price = formatPrice(car.prix);
+      window.currentVehicleData = { title: title, reference: car.reference || "Non renseign\u00e9e", price: price, link: window.location.href };
+      const shortSpecs = [car.annee, car.km ? `${car.km} km` : null, car.carburant].filter(Boolean).join(" \u2022 ");
+      const mainImage = currentImages[0] || "images/hero.jpg";
+      const thumbsHtml = currentImages.map((img, index) => `<img src="${img}" alt="${title} ${index + 1}" class="thumb ${index === 0 ? "active" : ""}" onclick="changeMainImage(${index})">`).join("");
+      const optionsHtml = options.length ? options.map(item => `<li>\u2713 ${item}</li>`).join("") : `<li>Aucune option renseign\u00e9e</li>`;
+      const imageCount = currentImages.length || 1;
+      container.innerHTML = `
         <article class="detail-card">
           <div class="gallery-col gallery-panel">
             <div class="gallery-frame">
@@ -1825,8 +302,8 @@
             </div>
             <div class="section-box">
               <div class="section-heading">
-                <h3>Options principales</h3>
-                
+                <h3>Options / &Eacute;quipements</h3>
+                <span class="section-note">S&eacute;lection v&eacute;hicule</span>
               </div>
               <ul class="options-list">${optionsHtml}</ul>
             </div>
@@ -1837,9 +314,9 @@
               <h1 class="vehicle-title">${title}</h1>
               ${[car.badge, car.badge2].filter(Boolean).length ? `<div class="title-badges">${renderBadges(car)}</div>` : ""}
               <div class="summary-grid">
-                <div class="short-specs">${shortSpecs || "Fiche du vÃ©hicule \u00e0 venir"}</div>
+                <div class="short-specs">${shortSpecs || "Informations \u00e0 venir"}</div>
                 <div class="price-wrap">
-                  
+                  <span class="price-label">Prix affich&eacute;</span>
                   <div class="price">${price}</div>
                 </div>
               </div>
@@ -1850,7 +327,7 @@
               </div>
             </div>
             <div class="cta-row">
-              <a href="tel:+33666379685" class="btn btn-dark">Nous appeler</a>
+              <a href="tel:+33666379685" class="btn btn-dark">Appeler</a>
               <a href="#" onclick="openInterestPopup(); return false;" class="btn btn-gold">Je suis int&eacute;ress&eacute;</a>
             </div>
             <div class="section-box">
@@ -1864,8 +341,8 @@
             </div>
             <div class="section-box">
               <div class="section-heading">
-                <h3>Fiche du vÃ©hicule</h3>
-                
+                <h3>Informations v&eacute;hicule</h3>
+                <span class="section-note">Fiche technique</span>
               </div>
               <div class="spec-grid">
                 <div class="spec-item"><span class="spec-label">R&eacute;f&eacute;rence</span><span class="spec-value">${safeValue(car.reference, "DBJ-NON-RENSEIGNEE")}</span></div>
@@ -1880,171 +357,62 @@
             </div>
           </div>
         </article>`;
-      }
-      async function loadRelatedVehicles(currentVehicleId) {
-        const relatedContainer = document.getElementById("relatedVehicles");
-        const { data, error } = await supabase
-          .from("cars")
-          .select("*")
-          .neq("id", currentVehicleId)
-          .order("created_at", { ascending: false })
-          .limit(3);
-        if (error || !data || data.length === 0) {
-          relatedContainer.innerHTML = `<div class="empty">Aucun autre v\u00e9hicule disponible.</div>`;
-          return;
-        }
-        relatedContainer.innerHTML = "";
-        data.forEach((car) => {
-          const images = car.images
-            ? car.images
-                .split(",")
-                .map((img) => img.trim())
-                .filter(Boolean)
-            : [];
-          const image = images[0] || "images/hero.jpg";
-          const title =
-            [car.marque, car.modele].filter(Boolean).join(" ") ||
-            "V\u00e9hicule disponible";
-          const meta = [
-            car.annee,
-            car.km ? `${car.km} km` : null,
-            car.carburant,
-          ]
-            .filter(Boolean)
-            .join(" \u2022 ");
-          relatedContainer.innerHTML += `<article class="related-card"><div class="related-image-wrap">${[car.badge, car.badge2].filter(Boolean).length ? `<div class="image-badges">${renderBadges(car)}</div>` : ""}<img src="${image}" alt="${title}"></div><div class="related-body"><div class="related-title">${title}</div><div class="related-meta">${meta || "Informations \u00e0 venir"}</div><div class="related-price">${formatPrice(car.prix)}</div><br><a class="related-btn" href="detail.html?id=${encodeURIComponent(car.id)}">Voir le v\u00e9hicule</a></div></article>`;
-        });
-      }
-      async function loadVehicle() {
-        const container = document.getElementById("vehicleContainer");
-        if (!id) {
-          container.innerHTML = `<div class="empty">Aucun v\u00e9hicule s\u00e9lectionn\u00e9.</div>`;
-          return;
-        }
-        const { data, error } = await supabase
-          .from("cars")
-          .select("*")
-          .eq("id", id)
-          .single();
-        if (error || !data) {
-          container.innerHTML = `<div class="empty">V\u00e9hicule introuvable.</div>`;
-          return;
-        }
-        renderVehicle(data);
-        loadRelatedVehicles(data.id);
-      }
-      loadVehicle();
-      window.changeMainImage = function (index) {
-        updateMainImage(index);
-      };
-      window.openLightboxAtCurrent = function () {
-        openLightbox(currentImageIndex);
-      };
-      window.closeLightbox = closeLightbox;
-      window.nextLightboxImage = nextLightboxImage;
-      window.prevLightboxImage = prevLightboxImage;
-    </script>
-    <script>
-      function openContact() {
-        document.getElementById("contactPopup").style.display = "flex";
-      }
-      function closeContact() {
-        document.getElementById("contactPopup").style.display = "none";
-      }
-      function openInterestPopup() {
-        document.getElementById("interestPopup").style.display = "flex";
-      }
-      function closeInterestPopup() {
-        document.getElementById("interestPopup").style.display = "none";
-        document.getElementById("interestStatus").textContent = "";
-      }
-      async function sendInterestEmail() {
-        const userName = document.getElementById("interestName").value.trim();
-        const userPhone = document.getElementById("interestPhone").value.trim();
-        const message = document.getElementById("interestMessage").value.trim();
-        const status = document.getElementById("interestStatus");
-        if (!userName || !userPhone) {
-          status.style.color = "#ff8b7c";
-          status.textContent =
-            "Merci de remplir le nom et le t\u00e9l\u00e9phone.";
-          return;
-        }
-        if (!window.currentVehicleData) {
-          status.style.color = "#ff8b7c";
-          status.textContent = "Erreur : v\u00e9hicule introuvable.";
-          return;
-        }
-        status.style.color = "#f6f3ee";
-        status.textContent = "Envoi en cours...";
-        const templateParams = {
-          user_name: userName,
-          user_phone: userPhone,
-          message: message || "Aucun message",
-          car_title: window.currentVehicleData.title,
-          car_reference: window.currentVehicleData.reference,
-          car_price: window.currentVehicleData.price,
-          car_link: window.currentVehicleData.link,
-        };
-        try {
-          await emailjs.send(
-            "service_yg5gjr5",
-            "template_xaf7tps",
-            templateParams,
-          );
-          status.style.color = "#8ed88a";
-          status.textContent =
-            "Votre demande a bien \u00e9t\u00e9 envoy\u00e9e.";
-          document.getElementById("interestName").value = "";
-          document.getElementById("interestPhone").value = "";
-          document.getElementById("interestMessage").value = "";
-        } catch (error) {
-          console.error(error);
-          status.style.color = "#ff8b7c";
-          status.textContent = "Erreur lors de l'envoi. R\u00e9essayez.";
-        }
-      }
-      document.querySelectorAll("#contactPopup .close").forEach(function (btn) {
-        btn.addEventListener("click", closeContact);
+    }
+    async function loadRelatedVehicles(currentVehicleId) {
+      const relatedContainer = document.getElementById("relatedVehicles");
+      const { data, error } = await supabase.from("cars").select("*").neq("id", currentVehicleId).order("created_at", { ascending: false }).limit(3);
+      if (error || !data || data.length === 0) { relatedContainer.innerHTML = `<div class="empty">Aucun autre v\u00e9hicule disponible.</div>`; return; }
+      relatedContainer.innerHTML = "";
+      data.forEach((car) => {
+        const images = car.images ? car.images.split(",").map(img => img.trim()).filter(Boolean) : [];
+        const image = images[0] || "images/hero.jpg";
+        const title = [car.marque, car.modele].filter(Boolean).join(" ") || "V\u00e9hicule disponible";
+        const meta = [car.annee, car.km ? `${car.km} km` : null, car.carburant].filter(Boolean).join(" \u2022 ");
+        relatedContainer.innerHTML += `<article class="related-card"><div class="related-image-wrap">${[car.badge, car.badge2].filter(Boolean).length ? `<div class="image-badges">${renderBadges(car)}</div>` : ""}<img src="${image}" alt="${title}"></div><div class="related-body"><div class="related-title">${title}</div><div class="related-meta">${meta || "Informations \u00e0 venir"}</div><div class="related-price">${formatPrice(car.prix)}</div><br><a class="related-btn" href="detail.html?id=${encodeURIComponent(car.id)}">Voir le v\u00e9hicule</a></div></article>`;
       });
-      document
-        .querySelectorAll("#interestPopup .close")
-        .forEach(function (btn) {
-          btn.addEventListener("click", closeInterestPopup);
-        });
-      window.addEventListener("click", function (e) {
-        const interestPopup = document.getElementById("interestPopup");
-        const contactPopup = document.getElementById("contactPopup");
-        if (e.target === interestPopup) {
-          closeInterestPopup();
-        }
-        if (e.target === contactPopup) {
-          closeContact();
-        }
-        if (e.target && e.target.id === "lightbox") {
-          closeLightbox();
-        }
-      });
-      window.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          closeInterestPopup();
-          closeContact();
-          const lightbox = document.getElementById("lightbox");
-          if (lightbox.classList.contains("open")) {
-            closeLightbox();
-          }
-          return;
-        }
-        const lightbox = document.getElementById("lightbox");
-        if (!lightbox.classList.contains("open")) return;
-        if (e.key === "ArrowRight") {
-          nextLightboxImage();
-        } else if (e.key === "ArrowLeft") {
-          prevLightboxImage();
-        }
-      });
-    </script>
-    <footer class="site-footer">
-      <p>&copy; 2026 DBJ Automobile. Tous droits r&eacute;serv&eacute;s.</p>
-    </footer>
-  </body>
+    }
+    async function loadVehicle() {
+      const container = document.getElementById("vehicleContainer");
+      if (!id) { container.innerHTML = `<div class="empty">Aucun v\u00e9hicule s\u00e9lectionn\u00e9.</div>`; return; }
+      const { data, error } = await supabase.from("cars").select("*").eq("id", id).single();
+      if (error || !data) { container.innerHTML = `<div class="empty">V\u00e9hicule introuvable.</div>`; return; }
+      renderVehicle(data);
+      loadRelatedVehicles(data.id);
+    }
+    loadVehicle();
+    window.changeMainImage = function(index) { updateMainImage(index); };
+    window.openLightboxAtCurrent = function() { openLightbox(currentImageIndex); };
+    window.closeLightbox = closeLightbox;
+    window.nextLightboxImage = nextLightboxImage;
+    window.prevLightboxImage = prevLightboxImage;
+  </script>
+  <script>
+    function openContact(){document.getElementById("contactPopup").style.display = "flex";}
+    function closeContact(){document.getElementById("contactPopup").style.display = "none";}
+    function openInterestPopup(){document.getElementById("interestPopup").style.display = "flex";}
+    function closeInterestPopup(){document.getElementById("interestPopup").style.display = "none";document.getElementById("interestStatus").textContent = "";}
+    async function sendInterestEmail(){
+      const userName = document.getElementById("interestName").value.trim();
+      const userPhone = document.getElementById("interestPhone").value.trim();
+      const message = document.getElementById("interestMessage").value.trim();
+      const status = document.getElementById("interestStatus");
+      if(!userName || !userPhone){status.style.color = "#ff8b7c";status.textContent = "Merci de remplir le nom et le t\u00e9l\u00e9phone.";return;}
+      if(!window.currentVehicleData){status.style.color = "#ff8b7c";status.textContent = "Erreur : v\u00e9hicule introuvable.";return;}
+      status.style.color = "#f6f3ee";status.textContent = "Envoi en cours...";
+      const templateParams = { user_name: userName, user_phone: userPhone, message: message || "Aucun message", car_title: window.currentVehicleData.title, car_reference: window.currentVehicleData.reference, car_price: window.currentVehicleData.price, car_link: window.currentVehicleData.link };
+      try{
+        await emailjs.send("service_yg5gjr5","template_xaf7tps",templateParams);
+        status.style.color = "#8ed88a";status.textContent = "Votre demande a bien \u00e9t\u00e9 envoy\u00e9e.";
+        document.getElementById("interestName").value = "";document.getElementById("interestPhone").value = "";document.getElementById("interestMessage").value = "";
+      }catch(error){
+        console.error(error);status.style.color = "#ff8b7c";status.textContent = "Erreur lors de l'envoi. R\u00e9essayez.";
+      }
+    }
+    document.querySelectorAll("#contactPopup .close").forEach(function(btn){btn.addEventListener("click", closeContact);});
+    document.querySelectorAll("#interestPopup .close").forEach(function(btn){btn.addEventListener("click", closeInterestPopup);});
+    window.addEventListener("click", function(e){const interestPopup = document.getElementById("interestPopup");const contactPopup = document.getElementById("contactPopup");if(e.target === interestPopup){closeInterestPopup();}if(e.target === contactPopup){closeContact();}if(e.target && e.target.id === "lightbox"){closeLightbox();}});
+    window.addEventListener("keydown", function(e) {if (e.key === "Escape") {closeInterestPopup();closeContact();const lightbox = document.getElementById("lightbox");if (lightbox.classList.contains("open")) {closeLightbox();}return;}const lightbox = document.getElementById("lightbox");if (!lightbox.classList.contains("open")) return;if (e.key === "ArrowRight") {nextLightboxImage();} else if (e.key === "ArrowLeft") {prevLightboxImage();}});
+  </script>
+  <footer class="site-footer"><p>&copy; 2026 DBJ Automobile. Tous droits r&eacute;serv&eacute;s.</p></footer>
+</body>
 </html>
