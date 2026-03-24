@@ -383,6 +383,9 @@
         border-color: rgba(240, 122, 31, 0.24);
         transform: translateY(-2px);
       }
+      .back-link-mobile {
+        display: none;
+      }
       .detail-card {
         background:
           linear-gradient(
@@ -1612,8 +1615,48 @@
         }
       }
       @media (max-width: 768px) {
+        body {
+          background:
+            radial-gradient(
+              circle at 50% 8%,
+              rgba(240, 122, 31, 0.06),
+              transparent 18%
+            ),
+            linear-gradient(
+              180deg,
+              rgba(27, 27, 28, 0.18),
+              rgba(16, 16, 17, 0.08) 46%,
+              rgba(12, 12, 13, 0.12)
+            ),
+            linear-gradient(180deg, #111111 0%, #0b0b0d 100%);
+        }
+        body::before,
+        body::after {
+          width: 24rem;
+          height: 24rem;
+          opacity: 0.3;
+          filter: blur(90px);
+        }
+        body::before {
+          top: -8rem;
+          left: -8rem;
+          background: rgba(240, 122, 31, 0.13);
+        }
+        body::after {
+          right: -9rem;
+          bottom: -10rem;
+          background: rgba(240, 122, 31, 0.07);
+        }
         .site-header {
-          padding: 16px 14px 8px;
+          padding: 16px 14px 0;
+          background:
+            linear-gradient(
+              180deg,
+              rgba(27, 27, 28, 0.96),
+              rgba(16, 16, 17, 0.98) 46%,
+              rgba(12, 12, 13, 1)
+            );
+          box-shadow: none;
         }
         .logo {
           height: 96px;
@@ -1644,16 +1687,27 @@
           min-height: 50px;
           font-size: 14px;
           width: 100%;
-          background: rgba(255, 255, 255, 0.04);
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+          );
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 14px;
+          color: #f6f3ee;
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.04),
+            0 10px 20px rgba(0, 0, 0, 0.25);
+          backdrop-filter: blur(6px);
         }
         .slogan {
-          font-size: 12px;
+          font-size: 11px;
           line-height: 1.5;
+          letter-spacing: 0.12em;
+          opacity: 0.7;
           padding: 0 8px;
           max-width: 380px;
-          margin: 14px auto 0;
+          margin: 14px auto 8px;
         }
         .detail-hero,
         .page-wrap,
@@ -1663,6 +1717,13 @@
         }
         .detail-hero {
           margin-top: 18px;
+        }
+        .page-wrap > .back-link {
+          display: none;
+        }
+        .back-link-mobile {
+          display: inline-flex;
+          margin: 0 0 18px;
         }
         .detail-hero-inner {
           padding: 26px 20px;
@@ -1710,6 +1771,12 @@
         }
         .intro-card {
           padding: 20px;
+          min-width: 0;
+        }
+        .summary-grid,
+        .spec-highlight-grid,
+        .spec-highlight {
+          min-width: 0;
         }
         .vehicle-title {
           font-size: 28px;
@@ -1724,8 +1791,14 @@
           padding: 16px;
         }
         .trust-line {
+          flex-wrap: wrap;
+          white-space: normal;
           gap: 8px 14px;
           font-size: 12px;
+          line-height: 1.6;
+        }
+        .spec-highlight-value {
+          word-break: break-word;
         }
         .section-box {
           padding: 20px;
@@ -1862,6 +1935,9 @@
       </div>
     </main>
     <section class="related-section">
+      <a href="catalogue.html" class="back-link back-link-mobile"
+        >← Retour au catalogue</a
+      >
       <h2>Autres véhicules disponibles</h2>
       <div id="relatedVehicles" class="related-grid">
         <div class="empty">Chargement des autres véhicules...</div>

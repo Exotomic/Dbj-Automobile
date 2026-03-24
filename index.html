@@ -1677,10 +1677,54 @@
       }
 
       @media (max-width: 768px) {
+        body {
+          background:
+            radial-gradient(
+              circle at 50% 8%,
+              rgba(240, 122, 31, 0.06),
+              transparent 18%
+            ),
+            linear-gradient(
+              180deg,
+              rgba(27, 27, 28, 0.18),
+              rgba(16, 16, 17, 0.08) 46%,
+              rgba(12, 12, 13, 0.12)
+            ),
+            linear-gradient(180deg, #111111 0%, #0b0b0d 100%);
+        }
+
+        body::before,
+        body::after {
+          width: 24rem;
+          height: 24rem;
+          opacity: 0.3;
+          filter: blur(90px);
+        }
+
+        body::before {
+          top: -8rem;
+          left: -8rem;
+          background: rgba(240, 122, 31, 0.13);
+        }
+
+        body::after {
+          right: -9rem;
+          bottom: -10rem;
+          background: rgba(240, 122, 31, 0.07);
+        }
+
         .site-header {
           width: 100%;
           margin-top: 0;
-          padding: 16px 14px 8px;
+          padding: 16px 14px 0;
+          background:
+            linear-gradient(
+              180deg,
+              rgba(27, 27, 28, 0.96),
+              rgba(16, 16, 17, 0.98) 46%,
+              rgba(12, 12, 13, 1)
+            );
+          box-shadow: none;
         }
 
         .header-shell {
@@ -1723,18 +1767,29 @@
           min-height: 50px;
           font-size: 14px;
           text-align: center;
-          background: rgba(255, 255, 255, 0.04);
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+          );
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 14px;
           padding: 10px 14px;
+          color: #f6f3ee;
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.04),
+            0 10px 20px rgba(0, 0, 0, 0.25);
+          backdrop-filter: blur(6px);
         }
 
         .slogan {
-          font-size: 12px;
+          font-size: 11px;
           line-height: 1.5;
+          letter-spacing: 0.12em;
+          opacity: 0.7;
           padding: 0 8px;
           max-width: 380px;
-          margin: 14px auto 0 auto;
+          margin: 14px auto 8px auto;
         }
 
         .hero-banner {
@@ -1742,7 +1797,15 @@
           min-height: 520px;
           padding: 38px 16px 64px;
           border-radius: 0;
-          margin-top: 6px;
+          margin-top: 0;
+          background:
+            linear-gradient(
+              to top,
+              rgba(0, 0, 0, 0.85) 0%,
+              rgba(0, 0, 0, 0.4) 40%,
+              rgba(0, 0, 0, 0.1) 70%
+            ),
+            url("images/hero.jpg") center / cover no-repeat;
         }
 
         .hero-overlay {
