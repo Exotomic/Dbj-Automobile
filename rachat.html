@@ -1103,6 +1103,24 @@
         text-transform: uppercase;
         color: var(--muted);
       }
+
+      .signature {
+        margin-top: 24px;
+        font-size: 12px;
+        opacity: 0.5;
+        text-align: center;
+        letter-spacing: 0.05em;
+      }
+
+      .signature a {
+        color: #f07a1f;
+        text-decoration: none;
+        transition: opacity 0.25s ease;
+      }
+
+      .signature a:hover {
+        opacity: 0.8;
+      }
       @media (max-width: 900px) {
         .benefits {
           grid-template-columns: 1fr;
@@ -1204,13 +1222,13 @@
           margin: 14px auto 8px;
         }
         .hero-mini {
-          width: min(calc(100% - 20px), var(--site-width));
+          width: 100%;
           margin-top: 0;
-          padding: 0 10px 16px;
+          padding: 0 0 16px;
         }
         .hero-card {
           padding: 28px 20px;
-          border-radius: 26px;
+          border-radius: 0 0 26px 26px;
         }
         .hero-card h1 {
           font-size: 36px;
@@ -1219,11 +1237,11 @@
           font-size: 16px;
         }
         .container {
-          width: min(calc(100% - 20px), 980px);
+          width: 100%;
         }
         .form-box {
           padding: 20px;
-          border-radius: 24px;
+          border-radius: 0 0 24px 24px;
         }
         .form-box h2 {
           font-size: 28px;
@@ -1752,6 +1770,10 @@
           </div>
         </div>
         <p class="footer-note">(c) 2026 DBJ Automobile. Tous droits reserves.</p>
+        <p class="signature">
+          Site réalisé par
+          <a href="https://exotomicweb.fr" target="_blank">Exotomic Web</a>
+        </p>
       </div>
     </footer>
   </body>

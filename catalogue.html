@@ -1190,6 +1190,24 @@
         text-transform: uppercase;
         color: var(--muted);
       }
+
+      .signature {
+        margin-top: 24px;
+        font-size: 12px;
+        opacity: 0.5;
+        text-align: center;
+        letter-spacing: 0.05em;
+      }
+
+      .signature a {
+        color: #f07a1f;
+        text-decoration: none;
+        transition: opacity 0.25s ease;
+      }
+
+      .signature a:hover {
+        opacity: 0.8;
+      }
       @media (max-width: 900px) {
         .filters {
           grid-template-columns: 1fr;
@@ -1305,11 +1323,18 @@
           margin: 14px auto 8px;
         }
         .page-hero {
-          padding: 0 10px 0;
+          padding: 0;
+          background: linear-gradient(
+            180deg,
+            rgba(27, 27, 28, 0.96),
+            rgba(16, 16, 17, 0.98) 46%,
+            rgba(12, 12, 13, 1)
+          );
         }
         .hero-shell {
           padding: 28px 20px;
-          border-radius: 26px;
+          border-radius: 0 0 26px 26px;
+          width: 100%;
         }
         .page-hero h1 {
           font-size: 38px;
@@ -1692,6 +1717,10 @@
           </div>
         </div>
         <p class="footer-note">© 2026 DBJ Automobile. Tous droits réservés.</p>
+        <p class="signature">
+          Site réalisé par
+          <a href="https://exotomicweb.fr" target="_blank">Exotomic Web</a>
+        </p>
       </div>
     </footer>
   </body>
