@@ -15,7 +15,7 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="DBJ Automobile" />
     <meta name="theme-color" content="#111111" />
-    <link rel="canonical" href="https://dbjautomobile.fr/catalogue.html" />
+    <link rel="canonical" href="https://dbjautomobile.fr/catalogue/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,7 +28,7 @@
       content="Vente, reprise et réparation de véhicules. Un service simple, fiable et sans surprise."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dbjautomobile.fr/catalogue.html" />
+    <meta property="og:url" content="https://dbjautomobile.fr/catalogue/" />
     <meta property="og:image" content="https://dbjautomobile.fr/preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -286,7 +286,7 @@
             rgba(10, 10, 10, 0.25),
             rgba(10, 10, 10, 0.05)
           ),
-          url("images/hero.jpg") center / cover no-repeat;
+          url("/images/hero.jpg") center / cover no-repeat;
         box-shadow: none;
         overflow: hidden;
       }
@@ -1444,7 +1444,7 @@
     <header class="site-header">
       <div class="header-shell">
         <div class="logo-center">
-          <img src="images/logo1.png" class="logo" alt="DBJ Automobile" />
+          <img src="/images/logo1.png" class="logo" alt="DBJ Automobile" />
           <div class="brand-copy">
             <p class="brand-title">DBJ Automobile</p>
             <p class="brand-subtitle">Achat, Vente, Reprise, Réparation</p>
@@ -1452,9 +1452,9 @@
         </div>
         <div class="top-bar">
           <div class="menu">
-            <a href="index.html">Accueil</a>
-            <a href="catalogue.html">Catalogue</a>
-            <a href="rachat.html">Estimer mon véhicule</a>
+            <a href="/">Accueil</a>
+            <a href="/catalogue/">Catalogue</a>
+            <a href="/rachat/">Estimer mon véhicule</a>
             <a
               href="#"
               onclick="
@@ -1644,7 +1644,7 @@
                 .map((img) => img.trim())
                 .filter(Boolean)
             : [];
-          const image = images[0] || "images/hero.jpg";
+          const image = images[0] || "/images/hero.jpg";
           const title =
             `${car.marque || ""} ${car.modele || ""}`.trim() || "Véhicule";
           const reference = car.reference || "Référence non renseignée";
@@ -1660,7 +1660,7 @@
               <div class="car-info">${car.annee || ""} • ${car.km || ""} km • ${car.carburant || ""}</div>
               <div class="price">${car.prix || "Prix sur demande"}</div>
               <br>
-              <a class="btn" href="detail.html?id=${encodeURIComponent(car.id)}">Voir le véhicule</a>
+              <a class="btn" href="/detail/?id=${encodeURIComponent(car.id)}">Voir le véhicule</a>
             </div>
           </div>`;
         });

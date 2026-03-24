@@ -7,13 +7,17 @@
   </url>
 
   <url>
-    <loc>https://dbjautomobile.fr/catalogue.html</loc>
+    <loc>https://dbjautomobile.fr/catalogue/</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://dbjautomobile.fr/rachat.html</loc>
+    <loc>https://dbjautomobile.fr/rachat/</loc>
+  </url>
+
+  <url>
+    <loc>https://dbjautomobile.fr/detail/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

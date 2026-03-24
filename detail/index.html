@@ -15,7 +15,7 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="DBJ Automobile" />
     <meta name="theme-color" content="#111111" />
-    <link rel="canonical" href="https://dbjautomobile.fr/detail.html" />
+    <link rel="canonical" href="https://dbjautomobile.fr/detail/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,7 +28,7 @@
       content="Vente, reprise et réparation de véhicules. Un service simple, fiable et sans surprise."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dbjautomobile.fr/detail.html" />
+    <meta property="og:url" content="https://dbjautomobile.fr/detail/" />
     <meta property="og:image" content="https://dbjautomobile.fr/preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Détail véhicule - DBJ Automobile" />
@@ -1923,7 +1923,7 @@
     <header class="site-header">
       <div class="header-shell">
         <div class="logo-center">
-          <img src="images/logo1.png" class="logo" alt="DBJ Automobile" />
+          <img src="/images/logo1.png" class="logo" alt="DBJ Automobile" />
           <div class="brand-copy">
             <p class="brand-title">DBJ Automobile</p>
             <p class="brand-subtitle">Achat, Vente, Reprise, Réparation</p>
@@ -1931,9 +1931,9 @@
         </div>
         <div class="top-bar">
           <div class="menu">
-            <a href="index.html">Accueil</a>
-            <a href="catalogue.html">Catalogue</a>
-            <a href="rachat.html">Estimer mon véhicule</a>
+            <a href="/">Accueil</a>
+            <a href="/catalogue/">Catalogue</a>
+            <a href="/rachat/">Estimer mon véhicule</a>
             <a
               href="#"
               onclick="
@@ -1950,13 +1950,13 @@
       </div>
     </header>
     <main class="page-wrap">
-      <a href="catalogue.html" class="back-link">← Retour au catalogue</a>
+      <a href="/catalogue/" class="back-link">← Retour au catalogue</a>
       <div id="vehicleContainer">
         <div class="empty">Chargement du véhicule...</div>
       </div>
     </main>
     <section class="related-section">
-      <a href="catalogue.html" class="back-link back-link-mobile"
+      <a href="/catalogue/" class="back-link back-link-mobile"
         >← Retour au catalogue</a
       >
       <h2>Autres véhicules disponibles</h2>
@@ -2203,7 +2203,7 @@
         ]
           .filter(Boolean)
           .join(" \u2022 ");
-        const mainImage = currentImages[0] || "images/hero.jpg";
+        const mainImage = currentImages[0] || "/images/hero.jpg";
         const thumbsHtml = currentImages
           .map(
             (img, index) =>
@@ -2316,7 +2316,7 @@
                 .map((img) => img.trim())
                 .filter(Boolean)
             : [];
-          const image = images[0] || "images/hero.jpg";
+          const image = images[0] || "/images/hero.jpg";
           const title =
             [car.marque, car.modele].filter(Boolean).join(" ") ||
             "V\u00e9hicule disponible";
@@ -2327,7 +2327,7 @@
           ]
             .filter(Boolean)
             .join(" \u2022 ");
-          relatedContainer.innerHTML += `<article class="related-card"><div class="related-image-wrap">${[car.badge, car.badge2].filter(Boolean).length ? `<div class="image-badges">${renderBadges(car)}</div>` : ""}<img src="${image}" alt="${title}"></div><div class="related-body"><div class="related-title">${title}</div><div class="related-meta">${meta || "Informations \u00e0 venir"}</div><div class="related-price">${formatPrice(car.prix)}</div><br><a class="related-btn" href="detail.html?id=${encodeURIComponent(car.id)}">Voir le v\u00e9hicule</a></div></article>`;
+          relatedContainer.innerHTML += `<article class="related-card"><div class="related-image-wrap">${[car.badge, car.badge2].filter(Boolean).length ? `<div class="image-badges">${renderBadges(car)}</div>` : ""}<img src="${image}" alt="${title}"></div><div class="related-body"><div class="related-title">${title}</div><div class="related-meta">${meta || "Informations \u00e0 venir"}</div><div class="related-price">${formatPrice(car.prix)}</div><br><a class="related-btn" href="/detail/?id=${encodeURIComponent(car.id)}">Voir le v\u00e9hicule</a></div></article>`;
         });
       }
       async function loadVehicle() {
