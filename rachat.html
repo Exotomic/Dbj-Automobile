@@ -71,16 +71,33 @@
         color: var(--text);
         background:
           radial-gradient(
-            circle at top left,
-            rgba(240, 122, 31, 0.14),
-            transparent 26%
+            circle at 50% 18%,
+            rgba(255, 158, 82, 0.09),
+            transparent 20%
           ),
           radial-gradient(
-            circle at 88% 8%,
-            rgba(240, 122, 31, 0.1),
-            transparent 18%
+            circle at 18% 24%,
+            rgba(255, 255, 255, 0.035),
+            transparent 22%
           ),
-          linear-gradient(180deg, #090909 0%, #050505 48%, #0b0b0b 100%);
+          radial-gradient(
+            circle at top left,
+            rgba(240, 122, 31, 0.14),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 10%,
+            rgba(240, 122, 31, 0.1),
+            transparent 24%
+          ),
+          linear-gradient(
+            180deg,
+            #111111 0%,
+            #0d0d0f 22%,
+            #080809 48%,
+            #0b0b0d 72%,
+            #121110 100%
+          );
         overflow-x: hidden;
         overflow-y: auto;
         position: relative;
@@ -98,35 +115,28 @@
         opacity: 0.28;
       }
       body::before {
-        top: -11rem;
-        left: -10rem;
+        top: -12rem;
+        left: -7rem;
         background: rgba(240, 122, 31, 0.16);
       }
       body::after {
-        right: -12rem;
+        right: -14rem;
         bottom: -12rem;
         background: rgba(240, 122, 31, 0.08);
       }
       .site-header {
         width: 100%;
         margin: 0;
-        padding: 20px 28px 24px;
+        padding: 18px 28px 10px;
         color: var(--text);
         text-align: center;
         position: relative;
         top: 0;
         z-index: 10;
-        background:
-          linear-gradient(180deg, rgba(14, 14, 14, 0.9), rgba(7, 7, 7, 0.96)),
-          linear-gradient(
-            90deg,
-            rgba(240, 122, 31, 0.05),
-            transparent 45%,
-            rgba(240, 122, 31, 0.02)
-          );
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-        backdrop-filter: blur(18px);
-        overflow: hidden;
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+        overflow: visible;
       }
       .site-header::before {
         content: none;
@@ -204,11 +214,15 @@
         align-items: center;
         padding: 10px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.02)
+        );
         box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.04),
-          0 10px 24px rgba(0, 0, 0, 0.14);
+          inset 0 1px 0 rgba(255, 255, 255, 0.05),
+          0 14px 30px rgba(0, 0, 0, 0.14);
       }
       .menu a {
         color: rgba(246, 243, 238, 0.88);
@@ -245,37 +259,65 @@
       }
       .hero-mini {
         width: min(calc(100% - 32px), var(--site-width));
-        margin: 30px auto 18px;
+        margin: 8px auto 18px;
         position: relative;
+        padding: 0 20px 24px;
       }
       .hero-card {
         position: relative;
-        padding: 38px 34px;
-        border-radius: var(--radius-xl);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 46px 40px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
         background:
           linear-gradient(
             180deg,
-            rgba(16, 16, 16, 0.9),
-            rgba(10, 10, 10, 0.95)
+            rgba(21, 21, 22, 0.88),
+            rgba(12, 12, 13, 0.93) 52%,
+            rgba(10, 10, 11, 0.96)
           ),
           radial-gradient(
-            circle at 85% 20%,
-            rgba(240, 122, 31, 0.1),
-            transparent 22%
+            circle at 82% 18%,
+            rgba(240, 122, 31, 0.14),
+            transparent 26%
           );
-        box-shadow: var(--shadow);
+        box-shadow:
+          0 22px 44px rgba(0, 0, 0, 0.24),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
         overflow: hidden;
       }
       .hero-card::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.03),
-          transparent 45%
-        );
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 34%),
+          radial-gradient(
+            ellipse 78% 64% at 14% 16%,
+            rgba(240, 122, 31, 0.11),
+            transparent 58%
+          ),
+          radial-gradient(
+            ellipse 38% 30% at 86% 78%,
+            rgba(255, 186, 122, 0.04),
+            transparent 34%
+          );
+        pointer-events: none;
+      }
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 62% 54% at 78% 22%,
+            rgba(240, 122, 31, 0.065),
+            transparent 54%
+          ),
+          radial-gradient(
+            ellipse 44% 38% at 22% 82%,
+            rgba(255, 170, 96, 0.035),
+            transparent 36%
+          );
         pointer-events: none;
       }
       .hero-card h1 {
@@ -301,12 +343,122 @@
         margin-top: 28px;
       }
       .benefit {
-        background: rgba(255, 255, 255, 0.03);
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(27, 27, 28, 0.92),
+            rgba(16, 16, 17, 0.95) 46%,
+            rgba(12, 12, 13, 0.98)
+          );
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 20px;
         padding: 22px 18px;
         text-align: center;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        box-shadow:
+          0 18px 38px rgba(0, 0, 0, 0.24),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transition:
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.35s ease;
+      }
+      .benefit::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.92;
+        transition:
+          opacity 0.35s ease,
+          transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.35s ease;
+      }
+      .benefit::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        border: 1px solid transparent;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 186, 122, 0.14),
+            rgba(255, 255, 255, 0.02) 28%,
+            rgba(240, 122, 31, 0.09) 68%,
+            rgba(255, 255, 255, 0.01)
+          )
+          border-box;
+        -webkit-mask:
+          linear-gradient(#fff 0 0) padding-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+          linear-gradient(#fff 0 0) padding-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        opacity: 0.42;
+        transition: opacity 0.35s ease;
+      }
+      .benefit:nth-child(1)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%),
+          radial-gradient(
+            ellipse 78% 62% at 18% 18%,
+            rgba(240, 122, 31, 0.12),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 86% 78%,
+            rgba(255, 179, 112, 0.04),
+            transparent 34%
+          );
+      }
+      .benefit:nth-child(2)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 32%),
+          radial-gradient(
+            ellipse 72% 64% at 84% 76%,
+            rgba(240, 122, 31, 0.09),
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 14% 22%,
+            rgba(255, 164, 86, 0.05),
+            transparent 36%
+          );
+      }
+      .benefit:nth-child(3)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%),
+          radial-gradient(
+            ellipse 66% 58% at 52% 8%,
+            rgba(255, 184, 120, 0.08),
+            transparent 58%
+          ),
+          radial-gradient(
+            ellipse 54% 48% at 20% 82%,
+            rgba(240, 122, 31, 0.045),
+            transparent 46%
+          );
+      }
+      .benefit:hover {
+        transform: translateY(-6px) scale(1.018);
+        border-color: rgba(240, 122, 31, 0.2);
+        box-shadow:
+          0 28px 54px rgba(0, 0, 0, 0.28),
+          0 0 0 1px rgba(240, 122, 31, 0.1),
+          0 0 28px rgba(240, 122, 31, 0.055);
+      }
+      .benefit:hover::before {
+        opacity: 1;
+        transform: scale(1.035);
+        filter: saturate(1.08) brightness(1.03);
+      }
+      .benefit:hover::after {
+        opacity: 0.68;
       }
       .benefit .icon {
         width: 54px;
@@ -341,15 +493,60 @@
         margin: 18px auto 60px;
       }
       .form-box {
-        background: linear-gradient(
-          180deg,
-          rgba(18, 18, 18, 0.94),
-          rgba(10, 10, 10, 0.98)
-        );
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(21, 21, 22, 0.88),
+            rgba(16, 16, 17, 0.92) 52%,
+            rgba(18, 17, 16, 0.94)
+          ),
+          radial-gradient(
+            circle at 86% 14%,
+            rgba(240, 122, 31, 0.1),
+            transparent 26%
+          );
         border-radius: var(--radius-xl);
-        box-shadow: var(--shadow);
+        box-shadow:
+          0 22px 44px rgba(0, 0, 0, 0.24),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
         padding: 34px;
         border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .form-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 32%),
+          radial-gradient(
+            ellipse 76% 64% at 14% 18%,
+            rgba(240, 122, 31, 0.09),
+            transparent 58%
+          );
+      }
+      .form-box::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            ellipse 68% 58% at 84% 16%,
+            rgba(255, 184, 120, 0.05),
+            transparent 54%
+          ),
+          radial-gradient(
+            ellipse 42% 36% at 18% 82%,
+            rgba(240, 122, 31, 0.032),
+            transparent 34%
+          );
+      }
+      .form-box > * {
+        position: relative;
+        z-index: 1;
       }
       .form-box h2 {
         margin-top: 0;
@@ -442,10 +639,40 @@
         border: 0;
       }
       .file-box {
-        background: rgba(255, 255, 255, 0.025);
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.028),
+            rgba(255, 255, 255, 0.016)
+          );
         border: 1px dashed rgba(255, 255, 255, 0.16);
         border-radius: 18px;
         padding: 16px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+      .file-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 32%),
+          radial-gradient(
+            ellipse 76% 62% at 84% 20%,
+            rgba(240, 122, 31, 0.06),
+            transparent 56%
+          ),
+          radial-gradient(
+            ellipse 38% 30% at 18% 82%,
+            rgba(255, 186, 122, 0.03),
+            transparent 34%
+          );
+      }
+      .file-box > * {
+        position: relative;
+        z-index: 1;
       }
       .file-picker {
         display: flex;
@@ -510,8 +737,11 @@
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
       }
       .submit-btn {
+        position: relative;
         margin-top: 24px;
-        width: 100%;
+        width: auto;
+        min-width: 260px;
+        max-width: 100%;
         padding: 17px;
         border: none;
         border-radius: 14px;
@@ -539,6 +769,22 @@
         font-weight: 700;
         min-height: 24px;
         color: var(--muted);
+      }
+      .msg:empty {
+        display: none;
+      }
+      .submit-note {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 48px;
+        margin-bottom: 30px;
+        color: #b9b0a5;
+        font-size: 14px;
+        line-height: 1.7;
+        text-align: center;
       }
       .success {
         color: #8ed88a;
@@ -757,17 +1003,105 @@
       }
       .site-footer {
         width: min(calc(100% - 32px), var(--site-width));
-        text-align: center;
         padding: 0 20px 32px;
         background: transparent;
         color: #998d81;
         font-size: 13px;
         margin: 0 auto;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        position: relative;
       }
-      .site-footer p {
+      .site-footer > p {
+        display: none;
+      }
+      .footer-panel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(27, 27, 28, 0.92),
+            rgba(16, 16, 17, 0.95) 46%,
+            rgba(12, 12, 13, 0.98)
+          );
+        box-shadow:
+          0 18px 34px rgba(0, 0, 0, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        padding: 28px 26px 24px;
+      }
+      .footer-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 32%),
+          radial-gradient(
+            ellipse 68% 56% at 50% 10%,
+            rgba(255, 184, 120, 0.075),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 18% 76%,
+            rgba(240, 122, 31, 0.04),
+            transparent 36%
+          );
+        pointer-events: none;
+      }
+      .footer-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 24px;
+        text-align: left;
+      }
+      .footer-brand h3,
+      .footer-block h4 {
         margin: 0;
+        font-family: "Sora", "Segoe UI", sans-serif;
+        color: var(--text);
+      }
+      .footer-brand h3 {
+        font-size: 28px;
+        letter-spacing: -0.03em;
+        margin-bottom: 10px;
+      }
+      .footer-brand p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .footer-block h4 {
+        margin-bottom: 12px;
+        font-size: 14px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #e7d4c0;
+      }
+      .footer-list {
+        display: grid;
+        gap: 10px;
+      }
+      .footer-item,
+      .footer-item a {
+        color: #c8bcaf;
+        text-decoration: none;
+        line-height: 1.7;
+      }
+      .footer-item a:hover {
+        color: #ffcfab;
+      }
+      .footer-note {
+        position: relative;
+        z-index: 1;
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
       }
       @media (max-width: 900px) {
         .benefits {
@@ -776,7 +1110,7 @@
       }
       @media (max-width: 768px) {
         .site-header {
-          padding: 18px 14px 18px;
+          padding: 16px 14px 8px;
         }
         .logo {
           height: 96px;
@@ -820,11 +1154,12 @@
         }
         .hero-mini {
           width: min(calc(100% - 20px), var(--site-width));
-          margin-top: 18px;
+          margin-top: 12px;
+          padding: 0 10px 16px;
         }
         .hero-card {
           padding: 28px 20px;
-          border-radius: 24px;
+          border-radius: 26px;
         }
         .hero-card h1 {
           font-size: 36px;
@@ -893,6 +1228,22 @@
           width: min(calc(100% - 20px), var(--site-width));
           padding: 0 0 26px;
         }
+        .footer-panel {
+          border-radius: 22px;
+          padding: 24px 18px 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .footer-brand h3 {
+          font-size: 24px;
+        }
+        .footer-note {
+          margin-top: 18px;
+          padding-top: 16px;
+          line-height: 1.6;
+        }
       }
     </style>
   </head>
@@ -928,42 +1279,36 @@
     </header>
     <section class="hero-mini">
       <div class="hero-card">
-        <h1>Faites reprendre votre véhicule simplement</h1>
+        <h1>Estimez votre véhicule en quelques minutes</h1>
         <p>
-          Remplissez le formulaire en quelques minutes et ajoutez quelques
-          photos. Nous vous donnons une estimation rapide, sans engagement.
+          Remplissez le formulaire et recevez une estimation claire, sans
+          engagement.
         </p>
         <div class="benefits">
           <div class="benefit">
             <div class="icon">&#9889;</div>
-            <h3>Réponse rapide</h3>
-            <p>Nous étudions votre demande et revenons vers vous rapidement.</p>
+            <h3>Estimation rapide</h3>
+            <p>Reponse claire sous 24h apres etude de votre vehicule.</p>
           </div>
           <div class="benefit">
             <div class="icon">&#128248;</div>
-            <h3>Envoi simple</h3>
-            <p>
-              Ajoutez les photos directement depuis votre téléphone ou votre
-              ordinateur.
-            </p>
+            <h3>100% sans engagement</h3>
+            <p>Vous restez libre, aucune obligation de vente.</p>
           </div>
           <div class="benefit">
             <div class="icon">&#129309;</div>
-            <h3>Accompagnement</h3>
-            <p>
-              Nous vous aidons à vendre votre véhicule dans les meilleures
-              conditions..
-            </p>
+            <h3>Analyse serieuse</h3>
+            <p>Chaque demande est etudiee avec attention, pas d'estimation au hasard.</p>
           </div>
         </div>
       </div>
     </section>
     <div class="container">
       <div class="form-box">
-        <h2>Estimation et rachat de véhicule</h2>
+        <h2>Obtenir mon estimation</h2>
         <p class="intro">
-          Remplissez le formulaire pour obtenir une estimation rapide de votre
-          véhicule. Réponse simple, sans engagement.
+          Completez les informations ci-dessous pour recevoir une estimation fiable de votre vehicule.
+          Simple, rapide et sans engagement.
         </p>
         <form id="rachat-form">
           <div class="grid">
@@ -1051,7 +1396,12 @@
               <div class="preview" id="preview"></div>
             </div>
           </div>
-          <button type="submit" class="submit-btn">Envoyer ma demande</button>
+          <button type="submit" class="submit-btn">Recevoir mon estimation</button>
+          <p class="submit-note">
+            <span>✔ Réponse rapide</span>
+            <span>✔ Aucune obligation</span>
+            <span>✔ Données confidentielles</span>
+          </p>
           <div class="msg" id="message"></div>
         </form>
       </div>
@@ -1060,10 +1410,10 @@
       <div class="contact-box">
         <span class="close" onclick="closeContact()">×</span>
         <div class="contact-kicker">Prendre contact</div>
-        <h2>Contact DBJ Automobile</h2>
+        <h2>Contactez DBJ Automobile</h2>
         <p class="contact-intro">
-          Retrouvez nos coordonnées et nos horaires pour échanger simplement
-          avec le garage dans un cadre clair, sérieux et rassurant.
+          Besoin d&rsquo;un renseignement, d&rsquo;un v&eacute;hicule ou d&rsquo;une estimation ?
+          Contactez-nous simplement, nous vous r&eacute;pondons rapidement.
         </p>
         <div class="contact-grid">
           <div class="contact-item">
@@ -1152,7 +1502,7 @@
         submitBtn.style.cursor = isLoading ? "not-allowed" : "pointer";
         submitBtn.textContent = isLoading
           ? "Envoi en cours..."
-          : "Envoyer ma demande";
+          <button type="submit" class="submit-btn">Recevoir mon estimation</button>
       }
       photosInput.addEventListener("change", () => {
         selectedFiles = Array.from(photosInput.files || []);
@@ -1318,7 +1668,41 @@
       });
     </script>
     <footer class="site-footer">
-      <p>© 2026 DBJ Automobile. Tous droits réservés.</p>
+      <div class="footer-panel">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>DBJ Automobile</h3>
+            <p>
+              Vente, reprise et accompagnement automobile avec un service clair,
+              s&eacute;rieux et r&eacute;actif.
+            </p>
+          </div>
+          <div class="footer-block">
+            <h4>Contact</h4>
+            <div class="footer-list">
+              <div class="footer-item">
+                <a href="tel:+33782675552">07 82 67 55 52</a>
+              </div>
+              <div class="footer-item">
+                <a href="mailto:dbjautomobile62@gmail.com"
+                  >dbjautomobile62@gmail.com</a
+                >
+              </div>
+              <div class="footer-item">600 rue de Lillers, 62920 Chocques</div>
+            </div>
+          </div>
+          <div class="footer-block">
+            <h4>Horaires</h4>
+            <div class="footer-list">
+              <div class="footer-item">Lundi au vendredi</div>
+              <div class="footer-item">9h-12h / 14h-18h</div>
+              <div class="footer-item">Samedi et dimanche ferme</div>
+            </div>
+          </div>
+        </div>
+        <p class="footer-note">(c) 2026 DBJ Automobile. Tous droits reserves.</p>
+      </div>
     </footer>
   </body>
 </html>
+

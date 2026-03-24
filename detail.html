@@ -75,16 +75,33 @@
         color: var(--text);
         background:
           radial-gradient(
-            circle at top left,
-            rgba(240, 122, 31, 0.14),
-            transparent 26%
+            circle at 50% 18%,
+            rgba(255, 158, 82, 0.09),
+            transparent 20%
           ),
           radial-gradient(
-            circle at 88% 8%,
-            rgba(240, 122, 31, 0.1),
-            transparent 18%
+            circle at 18% 24%,
+            rgba(255, 255, 255, 0.035),
+            transparent 22%
           ),
-          linear-gradient(180deg, #090909 0%, #050505 48%, #0b0b0b 100%);
+          radial-gradient(
+            circle at top left,
+            rgba(240, 122, 31, 0.14),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 10%,
+            rgba(240, 122, 31, 0.1),
+            transparent 24%
+          ),
+          linear-gradient(
+            180deg,
+            #111111 0%,
+            #0d0d0f 22%,
+            #080809 48%,
+            #0b0b0d 72%,
+            #121110 100%
+          );
         overflow-x: hidden;
         overflow-y: auto;
         position: relative;
@@ -102,35 +119,28 @@
         opacity: 0.28;
       }
       body::before {
-        top: -11rem;
-        left: -10rem;
+        top: -12rem;
+        left: -7rem;
         background: rgba(240, 122, 31, 0.16);
       }
       body::after {
-        right: -12rem;
+        right: -14rem;
         bottom: -12rem;
         background: rgba(240, 122, 31, 0.08);
       }
       .site-header {
         width: 100%;
         margin: 0;
-        padding: 20px 28px 24px;
+        padding: 18px 28px 10px;
         color: var(--text);
         text-align: center;
         position: relative;
         top: 0;
         z-index: 10;
-        background:
-          linear-gradient(180deg, rgba(14, 14, 14, 0.9), rgba(7, 7, 7, 0.96)),
-          linear-gradient(
-            90deg,
-            rgba(240, 122, 31, 0.05),
-            transparent 45%,
-            rgba(240, 122, 31, 0.02)
-          );
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-        backdrop-filter: blur(18px);
-        overflow: hidden;
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+        overflow: visible;
       }
       .site-header::before {
         content: none;
@@ -208,11 +218,15 @@
         align-items: center;
         padding: 10px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.02)
+        );
         box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.04),
-          0 10px 24px rgba(0, 0, 0, 0.14);
+          inset 0 1px 0 rgba(255, 255, 255, 0.05),
+          0 14px 30px rgba(0, 0, 0, 0.14);
       }
       .menu a {
         color: rgba(246, 243, 238, 0.88);
@@ -249,15 +263,21 @@
       }
       .detail-hero {
         width: min(calc(100% - 32px), var(--site-width));
-        margin: 30px auto 18px;
+        margin: 10px auto 18px;
         padding: 0;
         border-radius: var(--radius-xl);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        background: linear-gradient(
-          180deg,
-          rgba(16, 16, 16, 0.92),
-          rgba(10, 10, 10, 0.96)
-        );
+        background:
+          linear-gradient(
+            180deg,
+            rgba(21, 21, 22, 0.88),
+            rgba(11, 11, 12, 0.94)
+          ),
+          radial-gradient(
+            circle at 52% 44%,
+            rgba(255, 170, 96, 0.14),
+            transparent 30%
+          );
         box-shadow: var(--shadow);
         overflow: hidden;
         position: relative;
@@ -269,14 +289,14 @@
         background:
           radial-gradient(
             circle at 82% 24%,
-            rgba(240, 122, 31, 0.18),
-            transparent 26%
+            rgba(240, 122, 31, 0.14),
+            transparent 30%
           ),
           linear-gradient(
             90deg,
-            rgba(8, 8, 8, 0.22),
-            rgba(8, 8, 8, 0.04) 42%,
-            rgba(8, 8, 8, 0.3)
+            rgba(8, 8, 9, 0.76),
+            rgba(8, 8, 9, 0.24) 42%,
+            rgba(8, 8, 9, 0.76)
           );
         pointer-events: none;
       }
@@ -364,11 +384,13 @@
         transform: translateY(-2px);
       }
       .detail-card {
-        background: linear-gradient(
-          180deg,
-          rgba(18, 18, 18, 0.94),
-          rgba(10, 10, 10, 0.98)
-        );
+        background:
+          linear-gradient(
+            180deg,
+            rgba(27, 27, 28, 0.92),
+            rgba(16, 16, 17, 0.95) 46%,
+            rgba(12, 12, 13, 0.98)
+          );
         border-radius: 28px;
         box-shadow: var(--shadow-strong);
         padding: 30px;
@@ -384,11 +406,16 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 22%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 30%),
           radial-gradient(
-            circle at top right,
-            rgba(240, 122, 31, 0.08),
-            transparent 28%
+            ellipse 74% 62% at 16% 20%,
+            rgba(240, 122, 31, 0.11),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 82% 28%,
+            rgba(255, 176, 106, 0.045),
+            transparent 34%
           );
         pointer-events: none;
       }
@@ -416,7 +443,7 @@
       }
       .main-image-wrap {
         width: 100%;
-        height: 430px;
+        height: 480px;
         border-radius: 22px;
         overflow: hidden;
         background: #0f0f0f;
@@ -568,16 +595,112 @@
         box-shadow: 0 16px 28px rgba(0, 0, 0, 0.26);
       }
       .section-box {
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.035),
-          rgba(255, 255, 255, 0.02)
-        );
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(255, 255, 255, 0.02)
+          ),
+          radial-gradient(
+            ellipse 72% 60% at 78% 24%,
+            rgba(240, 122, 31, 0.08),
+            transparent 58%
+          );
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 22px;
         padding: 24px;
         margin-top: 18px;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        box-shadow:
+          0 18px 34px rgba(0, 0, 0, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        transition:
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.35s ease;
+      }
+      .section-box::before,
+      .intro-card::before,
+      .spec-highlight::before,
+      .related-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.92;
+        transition:
+          opacity 0.35s ease,
+          transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.35s ease;
+      }
+      .section-box > *,
+      .intro-card > *,
+      .spec-highlight > *,
+      .related-card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .section-box:hover,
+      .intro-card:hover,
+      .spec-highlight:hover,
+      .related-card:hover {
+        transform: translateY(-6px) scale(1.018);
+        border-color: rgba(240, 122, 31, 0.2);
+        box-shadow:
+          0 28px 54px rgba(0, 0, 0, 0.24),
+          0 0 0 1px rgba(240, 122, 31, 0.1),
+          0 0 28px rgba(240, 122, 31, 0.05);
+      }
+      .section-box:hover::before,
+      .intro-card:hover::before,
+      .spec-highlight:hover::before,
+      .related-card:hover::before {
+        opacity: 1;
+        transform: scale(1.035);
+        filter: saturate(1.08) brightness(1.03);
+      }
+      .section-box:nth-of-type(3n + 1)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.032), transparent 30%),
+          radial-gradient(
+            ellipse 78% 62% at 16% 18%,
+            rgba(240, 122, 31, 0.11),
+            transparent 58%
+          ),
+          radial-gradient(
+            ellipse 38% 32% at 84% 76%,
+            rgba(255, 176, 106, 0.04),
+            transparent 34%
+          );
+      }
+      .section-box:nth-of-type(3n + 2)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%),
+          radial-gradient(
+            ellipse 72% 64% at 84% 22%,
+            rgba(240, 122, 31, 0.092),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 14% 78%,
+            rgba(255, 186, 122, 0.042),
+            transparent 34%
+          );
+      }
+      .section-box:nth-of-type(3n + 3)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 32%),
+          radial-gradient(
+            ellipse 66% 56% at 52% 10%,
+            rgba(255, 184, 120, 0.075),
+            transparent 56%
+          ),
+          radial-gradient(
+            ellipse 52% 44% at 18% 82%,
+            rgba(240, 122, 31, 0.046),
+            transparent 44%
+          );
       }
       .section-box h3 {
         margin: 0 0 14px;
@@ -626,15 +749,39 @@
         gap: 18px;
       }
       .intro-card {
+        position: relative;
+        overflow: hidden;
         padding: 26px;
         border-radius: 26px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.04),
-          rgba(255, 255, 255, 0.015)
-        );
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.015)
+          ),
+          radial-gradient(
+            ellipse 68% 56% at 50% 10%,
+            rgba(255, 184, 120, 0.075),
+            transparent 58%
+          );
         border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        box-shadow:
+          0 18px 34px rgba(0, 0, 0, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+      .intro-card::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.032), transparent 30%),
+          radial-gradient(
+            ellipse 70% 58% at 78% 18%,
+            rgba(255, 184, 120, 0.082),
+            transparent 56%
+          ),
+          radial-gradient(
+            ellipse 48% 40% at 18% 82%,
+            rgba(240, 122, 31, 0.046),
+            transparent 40%
+          );
       }
       .eyebrow {
         display: inline-flex;
@@ -673,7 +820,7 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
         gap: 18px;
-        align-items: end;
+        align-items: start;
         margin-bottom: 22px;
       }
       .price-wrap {
@@ -711,12 +858,27 @@
         background: rgba(255, 255, 255, 0.025);
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
+      .trust-line {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 8px 14px;
+        margin-top: 14px;
+        color: #d6c7b6;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 1.8;
+        white-space: nowrap;
+      }
       .spec-highlight-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
       }
       .spec-highlight {
+        position: relative;
+        overflow: hidden;
         padding: 16px 16px 14px;
         border-radius: 18px;
         background: linear-gradient(
@@ -725,6 +887,51 @@
           rgba(255, 255, 255, 0.015)
         );
         border: 1px solid rgba(255, 255, 255, 0.07);
+        box-shadow:
+          0 14px 28px rgba(0, 0, 0, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+      .spec-highlight:nth-child(3n + 1)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 30%),
+          radial-gradient(
+            ellipse 76% 62% at 14% 18%,
+            rgba(240, 122, 31, 0.1),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 84% 74%,
+            rgba(255, 176, 106, 0.04),
+            transparent 34%
+          );
+      }
+      .spec-highlight:nth-child(3n + 2)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 32%),
+          radial-gradient(
+            ellipse 70% 60% at 84% 80%,
+            rgba(240, 122, 31, 0.086),
+            transparent 58%
+          ),
+          radial-gradient(
+            ellipse 42% 34% at 18% 18%,
+            rgba(255, 170, 96, 0.046),
+            transparent 36%
+          );
+      }
+      .spec-highlight:nth-child(3n + 3)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%),
+          radial-gradient(
+            ellipse 64% 52% at 50% 8%,
+            rgba(255, 184, 120, 0.072),
+            transparent 54%
+          ),
+          radial-gradient(
+            circle at 18% 82%,
+            rgba(240, 122, 31, 0.04),
+            transparent 32%
+          );
       }
       .spec-highlight-label {
         display: block;
@@ -775,6 +982,8 @@
         color: #111;
         box-shadow: 0 18px 34px rgba(240, 122, 31, 0.24);
         border-color: rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+        letter-spacing: 0.12em;
       }
       .btn-gold:hover {
         filter: saturate(1.05);
@@ -849,6 +1058,7 @@
         gap: 22px;
       }
       .related-card {
+        position: relative;
         background: linear-gradient(
           180deg,
           rgba(19, 19, 19, 0.96),
@@ -860,10 +1070,47 @@
         transition: 0.25s;
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
-      .related-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 26px 48px rgba(0, 0, 0, 0.28);
-        border-color: rgba(240, 122, 31, 0.22);
+      .related-card:nth-child(3n + 1)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 30%),
+          radial-gradient(
+            ellipse 78% 62% at 18% 20%,
+            rgba(240, 122, 31, 0.1),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 84% 76%,
+            rgba(255, 176, 106, 0.04),
+            transparent 34%
+          );
+      }
+      .related-card:nth-child(3n + 2)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 30%),
+          radial-gradient(
+            ellipse 72% 64% at 82% 22%,
+            rgba(240, 122, 31, 0.088),
+            transparent 58%
+          ),
+          radial-gradient(
+            ellipse 40% 34% at 18% 80%,
+            rgba(255, 186, 122, 0.04),
+            transparent 34%
+          );
+      }
+      .related-card:nth-child(3n + 3)::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%),
+          radial-gradient(
+            ellipse 64% 54% at 52% 10%,
+            rgba(255, 184, 120, 0.074),
+            transparent 56%
+          ),
+          radial-gradient(
+            circle at 20% 82%,
+            rgba(240, 122, 31, 0.042),
+            transparent 34%
+          );
       }
       .related-image-wrap {
         position: relative;
@@ -1241,17 +1488,104 @@
       }
       .site-footer {
         width: min(calc(100% - 32px), var(--site-width));
-        text-align: center;
         padding: 0 20px 32px;
         background: transparent;
         color: #998d81;
         font-size: 13px;
         margin: 0 auto;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
       }
-      .site-footer p {
+      .site-footer > p {
+        display: none;
+      }
+      .footer-panel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(27, 27, 28, 0.92),
+            rgba(16, 16, 17, 0.95) 46%,
+            rgba(12, 12, 13, 0.98)
+          );
+        box-shadow:
+          0 18px 34px rgba(0, 0, 0, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        padding: 28px 26px 24px;
+      }
+      .footer-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 32%),
+          radial-gradient(
+            ellipse 68% 56% at 50% 10%,
+            rgba(255, 184, 120, 0.075),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 18% 76%,
+            rgba(240, 122, 31, 0.04),
+            transparent 36%
+          );
+        pointer-events: none;
+      }
+      .footer-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 24px;
+        text-align: left;
+      }
+      .footer-brand h3,
+      .footer-block h4 {
         margin: 0;
+        font-family: "Sora", "Segoe UI", sans-serif;
+        color: var(--text);
+      }
+      .footer-brand h3 {
+        font-size: 28px;
+        letter-spacing: -0.03em;
+        margin-bottom: 10px;
+      }
+      .footer-brand p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .footer-block h4 {
+        margin-bottom: 12px;
+        font-size: 14px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #e7d4c0;
+      }
+      .footer-list {
+        display: grid;
+        gap: 10px;
+      }
+      .footer-item,
+      .footer-item a {
+        color: #c8bcaf;
+        text-decoration: none;
+        line-height: 1.7;
+      }
+      .footer-item a:hover {
+        color: #ffcfab;
+      }
+      .footer-note {
+        position: relative;
+        z-index: 1;
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
       }
       @media (max-width: 980px) {
         .detail-card {
@@ -1279,7 +1613,7 @@
       }
       @media (max-width: 768px) {
         .site-header {
-          padding: 18px 14px 18px;
+          padding: 16px 14px 8px;
         }
         .logo {
           height: 96px;
@@ -1389,6 +1723,10 @@
           font-size: 16px;
           padding: 16px;
         }
+        .trust-line {
+          gap: 8px 14px;
+          font-size: 12px;
+        }
         .section-box {
           padding: 20px;
         }
@@ -1464,6 +1802,26 @@
           transform: translateX(70px);
           margin: 4px auto 24px;
         }
+        .site-footer {
+          width: min(calc(100% - 20px), var(--site-width));
+          padding: 0 0 26px;
+        }
+        .footer-panel {
+          border-radius: 22px;
+          padding: 24px 18px 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .footer-brand h3 {
+          font-size: 24px;
+        }
+        .footer-note {
+          margin-top: 18px;
+          padding-top: 16px;
+          line-height: 1.6;
+        }
       }
     </style>
   </head>
@@ -1497,16 +1855,6 @@
         </p>
       </div>
     </header>
-    <section class="detail-hero">
-      <div class="detail-hero-inner">
-        <div class="detail-kicker">Détail véhicule DBJ Automobile</div>
-        <h1>Consultez chaque véhicule en détail</h1>
-        <p>
-          Photos, caractéristiques et équipements disponibles pour chaque
-          véhicule. Contactez-nous directement pour plus d’informations.
-        </p>
-      </div>
-    </section>
     <main class="page-wrap">
       <a href="catalogue.html" class="back-link">← Retour au catalogue</a>
       <div id="vehicleContainer">
@@ -1523,10 +1871,10 @@
       <div class="contact-box">
         <span class="close" onclick="closeContact()">×</span>
         <div class="contact-kicker">Prendre contact</div>
-        <h2>Contact DBJ Automobile</h2>
+        <h2>Contactez DBJ Automobile</h2>
         <p class="contact-intro">
-          Retrouvez nos coordonnées et nos horaires pour échanger simplement
-          avec le garage dans un cadre clair, sérieux et rassurant.
+          Besoin d&rsquo;un renseignement, d&rsquo;un v&eacute;hicule ou d&rsquo;une estimation ?
+          Contactez-nous simplement, nous vous r&eacute;pondons rapidement.
         </p>
         <div class="contact-grid">
           <div class="contact-item">
@@ -1800,7 +2148,14 @@
               <h1 class="vehicle-title">${title}</h1>
               ${[car.badge, car.badge2].filter(Boolean).length ? `<div class="title-badges">${renderBadges(car)}</div>` : ""}
               <div class="summary-grid">
-                <div class="short-specs">${shortSpecs || "Informations \u00e0 venir"}</div>
+                <div>
+                  <div class="short-specs">${shortSpecs || "Informations \u00e0 venir"}</div>
+                  <div class="trust-line">
+                    <span>&#10003; Aucun frais &agrave; pr&eacute;voir</span>
+                    <span>&#10003; Vendu r&eacute;vis&eacute;</span>
+                    <span>&#10003; R&eacute;servation possible</span>
+                  </div>
+                </div>
                 <div class="price-wrap">
                   
                   <div class="price">${price}</div>
@@ -1813,7 +2168,7 @@
               </div>
             </div>
             <div class="cta-row">
-              <a href="tel:+33666379685" class="btn btn-dark">Appeler</a>
+              <a href="tel:+33666379685" class="btn btn-dark">Appeler maintenant</a>
               <a href="#" onclick="openInterestPopup(); return false;" class="btn btn-gold">Je suis intéressé</a>
             </div>
             <div class="section-box">
@@ -2007,7 +2362,40 @@
       });
     </script>
     <footer class="site-footer">
-      <p>© 2026 DBJ Automobile. Tous droits réservés.</p>
+      <div class="footer-panel">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>DBJ Automobile</h3>
+            <p>
+              Vente, reprise et accompagnement automobile avec un service clair,
+              s&eacute;rieux et r&eacute;actif.
+            </p>
+          </div>
+          <div class="footer-block">
+            <h4>Contact</h4>
+            <div class="footer-list">
+              <div class="footer-item">
+                <a href="tel:+33782675552">07 82 67 55 52</a>
+              </div>
+              <div class="footer-item">
+                <a href="mailto:dbjautomobile62@gmail.com"
+                  >dbjautomobile62@gmail.com</a
+                >
+              </div>
+              <div class="footer-item">600 rue de Lillers, 62920 Chocques</div>
+            </div>
+          </div>
+          <div class="footer-block">
+            <h4>Horaires</h4>
+            <div class="footer-list">
+              <div class="footer-item">Lundi au vendredi</div>
+              <div class="footer-item">9h-12h / 14h-18h</div>
+              <div class="footer-item">Samedi et dimanche ferme</div>
+            </div>
+          </div>
+        </div>
+        <p class="footer-note">(c) 2026 DBJ Automobile. Tous droits reserves.</p>
+      </div>
     </footer>
   </body>
 </html>
