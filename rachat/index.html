@@ -1566,11 +1566,12 @@
         if (type) message.classList.add(type);
       }
       function setLoading(isLoading) {
-        submitBtn.disabled = isLoading;
-        submitBtn.style.opacity = isLoading ? "0.7" : "1";
-        submitBtn.style.cursor = isLoading ? "not-allowed" : "pointer";
-        submitBtn.textContent = isLoading
-          ? "Envoi en cours..."
+  submitBtn.disabled = isLoading;
+  submitBtn.style.opacity = isLoading ? "0.7" : "1";
+  submitBtn.style.cursor = isLoading ? "not-allowed" : "pointer";
+  submitBtn.textContent = isLoading
+    ? "Envoi en cours..."
+    : "Recevoir mon estimation"
           <button type="submit" class="submit-btn">Recevoir mon estimation</button>
       }
       photosInput.addEventListener("change", () => {
